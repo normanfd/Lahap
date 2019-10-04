@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,18 +32,29 @@ import com.lahaptech.lahap.model.Product;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class AddNewProductActivity extends AppCompatActivity {
+public class AddNewProductActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private String CategoryName, Description, Price, Productname, saveCurrentDate, saveCurrentTime;
-    private Button AddNewProductButton;
-    private ImageView InputProductImage;
-    private EditText InputProductName, InputProductDescription, InputProductPrice;
+    @BindView(R.id.add_new_product)
+    Button addNewProductButton;
+    @BindView(R.id.select_product_image)
+    ImageView inputProductImage;
+    @BindView(R.id.product_name)
+    EditText inputProductName;
+    @BindView(R.id.product_description)
+    EditText inputProductDescription;
+    @BindView(R.id.product_price)
+    EditText inputProductPrice;
+
+
+    private String CategoryName, ProductDescription, ProductPrice, ProductName,
+            ProductRandomKey, DownloadImageUrl, saveCurrentDate, saveCurrentTime;
     private static final int GalleryPick = 1;
     private Uri ImageUri;
-    private String productRandomKey, DownloadImageUrl;
     private StorageReference ProductImageRef;
     private DatabaseReference ProductRef;
     private ProgressDialog loadingBar;
@@ -51,46 +64,32 @@ public class AddNewProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_product);
         CategoryName = getIntent().getExtras().get("category").toString();
+        Log.i("test",CategoryName);
         ProductImageRef = FirebaseStorage.getInstance().getReference().child("Product Images");
         ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
         loadingBar = new ProgressDialog(this);
 
-        AddNewProductButton = (Button) findViewById(R.id.add_new_product);
-        InputProductImage = (ImageView) findViewById(R.id.select_product_image);
-        InputProductName = (EditText) findViewById(R.id.product_name);
-        InputProductDescription = (EditText) findViewById(R.id.product_description);
-        InputProductPrice = (EditText) findViewById(R.id.product_price);
+        ButterKnife.bind(this);
 
-        InputProductImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OpenGallery();
-            }
-        });
-        AddNewProductButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ValidateProdutData();
-            }
-        });
-
+        inputProductImage.setOnClickListener(this);
+        addNewProductButton.setOnClickListener(this);
     }
 
-    private void ValidateProdutData() {
-        Productname = InputProductName.getText().toString();
-        Description = InputProductDescription.getText().toString();
-        Price = InputProductPrice.getText().toString();
+    private void ValidateProductData() {
+        ProductName = inputProductName.getText().toString();
+        ProductDescription = inputProductDescription.getText().toString();
+        ProductPrice = inputProductPrice.getText().toString();
 
         if(ImageUri == null){
             Toast.makeText(this, "Product Image is mandatory...", Toast.LENGTH_SHORT).show();
         }
-        else if(TextUtils.isEmpty(Productname)){
+        else if(TextUtils.isEmpty(ProductName)){
             Toast.makeText(this, "Please write product name", Toast.LENGTH_SHORT).show();
         }
-        else if(TextUtils.isEmpty(Description)){
+        else if(TextUtils.isEmpty(ProductDescription)){
             Toast.makeText(this, "Please write product description", Toast.LENGTH_SHORT).show();
         }
-        else if(TextUtils.isEmpty(Price)){
+        else if(TextUtils.isEmpty(ProductPrice)){
             Toast.makeText(this, "Please write product price", Toast.LENGTH_SHORT).show();
         }
         else{
@@ -107,15 +106,15 @@ public class AddNewProductActivity extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
 
-        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
         saveCurrentDate = currentDate.format(calendar.getTime());
 
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentTime.format(calendar.getTime());
 
-        productRandomKey = saveCurrentDate + saveCurrentTime;
+        ProductRandomKey = saveCurrentDate + saveCurrentTime;
 
-        final StorageReference filePath = ProductImageRef.child(ImageUri.getLastPathSegment() + productRandomKey + ".jpg");
+        final StorageReference filePath = ProductImageRef.child(ImageUri.getLastPathSegment() + ProductRandomKey + ".jpg");
         final UploadTask UploadTask = filePath.putFile(ImageUri);
         UploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
@@ -126,24 +125,24 @@ public class AddNewProductActivity extends AppCompatActivity {
             }
         }).addOnSuccessListener(new OnSuccessListener<com.google.firebase.storage.UploadTask.TaskSnapshot>() {
             @Override
-            public void onSuccess(com.google.firebase.storage.UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(AddNewProductActivity.this, "Image uploaded succesfully", Toast.LENGTH_SHORT).show();
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(AddNewProductActivity.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
                 //get Link Image
-                Task<Uri> urlTask = UploadTask.continueWithTask(new Continuation<com.google.firebase.storage.UploadTask.TaskSnapshot, Task<Uri>>() {
+                UploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
                     public Task<Uri> then(@NonNull Task<com.google.firebase.storage.UploadTask.TaskSnapshot> task) throws Exception {
-                        if(!task.isSuccessful()){
-                            throw task.getException();
-                        }else{
-                            DownloadImageUrl =filePath.getDownloadUrl().toString();
+                        if (!task.isSuccessful()) {
+                            throw Objects.requireNonNull(task.getException());
+                        } else {
+                            DownloadImageUrl = filePath.getDownloadUrl().toString();
                             return filePath.getDownloadUrl();
                         }
                     }
                 }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
-                        if(task.isSuccessful()){
-                            DownloadImageUrl = task.getResult().toString();
+                        if (task.isSuccessful()) {
+                            DownloadImageUrl = Objects.requireNonNull(task.getResult()).toString();
                             Toast.makeText(AddNewProductActivity.this, "got the product Image url succcesfully...", Toast.LENGTH_SHORT).show();
                             SaveProductInfoToDatabase();
                         }
@@ -155,10 +154,10 @@ public class AddNewProductActivity extends AppCompatActivity {
 
     private void SaveProductInfoToDatabase() {
         Product product = new Product(CategoryName, saveCurrentDate,
-                Description, DownloadImageUrl, productRandomKey,
-                Price,Productname, saveCurrentTime);
+                ProductDescription, DownloadImageUrl, ProductRandomKey,
+                ProductPrice, ProductName, saveCurrentTime);
 
-        ProductRef.child(CategoryName).child(productRandomKey).setValue(product)
+        ProductRef.child(CategoryName).child(ProductRandomKey).setValue(product)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -169,7 +168,7 @@ public class AddNewProductActivity extends AppCompatActivity {
                             startActivity(intent);
                         }else{
                             loadingBar.dismiss();
-                            String message = task.getException().toString();
+                            String message = Objects.requireNonNull(task.getException()).toString();
                             Toast.makeText(AddNewProductActivity.this, "Error " + message, Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -188,7 +187,20 @@ public class AddNewProductActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == GalleryPick && resultCode == RESULT_OK && data!= null){
             ImageUri = data.getData();
-            InputProductImage.setImageURI(ImageUri);
+            inputProductImage.setImageURI(ImageUri);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.select_product_image:
+                OpenGallery();
+                break;
+
+            case R.id.add_new_product:
+                ValidateProductData();
+                break;
         }
     }
 }
