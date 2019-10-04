@@ -35,7 +35,6 @@ public class FoodAdapter extends RecyclerView.ViewHolder implements View.OnClick
     public FoodAdapter(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
-
     }
 
     @Override
