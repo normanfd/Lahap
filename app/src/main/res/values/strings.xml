@@ -28,4 +28,8 @@
     <string name="title_activity_home_user">HomeUserActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="product_name">Nama Produk</string>
+    <string name="product_description">Deskripsi Produk</string>
+    <string name="product_price">Harga Produk</string>
+    <string name="add_product">Tambahkan Produk</string>
 </resources>
