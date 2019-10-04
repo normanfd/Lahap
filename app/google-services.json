@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "188775745058",
+    "firebase_url": "https://lahap-apps.firebaseio.com",
+    "project_id": "lahap-apps",
+    "storage_bucket": "lahap-apps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188775745058:android:31aa5b09abcfc40ab5ec7b",
+        "android_client_info": {
+          "package_name": "com.lahaptech.lahap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188775745058-cpla90pi2ef91ojniaiq9bn023mvsjo1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lahaptech.lahap",
+            "certificate_hash": "13516334b4619c7d65f0e8d9af58d4ce100e270e"
+          }
+        },
+        {
+          "client_id": "188775745058-da3f83migurr0ppnneinbrjev1ok0fl2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_hAL5Q1yNqxskMNtYwzVrXf2yLrH1K88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188775745058-da3f83migurr0ppnneinbrjev1ok0fl2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
