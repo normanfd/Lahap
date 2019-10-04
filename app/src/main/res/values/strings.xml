@@ -34,4 +34,5 @@
     <string name="product_price">Product Price</string>
     <string name="product_description">Product Description</string>
     <string name="food_image">food_image</string>
+    <string name="add_product">Tambahkan Produk</string>
 </resources>
