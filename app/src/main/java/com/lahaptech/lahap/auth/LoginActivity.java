@@ -7,9 +7,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -20,20 +22,25 @@ import com.google.firebase.database.ValueEventListener;
 import com.lahaptech.lahap.Main2Activity;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
+import com.lahaptech.lahap.owner.HomeOwnerActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.login_username)
     EditText inpt_username;
     @BindView(R.id.login_password_input)
     EditText inpt_password;
     @BindView(R.id.login_btn)
     Button btn_login;
+    @BindView(R.id.owner_panel_link)
+    TextView owner_link;
+    @BindView(R.id.not_admin_panel_link)
+    TextView user_link;
 
     ProgressDialog loadingBar;
-    private String ParentDbName = "User";
+    String ParentDbName = "User";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +49,9 @@ public class LoginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         loadingBar = new ProgressDialog(this);
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loginUser();
-            }
-        });
+        btn_login.setOnClickListener(this);
+        owner_link.setOnClickListener(this);
+        user_link.setOnClickListener(this);
     }
 
     private void loginUser() {
@@ -78,15 +82,19 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(ParentDbName).child(username).exists()) {
+                    Log.e("TABLENAME", ParentDbName);
                     User UserData = dataSnapshot.child(ParentDbName).child(username).getValue(User.class);
+                    Log.e("DATASNAPSHOT", "Success");
+                    Log.e("Username", username);
+                    Log.e("Password", password);
                     assert UserData != null;
                     if (UserData.getName().equals(username)) {
                         if (UserData.getPassword().equals(password)) {
-                            if (ParentDbName.equals("Admins")) {
-                                Toast.makeText(LoginActivity.this, "Welcome Admin, you are logged in succesfully", Toast.LENGTH_SHORT).show();
+                            if (ParentDbName.equals("Owner")) {
+                                Toast.makeText(LoginActivity.this, "Welcome Owner, you are logged in succesfully", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
-//                                Intent intent = new Intent(LoginActivity.this, AdminCategoryActivity.class);
-//                                startActivity(intent);
+                                Intent intent = new Intent(LoginActivity.this, HomeOwnerActivity.class);
+                                startActivity(intent);
                             } else {
                                 Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
@@ -100,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 } else {
-                    Toast.makeText(LoginActivity.this, "Account with phone number " + username + " does not exist", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Account with username " + username + " does not exist", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }
             }
@@ -110,5 +118,23 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.login_btn) {
+            loginUser();
+        } else if (view.getId() == R.id.owner_panel_link){
+            btn_login.setText("Login Resto Owner");
+            owner_link.setVisibility(View.INVISIBLE);
+            user_link.setVisibility(View.VISIBLE);
+            ParentDbName = "Owner";
+        }
+        else {
+            btn_login.setText("Login");
+            owner_link.setVisibility(View.VISIBLE);
+            user_link.setVisibility(View.INVISIBLE);
+            ParentDbName ="Users";
+        }
     }
 }

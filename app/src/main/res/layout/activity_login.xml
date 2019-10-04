@@ -95,7 +95,7 @@
 
 
     <TextView
-        android:id="@+id/admin_panel_link"
+        android:id="@+id/owner_panel_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/i_m_an_admin"
