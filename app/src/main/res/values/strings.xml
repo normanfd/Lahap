@@ -35,4 +35,5 @@
     <string name="product_description">Product Description</string>
     <string name="food_image">food_image</string>
     <string name="add_product">Tambahkan Produk</string>
+    <string name="template_price">Price : Rp.</string>
 </resources>

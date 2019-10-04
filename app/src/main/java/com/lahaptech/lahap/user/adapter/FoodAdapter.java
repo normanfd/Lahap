@@ -19,14 +19,18 @@ import butterknife.ButterKnife;
 public class FoodAdapter extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     @BindView(R.id.frag_food_name)
+    public
     TextView name;
     @BindView(R.id.frag_food_image)
+    public
     ImageView photo;
     @BindView(R.id.frag_food_price)
+    public
     TextView price;
     @BindView(R.id.frag_food_desc)
+    public
     TextView desc;
-    ItemClickListener listener;
+    private ItemClickListener listener;
 
     public FoodAdapter(@NonNull View itemView) {
         super(itemView);
