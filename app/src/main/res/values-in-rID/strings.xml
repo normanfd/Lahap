@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kantin Lahap</string>
+    <string name="account_created">Akun berhasil dibuat</string>
+    <string name="add_product">Tambahkan Produk</string>
+    <string name="already_have_account_login">Masuk</string>
+    <string name="app_motto">Make It Simple</string>
+    <string name="applogo">logo Aplikasi</string>
+    <string name="checking_credentials">Harap tunggu sementara kami memeriksa kredensial Anda ..</string>
+    <string name="create_account">Buat akun</string>
+    <string name="drink">Minuman</string>
+    <string name="email">Surel</string>
+    <string name="food">Makanan</string>
+    <string name="food_image">gambar_makanan</string>
+    <string name="forget_password">Lupa Password</string>
+    <string name="hello_blank_fragment">Hallo fragment kosong</string>
+    <string name="i_m_an_admin">saya pemilik</string>
+    <string name="i_m_not_an_admin">saya pengguna</string>
+    <string name="join_now">Gabung sekarang</string>
+    <string name="login">Masuk</string>
+    <string name="name">Nama</string>
+    <string name="password">kata sandi</string>
+    <string name="phone_number">nomor telepon</string>
+    <string name="product_description">Deskripsi Produk</string>
+    <string name="product_name">Nama Produk</string>
+    <string name="product_price">Harga Produk</string>
+    <string name="tab_text_1">Tab1</string>
+    <string name="tab_text_2">Tab2</string>
+    <string name="template_price">Harga : Rp.</string>
+    <string name="title_activity_home_user">Home</string>
+    <string name="try_again_later">Jaringan error, coba dalam beberapa saat lagi</string>
+    <string name="username_ipb">username IPB</string>
+    <string name="valid_email_address">Tuliskan email yang benar</string>
+    <string name="write_email_address">Tuliskan alamat email Anda</string>
+    <string name="write_phone_number">Tuliskan no Telepon Anda</string>
+    <string name="write_valid_phone_number">Tuliskan no Telepon yang benar</string>
+    <string name="write_your_name">Tuliskan username Anda</string>
+    <string name="write_your_password">Tuliskan password Anda</string>
+</resources>

@@ -4,7 +4,7 @@
     <string name="password">password</string>
     <string name="forget_password">Forget Password?</string>
     <string name="login">Login</string>
-    <string name="i_m_an_admin">I\'m an Admin?</string>
+    <string name="i_m_an_admin">I\'m an Owner?</string>
     <string name="i_m_not_an_admin">I\'m not an Admin?</string>
     <string name="already_have_account_login">Already have Account? Login</string>
     <string name="join_now">Join Now</string>
@@ -34,6 +34,6 @@
     <string name="product_price">Product Price</string>
     <string name="product_description">Product Description</string>
     <string name="food_image">food_image</string>
-    <string name="add_product">Tambahkan Produk</string>
+    <string name="add_product">Add Product</string>
     <string name="template_price">Price : Rp.</string>
 </resources>
