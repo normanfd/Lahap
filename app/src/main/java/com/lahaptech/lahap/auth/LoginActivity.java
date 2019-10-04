@@ -23,6 +23,8 @@ import com.lahaptech.lahap.Main2Activity;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.owner.HomeOwnerActivity;
+import com.lahaptech.lahap.user.HomeUserActivity;
+import com.lahaptech.lahap.user.HomeUserViewPager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -98,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             } else {
                                 Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
-                                Intent intent = new Intent(LoginActivity.this, Main2Activity.class);
+                                Intent intent = new Intent(LoginActivity.this, HomeUserActivity.class);
 //                                Prevalent.CurrentOnlineUser = UserData;
                                 startActivity(intent);
                             }
