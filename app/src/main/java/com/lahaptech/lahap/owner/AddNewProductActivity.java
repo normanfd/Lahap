@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,7 +63,8 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_product);
-        CategoryName = Objects.requireNonNull(Objects.requireNonNull(getIntent().getExtras()).get("category")).toString();
+        CategoryName = getIntent().getExtras().get("category").toString();
+        Log.i("test",CategoryName);
         ProductImageRef = FirebaseStorage.getInstance().getReference().child("Product Images");
         ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
         loadingBar = new ProgressDialog(this);
