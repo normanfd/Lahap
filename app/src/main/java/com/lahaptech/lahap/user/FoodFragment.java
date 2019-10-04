@@ -71,14 +71,11 @@ public class FoodFragment extends Fragment {
                         holder.price.setText(getResources().getString(R.string.template_price) + model.getPrice());
                         Picasso.get().load(model.getImage()).into(holder.photo);
 
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(getActivity(), DetailFoodActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                intent.putExtra("category", "konveksi");
-                                startActivity(intent);
-                            }
+                        holder.itemView.setOnClickListener(v -> {
+                            Intent intent = new Intent(getActivity(), DetailFoodActivity.class);
+                            intent.putExtra("pid", model.getPid());
+                            intent.putExtra("category", "konveksi");
+                            startActivity(intent);
                         });
                     }
 
