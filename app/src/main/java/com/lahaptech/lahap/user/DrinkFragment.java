@@ -72,14 +72,11 @@ public class DrinkFragment extends Fragment {
                         holder.price.setText(getResources().getString(R.string.template_price) + model.getPrice());
                         Picasso.get().load(model.getImage()).into(holder.photo);
 
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(getActivity(), DetailFoodActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                intent.putExtra("category", "konveksi");
-                                startActivity(intent);
-                            }
+                        holder.itemView.setOnClickListener(v -> {
+                            Intent intent = new Intent(getActivity(), DetailFoodActivity.class);
+                            intent.putExtra("pid", model.getPid());
+                            intent.putExtra("category", "drink");
+                            startActivity(intent);
                         });
                     }
 
@@ -87,8 +84,7 @@ public class DrinkFragment extends Fragment {
                     @Override
                     public FoodAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewtype) {
                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_food, parent, false);
-                        FoodAdapter holder = new FoodAdapter(view);
-                        return holder;
+                        return new FoodAdapter(view);
                     }
                 };
         recyclerView.setAdapter(adapter);
