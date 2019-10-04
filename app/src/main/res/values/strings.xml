@@ -42,4 +42,5 @@
     <string name="desc">Description</string>
     <string name="todo">TODO</string>
     <string name="login_resto_owner">Login Resto Owner</string>
+    <string name="profile">Profil</string>
 </resources>
