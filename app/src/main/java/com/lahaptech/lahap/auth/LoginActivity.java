@@ -84,11 +84,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(ParentDbName).child(username).exists()) {
-                    Log.e("TABLENAME", ParentDbName);
                     User UserData = dataSnapshot.child(ParentDbName).child(username).getValue(User.class);
-                    Log.e("DATASNAPSHOT", "Success");
-                    Log.e("Username", username);
-                    Log.e("Password", password);
                     assert UserData != null;
                     if (UserData.getName().equals(username)) {
                         if (UserData.getPassword().equals(password)) {
@@ -127,13 +123,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (view.getId() == R.id.login_btn) {
             loginUser();
         } else if (view.getId() == R.id.owner_panel_link){
-            btn_login.setText("Login Resto Owner");
+            btn_login.setText(getResources().getString(R.string.login_resto_owner));
             owner_link.setVisibility(View.INVISIBLE);
             user_link.setVisibility(View.VISIBLE);
             ParentDbName = "Owner";
         }
         else {
-            btn_login.setText("Login");
+            btn_login.setText(getResources().getString(R.string.login));
             owner_link.setVisibility(View.VISIBLE);
             user_link.setVisibility(View.INVISIBLE);
             ParentDbName ="Users";

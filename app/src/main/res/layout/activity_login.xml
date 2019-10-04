@@ -24,7 +24,7 @@
         android:padding="20dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:hint="@string/phone_number"
+        android:hint="@string/username_ipb"
         android:inputType="text"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
