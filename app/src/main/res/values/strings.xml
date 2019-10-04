@@ -36,4 +36,9 @@
     <string name="food_image">food_image</string>
     <string name="add_product">Add Product</string>
     <string name="template_price">Price : Rp.</string>
+    <string name="options">Options</string>
+    <string name="Note">Notes</string>
+    <string name="lbl_quantity">Quantity</string>
+    <string name="desc">Description</string>
+    <string name="todo">TODO</string>
 </resources>
