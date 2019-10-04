@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Lahap</string>
+    <string name="phone_number">phone number</string>
+    <string name="password">password</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="login">Login</string>
+    <string name="i_m_an_admin">I\'m an Admin?</string>
+    <string name="i_m_not_an_admin">I\'m not an Admin?</string>
+    <string name="already_have_account_login">Already have Account? Login</string>
+    <string name="join_now">Join Now</string>
+    <string name="app_motto">Make It Simple</string>
+    <string name="applogo">appLogo</string>
 </resources>
