@@ -28,4 +28,6 @@
     <string name="title_activity_home_user">HomeUserActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="food">Food</string>
+    <string name="drink">Drink</string>
 </resources>

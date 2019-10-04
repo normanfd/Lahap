@@ -13,6 +13,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name=".owner.HomeOwnerActivity"/>
+        <activity android:name=".user.HomeUserActivity"/>
         <activity android:name=".Main2Activity" />
         <activity android:name=".auth.RegisterActivity" />
         <activity android:name=".auth.LoginActivity" />
