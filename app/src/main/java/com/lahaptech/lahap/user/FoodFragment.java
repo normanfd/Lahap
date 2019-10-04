@@ -34,7 +34,6 @@ public class FoodFragment extends Fragment {
 
     @BindView(R.id.rv_food)
     RecyclerView recyclerView;
-    private FoodAdapter adapter;
 
     public FoodFragment() {
         // Required empty public constructor
