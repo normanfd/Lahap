@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".HomeUserActivity"></activity>
+        <activity android:name=".user.HomeUserActivity"></activity>
         <activity android:name=".Main2Activity" />
         <activity android:name=".auth.RegisterActivity" />
         <activity android:name=".auth.LoginActivity" />
