@@ -1,10 +1,8 @@
-package com.lahaptech.lahap.user;
+package com.lahaptech.lahap;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-
-import com.lahaptech.lahap.R;
 
 public class HomeUserActivity extends AppCompatActivity {
 
