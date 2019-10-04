@@ -86,8 +86,7 @@ public class FoodFragment extends Fragment {
                     @Override
                     public FoodAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewtype) {
                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_food, parent, false);
-                        FoodAdapter holder = new FoodAdapter(view);
-                        return holder;
+                        return new FoodAdapter(view);
                     }
                 };
         recyclerView.setAdapter(adapter);
