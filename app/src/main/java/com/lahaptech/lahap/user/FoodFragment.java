@@ -27,9 +27,6 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FoodFragment extends Fragment {
 
     @BindView(R.id.rv_food)
@@ -62,20 +59,21 @@ public class FoodFragment extends Fragment {
                         .build();
         FirebaseRecyclerAdapter<Product, FoodAdapter> adapter =
                 new FirebaseRecyclerAdapter<Product, FoodAdapter>(options) {
-
-                    @SuppressLint("SetTextI18n")
                     @Override
                     protected void onBindViewHolder(@NonNull FoodAdapter holder, int position, @NonNull final Product model) {
                         holder.name.setText(model.getProductname());
                         holder.desc.setText(model.getDescription());
-                        holder.price.setText(getResources().getString(R.string.template_price) + model.getPrice());
+                        holder.price.setText(model.getPrice());
                         Picasso.get().load(model.getImage()).into(holder.photo);
 
-                        holder.itemView.setOnClickListener(v -> {
-                            Intent intent = new Intent(getActivity(), DetailFoodActivity.class);
-                            intent.putExtra("pid", model.getPid());
-                            intent.putExtra("category", "konveksi");
-                            startActivity(intent);
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getActivity(), DetailFoodActivity.class);
+                                intent.putExtra("pid", model.getPid());
+                                intent.putExtra("category", "food");
+                                startActivity(intent);
+                            }
                         });
                     }
 
