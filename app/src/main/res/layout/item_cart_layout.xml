@@ -40,7 +40,7 @@
             android:src="@drawable/app_logo" />
 
         <TextView
-            android:id="@+id/frag_food_name"
+            android:id="@+id/cart_product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="19dp"
@@ -56,10 +56,10 @@
             tools:text="Your Name" />
 
         <TextView
-            android:id="@+id/frag_food_price"
+            android:id="@+id/cart_product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/frag_food_name"
+            android:layout_below="@id/cart_product_name"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -70,10 +70,10 @@
 
 
         <TextView
-            android:id="@+id/frag_food_desc"
+            android:id="@+id/cart_product_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/frag_food_price"
+            android:layout_below="@id/cart_product_price"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"

@@ -10,19 +10,24 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.lahaptech.lahap.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeUserActivity extends AppCompatActivity {
+public class HomeUserActivity extends AppCompatActivity implements View.OnClickListener{
 
     @BindView(R.id.tab_layout_homeuser)
     TabLayout tabLayout;
     @BindView(R.id.view_page_fav)
     ViewPager viewPager;
+    @BindView(R.id.fab)
+    FloatingActionButton floatingActionButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +38,8 @@ public class HomeUserActivity extends AppCompatActivity {
 
         adapter.addFragment(new FoodFragment(), getResources().getString(R.string.food));
         adapter.addFragment(new DrinkFragment(), getResources().getString(R.string.drink));
+
+        floatingActionButton.setOnClickListener(this);
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -58,5 +65,13 @@ public class HomeUserActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId()==R.id.fab){
+            Intent intent = new Intent(HomeUserActivity.this, CartActivity.class);
+            startActivity(intent);
+        }
     }
 }
