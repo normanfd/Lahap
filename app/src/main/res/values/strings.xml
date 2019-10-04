@@ -13,7 +13,7 @@
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="create_account">Create Account</string>
-    <string name="write_your_name">Please write your name</string>
+    <string name="write_your_name">Please write your username</string>
     <string name="write_email_address">Please write your email address</string>
     <string name="write_phone_number">Please write your phone number</string>
     <string name="write_your_password">Please write your password</string>

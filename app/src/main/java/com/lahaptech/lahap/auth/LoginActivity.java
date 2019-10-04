@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText inpt_password;
     @BindView(R.id.login_btn)
     Button btn_login;
+
     ProgressDialog loadingBar;
     private String ParentDbName = "User";
 
@@ -55,9 +55,9 @@ public class LoginActivity extends AppCompatActivity {
         String password = inpt_password.getText().toString();
 
         if (TextUtils.isEmpty(username)) {
-            Toast.makeText(this, "Please write your username", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, R.string.write_your_name, Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please write your password", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, R.string.write_your_password, Toast.LENGTH_SHORT).show();
         } else {
             loadingBar.setTitle("Login account");
             loadingBar.setMessage("Please wait while we are checking your credentials..");
