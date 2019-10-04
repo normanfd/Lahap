@@ -40,6 +40,7 @@ public class HomeOwnerActivity extends AppCompatActivity implements View.OnClick
         checkOrderBtn.setOnClickListener(this);
         food.setOnClickListener(this);
         drink.setOnClickListener(this);
+        maintainProductBtn.setOnClickListener(this);
 
     }
 
@@ -75,6 +76,11 @@ public class HomeOwnerActivity extends AppCompatActivity implements View.OnClick
             case R.id.ll_drink:
                 intent = new Intent(HomeOwnerActivity.this, AddNewProductActivity.class);
                 intent.putExtra("category", "drink");
+                startActivity(intent);
+                break;
+
+            case R.id.maintain_btn:
+                intent = new Intent(HomeOwnerActivity.this, UpdateProductActivity.class);
                 startActivity(intent);
                 break;
 
