@@ -10,4 +10,17 @@
     <string name="join_now">Join Now</string>
     <string name="app_motto">Make It Simple</string>
     <string name="applogo">appLogo</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="create_account">Create Account</string>
+    <string name="write_your_name">Please write your name</string>
+    <string name="write_email_address">Please write your email address</string>
+    <string name="write_phone_number">Please write your phone number</string>
+    <string name="write_your_password">Please write your password</string>
+    <string name="write_valid_phone_number">Please write valid phone number</string>
+    <string name="valid_email_address">Please write valid email address</string>
+    <string name="checking_credentials">Please wait while we are checking your credentials..</string>
+    <string name="username_ipb">Username IPB</string>
+    <string name="account_created">Your account has been created</string>
+    <string name="try_again_later">Network error, please try again after some time..</string>
 </resources>

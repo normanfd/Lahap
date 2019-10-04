@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.lahaptech.lahap.Auth.LoginActivity;
-import com.lahaptech.lahap.Auth.RegisterActivity;
+import com.lahaptech.lahap.auth.LoginActivity;
+import com.lahaptech.lahap.auth.RegisterActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
