@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.activity;
+package com.lahaptech.lahap.user.home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,10 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.lahaptech.lahap.MainActivity;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.user.home.DrinkFragment;
-import com.lahaptech.lahap.user.home.FoodFragment;
-import com.lahaptech.lahap.user.home.SnackFragment;
-import com.lahaptech.lahap.user.viewpager.HomeUserViewPager;
+import com.lahaptech.lahap.user.cart.CartActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

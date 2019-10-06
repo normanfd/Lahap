@@ -9,4 +9,8 @@
         android:title="@string/user_logout"
         android:icon="@drawable/ic_account_circle_black_24dp"
         app:showAsAction="never"/>
+    <item android:id="@+id/history_pesanan"
+        android:title="@string/history"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        app:showAsAction="never"/>
 </menu>

@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.owner.HomeOwnerActivity;
-import com.lahaptech.lahap.user.activity.HomeUserActivity;
+import com.lahaptech.lahap.user.home.HomeUserActivity;
 import com.lahaptech.lahap.Prevalent;
 import com.rey.material.widget.CheckBox;
 
