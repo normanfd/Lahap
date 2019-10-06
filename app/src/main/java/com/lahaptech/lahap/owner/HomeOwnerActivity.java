@@ -1,16 +1,17 @@
 package com.lahaptech.lahap.owner;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.lahaptech.lahap.MainActivity;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.owner.order.CheckOrderActivity;
+import com.lahaptech.lahap.owner.update.UpdateProductActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,6 +22,8 @@ public class HomeOwnerActivity extends AppCompatActivity implements View.OnClick
     LinearLayout food;
     @BindView(R.id.ll_drink)
     LinearLayout drink;
+    @BindView(R.id.ll_snack)
+    LinearLayout snack;
     @BindView(R.id.admin_logout_btn)
     Button adminLogoutBtn;
     @BindView(R.id.admin_check_order_btn)
@@ -40,6 +43,7 @@ public class HomeOwnerActivity extends AppCompatActivity implements View.OnClick
         checkOrderBtn.setOnClickListener(this);
         food.setOnClickListener(this);
         drink.setOnClickListener(this);
+        snack.setOnClickListener(this);
         maintainProductBtn.setOnClickListener(this);
 
     }
@@ -76,6 +80,12 @@ public class HomeOwnerActivity extends AppCompatActivity implements View.OnClick
             case R.id.ll_drink:
                 intent = new Intent(HomeOwnerActivity.this, AddNewProductActivity.class);
                 intent.putExtra("category", "drink");
+                startActivity(intent);
+                break;
+
+            case R.id.ll_snack:
+                intent = new Intent(HomeOwnerActivity.this, AddNewProductActivity.class);
+                intent.putExtra("category", "snack");
                 startActivity(intent);
                 break;
 

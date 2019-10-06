@@ -1,8 +1,8 @@
-package com.lahaptech.lahap.owner;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.lahaptech.lahap.owner.order;
 
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.lahaptech.lahap.R;
 

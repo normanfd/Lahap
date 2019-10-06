@@ -46,4 +46,10 @@
     <string name="snack">Snack</string>
     <string name="user_logout">logout</string>
     <string name="setting">setting</string>
+    <string name="apply_changes">Apply Changes</string>
+    <string name="delete_this_product">Delete this Product</string>
+    <string name="add_new_product">Add New Product</string>
+    <string name="logout">Logout</string>
+    <string name="check_new_orders">Check new Orders</string>
+    <string name="update_product">Update Product</string>
 </resources>
