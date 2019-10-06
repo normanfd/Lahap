@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user;
+package com.lahaptech.lahap.user.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;

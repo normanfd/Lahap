@@ -1,32 +1,36 @@
-package com.lahaptech.lahap.user;
+package com.lahaptech.lahap.user.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.media.Image;
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
-import com.google.android.gms.common.util.Base64Utils;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.lahaptech.lahap.Prevalent;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.model.Cart;
 import com.lahaptech.lahap.model.Product;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailFoodActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity {
 
     @BindView(R.id.product_image_detail)
     ImageView photo;
@@ -42,6 +46,7 @@ public class DetailFoodActivity extends AppCompatActivity {
     Button btn_add_cart;
     String foodID;
     String category;
+    String state="normal";
 
 
     @Override
@@ -58,8 +63,49 @@ public class DetailFoodActivity extends AppCompatActivity {
         Log.i("CATEGORY", category);
 
         getProductDetail(foodID,category);
+
+        btn_add_cart.setOnClickListener(v -> {
+            if(state.equals("Order placed") || state.equals("Order shipped")){
+                Toast.makeText(DetailActivity.this, "you can add purchase products, once your order is shipped or confirmed", Toast.LENGTH_LONG ).show();
+            }
+            else {
+                addingToCartList();
+            }
+        });
     }
 
+    private void addingToCartList() {
+        String saveCurrentTime, saveCurrentDate;
+
+        Calendar calForDate = Calendar.getInstance();
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+        saveCurrentDate = currentDate.format(calForDate.getTime());
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+        saveCurrentTime = currentTime.format(calForDate.getTime());
+
+        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("cart list");
+        final Cart cartMap = new Cart(foodID, name.getText().toString(),
+                price.getText().toString(), numberButton.getNumber(),
+                saveCurrentDate, saveCurrentTime,category, null);
+
+        cartListRef.child("User View").child(Prevalent.CurrentOnlineUser.getName())
+                .child("Products").child(foodID)
+                .setValue(cartMap)
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        cartListRef.child("Admin View").child(Prevalent.CurrentOnlineUser.getName())
+                                .child("Products").child(foodID)
+                                .setValue(cartMap)
+                                .addOnCompleteListener(task1 -> {
+                                    if(task1.isSuccessful()){
+                                        Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(DetailActivity.this, HomeUserActivity.class);
+                                        startActivity(intent);
+                                    }
+                                });
+                    }
+                });
+    }
     private void getProductDetail(String foodID, String category) {
         DatabaseReference productsref = FirebaseDatabase.getInstance().getReference().child("Products").child(category);
         productsref.child(foodID).addValueEventListener(new ValueEventListener() {

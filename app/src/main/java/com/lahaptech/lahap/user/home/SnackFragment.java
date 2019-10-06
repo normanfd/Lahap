@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user;
+package com.lahaptech.lahap.user.home;
 
 
 import android.annotation.SuppressLint;
@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
+import com.lahaptech.lahap.user.activity.DetailActivity;
 import com.lahaptech.lahap.user.adapter.FoodAdapter;
 import com.squareup.picasso.Picasso;
 
@@ -30,20 +31,19 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DrinkFragment extends Fragment {
-    @BindView(R.id.rv_drink)
+public class SnackFragment extends Fragment {
+    @BindView(R.id.rv_snack)
     RecyclerView recyclerView;
 
-    public DrinkFragment() {
+    public SnackFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_drink, container, false);
+        View view = inflater.inflate(R.layout.fragment_snack, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -55,7 +55,7 @@ public class DrinkFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        String category = "drink";
+        String category = "snack";
         DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Products").child(category);
         FirebaseRecyclerOptions<Product> options =
                 new FirebaseRecyclerOptions.Builder<Product>()
@@ -73,9 +73,9 @@ public class DrinkFragment extends Fragment {
                         Picasso.get().load(model.getImage()).into(holder.photo);
 
                         holder.itemView.setOnClickListener(v -> {
-                            Intent intent = new Intent(getActivity(), DetailFoodActivity.class);
+                            Intent intent = new Intent(getActivity(), DetailActivity.class);
                             intent.putExtra("pid", model.getPid());
-                            intent.putExtra("category", "drink");
+                            intent.putExtra("category", "snack");
                             startActivity(intent);
                         });
                     }

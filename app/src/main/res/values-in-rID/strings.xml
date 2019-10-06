@@ -37,4 +37,7 @@
     <string name="write_your_name">Tuliskan username Anda</string>
     <string name="write_your_password">Tuliskan password Anda</string>
     <string name="login_resto_owner">Login Resto Owner</string>
+    <string name="snack">Camilan</string>
+    <string name="user_logout">logout</string>
+    <string name="setting">setting</string>
 </resources>

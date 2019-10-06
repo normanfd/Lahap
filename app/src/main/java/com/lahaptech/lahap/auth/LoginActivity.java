@@ -7,7 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,13 +18,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.lahaptech.lahap.Main2Activity;
-import com.lahaptech.lahap.Prevalent;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.owner.HomeOwnerActivity;
-import com.lahaptech.lahap.user.HomeUserActivity;
-import com.lahaptech.lahap.user.HomeUserViewPager;
+import com.lahaptech.lahap.user.activity.HomeUserActivity;
+import com.lahaptech.lahap.Prevalent;
 import com.rey.material.widget.CheckBox;
 
 import butterknife.BindView;
@@ -48,7 +45,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     ProgressDialog loadingBar;
     String ParentDbName = "User";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
