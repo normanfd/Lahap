@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
 import com.lahaptech.lahap.user.activity.DetailActivity;
-import com.lahaptech.lahap.user.adapter.ProductAdapter;
+import com.lahaptech.lahap.user.adapter.FoodAdapter;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -61,12 +61,12 @@ public class SnackFragment extends Fragment {
                 new FirebaseRecyclerOptions.Builder<Product>()
                         .setQuery(productRef, Product.class)
                         .build();
-        FirebaseRecyclerAdapter<Product, ProductAdapter> adapter =
-                new FirebaseRecyclerAdapter<Product, ProductAdapter>(options) {
+        FirebaseRecyclerAdapter<Product, FoodAdapter> adapter =
+                new FirebaseRecyclerAdapter<Product, FoodAdapter>(options) {
 
                     @SuppressLint("SetTextI18n")
                     @Override
-                    protected void onBindViewHolder(@NonNull ProductAdapter holder, int position, @NonNull final Product model) {
+                    protected void onBindViewHolder(@NonNull FoodAdapter holder, int position, @NonNull final Product model) {
                         holder.name.setText(model.getProductname());
                         holder.desc.setText(model.getDescription());
                         holder.price.setText(getResources().getString(R.string.template_price) + model.getPrice());
@@ -82,9 +82,9 @@ public class SnackFragment extends Fragment {
 
                     @NonNull
                     @Override
-                    public ProductAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewtype) {
+                    public FoodAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewtype) {
                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_food, parent, false);
-                        return new ProductAdapter(view);
+                        return new FoodAdapter(view);
                     }
                 };
         recyclerView.setAdapter(adapter);
