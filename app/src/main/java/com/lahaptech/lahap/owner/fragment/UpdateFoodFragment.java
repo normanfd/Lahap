@@ -22,8 +22,6 @@ import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
 import com.lahaptech.lahap.owner.UpdateProductDetailActivity;
 import com.lahaptech.lahap.owner.adapter.MenuAdapter;
-import com.lahaptech.lahap.user.DetailFoodActivity;
-import com.lahaptech.lahap.user.adapter.FoodAdapter;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;

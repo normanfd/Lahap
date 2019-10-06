@@ -29,6 +29,8 @@ import com.lahaptech.lahap.Prevalent;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Cart;
 import com.lahaptech.lahap.user.home.HomeUserActivity;
+import com.lahaptech.lahap.user.orderlocation.OrderLocationActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -44,9 +46,9 @@ public class CartActivity extends AppCompatActivity {
     @BindView(R.id.message1)
     public
     TextView txtmessage1;
-    @BindView(R.id.total_price)
-    public
-    TextView txtTotalAmount;
+//    @BindView(R.id.total_price)
+//    public
+//    TextView txtTotalAmount;
     @BindView(R.id.rv_cart)
     RecyclerView recyclerView;
 
@@ -61,8 +63,8 @@ public class CartActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         nextProcessBtn.setOnClickListener(v -> {
-            txtTotalAmount.setText("Total Price = " + String.valueOf(overTotalPrice));
-            Intent intent = new Intent(CartActivity.this, HomeUserActivity.class);
+//            txtTotalAmount.setText("Total Price = " + String.valueOf(overTotalPrice));
+            Intent intent = new Intent(CartActivity.this, OrderLocationActivity.class);
             intent.putExtra("Total Price", String.valueOf(overTotalPrice));
             startActivity(intent);
             finish();
@@ -89,6 +91,7 @@ public class CartActivity extends AppCompatActivity {
                 holder.txtProductName.setText(model.getProductName());
                 holder.txtProductQuantity.setText(" quantity = " + model.getQuantity());
                 holder.txtProductPrice.setText("price " + model.getPrice());
+//                Picasso.get().load(model.get()).into(holder.photo);
 
                 int oneTypeProductPrice = Integer.valueOf(model.getPrice()) * Integer.valueOf(model.getQuantity());
                 overTotalPrice = overTotalPrice + oneTypeProductPrice;
@@ -158,13 +161,13 @@ public class CartActivity extends AppCompatActivity {
                     String userName = Objects.requireNonNull(dataSnapshot.child("name").getValue()).toString();
 
                     if (shippingState.equals("shipped")) {
-                        txtTotalAmount.setText("Dear " + userName + "\n order is shipped successfully");
+//                        txtTotalAmount.setText("Dear " + userName + "\n order is shipped successfully");
                         recyclerView.setVisibility(View.GONE);
                         txtmessage1.setVisibility(View.VISIBLE);
                         txtmessage1.setText(" Congratulations, your final order has been shipped successfully, soon you will receive your order at your door step");
                         Toast.makeText(CartActivity.this, "You can purchase more products, once you received your first final order", Toast.LENGTH_SHORT).show();
                     } else if (shippingState.equals("not shipped")) {
-                        txtTotalAmount.setText("Shipping State = Not Shipped");
+//                        txtTotalAmount.setText("Shipping State = Not Shipped");
                         recyclerView.setVisibility(View.GONE);
                         txtmessage1.setVisibility(View.VISIBLE);
                         Toast.makeText(CartActivity.this, "You can purchase more products, once you received your first final order", Toast.LENGTH_SHORT).show();

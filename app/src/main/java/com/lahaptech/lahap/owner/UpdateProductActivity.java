@@ -17,10 +17,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.owner.fragment.UpdateDrinkFragment;
 import com.lahaptech.lahap.owner.fragment.UpdateFoodFragment;
-import com.lahaptech.lahap.user.CartActivity;
-import com.lahaptech.lahap.user.DrinkFragment;
-import com.lahaptech.lahap.user.FoodFragment;
-import com.lahaptech.lahap.user.HomeUserViewPager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

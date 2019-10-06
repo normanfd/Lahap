@@ -1,7 +1,7 @@
 package com.lahaptech.lahap.model;
 
 public class Cart {
-    private String pid, productName, price, quantity, date, time, category, keterangan;
+    private String pid, productName, price, quantity, date, time, category, keterangan, image;
 
     public Cart() {
     }
