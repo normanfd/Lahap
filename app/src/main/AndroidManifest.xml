@@ -11,10 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".user.CartActivity"></activity>
+        <activity android:name=".user.CartActivity" />
         <activity android:name=".owner.UpdateProductActivity" />
         <activity android:name=".user.DetailFoodActivity" />
-        <activity android:name=".owner.AddNewProductActivity" />
+        <activity
+            android:name=".owner.AddNewProductActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".owner.CheckOrderActivity" />
         <activity android:name=".owner.HomeOwnerActivity" />
         <activity android:name=".user.HomeUserActivity" />
