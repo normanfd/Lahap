@@ -44,4 +44,6 @@
     <string name="login_resto_owner">Login Resto Owner</string>
     <string name="profile">Profil</string>
     <string name="snack">Snack</string>
+    <string name="user_logout">logout</string>
+    <string name="setting">setting</string>
 </resources>
