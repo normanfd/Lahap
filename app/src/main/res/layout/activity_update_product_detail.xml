@@ -10,7 +10,7 @@
     android:layout_marginEnd="15dp"
     android:layout_marginBottom="15dp"
     app:cardElevation="15dp"
-    tools:context=".owner.UpdateProductDetailActivity">
+    tools:context=".owner.update.UpdateProductDetailActivity">
 
 
     <RelativeLayout
@@ -24,59 +24,66 @@
             android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:layout_marginTop="2dp"
-            />
+            android:contentDescription="@string/todo" />
 
         <EditText
             android:id="@+id/product_name_maintain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_image_maintain"
-            android:hint="Product Name"
+            android:hint="@string/product_name"
             android:textAlignment="center"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:padding="12dp"
             android:layout_margin="5dp"
             android:background="@drawable/input_design"
             android:textColor="@color/colorPrimaryDark"
-            />
+            android:autofillHints="Product Name"
+            tools:targetApi="o"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/product_price_maintain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_name_maintain"
-            android:hint="Product Price"
+            android:hint="@string/product_price"
             android:textAlignment="center"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:padding="12dp"
             android:layout_margin="5dp"
             android:background="@drawable/input_design"
             android:textColor="@color/colorPrimaryDark"
-            />
+            android:importantForAutofill="yes"
+            android:autofillHints="Product Price"
+            tools:targetApi="o"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/product_desc_maintain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_price_maintain"
-            android:hint="Product Description"
+            android:hint="@string/product_description"
             android:textAlignment="center"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:padding="12dp"
             android:layout_margin="5dp"
             android:background="@drawable/input_design"
             android:textColor="@color/colorPrimaryDark"
-            />
+            android:autofillHints="Product Description"
+            tools:targetApi="o"
+            android:inputType="textLongMessage" />
 
         <Button
             android:id="@+id/apply_chg_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_desc_maintain"
-            android:text="Apply Changes"
+            android:text="@string/apply_changes"
             android:layout_marginTop="106dp"
             android:textAlignment="center"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:padding="12dp"
             android:layout_margin="5dp"
             android:background="@drawable/buttons"
@@ -88,9 +95,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/apply_chg_btn"
-            android:text="Delete this Product"
+            android:text="@string/delete_this_product"
             android:textAlignment="center"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:padding="12dp"
             android:background="@drawable/buttons"
             android:textColor="@android:color/white"

@@ -1,5 +1,6 @@
-package com.lahaptech.lahap.owner;
+package com.lahaptech.lahap.owner.update;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -11,10 +12,11 @@ public class UpdateProductViewPager extends FragmentPagerAdapter {
     private ArrayList<Fragment> fragments = new ArrayList<>();
     private ArrayList<String> fragmentsTitle = new ArrayList<>();
 
-    public UpdateProductViewPager(FragmentManager fm) {
+    UpdateProductViewPager(FragmentManager fm) {
         super(fm);
     }
 
+    @NonNull
     @Override
     public Fragment getItem(int i) {
         return fragments.get(i);
@@ -31,7 +33,7 @@ public class UpdateProductViewPager extends FragmentPagerAdapter {
         return fragmentsTitle.get(position);
     }
 
-    public void addFragment(Fragment fragment, String title) {
+    void addFragment(Fragment fragment, String title) {
         fragments.add(fragment);
         fragmentsTitle.add(title);
     }
