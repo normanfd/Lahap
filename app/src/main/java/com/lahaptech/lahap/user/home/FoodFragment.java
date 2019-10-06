@@ -20,8 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
-import com.lahaptech.lahap.user.activity.DetailFoodActivity;
-import com.lahaptech.lahap.user.adapter.FoodAdapter;
+import com.lahaptech.lahap.user.activity.DetailActivity;
+import com.lahaptech.lahap.user.adapter.ProductAdapter;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -57,31 +57,28 @@ public class FoodFragment extends Fragment {
                 new FirebaseRecyclerOptions.Builder<Product>()
                         .setQuery(productRef, Product.class)
                         .build();
-        FirebaseRecyclerAdapter<Product, FoodAdapter> adapter =
-                new FirebaseRecyclerAdapter<Product, FoodAdapter>(options) {
+        FirebaseRecyclerAdapter<Product, ProductAdapter> adapter =
+                new FirebaseRecyclerAdapter<Product, ProductAdapter>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull FoodAdapter holder, int position, @NonNull final Product model) {
+                    protected void onBindViewHolder(@NonNull ProductAdapter holder, int position, @NonNull final Product model) {
                         holder.name.setText(model.getProductname());
                         holder.desc.setText(model.getDescription());
                         holder.price.setText(model.getPrice());
                         Picasso.get().load(model.getImage()).into(holder.photo);
 
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(getActivity(), DetailFoodActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                intent.putExtra("category", "food");
-                                startActivity(intent);
-                            }
+                        holder.itemView.setOnClickListener(v -> {
+                            Intent intent = new Intent(getActivity(), DetailActivity.class);
+                            intent.putExtra("pid", model.getPid());
+                            intent.putExtra("category", "food");
+                            startActivity(intent);
                         });
                     }
 
                     @NonNull
                     @Override
-                    public FoodAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewtype) {
+                    public ProductAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewtype) {
                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_food, parent, false);
-                        return new FoodAdapter(view);
+                        return new ProductAdapter(view);
                     }
                 };
         recyclerView.setAdapter(adapter);

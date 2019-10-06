@@ -18,21 +18,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-<<<<<<< HEAD
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.owner.HomeOwnerActivity;
 import com.lahaptech.lahap.user.activity.HomeUserActivity;
-=======
-import com.lahaptech.lahap.Main2Activity;
 import com.lahaptech.lahap.Prevalent;
-import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.model.User;
-import com.lahaptech.lahap.owner.HomeOwnerActivity;
-import com.lahaptech.lahap.user.HomeUserActivity;
-import com.lahaptech.lahap.user.HomeUserViewPager;
 import com.rey.material.widget.CheckBox;
->>>>>>> 687a794c1808ab47c6575a1af045836b881d269b
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,7 +45,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     ProgressDialog loadingBar;
     String ParentDbName = "User";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

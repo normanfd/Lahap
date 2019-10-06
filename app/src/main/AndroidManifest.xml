@@ -14,7 +14,7 @@
 
         <activity android:name=".user.activity.CartActivity"/>
         <activity android:name=".owner.UpdateProductActivity" />
-        <activity android:name=".user.activity.DetailFoodActivity" />
+        <activity android:name=".user.activity.DetailActivity" />
         <activity android:name=".owner.AddNewProductActivity" />
         <activity android:name=".owner.CheckOrderActivity" />
         <activity android:name=".owner.HomeOwnerActivity" />

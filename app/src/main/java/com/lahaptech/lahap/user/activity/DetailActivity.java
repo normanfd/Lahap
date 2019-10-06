@@ -30,7 +30,7 @@ import java.util.Calendar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailFoodActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity {
 
     @BindView(R.id.product_image_detail)
     ImageView photo;
@@ -66,7 +66,7 @@ public class DetailFoodActivity extends AppCompatActivity {
 
         btn_add_cart.setOnClickListener(v -> {
             if(state.equals("Order placed") || state.equals("Order shipped")){
-                Toast.makeText(DetailFoodActivity.this, "you can add purchase products, once your order is shipped or confirmed", Toast.LENGTH_LONG ).show();
+                Toast.makeText(DetailActivity.this, "you can add purchase products, once your order is shipped or confirmed", Toast.LENGTH_LONG ).show();
             }
             else {
                 addingToCartList();
@@ -76,29 +76,30 @@ public class DetailFoodActivity extends AppCompatActivity {
 
     private void addingToCartList() {
         String saveCurrentTime, saveCurrentDate;
+
         Calendar calForDate = Calendar.getInstance();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
         saveCurrentDate = currentDate.format(calForDate.getTime());
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentTime.format(calForDate.getTime());
 
-        final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("cart list");
+        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("cart list");
         final Cart cartMap = new Cart(foodID, name.getText().toString(),
                 price.getText().toString(), numberButton.getNumber(),
                 saveCurrentDate, saveCurrentTime,category, null);
 
-        cartListRef.child("User View").child(Prevalent.CurrentOnlineUser.getPhone())
+        cartListRef.child("User View").child(Prevalent.CurrentOnlineUser.getName())
                 .child("Products").child(foodID)
                 .setValue(cartMap)
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
-                        cartListRef.child("Admin View").child(Prevalent.CurrentOnlineUser.getPhone())
+                        cartListRef.child("Admin View").child(Prevalent.CurrentOnlineUser.getName())
                                 .child("Products").child(foodID)
                                 .setValue(cartMap)
                                 .addOnCompleteListener(task1 -> {
                                     if(task1.isSuccessful()){
-                                        Toast.makeText(DetailFoodActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(DetailFoodActivity.this, HomeUserActivity.class);
+                                        Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(DetailActivity.this, HomeUserActivity.class);
                                         startActivity(intent);
                                     }
                                 });
