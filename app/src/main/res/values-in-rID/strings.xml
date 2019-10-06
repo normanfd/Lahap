@@ -38,6 +38,11 @@
     <string name="write_your_password">Tuliskan password Anda</string>
     <string name="login_resto_owner">Login Resto Owner</string>
     <string name="snack">Camilan</string>
-    <string name="user_logout">logout</string>
-    <string name="setting">setting</string>
+    <string name="user_logout">Keluar</string>
+    <string name="setting">Pengaturan</string>
+    <string name="history">History</string>
+    <string name="lbl_quantity">Jumlah</string>
+    <string name="options">Pilihan</string>
+    <string name="profile">Profil</string>
+    <string name="todo">TODO</string>
 </resources>

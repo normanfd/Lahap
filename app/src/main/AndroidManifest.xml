@@ -12,13 +12,13 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".user.activity.CartActivity"/>
+        <activity android:name=".user.cart.CartActivity"/>
         <activity android:name=".owner.UpdateProductActivity" />
-        <activity android:name=".user.activity.DetailActivity" />
+        <activity android:name=".user.detailproduct.DetailActivity" />
         <activity android:name=".owner.AddNewProductActivity" />
         <activity android:name=".owner.CheckOrderActivity" />
         <activity android:name=".owner.HomeOwnerActivity" />
-        <activity android:name=".user.activity.HomeUserActivity" />
+        <activity android:name=".user.home.HomeUserActivity" />
         <activity android:name=".auth.RegisterActivity" />
         <activity android:name=".auth.LoginActivity" />
         <activity android:name=".MainActivity">

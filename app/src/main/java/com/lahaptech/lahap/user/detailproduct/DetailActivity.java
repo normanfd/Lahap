@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.activity;
+package com.lahaptech.lahap.user.detailproduct;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +22,7 @@ import com.lahaptech.lahap.Prevalent;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Cart;
 import com.lahaptech.lahap.model.Product;
+import com.lahaptech.lahap.user.home.HomeUserActivity;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
