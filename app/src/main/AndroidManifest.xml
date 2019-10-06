@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".user.activity.CartActivity"></activity>
+
+        <activity android:name=".user.activity.CartActivity"/>
         <activity android:name=".owner.UpdateProductActivity" />
         <activity android:name=".user.activity.DetailFoodActivity" />
         <activity android:name=".owner.AddNewProductActivity" />
