@@ -38,15 +38,11 @@
     <string name="write_your_password">Tuliskan password Anda</string>
     <string name="login_resto_owner">Login Resto Owner</string>
     <string name="snack">Camilan</string>
-<<<<<<< HEAD
-    <string name="user_logout">logout</string>
-    <string name="setting">setting</string>
     <string name="apply_changes">Apply Changes</string>
     <string name="add_new_product">Add New Product</string>
     <string name="logout">Logout</string>
     <string name="check_new_orders">Check new Orders</string>
     <string name="update_product">Update Product</string>
-=======
     <string name="user_logout">Keluar</string>
     <string name="setting">Pengaturan</string>
     <string name="history">History</string>
@@ -54,5 +50,4 @@
     <string name="options">Pilihan</string>
     <string name="profile">Profil</string>
     <string name="todo">TODO</string>
->>>>>>> a61165272c4be765342b7d12ddffd10902a392fd
 </resources>

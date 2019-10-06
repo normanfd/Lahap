@@ -19,13 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
-<<<<<<< HEAD:app/src/main/java/com/lahaptech/lahap/owner/fragment/UpdateFoodFragment.java
-import com.lahaptech.lahap.owner.UpdateProductDetailActivity;
-import com.lahaptech.lahap.owner.adapter.MenuAdapter;
-=======
 import com.lahaptech.lahap.owner.update.adapter.MenuAdapter;
 import com.lahaptech.lahap.owner.update.UpdateProductDetailActivity;
->>>>>>> f26463c153f3a30ca33bed66d3bd94ee8c2fa6ea:app/src/main/java/com/lahaptech/lahap/owner/update/fragment/UpdateFoodFragment.java
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
