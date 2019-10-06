@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user;
+package com.lahaptech.lahap.user.home;
 
 
 import android.annotation.SuppressLint;
@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
+import com.lahaptech.lahap.user.activity.DetailFoodActivity;
 import com.lahaptech.lahap.user.adapter.FoodAdapter;
 import com.squareup.picasso.Picasso;
 

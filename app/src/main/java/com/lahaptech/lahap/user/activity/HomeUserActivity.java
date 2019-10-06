@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user;
+package com.lahaptech.lahap.user.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,10 @@ import android.view.View;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.user.home.DrinkFragment;
+import com.lahaptech.lahap.user.home.FoodFragment;
+import com.lahaptech.lahap.user.home.SnackFragment;
+import com.lahaptech.lahap.user.viewpager.HomeUserViewPager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +42,7 @@ public class HomeUserActivity extends AppCompatActivity implements View.OnClickL
 
         adapter.addFragment(new FoodFragment(), getResources().getString(R.string.food));
         adapter.addFragment(new DrinkFragment(), getResources().getString(R.string.drink));
+        adapter.addFragment(new SnackFragment(), getResources().getString(R.string.snack));
 
         floatingActionButton.setOnClickListener(this);
 
@@ -75,3 +80,5 @@ public class HomeUserActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 }
+
+
