@@ -22,7 +22,7 @@ import com.lahaptech.lahap.Prevalent;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Cart;
 import com.lahaptech.lahap.model.Product;
-import com.lahaptech.lahap.user.home.HomeUserActivity;
+import com.lahaptech.lahap.user.home.SelectMenuActivity;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -100,7 +100,7 @@ public class DetailActivity extends AppCompatActivity {
                                 .addOnCompleteListener(task1 -> {
                                     if(task1.isSuccessful()){
                                         Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(DetailActivity.this, HomeUserActivity.class);
+                                        Intent intent = new Intent(DetailActivity.this, SelectMenuActivity.class);
                                         startActivity(intent);
                                     }
                                 });

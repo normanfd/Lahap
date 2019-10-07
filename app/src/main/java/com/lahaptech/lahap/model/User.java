@@ -1,13 +1,14 @@
 package com.lahaptech.lahap.model;
 
 public class User {
-    private String name, phone, email, password, image, address;
+    private String name, username, phone, email, password, image, address;
 
     public User() {
     }
 
-    public User(String name, String phone, String email, String password, String image, String address) {
+    public User(String name, String username, String phone, String email, String password, String image, String address) {
         this.name = name;
+        this.username = username;
         this.phone = phone;
         this.email = email;
         this.password = password;
@@ -21,6 +22,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPhone() {
@@ -62,4 +71,6 @@ public class User {
     public void setAddress(String address) {
         this.address = address;
     }
+
+
 }

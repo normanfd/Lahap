@@ -7,11 +7,11 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-public class HomeUserViewPager extends FragmentPagerAdapter {
+public class SelectMenuViewPager extends FragmentPagerAdapter {
     private ArrayList<Fragment> fragments = new ArrayList<>();
     private ArrayList<String> fragmentsTitle = new ArrayList<>();
 
-    public HomeUserViewPager(FragmentManager fm) {
+    public SelectMenuViewPager(FragmentManager fm) {
         super(fm);
     }
 

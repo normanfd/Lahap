@@ -13,8 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @BindView(R.id.register_btn)
     Button btn_register;
+    @BindView(R.id.register_name_input)
+    EditText inpt_name;
     @BindView(R.id.register_username_input)
     EditText inpt_username;
     @BindView(R.id.register_email_input)
@@ -59,12 +60,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void CreateAccount() {
-        String name = inpt_username.getText().toString();
+        String name = inpt_name.getText().toString();
+        String username = inpt_username.getText().toString();
         String phone = inpt_phone_number.getText().toString();
         String password = inpt_password.getText().toString();
         String email = inpt_email.getText().toString();
 
-        if(TextUtils.isEmpty(name)){
+        if(TextUtils.isEmpty(username)){
             Toast.makeText(RegisterActivity.this, R.string.write_your_name, Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(email)){
@@ -82,44 +84,44 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(RegisterActivity.this, R.string.valid_email_address, Toast.LENGTH_SHORT).show();
         }
+        else if(TextUtils.isEmpty(name)){
+            Toast.makeText(RegisterActivity.this, "Please write your name", Toast.LENGTH_SHORT).show();
+        }
         else{
             loadingBar.setTitle(getResources().getString(R.string.create_account));
             loadingBar.setMessage(getResources().getString(R.string.checking_credentials));
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            validatephonenumber(name, email, phone, password);
+            validatePhoneNumber(name, username, email, phone, password);
         }
     }
 
-    private void validatephonenumber(final String name, final String email, final String phone, final String password) {
+    private void validatePhoneNumber(final String name, final String username, final String email, final String phone, final String password) {
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(!(dataSnapshot.child("Users").child(name).exists())){
+                if(!(dataSnapshot.child("Users").child(username).exists())){
                     //Menyimpan User baru kedalam database
                     User user = null;
                     try {
-                        user = new User(name, phone, email, password,null,null);
+                        user = new User(name, username, phone, email, password,null,null);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    RootRef.child("User").child(name).setValue(user)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(RegisterActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
-                                        loadingBar.dismiss();
-                                        Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
-                                        startActivity(intent);
-                                    }
-                                    else {
-                                        loadingBar.dismiss();
-                                        Toast.makeText(RegisterActivity.this, R.string.try_again_later, Toast.LENGTH_SHORT).show();
-                                    }
+                    RootRef.child("User").child(username).setValue(user)
+                            .addOnCompleteListener(task -> {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(RegisterActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
+                                    loadingBar.dismiss();
+                                    Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                                    startActivity(intent);
+                                }
+                                else {
+                                    loadingBar.dismiss();
+                                    Toast.makeText(RegisterActivity.this, R.string.try_again_later, Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }

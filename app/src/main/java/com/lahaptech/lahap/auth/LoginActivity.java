@@ -21,7 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.owner.HomeOwnerActivity;
-import com.lahaptech.lahap.user.home.HomeUserActivity;
+import com.lahaptech.lahap.user.home.HomeUserNavActivity;
+import com.lahaptech.lahap.user.home.SelectMenuActivity;
 import com.lahaptech.lahap.Prevalent;
 import com.rey.material.widget.CheckBox;
 
@@ -50,6 +51,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Paper.init(this);
         ButterKnife.bind(this);
 
         loadingBar = new ProgressDialog(this);
@@ -88,7 +91,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (dataSnapshot.child(ParentDbName).child(username).exists()) {
                     User UserData = dataSnapshot.child(ParentDbName).child(username).getValue(User.class);
                     assert UserData != null;
-                    if (UserData.getName().equals(username)) {
+                    if (UserData.getUsername().equals(username)) {
                         if (UserData.getPassword().equals(password)) {
                             if (ParentDbName.equals("Owner")) {
                                 Toast.makeText(LoginActivity.this, "Welcome Owner, you are logged in succesfully", Toast.LENGTH_SHORT).show();
@@ -98,7 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             } else {
                                 Toast.makeText(LoginActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
-                                Intent intent = new Intent(LoginActivity.this, HomeUserActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, HomeUserNavActivity.class);
                                 Prevalent.CurrentOnlineUser = UserData;
                                 startActivity(intent);
                             }

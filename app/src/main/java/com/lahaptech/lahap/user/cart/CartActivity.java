@@ -28,9 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.lahaptech.lahap.Prevalent;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Cart;
-import com.lahaptech.lahap.user.home.HomeUserActivity;
+import com.lahaptech.lahap.user.home.SelectMenuActivity;
 import com.lahaptech.lahap.user.orderlocation.OrderLocationActivity;
-import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -126,7 +125,7 @@ public class CartActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
                                                     Toast.makeText(CartActivity.this, "Item removed successfully", Toast.LENGTH_SHORT).show();
-                                                    Intent intent = new Intent(CartActivity.this, HomeUserActivity.class);
+                                                    Intent intent = new Intent(CartActivity.this, SelectMenuActivity.class);
                                                     startActivity(intent);
                                                 }
                                             }

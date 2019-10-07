@@ -22,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
-public class HomeUserActivity extends AppCompatActivity implements View.OnClickListener{
+public class SelectMenuActivity extends AppCompatActivity implements View.OnClickListener{
 
     @BindView(R.id.tab_layout_homeuser)
     TabLayout tabLayout;
@@ -38,7 +38,7 @@ public class HomeUserActivity extends AppCompatActivity implements View.OnClickL
         ButterKnife.bind(this);
         Paper.init(this);
 
-        HomeUserViewPager adapter = new HomeUserViewPager(getSupportFragmentManager());
+        SelectMenuViewPager adapter = new SelectMenuViewPager(getSupportFragmentManager());
 
         adapter.addFragment(new FoodFragment(), getResources().getString(R.string.food));
         adapter.addFragment(new DrinkFragment(), getResources().getString(R.string.drink));
@@ -50,11 +50,7 @@ public class HomeUserActivity extends AppCompatActivity implements View.OnClickL
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finishAffinity();
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -70,7 +66,7 @@ public class HomeUserActivity extends AppCompatActivity implements View.OnClickL
             startActivity(intent);
         }else {
             Paper.book().destroy();
-            Intent intent = new Intent(HomeUserActivity.this, MainActivity.class);
+            Intent intent = new Intent(SelectMenuActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
@@ -81,7 +77,7 @@ public class HomeUserActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         if (view.getId()==R.id.fab){
-            Intent intent = new Intent(HomeUserActivity.this, CartActivity.class);
+            Intent intent = new Intent(SelectMenuActivity.this, CartActivity.class);
             startActivity(intent);
         }
     }

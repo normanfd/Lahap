@@ -50,4 +50,6 @@
     <string name="options">Pilihan</string>
     <string name="profile">Profil</string>
     <string name="todo">TODO</string>
+    <string name="select_canteen">Select Canteen</string>
+    <string name="cart">Cart</string>
 </resources>
