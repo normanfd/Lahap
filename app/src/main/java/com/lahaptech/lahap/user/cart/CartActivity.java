@@ -110,7 +110,7 @@ public class CartActivity extends AppCompatActivity {
                             //Jika indeks == 0 atau edit maka kita lempar ke Product detail activity dengan pid tertentu
 //                                if(i == 0){
 //                                    Intent intent =new Intent(CartActivity.this, ProductDetailActivity.class);
-//                                    intent.putExtra("pid", model.getPid());
+//                                    intent.putExtra("pid", model.getProductID());
 //                                    startActivity(intent);
 //                                }
                             // Jika indeks == 1 atau Remove maka hapus dengan pid tertentu

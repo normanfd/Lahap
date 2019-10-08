@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Kantin Lahap</string>
     <string name="phone_number">phone number</string>
-    <string name="password">password</string>
+    <string name="password">Password</string>
     <string name="forget_password">Forget Password?</string>
     <string name="login">Login</string>
     <string name="i_m_an_admin">I\'m an Owner?</string>

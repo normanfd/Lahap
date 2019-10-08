@@ -115,7 +115,7 @@ public class DetailActivity extends AppCompatActivity {
                 if (dataSnapshot.exists()){
                     Product product = dataSnapshot.getValue(Product.class);
                     assert product != null;
-                    name.setText(product.getProductname());
+                    name.setText(product.getProductName());
                     price.setText(product.getPrice());
                     desc.setText(product.getDescription());
                     Picasso.get().load(product.getImage()).into(photo);

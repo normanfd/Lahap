@@ -66,14 +66,14 @@ public class SnackFragment extends Fragment {
                     @SuppressLint("SetTextI18n")
                     @Override
                     protected void onBindViewHolder(@NonNull ProductAdapter holder, int position, @NonNull final Product model) {
-                        holder.name.setText(model.getProductname());
+                        holder.name.setText(model.getProductName());
                         holder.desc.setText(model.getDescription());
                         holder.price.setText(getResources().getString(R.string.template_price) + model.getPrice());
                         Picasso.get().load(model.getImage()).into(holder.photo);
 
                         holder.itemView.setOnClickListener(v -> {
                             Intent intent = new Intent(getActivity(), DetailActivity.class);
-                            intent.putExtra("pid", model.getPid());
+                            intent.putExtra("pid", model.getProductID());
                             intent.putExtra("category", "snack");
                             startActivity(intent);
                         });

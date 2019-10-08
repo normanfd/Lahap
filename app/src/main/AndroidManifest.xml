@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lahaptech.lahap">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".auth.LoginSellerActivity"></activity>
         <activity
             android:name=".user.home.HomeUserNavActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -29,7 +30,7 @@
         <activity android:name=".owner.HomeOwnerActivity" />
         <activity android:name=".user.home.SelectMenuActivity" />
         <activity android:name=".auth.RegisterActivity" />
-        <activity android:name=".auth.LoginActivity" />
+        <activity android:name=".auth.LoginUserActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

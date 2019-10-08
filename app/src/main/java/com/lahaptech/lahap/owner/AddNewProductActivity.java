@@ -24,14 +24,18 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.lahaptech.lahap.Prevalent;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -51,22 +55,20 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
     EditText inputProductPrice;
 
 
-    private String CategoryName, ProductDescription, ProductPrice, ProductName,
-            ProductRandomKey, DownloadImageUrl, saveCurrentDate, saveCurrentTime;
+    private String ProductRandomKey, SellerID, ProductName, CategoryName,  ProductDescription, ProductPrice,
+             DownloadImageUrl, saveCurrentDate, saveCurrentTime, IsAvailable;
     private static final int GalleryPick = 1;
     private Uri ImageUri;
     private StorageReference ProductImageRef;
-    private DatabaseReference ProductRef;
     private ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_product);
-        CategoryName = getIntent().getExtras().get("category").toString();
+        CategoryName = Objects.requireNonNull(Objects.requireNonNull(getIntent().getExtras()).get("category")).toString();
         Log.i("test",CategoryName);
         ProductImageRef = FirebaseStorage.getInstance().getReference().child("Product Images");
-        ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
         loadingBar = new ProgressDialog(this);
 
         ButterKnife.bind(this);
@@ -113,67 +115,63 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
         saveCurrentTime = currentTime.format(calendar.getTime());
 
         ProductRandomKey = saveCurrentDate + saveCurrentTime;
+        SellerID = Prevalent.CurrentOnlineSeller.getSellerID();
 
         final StorageReference filePath = ProductImageRef.child(ImageUri.getLastPathSegment() + ProductRandomKey + ".jpg");
         final UploadTask UploadTask = filePath.putFile(ImageUri);
-        UploadTask.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                String message = e.toString();
-                Toast.makeText(AddNewProductActivity.this, "Error" + message, Toast.LENGTH_SHORT).show();
-                loadingBar.dismiss();
-            }
-        }).addOnSuccessListener(new OnSuccessListener<com.google.firebase.storage.UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(AddNewProductActivity.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
-                //get Link Image
-                UploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                    @Override
-                    public Task<Uri> then(@NonNull Task<com.google.firebase.storage.UploadTask.TaskSnapshot> task) throws Exception {
-                        if (!task.isSuccessful()) {
-                            throw Objects.requireNonNull(task.getException());
-                        } else {
-                            DownloadImageUrl = filePath.getDownloadUrl().toString();
-                            return filePath.getDownloadUrl();
-                        }
-                    }
-                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Uri> task) {
-                        if (task.isSuccessful()) {
-                            DownloadImageUrl = Objects.requireNonNull(task.getResult()).toString();
-                            Toast.makeText(AddNewProductActivity.this, "got the product Image url succcesfully...", Toast.LENGTH_SHORT).show();
-                            SaveProductInfoToDatabase();
-                        }
-                    }
-                });
-            }
+        UploadTask.addOnFailureListener(e -> {
+            String message = e.toString();
+            Toast.makeText(AddNewProductActivity.this, "Error" + message, Toast.LENGTH_SHORT).show();
+            loadingBar.dismiss();
+        }).addOnSuccessListener(taskSnapshot -> {
+            Toast.makeText(AddNewProductActivity.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+            //get Link Image
+            UploadTask.continueWithTask(task -> {
+                if (!task.isSuccessful()) {
+                    throw Objects.requireNonNull(task.getException());
+                } else {
+                    DownloadImageUrl = filePath.getDownloadUrl().toString();
+                    return filePath.getDownloadUrl();
+                }
+            }).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DownloadImageUrl = Objects.requireNonNull(task.getResult()).toString();
+                    Toast.makeText(AddNewProductActivity.this, "got the product Image url succcesfully...", Toast.LENGTH_SHORT).show();
+                    SaveProductToFirestore();
+//                            SaveProductInfoToDatabase();
+                }
+            });
         });
     }
 
-    private void SaveProductInfoToDatabase() {
-        Product product = new Product(CategoryName, saveCurrentDate,
-                ProductDescription, DownloadImageUrl, ProductRandomKey,
-                ProductPrice, ProductName, saveCurrentTime);
+    private void SaveProductToFirestore(){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> product = new HashMap<>();
 
-        ProductRef.child(CategoryName).child(ProductRandomKey).setValue(product)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            loadingBar.dismiss();
-                            Toast.makeText(AddNewProductActivity.this, "Product is added succesfully", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(AddNewProductActivity.this,HomeOwnerActivity.class);
-                            startActivity(intent);
-                        }else{
-                            loadingBar.dismiss();
-                            String message = Objects.requireNonNull(task.getException()).toString();
-                            Toast.makeText(AddNewProductActivity.this, "Error " + message, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        product.put("productID", ProductRandomKey);
+        product.put("sellerID", SellerID);
+        product.put("productName", ProductName);
+        product.put("category", CategoryName);
+        product.put("date", saveCurrentDate);
+        product.put("description", ProductDescription);
+        product.put("image", DownloadImageUrl);
+        product.put("price", ProductPrice);
+        product.put("time", saveCurrentTime);
+        product.put("isAvailable", "1");
+        Log.d("cekdulu", ProductRandomKey);
+
+        db.collection("product").document(ProductRandomKey).set(product).addOnSuccessListener(aVoid -> {
+            loadingBar.dismiss();
+            Toast.makeText(AddNewProductActivity.this, "Product is added successfully", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(AddNewProductActivity.this,HomeOwnerActivity.class);
+            startActivity(intent);
+        }).addOnFailureListener(e -> {
+            loadingBar.dismiss();
+            String message = e.toString();
+            Toast.makeText(AddNewProductActivity.this, "Error " + message, Toast.LENGTH_SHORT).show();
+        });
     }
+
 
     //PICK IMAGE FROM GALLERY
     private void OpenGallery() {

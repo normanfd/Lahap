@@ -53,6 +53,9 @@ dependencies {
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
     implementation 'io.paperdb:paperdb:2.6'
 
+    implementation 'com.google.firebase:firebase-firestore:21.1.1'
+
+
 }
 
 apply plugin: 'com.google.gms.google-services'

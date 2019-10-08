@@ -16,7 +16,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.lahaptech.lahap.auth.LoginActivity;
+import com.lahaptech.lahap.auth.LoginSellerActivity;
+import com.lahaptech.lahap.auth.LoginUserActivity;
 import com.lahaptech.lahap.auth.RegisterActivity;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.home.HomeUserNavActivity;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_join;
     @BindView(R.id.main_login_btn)
     Button btn_login;
+    @BindView(R.id.main_login_btn_seller)
+    Button btn_login_seller;
 
     ProgressDialog loadingBar;
 
@@ -46,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btn_join.setOnClickListener(this);
         btn_login.setOnClickListener(this);
+        btn_login_seller.setOnClickListener(this);
+
 
         String UserName = Paper.book().read(Prevalent.UserName);
         String UserPasswordKey = Paper.book().read(Prevalent.UserPasswordKey);
@@ -63,11 +68,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.main_login_btn) {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            Intent intent = new Intent(MainActivity.this, LoginUserActivity.class);
             startActivity(intent);
         }
-        else {
+        else if(view.getId() == R.id.main_join_now_btn) {
             Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        }
+        else  {
+            Intent intent = new Intent(MainActivity.this, LoginSellerActivity.class);
             startActivity(intent);
         }
     }

@@ -1,6 +1,5 @@
 package com.lahaptech.lahap.auth;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -8,20 +7,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.lahaptech.lahap.MainActivity;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.model.User;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -93,53 +90,80 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            validatePhoneNumber(name, username, email, phone, password);
+            registerToFirestore(name, username, email, phone, password);
+//            validatePhoneNumber(name, username, email, phone, password);
         }
     }
 
-    private void validatePhoneNumber(final String name, final String username, final String email, final String phone, final String password) {
-        final DatabaseReference RootRef;
-        RootRef = FirebaseDatabase.getInstance().getReference();
-        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(!(dataSnapshot.child("Users").child(username).exists())){
-                    //Menyimpan User baru kedalam database
-                    User user = null;
-                    try {
-                        user = new User(name, username, phone, email, password,null,null);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    RootRef.child("User").child(username).setValue(user)
-                            .addOnCompleteListener(task -> {
-                                if(task.isSuccessful()){
-                                    Toast.makeText(RegisterActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
-                                    loadingBar.dismiss();
-                                    Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
-                                    startActivity(intent);
-                                }
-                                else {
-                                    loadingBar.dismiss();
-                                    Toast.makeText(RegisterActivity.this, R.string.try_again_later, Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                }
-                else {
-                    Toast.makeText(RegisterActivity.this, "Phone number "+ phone + " already exist", Toast.LENGTH_SHORT).show();
+    private void registerToFirestore(String name, String username, String email, String phone, String password) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> user = new HashMap<>();
+
+        user.put("name", name);
+        user.put("username", username);
+        user.put("email", email);
+        user.put("phone", phone);
+        user.put("password",password);
+
+        db.collection("user").document(username)
+                .set(user)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(RegisterActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
-                    Toast.makeText(RegisterActivity.this, "Please use different phone number", Toast.LENGTH_SHORT).show();
-
-                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    Log.d("Cek", "DocumentSnapshot added with ID: " + username);
+                    Intent intent = new Intent(RegisterActivity.this, LoginUserActivity.class);
                     startActivity(intent);
-                }
-            }
+                })
+                .addOnFailureListener(e -> {
+                    loadingBar.dismiss();
+                    Toast.makeText(RegisterActivity.this, R.string.try_again_later, Toast.LENGTH_SHORT).show();
+                });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
+
+//    private void validatePhoneNumber(final String name, final String username, final String email, final String phone, final String password) {
+//        final DatabaseReference RootRef;
+//        RootRef = FirebaseDatabase.getInstance().getReference();
+//        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if(!(dataSnapshot.child("Users").child(username).exists())){
+//                    //Menyimpan User baru kedalam database
+//                    User user = null;
+//                    try {
+//                        user = new User(name, username, phone, email, password,null,null);
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                    RootRef.child("User").child(username).setValue(user)
+//                            .addOnCompleteListener(task -> {
+//                                if(task.isSuccessful()){
+//                                    Toast.makeText(RegisterActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
+//                                    loadingBar.dismiss();
+//                                    Intent intent = new Intent(RegisterActivity.this,LoginUserActivity.class);
+//                                    startActivity(intent);
+//                                }
+//                                else {
+//                                    loadingBar.dismiss();
+//                                    Toast.makeText(RegisterActivity.this, R.string.try_again_later, Toast.LENGTH_SHORT).show();
+//                                }
+//                            });
+//                }
+//                else {
+//                    Toast.makeText(RegisterActivity.this, "Phone number "+ phone + " already exist", Toast.LENGTH_SHORT).show();
+//                    loadingBar.dismiss();
+//                    Toast.makeText(RegisterActivity.this, "Please use different phone number", Toast.LENGTH_SHORT).show();
+//
+//                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+//                    startActivity(intent);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
 }

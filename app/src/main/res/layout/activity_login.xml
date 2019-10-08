@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".auth.LoginActivity"
+    tools:context=".auth.LoginUserActivity"
     android:background="@android:color/white"
     >
     <ImageView
@@ -93,34 +93,4 @@
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
-
-    <TextView
-        android:id="@+id/owner_panel_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/i_m_an_admin"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/login_btn"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginStart="80dp"
-        android:layout_marginEnd="23dp"
-        />
-
-
-    <TextView
-        android:id="@+id/not_admin_panel_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/i_m_not_an_admin"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/login_btn"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginLeft="80dp"
-        android:layout_marginStart="25dp"
-        android:visibility="invisible"
-        tools:ignore="RtlHardcoded" />
 </RelativeLayout>

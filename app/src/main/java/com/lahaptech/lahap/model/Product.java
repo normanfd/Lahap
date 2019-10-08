@@ -1,24 +1,48 @@
 package com.lahaptech.lahap.model;
 
 public class Product {
-    private String category, date, description, image, pid, price, productname, time ;
+    private String productID, sellerID, productName, category, date, description, image, price, time, isAvailable ;
 
     public Product() {
-
     }
 
-    public Product(String category, String date, String description, String image, String pid, String price, String productname, String time) {
+    public Product(String productID, String sellerID, String category, String productName, String date, String description, String image, String price, String time, String isAvailable) {
+        this.productID = productID;
+        this.sellerID = sellerID;
+        this.productName = productName;
         this.category = category;
         this.date = date;
         this.description = description;
         this.image = image;
-        this.pid = pid;
         this.price = price;
-        this.productname = productname;
         this.time = time;
+        this.isAvailable = isAvailable;
     }
 
-    //getter & setter kategori suatu produk
+    public String getProductID() {
+        return productID;
+    }
+
+    public void setProductID(String productID) {
+        this.productID = productID;
+    }
+
+    public String getSellerID() {
+        return sellerID;
+    }
+
+    public void setSellerID(String sellerID) {
+        this.sellerID = sellerID;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
     public String getCategory() {
         return category;
     }
@@ -27,7 +51,6 @@ public class Product {
         this.category = category;
     }
 
-    //getter & setter tanggal produk ditambahkan atau mulai dijual
     public String getDate() {
         return date;
     }
@@ -36,7 +59,6 @@ public class Product {
         this.date = date;
     }
 
-    //getter & setter deskripsi produk
     public String getDescription() {
         return description;
     }
@@ -45,7 +67,6 @@ public class Product {
         this.description = description;
     }
 
-    //getter & setter gambar produk
     public String getImage() {
         return image;
     }
@@ -54,16 +75,6 @@ public class Product {
         this.image = image;
     }
 
-    //getter & setter id produk
-    public String getPid() {
-        return pid;
-    }
-
-    public void setPid(String pid) {
-        this.pid = pid;
-    }
-
-    //getter & setter harga produk
     public String getPrice() {
         return price;
     }
@@ -72,21 +83,19 @@ public class Product {
         this.price = price;
     }
 
-    //getter & setter nama produk
-    public String getProductname() {
-        return productname;
-    }
-
-    public void setProductname(String productname) {
-        this.productname = productname;
-    }
-
-    //getter & setter waktu (Jam:Menit:Detik AM/PM) produk ditambahkan atau mulai dijual
     public String getTime() {
         return time;
     }
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(String isAvailable) {
+        this.isAvailable = isAvailable;
     }
 }
