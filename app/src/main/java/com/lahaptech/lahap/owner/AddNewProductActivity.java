@@ -56,7 +56,7 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
 
 
     private String ProductRandomKey, SellerID, ProductName, CategoryName,  ProductDescription, ProductPrice,
-             DownloadImageUrl, saveCurrentDate, saveCurrentTime, IsAvailable;
+             DownloadImageUrl, saveCurrentDate, saveCurrentTime, IsAvailable, LocationID;
     private static final int GalleryPick = 1;
     private Uri ImageUri;
     private StorageReference ProductImageRef;
@@ -116,6 +116,7 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
 
         ProductRandomKey = saveCurrentDate + saveCurrentTime;
         SellerID = Prevalent.CurrentOnlineSeller.getSellerID();
+        LocationID = Prevalent.CurrentOnlineSeller.getLocationID();
 
         final StorageReference filePath = ProductImageRef.child(ImageUri.getLastPathSegment() + ProductRandomKey + ".jpg");
         final UploadTask UploadTask = filePath.putFile(ImageUri);
@@ -158,6 +159,7 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
         product.put("price", ProductPrice);
         product.put("time", saveCurrentTime);
         product.put("isAvailable", "1");
+        product.put("locationID", LocationID);
         Log.d("cekdulu", ProductRandomKey);
 
         db.collection("product").document(ProductRandomKey).set(product).addOnSuccessListener(aVoid -> {

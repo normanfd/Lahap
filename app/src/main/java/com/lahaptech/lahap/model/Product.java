@@ -1,12 +1,12 @@
 package com.lahaptech.lahap.model;
 
 public class Product {
-    private String productID, sellerID, productName, category, date, description, image, price, time, isAvailable ;
+    private String productID, sellerID, productName, category, date, description, image, price, time, isAvailable, locationID ;
 
     public Product() {
     }
 
-    public Product(String productID, String sellerID, String category, String productName, String date, String description, String image, String price, String time, String isAvailable) {
+    public Product(String productID, String sellerID, String category, String productName, String date, String description, String image, String price, String time, String isAvailable, String locationID) {
         this.productID = productID;
         this.sellerID = sellerID;
         this.productName = productName;
@@ -17,6 +17,7 @@ public class Product {
         this.price = price;
         this.time = time;
         this.isAvailable = isAvailable;
+        this.locationID = locationID;
     }
 
     public String getProductID() {
@@ -97,5 +98,13 @@ public class Product {
 
     public void setIsAvailable(String isAvailable) {
         this.isAvailable = isAvailable;
+    }
+
+    public String getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(String locationID) {
+        this.locationID = locationID;
     }
 }
