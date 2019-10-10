@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lahaptech.lahap">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".auth.LoginSellerActivity"></activity>
+        <activity
+            android:name=".user.UserActivity"
+            android:label="@string/title_activity_user"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".auth.LoginSellerActivity" />
         <activity
             android:name=".user.home.HomeUserNavActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -28,7 +27,7 @@
         <activity android:name=".owner.AddNewProductActivity" />
         <activity android:name=".owner.order.CheckOrderActivity" />
         <activity android:name=".owner.HomeOwnerActivity" />
-        <activity android:name=".user.home.SelectMenuActivity" />
+        <activity android:name=".user.menuproduct.SelectMenuActivity" />
         <activity android:name=".auth.RegisterActivity" />
         <activity android:name=".auth.LoginUserActivity" />
         <activity android:name=".MainActivity">
@@ -39,5 +38,10 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

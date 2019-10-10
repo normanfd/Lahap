@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.home;
+package com.lahaptech.lahap.user.menuproduct;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,7 +49,6 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
     }
-
 
 
     @Override

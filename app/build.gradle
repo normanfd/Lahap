@@ -54,7 +54,7 @@ dependencies {
     implementation 'io.paperdb:paperdb:2.6'
 
     implementation 'com.google.firebase:firebase-firestore:21.1.1'
-
+    implementation 'com.firebaseui:firebase-ui-firestore:6.0.2'
 
 }
 
