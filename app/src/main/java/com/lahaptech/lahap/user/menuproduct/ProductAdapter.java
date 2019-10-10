@@ -13,7 +13,7 @@ import com.lahaptech.lahap.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductAdapter extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class ProductAdapter extends RecyclerView.ViewHolder {
 
     @BindView(R.id.frag_food_name)
     TextView name;
@@ -23,15 +23,11 @@ public class ProductAdapter extends RecyclerView.ViewHolder implements View.OnCl
     TextView price;
     @BindView(R.id.frag_food_desc)
     TextView desc;
-    private ItemClickListener listener;
 
     ProductAdapter(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
 
-    @Override
-    public void onClick(View view) {
-        listener.onClick(view, getAdapterPosition(), false);
-    }
+
 }
