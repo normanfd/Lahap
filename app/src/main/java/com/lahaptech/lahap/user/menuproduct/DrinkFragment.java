@@ -21,6 +21,7 @@ import com.google.firebase.firestore.Query;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
 import com.lahaptech.lahap.owner.update.UpdateProductDetailActivity;
+import com.lahaptech.lahap.user.detailproduct.DetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
@@ -83,7 +84,7 @@ public class DrinkFragment extends Fragment {
                                     .into(holder.photo);
 
                             holder.itemView.setOnClickListener(v -> {
-                                Intent intent = new Intent(getActivity(), UpdateProductDetailActivity.class);
+                                Intent intent = new Intent(getActivity(), DetailActivity.class);
                                 intent.putExtra("pid", model.getProductID());
                                 intent.putExtra("category", "drink");
                                 startActivity(intent);

@@ -71,13 +71,13 @@
             />
         <TextView
 
-            android:id="@+id/keterangan"
+            android:id="@+id/overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/number_btn"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:text="Tambahkan keterangan jumlah ukuran masing2 produk misalnya XL = 20 dan M =30"
+            android:text="Tambahkan overview jumlah ukuran masing2 produk misalnya XL = 20 dan M =30"
             android:visibility="invisible"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -87,7 +87,7 @@
             android:id="@+id/keterangan_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/keterangan"
+            android:layout_below="@+id/overview"
             android:inputType="text"
             android:layout_marginTop="20dp"
             android:padding="20dp"

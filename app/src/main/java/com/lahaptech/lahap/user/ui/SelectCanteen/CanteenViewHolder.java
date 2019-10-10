@@ -12,11 +12,11 @@ import com.lahaptech.lahap.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CanteenViewHolder extends RecyclerView.ViewHolder {
+class CanteenViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.item_canteen)
     TextView item_canteen;
-    public CanteenViewHolder(@NonNull View itemView) {
+    CanteenViewHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }

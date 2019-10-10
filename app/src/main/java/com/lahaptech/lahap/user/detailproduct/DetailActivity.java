@@ -1,6 +1,7 @@
 package com.lahaptech.lahap.user.detailproduct;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -13,11 +14,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.lahaptech.lahap.Prevalent;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Cart;
@@ -27,6 +36,8 @@ import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,48 +95,68 @@ public class DetailActivity extends AppCompatActivity {
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentTime.format(calForDate.getTime());
 
-        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("cart list");
-        final Cart cartMap = new Cart(foodID, name.getText().toString(),
-                price.getText().toString(), numberButton.getNumber(),
-                saveCurrentDate, saveCurrentTime,category, null);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> cart = new HashMap<>();
+        cart.put("productName", name.getText().toString());
+        cart.put("productID", foodID);
+        cart.put("price", price.getText().toString());
+        cart.put("quantity", numberButton.getNumber());
+        cart.put("date",saveCurrentDate);
+        cart.put("time",saveCurrentTime);
+        cart.put("category", category);
+        cart.put("overview",null);
 
-        cartListRef.child("User View").child(Prevalent.CurrentOnlineUser.getName())
-                .child("Products").child(foodID)
-                .setValue(cartMap)
-                .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        cartListRef.child("Admin View").child(Prevalent.CurrentOnlineUser.getName())
-                                .child("Products").child(foodID)
-                                .setValue(cartMap)
-                                .addOnCompleteListener(task1 -> {
-                                    if(task1.isSuccessful()){
-                                        Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(DetailActivity.this, SelectMenuActivity.class);
-                                        startActivity(intent);
-                                    }
-                                });
-                    }
-                });
-    }
-    private void getProductDetail(String foodID, String category) {
-        DatabaseReference productsref = FirebaseDatabase.getInstance().getReference().child("Products").child(category);
-        productsref.child(foodID).addValueEventListener(new ValueEventListener() {
+        db.collection("cart").document(Prevalent.CurrentOnlineUser.getName())
+                .set(cart).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    Product product = dataSnapshot.getValue(Product.class);
-                    assert product != null;
-                    name.setText(product.getProductName());
-                    price.setText(product.getPrice());
-                    desc.setText(product.getDescription());
-                    Picasso.get().load(product.getImage()).into(photo);
-                }
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(DetailActivity.this, SelectMenuActivity.class);
+                startActivity(intent);
             }
-
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onFailure(@NonNull Exception e) {
 
             }
         });
+        //belum selesai admin view belum
+//        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("cart list");
+//        final Cart cartMap = new Cart(foodID, name.getText().toString(),
+//                price.getText().toString(), numberButton.getNumber(),
+//                saveCurrentDate, saveCurrentTime,category, null);
+//
+//        cartListRef.child("User View").child(Prevalent.CurrentOnlineUser.getName())
+//                .child("Products").child(foodID)
+//                .setValue(cartMap)
+//                .addOnCompleteListener(task -> {
+//                    if(task.isSuccessful()){
+//                        cartListRef.child("Admin View").child(Prevalent.CurrentOnlineUser.getName())
+//                                .child("Products").child(foodID)
+//                                .setValue(cartMap)
+//                                .addOnCompleteListener(task1 -> {
+//                                    if(task1.isSuccessful()){
+//                                        Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
+//                                        Intent intent = new Intent(DetailActivity.this, SelectMenuActivity.class);
+//                                        startActivity(intent);
+//                                    }
+//                                });
+//                    }
+//                });
+    }
+    private void getProductDetail(String foodID, String category) {
+        FirebaseFirestore productRef = FirebaseFirestore.getInstance();
+        DocumentReference docRef = productRef.collection("product").document(foodID);
+        docRef.addSnapshotListener((documentSnapshot, e) -> {
+            if (documentSnapshot != null && documentSnapshot.exists()){
+                Product productData = documentSnapshot.toObject(Product.class);
+                assert productData != null;
+                name.setText(productData.getProductName());
+                price.setText(productData.getPrice());
+                desc.setText(productData.getDescription());
+                Picasso.get().load(productData.getImage()).into(photo);
+            }
+        });
+
     }
 }
