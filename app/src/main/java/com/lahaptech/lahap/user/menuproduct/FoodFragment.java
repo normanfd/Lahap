@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,12 @@ import com.lahaptech.lahap.model.Product;
 import com.lahaptech.lahap.owner.update.UpdateProductDetailActivity;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
 
 public class FoodFragment extends Fragment {
 
@@ -47,11 +52,15 @@ public class FoodFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        String canteenID = Objects.requireNonNull(getActivity()).getIntent().getStringExtra(CANTEEN_ID);
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         final Query query = rootRef.collection("product")
+                .whereEqualTo("locationID", canteenID)
                 .whereEqualTo("category", "food");
 
         query.addSnapshotListener((queryDocumentSnapshots, e) -> {
@@ -66,7 +75,10 @@ public class FoodFragment extends Fragment {
                             holder.name.setText(model.getProductName());
                             holder.desc.setText(model.getDescription());
                             holder.price.setText(model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.photo);
+                            Picasso.get()
+                                    .load(model.getImage())
+                                    .resize(100,100)
+                                    .into(holder.photo);
 
                             holder.itemView.setOnClickListener(v -> {
                                 Intent intent = new Intent(getActivity(), UpdateProductDetailActivity.class);

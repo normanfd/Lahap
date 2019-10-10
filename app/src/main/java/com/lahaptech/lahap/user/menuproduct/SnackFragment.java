@@ -23,8 +23,12 @@ import com.lahaptech.lahap.model.Product;
 import com.lahaptech.lahap.owner.update.UpdateProductDetailActivity;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,11 +54,14 @@ public class SnackFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        String canteenID = Objects.requireNonNull(getActivity()).getIntent().getStringExtra(CANTEEN_ID);
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         final Query query = rootRef.collection("product")
+                .whereEqualTo("locationID", canteenID)
                 .whereEqualTo("category", "snack");
 
         query.addSnapshotListener((queryDocumentSnapshots, e) -> {
