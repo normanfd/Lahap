@@ -30,8 +30,6 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
     TabLayout tabLayout;
     @BindView(R.id.view_page_fav)
     ViewPager viewPager;
-    @BindView(R.id.fab)
-    FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +46,6 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
         adapter.addFragment(new FoodFragment(), getResources().getString(R.string.food));
         adapter.addFragment(new DrinkFragment(), getResources().getString(R.string.drink));
         adapter.addFragment(new SnackFragment(), getResources().getString(R.string.snack));
-
-        floatingActionButton.setOnClickListener(this);
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

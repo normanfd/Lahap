@@ -20,7 +20,7 @@ import com.lahaptech.lahap.auth.LoginSellerActivity;
 import com.lahaptech.lahap.auth.LoginUserActivity;
 import com.lahaptech.lahap.auth.RegisterActivity;
 import com.lahaptech.lahap.model.User;
-import com.lahaptech.lahap.user.home.HomeUserNavActivity;
+import com.lahaptech.lahap.user.UserActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         if(UserData.getPassword().equals(password)){
                             Toast.makeText(MainActivity.this, "Please wait, you are already logged in..", Toast.LENGTH_SHORT).show();
                             loadingBar.dismiss();
-                            Intent intent = new Intent(MainActivity.this, HomeUserNavActivity.class);
+                            Intent intent = new Intent(MainActivity.this, UserActivity.class);
                             Prevalent.CurrentOnlineUser = UserData;
                             startActivity(intent);
                         }

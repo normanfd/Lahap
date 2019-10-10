@@ -17,7 +17,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
     TextView productName;
     @BindView(R.id.frag_food_price)
     TextView productPrice;
-    @BindView(R.id.frag_food_desc)
+    @BindView(R.id.frag_food_seller)
     TextView productDesc;
     @BindView(R.id.frag_food_image)
     ImageView productImage;

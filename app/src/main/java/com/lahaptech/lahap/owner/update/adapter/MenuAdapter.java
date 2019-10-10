@@ -24,9 +24,9 @@ public class MenuAdapter extends RecyclerView.ViewHolder implements View.OnClick
     @BindView(R.id.frag_food_price)
     public
     TextView price;
-    @BindView(R.id.frag_food_desc)
+    @BindView(R.id.frag_food_seller)
     public
-    TextView desc;
+    TextView seller;
     private ItemClickListener listener;
 
     public MenuAdapter(@NonNull View itemView) {

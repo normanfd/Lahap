@@ -51,6 +51,7 @@ public class SelectCanteenFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupRecyclerView();
+
     }
 
     private void setupRecyclerView() {
@@ -73,7 +74,6 @@ public class SelectCanteenFragment extends Fragment {
                             holder.itemView.setOnClickListener(view -> {
                                 Intent intent = new Intent(getActivity(), SelectMenuActivity.class);
 
-                                //NANTI GANTI SAMA ID KANTIN
                                 intent.putExtra(CANTEEN_ID, model.getCanteenID());
                                 startActivity(intent);
                             });
