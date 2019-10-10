@@ -16,10 +16,15 @@ import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
+import com.lahaptech.lahap.owner.update.UpdateProductDetailActivity;
 import com.lahaptech.lahap.user.detailproduct.DetailActivity;
 import com.squareup.picasso.Picasso;
 
@@ -50,37 +55,44 @@ public class FoodFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        String category = "food";
-        DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Products").child(category);
-        FirebaseRecyclerOptions<Product> options =
-                new FirebaseRecyclerOptions.Builder<Product>()
-                        .setQuery(productRef, Product.class)
-                        .build();
-        FirebaseRecyclerAdapter<Product, ProductAdapter> adapter =
-                new FirebaseRecyclerAdapter<Product, ProductAdapter>(options) {
-                    @Override
-                    protected void onBindViewHolder(@NonNull ProductAdapter holder, int position, @NonNull final Product model) {
-                        holder.name.setText(model.getProductName());
-                        holder.desc.setText(model.getDescription());
-                        holder.price.setText(model.getPrice());
-                        Picasso.get().load(model.getImage()).into(holder.photo);
+        FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+        final Query query = rootRef.collection("product")
+                .whereEqualTo("category", "food").whereEqualTo("isAvailable","1")
+                .orderBy("productName", Query.Direction.ASCENDING);
 
-                        holder.itemView.setOnClickListener(v -> {
-                            Intent intent = new Intent(getActivity(), DetailActivity.class);
-                            intent.putExtra("pid", model.getProductID());
-                            intent.putExtra("category", "food");
-                            startActivity(intent);
-                        });
-                    }
+        query.addSnapshotListener((queryDocumentSnapshots, e) -> {
+            FirestoreRecyclerOptions<Product> options = new FirestoreRecyclerOptions.Builder<Product>()
+                    .setQuery(query, Product.class)
+                    .build();
 
-                    @NonNull
-                    @Override
-                    public ProductAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewtype) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_food, parent, false);
-                        return new ProductAdapter(view);
-                    }
-                };
-        recyclerView.setAdapter(adapter);
-        adapter.startListening();
+            FirestoreRecyclerAdapter<Product, ProductAdapter> adapter =
+                    new FirestoreRecyclerAdapter<Product, ProductAdapter>(options) {
+                        @Override
+                        protected void onBindViewHolder(@NonNull ProductAdapter holder, int position, @NonNull Product model) {
+                            holder.name.setText(model.getProductName());
+                            holder.desc.setText(model.getDescription());
+                            holder.price.setText(model.getPrice());
+                            Picasso.get().load(model.getImage()).into(holder.photo);
+
+                            holder.itemView.setOnClickListener(v -> {
+                                Intent intent = new Intent(getActivity(), UpdateProductDetailActivity.class);
+                                intent.putExtra("pid", model.getProductID());
+                                intent.putExtra("category", "food");
+                                startActivity(intent);
+                            });
+
+                        }
+
+                        @NonNull
+                        @Override
+                        public ProductAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                            View view1 = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_food, parent, false);
+                            return new ProductAdapter(view1);
+                        }
+                    };
+
+            recyclerView.setAdapter(adapter);
+            adapter.startListening();
+        });
     }
 }
