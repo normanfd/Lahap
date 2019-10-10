@@ -118,7 +118,7 @@ public class CartActivity extends AppCompatActivity {
                                 cartListRef.child("User View")
                                         .child(Prevalent.CurrentOnlineUser.getPhone())
                                         .child("Products")
-                                        .child(model.getPid())
+                                        .child(model.getProductID())
                                         .removeValue()
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override

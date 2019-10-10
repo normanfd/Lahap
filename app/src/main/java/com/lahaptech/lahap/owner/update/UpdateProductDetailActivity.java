@@ -125,15 +125,7 @@ public class UpdateProductDetailActivity extends AppCompatActivity implements Vi
                 finish();
             }).addOnFailureListener(e -> Toast.makeText(UpdateProductDetailActivity.this, "Change succesfully", Toast.LENGTH_SHORT).show());
 
-//            docRef.updateChildren(ProductMap).addOnCompleteListener(task -> {
-//                if (task.isSuccessful()){
-//                    Toast.makeText(UpdateProductDetailActivity.this, "Change succesfully", Toast.LENGTH_SHORT).show();
-//
-//                    Intent intent = new Intent(UpdateProductDetailActivity.this, UpdateProductActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                }
-//            });
+
         }
     }
 

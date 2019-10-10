@@ -1,20 +1,20 @@
 package com.lahaptech.lahap.model;
 
 public class Cart {
-    private String pid, productName, price, quantity, date, time, category, keterangan, image;
+    private String productID, productName, price, quantity, date, time, category, overview;
 
     public Cart() {
     }
 
-    public Cart(String pid, String productName, String price, String quantity, String date, String time, String category, String keterangan) {
-        this.pid = pid;
+    public Cart(String productID, String productName, String price, String quantity, String date, String time, String category, String overview) {
+        this.productID = productID;
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
         this.date = date;
         this.time = time;
         this.category = category;
-        this.keterangan = keterangan;
+        this.overview = overview;
     }
 
     public String getCategory() {
@@ -25,20 +25,20 @@ public class Cart {
         this.category = category;
     }
 
-    public String getKeterangan() {
-        return keterangan;
+    public String getOverview() {
+        return overview;
     }
 
-    public void setKeterangan(String keterangan) {
-        this.keterangan = keterangan;
+    public void setOverview(String overview) {
+        this.overview = overview;
     }
 
-    public String getPid() {
-        return pid;
+    public String getProductID() {
+        return productID;
     }
 
-    public void setPid(String pid) {
-        this.pid = pid;
+    public void setProductID(String productID) {
+        this.productID = productID;
     }
 
     public String getProductName() {
