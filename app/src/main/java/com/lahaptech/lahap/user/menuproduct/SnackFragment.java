@@ -1,6 +1,7 @@
 package com.lahaptech.lahap.user.menuproduct;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -72,11 +73,12 @@ public class SnackFragment extends Fragment {
 
             FirestoreRecyclerAdapter<Product, MenuViewHolder> adapter =
                     new FirestoreRecyclerAdapter<Product, MenuViewHolder>(options) {
+                        @SuppressLint("SetTextI18n")
                         @Override
                         protected void onBindViewHolder(@NonNull MenuViewHolder holder, int position, @NonNull Product model) {
                             holder.name.setText(model.getProductName());
-                            holder.desc.setText(model.getDescription());
-                            holder.price.setText(model.getPrice());
+                            holder.seller.setText(getResources().getString(R.string.seller) + model.getSellerID());
+                            holder.price.setText(getResources().getString(R.string.price) + model.getPrice());
                             Picasso.get().load(model.getImage()).into(holder.photo);
 
                             holder.itemView.setOnClickListener(v -> {
