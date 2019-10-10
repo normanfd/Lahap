@@ -56,8 +56,7 @@ public class DetailActivity extends AppCompatActivity {
     ElegantNumberButton numberButton;
     @BindView(R.id.pd_add_to_cart_btn)
     Button btn_add_cart;
-    String foodID;
-    String category;
+    String foodID, category, sellerID, locationID;
     String state="normal";
 
 
@@ -71,6 +70,9 @@ public class DetailActivity extends AppCompatActivity {
         assert foodID != null;
         Log.i("PID", foodID);
         category = getIntent().getStringExtra("category");
+        sellerID = getIntent().getStringExtra("sellerID");
+        locationID = getIntent().getStringExtra("locationID");
+
         assert category != null;
         Log.i("CATEGORY", category);
 
@@ -105,16 +107,17 @@ public class DetailActivity extends AppCompatActivity {
         cart.put("time",saveCurrentTime);
         cart.put("category", category);
         cart.put("overview",null);
+        cart.put("username", Prevalent.CurrentOnlineUser.getUsername());
+        cart.put("sellerID", sellerID);
+        cart.put("locationID", locationID);
 
-        db.collection("cart").document(Prevalent.CurrentOnlineUser.getName())
-                .set(cart).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(DetailActivity.this, SelectMenuActivity.class);
-                startActivity(intent);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
+        db.collection("cart").document()
+                .set(cart).addOnCompleteListener(task -> {
+                    Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(DetailActivity.this, SelectMenuActivity.class);
+                    startActivity(intent);
+                    finish();
+                }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
 

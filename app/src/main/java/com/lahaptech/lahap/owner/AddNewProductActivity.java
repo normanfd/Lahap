@@ -23,7 +23,6 @@ import com.google.firebase.storage.UploadTask;
 import com.lahaptech.lahap.Prevalent;
 import com.lahaptech.lahap.R;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -32,7 +31,6 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import id.zelory.compressor.Compressor;
 
 public class AddNewProductActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -110,8 +108,6 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
         ProductRandomKey = saveCurrentDate + saveCurrentTime;
         SellerID = Prevalent.CurrentOnlineSeller.getSellerID();
         LocationID = Prevalent.CurrentOnlineSeller.getLocationID();
-
-//        File compressedImgFile = new Compressor(this).compressToFile(ImageUri);
 
         final StorageReference filePath = ProductImageRef.child(ImageUri.getLastPathSegment() + ProductRandomKey + ".jpg");
         final UploadTask UploadTask = filePath.putFile(ImageUri);

@@ -89,6 +89,8 @@ public class DrinkFragment extends Fragment {
                                 Intent intent = new Intent(getActivity(), DetailActivity.class);
                                 intent.putExtra("pid", model.getProductID());
                                 intent.putExtra("category", "drink");
+                                intent.putExtra("sellerID", model.getSellerID());
+                                intent.putExtra("locationID", model.getLocationID());
                                 startActivity(intent);
                             });
 
