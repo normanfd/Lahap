@@ -1,5 +1,6 @@
 package com.lahaptech.lahap.user.ui.SelectCanteen;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +21,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.lahaptech.lahap.MainActivity;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Canteen;
 import com.lahaptech.lahap.model.Seller;
+import com.lahaptech.lahap.user.UserActivity;
+import com.lahaptech.lahap.user.menuproduct.SelectMenuActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,6 +66,11 @@ public class SelectCanteenFragment extends Fragment {
                         @Override
                         protected void onBindViewHolder(@NonNull CanteenViewHolder holder, int position, @NonNull Canteen model) {
                             holder.item_canteen.setText(model.getCanteenName());
+                            holder.itemView.setOnClickListener(view -> {
+                                Intent intent = new Intent(getActivity(), SelectMenuActivity.class);
+                                intent.putExtra("ID_canteen", model.getCanteenID());
+                                startActivity(intent);
+                            });
                         }
 
                         @NonNull

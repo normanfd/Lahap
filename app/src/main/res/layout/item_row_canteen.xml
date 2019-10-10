@@ -1,19 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="UTF-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="@dimen/activity_vertical_margin">
+    android:layout_gravity="center"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="5dp"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:dividerHeight="0.0px"
+    android:elevation="5dp"
+    card_view:cardBackgroundColor="@color/common_google_signin_btn_text_light_disabled"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardElevation="5dp"
+    card_view:cardPreventCornerOverlap="false"
+    tools:ignore="PrivateResource">
 
-    <TextView
-        android:id="@+id/item_canteen"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:textSize="25sp"
-        android:textStyle="bold"
+        android:layout_height="90dp"
         android:gravity="center"
-        tools:text="Canteen" />
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/cardview_light_background"
+        android:padding="8dp">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/item_canteen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="9dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Your Name" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
