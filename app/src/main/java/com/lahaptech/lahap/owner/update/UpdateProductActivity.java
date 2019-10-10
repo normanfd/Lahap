@@ -43,4 +43,10 @@ public class UpdateProductActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

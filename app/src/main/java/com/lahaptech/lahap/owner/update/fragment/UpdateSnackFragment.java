@@ -24,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.lahaptech.lahap.Prevalent;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
 import com.lahaptech.lahap.owner.update.adapter.MenuAdapter;
@@ -33,9 +34,7 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class UpdateSnackFragment extends Fragment {
 
     @BindView(R.id.rv_update_product)
@@ -62,7 +61,7 @@ public class UpdateSnackFragment extends Fragment {
 
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         final Query query = rootRef.collection("product")
-                .whereEqualTo("category", "snack").whereEqualTo("isAvailable","1")
+                .whereEqualTo("category", "snack").whereEqualTo("sellerID", Prevalent.CurrentOnlineSeller.getSellerID())
                 .orderBy("productName", Query.Direction.ASCENDING);
 
         query.addSnapshotListener(new EventListener<QuerySnapshot>() {

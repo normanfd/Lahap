@@ -12,7 +12,7 @@ import com.lahaptech.lahap.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductViewHolder extends RecyclerView.ViewHolder {
+class ProductViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.frag_food_name)
     TextView productName;
     @BindView(R.id.frag_food_price)
