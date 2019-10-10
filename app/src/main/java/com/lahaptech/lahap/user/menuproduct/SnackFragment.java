@@ -1,7 +1,6 @@
 package com.lahaptech.lahap.user.menuproduct;
 
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -15,18 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
 import com.lahaptech.lahap.owner.update.UpdateProductDetailActivity;
-import com.lahaptech.lahap.user.detailproduct.DetailActivity;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -61,18 +55,17 @@ public class SnackFragment extends Fragment {
 
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         final Query query = rootRef.collection("product")
-                .whereEqualTo("category", "snack").whereEqualTo("isAvailable","1")
-                .orderBy("productName", Query.Direction.ASCENDING);
+                .whereEqualTo("category", "snack");
 
         query.addSnapshotListener((queryDocumentSnapshots, e) -> {
             FirestoreRecyclerOptions<Product> options = new FirestoreRecyclerOptions.Builder<Product>()
                     .setQuery(query, Product.class)
                     .build();
 
-            FirestoreRecyclerAdapter<Product, ProductAdapter> adapter =
-                    new FirestoreRecyclerAdapter<Product, ProductAdapter>(options) {
+            FirestoreRecyclerAdapter<Product, MenuViewHolder> adapter =
+                    new FirestoreRecyclerAdapter<Product, MenuViewHolder>(options) {
                         @Override
-                        protected void onBindViewHolder(@NonNull ProductAdapter holder, int position, @NonNull Product model) {
+                        protected void onBindViewHolder(@NonNull MenuViewHolder holder, int position, @NonNull Product model) {
                             holder.name.setText(model.getProductName());
                             holder.desc.setText(model.getDescription());
                             holder.price.setText(model.getPrice());
@@ -89,9 +82,9 @@ public class SnackFragment extends Fragment {
 
                         @NonNull
                         @Override
-                        public ProductAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        public MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                             View view1 = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_food, parent, false);
-                            return new ProductAdapter(view1);
+                            return new MenuViewHolder(view1);
                         }
                     };
 

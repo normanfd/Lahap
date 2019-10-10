@@ -13,7 +13,7 @@ import com.lahaptech.lahap.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductAdapter extends RecyclerView.ViewHolder {
+public class MenuViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.frag_food_name)
     TextView name;
@@ -24,10 +24,8 @@ public class ProductAdapter extends RecyclerView.ViewHolder {
     @BindView(R.id.frag_food_desc)
     TextView desc;
 
-    ProductAdapter(@NonNull View itemView) {
+    public MenuViewHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
-
-
 }
