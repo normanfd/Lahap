@@ -21,8 +21,8 @@ class MenuViewHolder extends RecyclerView.ViewHolder {
     ImageView photo;
     @BindView(R.id.frag_food_price)
     TextView price;
-    @BindView(R.id.frag_food_desc)
-    TextView desc;
+    @BindView(R.id.frag_food_seller)
+    TextView seller;
 
     MenuViewHolder(@NonNull View itemView) {
         super(itemView);

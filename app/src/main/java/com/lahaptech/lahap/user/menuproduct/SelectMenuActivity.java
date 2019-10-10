@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,7 @@ import io.paperdb.Paper;
 
 public class SelectMenuActivity extends AppCompatActivity implements View.OnClickListener{
 
+    public static final String CANTEEN_ID = "canteen id";
     @BindView(R.id.tab_layout_homeuser)
     TabLayout tabLayout;
     @BindView(R.id.view_page_fav)
@@ -37,6 +39,9 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_home_user);
         ButterKnife.bind(this);
         Paper.init(this);
+//        String test = getIntent().getStringExtra(CANTEEN_ID);
+
+//        Log.d("TESTING", test);
 
         SelectMenuViewPager adapter = new SelectMenuViewPager(getSupportFragmentManager());
 

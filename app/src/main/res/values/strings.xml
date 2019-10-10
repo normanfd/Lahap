@@ -72,5 +72,7 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="seller">Seller : </string>
+    <string name="price">Price : </string>
 
 </resources>
