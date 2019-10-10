@@ -1,7 +1,6 @@
-package com.lahaptech.lahap.user.home;
+package com.lahaptech.lahap.user.menuproduct;
 
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -27,23 +26,20 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class DrinkFragment extends Fragment {
-    @BindView(R.id.rv_drink)
+public class FoodFragment extends Fragment {
+
+    @BindView(R.id.rv_food)
     RecyclerView recyclerView;
 
-    public DrinkFragment() {
+    public FoodFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_drink, container, false);
+        View view = inflater.inflate(R.layout.fragment_food, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -51,11 +47,10 @@ public class DrinkFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        String category = "drink";
+        String category = "food";
         DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Products").child(category);
         FirebaseRecyclerOptions<Product> options =
                 new FirebaseRecyclerOptions.Builder<Product>()
@@ -63,19 +58,17 @@ public class DrinkFragment extends Fragment {
                         .build();
         FirebaseRecyclerAdapter<Product, ProductAdapter> adapter =
                 new FirebaseRecyclerAdapter<Product, ProductAdapter>(options) {
-
-                    @SuppressLint("SetTextI18n")
                     @Override
                     protected void onBindViewHolder(@NonNull ProductAdapter holder, int position, @NonNull final Product model) {
                         holder.name.setText(model.getProductName());
                         holder.desc.setText(model.getDescription());
-                        holder.price.setText(getResources().getString(R.string.template_price) + model.getPrice());
+                        holder.price.setText(model.getPrice());
                         Picasso.get().load(model.getImage()).into(holder.photo);
 
                         holder.itemView.setOnClickListener(v -> {
                             Intent intent = new Intent(getActivity(), DetailActivity.class);
                             intent.putExtra("pid", model.getProductID());
-                            intent.putExtra("category", "drink");
+                            intent.putExtra("category", "food");
                             startActivity(intent);
                         });
                     }

@@ -24,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.owner.HomeOwnerActivity;
+import com.lahaptech.lahap.user.UserActivity;
 import com.lahaptech.lahap.user.home.HomeUserNavActivity;
 import com.lahaptech.lahap.Prevalent;
 import com.rey.material.widget.CheckBox;
@@ -99,7 +100,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
                         } else {
                             Toast.makeText(LoginUserActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                             loadingBar.dismiss();
-                            Intent intent = new Intent(LoginUserActivity.this, HomeUserNavActivity.class);
+                            Intent intent = new Intent(LoginUserActivity.this, UserActivity.class);
                             Prevalent.CurrentOnlineUser = userData;
                             startActivity(intent);
                         }

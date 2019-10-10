@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.home;
+package com.lahaptech.lahap.user.menuproduct;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;

@@ -22,7 +22,7 @@ import com.lahaptech.lahap.Prevalent;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Cart;
 import com.lahaptech.lahap.model.Product;
-import com.lahaptech.lahap.user.home.SelectMenuActivity;
+import com.lahaptech.lahap.user.menuproduct.SelectMenuActivity;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
