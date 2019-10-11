@@ -37,9 +37,6 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_home_user);
         ButterKnife.bind(this);
         Paper.init(this);
-//        String test = getIntent().getStringExtra(CANTEEN_ID);
-
-//        Log.d("TESTING", test);
 
         SelectMenuViewPager adapter = new SelectMenuViewPager(getSupportFragmentManager());
 
