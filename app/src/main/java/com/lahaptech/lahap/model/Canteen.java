@@ -1,14 +1,15 @@
 package com.lahaptech.lahap.model;
 
 public class Canteen {
-    private String canteenID, canteenName;
+    private String canteenID, canteenName, canteenCode;
 
     public Canteen() {
     }
 
-    public Canteen(String canteenID, String canteenName) {
+    public Canteen(String canteenID, String canteenName, String canteenCode) {
         this.canteenID = canteenID;
         this.canteenName = canteenName;
+        this.canteenCode = canteenCode;
     }
 
     public String getCanteenID() {
@@ -25,5 +26,13 @@ public class Canteen {
 
     public void setCanteenName(String canteenName) {
         this.canteenName = canteenName;
+    }
+
+    public String getCanteenCode() {
+        return canteenCode;
+    }
+
+    public void setCanteenCode(String canteenCode) {
+        this.canteenCode = canteenCode;
     }
 }

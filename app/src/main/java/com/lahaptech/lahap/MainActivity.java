@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_login;
     @BindView(R.id.main_login_btn_seller)
     Button btn_login_seller;
-    @BindView(R.id.scan_QR)
-    Button btnscan;
 
     ProgressDialog loadingBar;
 
@@ -47,13 +45,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Paper.init(this);
 
         loadingBar = new ProgressDialog(this);
-
-
+        
         btn_join.setOnClickListener(this);
         btn_login.setOnClickListener(this);
         btn_login_seller.setOnClickListener(this);
-
-        btnscan.setOnClickListener(this);
 
         String UserName = Paper.book().read(Prevalent.UserName);
         String UserPasswordKey = Paper.book().read(Prevalent.UserPasswordKey);
@@ -76,11 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view.getId() == R.id.main_join_now_btn) {
             Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
             startActivity(intent);
-        }else if(view.getId() ==R.id.scan_QR){
-            Intent intent = new Intent(MainActivity.this, ScanActivity.class);
-            startActivity(intent);
-        }
-        else {
+        } else {
             Intent intent = new Intent(MainActivity.this, LoginSellerActivity.class);
             startActivity(intent);
         }

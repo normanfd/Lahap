@@ -19,6 +19,8 @@ import com.lahaptech.lahap.MainActivity;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.user.cart.CartActivity;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
@@ -26,12 +28,15 @@ import io.paperdb.Paper;
 public class SelectMenuActivity extends AppCompatActivity implements View.OnClickListener{
 
     public static final String CANTEEN_ID = "canteen id";
+    public static final String CANTEEN_QR_CODE = "canteen code";
     @BindView(R.id.tab_layout_homeuser)
     TabLayout tabLayout;
     @BindView(R.id.view_page_fav)
     ViewPager viewPager;
     @BindView(R.id.fab)
     FloatingActionButton fab;
+    String canteenID = "";
+    String canteenCode = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,8 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
         Paper.init(this);
 
         SelectMenuViewPager adapter = new SelectMenuViewPager(getSupportFragmentManager());
-
+        canteenID = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_ID));
+        canteenCode = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_QR_CODE));
         adapter.addFragment(new FoodFragment(), getResources().getString(R.string.food));
         adapter.addFragment(new DrinkFragment(), getResources().getString(R.string.drink));
         adapter.addFragment(new SnackFragment(), getResources().getString(R.string.snack));
@@ -79,6 +85,8 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         if (view.getId()==R.id.fab){
             Intent intent = new Intent(SelectMenuActivity.this, CartActivity.class);
+            intent.putExtra(CANTEEN_ID, canteenID);
+            intent.putExtra(CANTEEN_QR_CODE, canteenCode);
             startActivity(intent);
         }
     }
