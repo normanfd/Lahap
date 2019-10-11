@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.menuproduct;
+package com.lahaptech.lahap.user.menuproduct.fragment;
 
 
 import android.annotation.SuppressLint;
@@ -21,7 +21,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
-import com.lahaptech.lahap.owner.update.UpdateProductDetailActivity;
 import com.lahaptech.lahap.user.detailproduct.DetailActivity;
 import com.squareup.picasso.Picasso;
 
@@ -35,20 +34,19 @@ import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DrinkFragment extends Fragment {
-    @BindView(R.id.rv_drink)
+public class SnackFragment extends Fragment {
+    @BindView(R.id.rv_snack)
     RecyclerView recyclerView;
 
-    public DrinkFragment() {
+    public SnackFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_drink, container, false);
+        View view = inflater.inflate(R.layout.fragment_snack, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -65,7 +63,7 @@ public class DrinkFragment extends Fragment {
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         final Query query = rootRef.collection("product")
                 .whereEqualTo("locationID", canteenID)
-                .whereEqualTo("category", "drink");
+                .whereEqualTo("category", "snack");
 
         query.addSnapshotListener((queryDocumentSnapshots, e) -> {
             FirestoreRecyclerOptions<Product> options = new FirestoreRecyclerOptions.Builder<Product>()
@@ -80,15 +78,12 @@ public class DrinkFragment extends Fragment {
                             holder.name.setText(model.getProductName());
                             holder.seller.setText(getResources().getString(R.string.seller) + model.getSellerID());
                             holder.price.setText(getResources().getString(R.string.price) + model.getPrice());
-                            Picasso.get()
-                                    .load(model.getImage())
-                                    .resize(100,100)
-                                    .into(holder.photo);
+                            Picasso.get().load(model.getImage()).into(holder.photo);
 
                             holder.itemView.setOnClickListener(v -> {
                                 Intent intent = new Intent(getActivity(), DetailActivity.class);
                                 intent.putExtra("pid", model.getProductID());
-                                intent.putExtra("category", "drink");
+                                intent.putExtra("category", "snack");
                                 intent.putExtra("sellerID", model.getSellerID());
                                 intent.putExtra("locationID", model.getLocationID());
                                 startActivity(intent);
