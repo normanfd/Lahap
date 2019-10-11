@@ -2,6 +2,7 @@ package com.lahaptech.lahap.user.orderlocation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,9 +33,15 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
         if (view.getId() == R.id.btn_direct_order){
             Toast.makeText(this, "Direct Order", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(OrderLocationActivity.this,DirectOrderActivity.class);
+            startActivity(intent);
+            finish();
         }
         else {
             Toast.makeText(this, "Indirect Order", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(OrderLocationActivity.this,IndirectOrderActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 }

@@ -16,10 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".user.orderlocation.IndirectOrderActivity"></activity>
+        <activity android:name=".user.orderlocation.DirectOrderActivity" />
         <activity
             android:name=".user.UserActivity"
             android:label="@string/title_activity_user"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".auth.LoginSellerActivity" />
         <activity
             android:name=".user.home.HomeUserNavActivity"
@@ -43,6 +45,5 @@
             </intent-filter>
         </activity>
     </application>
-
 
 </manifest>

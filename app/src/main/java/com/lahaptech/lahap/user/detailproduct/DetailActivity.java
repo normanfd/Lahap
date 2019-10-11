@@ -76,7 +76,7 @@ public class DetailActivity extends AppCompatActivity {
         assert category != null;
         Log.i("CATEGORY", category);
 
-        getProductDetail(foodID,category);
+        getProductDetail(foodID);
 
         btn_add_cart.setOnClickListener(v -> {
             if(state.equals("Order placed") || state.equals("Order shipped")){
@@ -111,43 +111,15 @@ public class DetailActivity extends AppCompatActivity {
         cart.put("sellerID", sellerID);
         cart.put("locationID", locationID);
 
-        db.collection("cart").document()
+        db.collection("cart").document(foodID)
                 .set(cart).addOnCompleteListener(task -> {
                     Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(DetailActivity.this, SelectMenuActivity.class);
-                    startActivity(intent);
                     finish();
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
+                }).addOnFailureListener(e -> {
 
-            }
-        });
-        //belum selesai admin view belum
-//        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("cart list");
-//        final Cart cartMap = new Cart(foodID, name.getText().toString(),
-//                price.getText().toString(), numberButton.getNumber(),
-//                saveCurrentDate, saveCurrentTime,category, null);
-//
-//        cartListRef.child("User View").child(Prevalent.CurrentOnlineUser.getName())
-//                .child("Products").child(foodID)
-//                .setValue(cartMap)
-//                .addOnCompleteListener(task -> {
-//                    if(task.isSuccessful()){
-//                        cartListRef.child("Admin View").child(Prevalent.CurrentOnlineUser.getName())
-//                                .child("Products").child(foodID)
-//                                .setValue(cartMap)
-//                                .addOnCompleteListener(task1 -> {
-//                                    if(task1.isSuccessful()){
-//                                        Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
-//                                        Intent intent = new Intent(DetailActivity.this, SelectMenuActivity.class);
-//                                        startActivity(intent);
-//                                    }
-//                                });
-//                    }
-//                });
+                });
     }
-    private void getProductDetail(String foodID, String category) {
+    private void getProductDetail(String foodID) {
         FirebaseFirestore productRef = FirebaseFirestore.getInstance();
         DocumentReference docRef = productRef.collection("product").document(foodID);
         docRef.addSnapshotListener((documentSnapshot, e) -> {
