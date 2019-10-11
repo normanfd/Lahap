@@ -39,8 +39,6 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
     EditText inpt_password;
     @BindView(R.id.login_btn)
     Button btn_login;
-    @BindView(R.id.remember_me_chkb)
-    CheckBox chkBoxRememberMe;
 
     ProgressDialog loadingBar;
     String ParentDbName = "user";
@@ -72,7 +70,6 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
             LoginToFirestore(username, password);
-//            AllowAccessAccount(username, password);
         }
     }
 
@@ -97,6 +94,8 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
                             Intent intent = new Intent(LoginUserActivity.this, HomeOwnerActivity.class);
                             startActivity(intent);
                         } else {
+                            Paper.book().write(Prevalent.UserName,username);
+                            Paper.book().write(Prevalent.UserPasswordKey,password);
                             Toast.makeText(LoginUserActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                             loadingBar.dismiss();
                             Intent intent = new Intent(LoginUserActivity.this, UserActivity.class);
@@ -119,50 +118,6 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-    private void AllowAccessAccount(final String username, final String password) {
-        if(chkBoxRememberMe.isChecked()){
-            Paper.book().write(Prevalent.UserName,username);
-            Paper.book().write(Prevalent.UserPasswordKey,password);
-        }
-        final DatabaseReference RootRef;
-        RootRef = FirebaseDatabase.getInstance().getReference();
-        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child(ParentDbName).child(username).exists()) {
-                    User UserData = dataSnapshot.child(ParentDbName).child(username).getValue(User.class);
-                    assert UserData != null;
-                    if (UserData.getUsername().equals(username)) {
-                        if (UserData.getPassword().equals(password)) {
-                            if (ParentDbName.equals("Owner")) {
-                                Toast.makeText(LoginUserActivity.this, "Welcome Owner, you are logged in succesfully", Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
-                                Intent intent = new Intent(LoginUserActivity.this, HomeOwnerActivity.class);
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(LoginUserActivity.this, "Login success", Toast.LENGTH_SHORT).show();
-                                loadingBar.dismiss();
-                                Intent intent = new Intent(LoginUserActivity.this, UserActivity.class);
-                                Prevalent.CurrentOnlineUser = UserData;
-                                startActivity(intent);
-                            }
-                        } else {
-                            loadingBar.dismiss();
-                            Toast.makeText(LoginUserActivity.this, "Password is incorrect", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                } else {
-                    Toast.makeText(LoginUserActivity.this, "Account with username " + username + " does not exist", Toast.LENGTH_SHORT).show();
-                    loadingBar.dismiss();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
 
     @Override
     public void onClick(View view) {

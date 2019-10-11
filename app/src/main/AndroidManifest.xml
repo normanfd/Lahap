@@ -11,12 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".HasilActivity"/>
-        <activity android:name=".ScanActivity" />
-<!--        <activity-->
-<!--            android:name=".user.UserActivity"-->
-<!--            android:label="@string/title_activity_user"/>-->
-        <activity android:name=".user.orderlocation.IndirectOrderActivity"/>
+        <activity android:name=".HasilActivity" />
+        <activity android:name=".ScanActivity" /> <!-- <activity -->
+        <!-- android:name=".user.UserActivity" -->
+        <!-- android:label="@string/title_activity_user"/> -->
+        <activity android:name=".user.orderlocation.IndirectOrderActivity" />
         <activity android:name=".user.orderlocation.DirectOrderActivity" />
         <activity
             android:name=".user.UserActivity"
@@ -34,7 +33,9 @@
         <activity android:name=".user.menuproduct.SelectMenuActivity" />
         <activity android:name=".auth.RegisterActivity" />
         <activity android:name=".auth.LoginUserActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,15 +43,14 @@
             </intent-filter>
         </activity>
     </application>
-
-    <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

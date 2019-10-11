@@ -14,10 +14,9 @@ import butterknife.ButterKnife;
 
 class CanteenViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.item_canteen)
     TextView item_canteen;
     CanteenViewHolder(@NonNull View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+        item_canteen = itemView.findViewById(R.id.item_canteen);
     }
 }
