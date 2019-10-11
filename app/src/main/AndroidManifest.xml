@@ -32,9 +32,13 @@
         <activity android:name=".owner.order.CheckOrderActivity" />
         <activity android:name=".owner.HomeOwnerActivity" />
         <activity android:name=".user.menuproduct.SelectMenuActivity" />
-        <activity android:name=".auth.RegisterActivity" />
+        <activity android:name=".auth.RegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            />
         <activity android:name=".auth.LoginUserActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

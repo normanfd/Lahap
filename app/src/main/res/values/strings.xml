@@ -7,8 +7,8 @@
     <string name="i_m_an_admin">I\'m an Owner?</string>
     <string name="i_m_not_an_admin">I\'m not an Admin?</string>
     <string name="already_have_account_login">Already have Account? Login</string>
-    <string name="join_now">Join Now</string>
-    <string name="app_motto">Make It Simple</string>
+    <string name="join_now">Don\'t Have an account? Register Here</string>
+    <string name="app_motto">#MakanDenganLahap</string>
     <string name="applogo">appLogo</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
@@ -59,7 +59,7 @@
     <string name="select_canteen">Select Canteen</string>
     <string name="cart">Cart</string>
     <string name="login_seller">Login Seller</string>
-    <string name="login_user">Login User</string>
+    <string name="login_user">Login Student</string>
     <string name="title_activity_user">UserActivity</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
@@ -74,5 +74,12 @@
     <string name="menu_send">Send</string>
     <string name="seller">Seller : </string>
     <string name="price">Price : </string>
+    <string name="full_name">Full name</string>
+    <string name="your_name">Your Name</string>
+    <string name="user_name">user_name</string>
+    <string name="email_ex">user_name@apps.ipb.ac.id</string>
+    <string name="hint_phone">08xxx</string>
+    <string name="secret">******</string>
+    <string name="sign_up">Sign Up</string>
 
 </resources>

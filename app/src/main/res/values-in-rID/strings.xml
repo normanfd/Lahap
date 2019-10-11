@@ -4,7 +4,7 @@
     <string name="account_created">Akun berhasil dibuat</string>
     <string name="add_product">Tambahkan Produk</string>
     <string name="already_have_account_login">Masuk</string>
-    <string name="app_motto">Make It Simple</string>
+    <string name="app_motto">#MakanDenganLahap</string>
     <string name="applogo">logo Aplikasi</string>
     <string name="checking_credentials">Harap tunggu sementara kami memeriksa kredensial Anda ..</string>
     <string name="create_account">Buat akun</string>
@@ -16,7 +16,7 @@
     <string name="hello_blank_fragment">Hallo fragment kosong</string>
     <string name="i_m_an_admin">saya pemilik</string>
     <string name="i_m_not_an_admin">saya pengguna</string>
-    <string name="join_now">Gabung sekarang</string>
+    <string name="join_now">Belum Punya Akun? Daftar Disini</string>
     <string name="login">Masuk</string>
     <string name="name">Nama</string>
     <string name="password">kata sandi</string>
@@ -29,7 +29,7 @@
     <string name="template_price">Harga : Rp.</string>
     <string name="title_activity_home_user">Home</string>
     <string name="try_again_later">Jaringan error, coba dalam beberapa saat lagi</string>
-    <string name="username_ipb">username IPB</string>
+    <string name="username_ipb">Username IPB</string>
     <string name="valid_email_address">Tuliskan email yang benar</string>
     <string name="write_email_address">Tuliskan alamat email Anda</string>
     <string name="write_phone_number">Tuliskan no Telepon Anda</string>
@@ -39,17 +39,49 @@
     <string name="login_resto_owner">Login Resto Owner</string>
     <string name="snack">Camilan</string>
     <string name="apply_changes">Apply Changes</string>
-    <string name="add_new_product">Add New Product</string>
+    <string name="add_new_product">Tambah Produk Baru</string>
     <string name="logout">Logout</string>
-    <string name="check_new_orders">Check new Orders</string>
-    <string name="update_product">Update Product</string>
+    <string name="check_new_orders">Cek Orderan Baru</string>
+    <string name="update_product">Update Produk</string>
     <string name="user_logout">Keluar</string>
     <string name="setting">Pengaturan</string>
-    <string name="history">History</string>
+    <string name="history">Riwayat</string>
     <string name="lbl_quantity">Jumlah</string>
     <string name="options">Pilihan</string>
     <string name="profile">Profil</string>
     <string name="todo">TODO</string>
     <string name="select_canteen">Select Canteen</string>
     <string name="cart">Cart</string>
+    <string name="Note">Catatan</string>
+    <string name="desc">Deskripsi</string>
+    <string name="delete_this_product">Hapus Produk Ini</string>
+
+    <string name="navigation_drawer_open">navigation_drawer_open</string>
+    <string name="navigation_drawer_close">navigation_drawer_close</string>
+
+    <string name="login_seller">Seller</string>
+    <string name="login_user">Mahasiswa IPB</string>
+    <string name="title_activity_user">UserActivity</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="seller">Seller : </string>
+    <string name="price">Price : </string>
+    <string name="full_name">Full name</string>
+    <string name="your_name">Your Name</string>
+    <string name="user_name">user_name</string>
+    <string name="email_ex">user_name@apps.ipb.ac.id</string>
+    <string name="hint_phone">08xxx</string>
+    <string name="secret">******</string>
+    <string name="sign_up">Sign Up</string>
+
+
 </resources>

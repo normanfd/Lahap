@@ -47,6 +47,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         ButterKnife.bind(this);
         loadingBar = new ProgressDialog(this);
         btn_register.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -58,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void CreateAccount() {
         String name = inpt_name.getText().toString();
-        String username = inpt_username.getText().toString();
+        String username = inpt_username.getText().toString().trim();
         String phone = inpt_phone_number.getText().toString();
         String password = inpt_password.getText().toString();
         String email = inpt_email.getText().toString();
@@ -91,7 +93,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             loadingBar.show();
 
             registerToFirestore(name, username, email, phone, password);
-//            validatePhoneNumber(name, username, email, phone, password);
         }
     }
 
@@ -121,49 +122,5 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-//    private void validatePhoneNumber(final String name, final String username, final String email, final String phone, final String password) {
-//        final DatabaseReference RootRef;
-//        RootRef = FirebaseDatabase.getInstance().getReference();
-//        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if(!(dataSnapshot.child("Users").child(username).exists())){
-//                    //Menyimpan User baru kedalam database
-//                    User user = null;
-//                    try {
-//                        user = new User(name, username, phone, email, password,null,null);
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                    RootRef.child("User").child(username).setValue(user)
-//                            .addOnCompleteListener(task -> {
-//                                if(task.isSuccessful()){
-//                                    Toast.makeText(RegisterActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
-//                                    loadingBar.dismiss();
-//                                    Intent intent = new Intent(RegisterActivity.this,LoginUserActivity.class);
-//                                    startActivity(intent);
-//                                }
-//                                else {
-//                                    loadingBar.dismiss();
-//                                    Toast.makeText(RegisterActivity.this, R.string.try_again_later, Toast.LENGTH_SHORT).show();
-//                                }
-//                            });
-//                }
-//                else {
-//                    Toast.makeText(RegisterActivity.this, "Phone number "+ phone + " already exist", Toast.LENGTH_SHORT).show();
-//                    loadingBar.dismiss();
-//                    Toast.makeText(RegisterActivity.this, "Please use different phone number", Toast.LENGTH_SHORT).show();
-//
-//                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-//                    startActivity(intent);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-//    }
 
 }
