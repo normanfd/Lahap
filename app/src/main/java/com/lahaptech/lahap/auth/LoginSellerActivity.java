@@ -31,8 +31,6 @@ public class LoginSellerActivity extends AppCompatActivity implements View.OnCli
     EditText inpt_password;
     @BindView(R.id.login_btn)
     Button btn_login;
-    @BindView(R.id.remember_me_chkb)
-    CheckBox chkBoxRememberMe;
 
     ProgressDialog loadingBar;
     String ParentDbName = "seller";
@@ -64,7 +62,6 @@ public class LoginSellerActivity extends AppCompatActivity implements View.OnCli
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
             LoginToFirestore(username, password);
-//            AllowAccessAccount(username, password);
         }
     }
 
@@ -83,10 +80,12 @@ public class LoginSellerActivity extends AppCompatActivity implements View.OnCli
                 assert sellerData != null;
                 if (sellerData.getSellerID().equals(username)) {
                     if (sellerData.getPassword().equals(password)) {
+//                        Paper.book().write(Prevalent.UserName,username);
+//                        Paper.book().write(Prevalent.UserPasswordKey,password);
                         Toast.makeText(LoginSellerActivity.this, "Welcome Owner, you are logged in successfully", Toast.LENGTH_SHORT).show();
                         loadingBar.dismiss();
                         Intent intent = new Intent(LoginSellerActivity.this, HomeOwnerActivity.class);
-                        Prevalent.CurrentOnlineSeller = sellerData;
+//                        Prevalent.CurrentOnlineSeller = sellerData;
                         startActivity(intent);
                     }
                     else {

@@ -15,6 +15,7 @@ import com.lahaptech.lahap.owner.update.UpdateProductActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.paperdb.Paper;
 
 public class HomeOwnerActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,6 +38,7 @@ public class HomeOwnerActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_owner);
         ButterKnife.bind(this);
+        Paper.init(this);
 
         adminLogoutBtn.setOnClickListener(this);
 
@@ -62,6 +64,7 @@ public class HomeOwnerActivity extends AppCompatActivity implements View.OnClick
             case R.id.admin_logout_btn:
                 intent = new Intent(HomeOwnerActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                Paper.book().destroy();
                 startActivity(intent);
                 finish();
                 break;
