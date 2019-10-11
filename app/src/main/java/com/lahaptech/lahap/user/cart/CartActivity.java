@@ -1,11 +1,13 @@
 package com.lahaptech.lahap.user.cart;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +20,8 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -25,11 +29,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.lahaptech.lahap.Prevalent;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Cart;
+import com.lahaptech.lahap.model.Product;
+import com.lahaptech.lahap.user.detailproduct.DetailActivity;
 import com.lahaptech.lahap.user.menuproduct.SelectMenuActivity;
 import com.lahaptech.lahap.user.orderlocation.OrderLocationActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -73,83 +86,81 @@ public class CartActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        checkOrderState();
+//        checkOrderState();
 
-        final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("cart list");
-        FirebaseRecyclerOptions<Cart> options =
-                new FirebaseRecyclerOptions.Builder<Cart>()
-                        .setQuery(cartListRef.child("User View")
-                                .child(Prevalent.CurrentOnlineUser.getName())
-                                .child("Products"), Cart.class)
-                        .build();
+        FirebaseFirestore cartListRef = FirebaseFirestore.getInstance();
+        final Query query = cartListRef.collection("cart")
+                .whereEqualTo("username", Prevalent.CurrentOnlineUser.getUsername());
 
-        FirebaseRecyclerAdapter<Cart, CartAdapter> adapter
-                = new FirebaseRecyclerAdapter<Cart, CartAdapter>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull CartAdapter holder, int position, @NonNull final Cart model) {
-                holder.txtProductName.setText(model.getProductName());
-                holder.txtProductQuantity.setText(" quantity = " + model.getQuantity());
-                holder.txtProductPrice.setText("price " + model.getPrice());
-//                Picasso.get().load(model.get()).into(holder.photo);
 
-                int oneTypeProductPrice = Integer.valueOf(model.getPrice()) * Integer.valueOf(model.getQuantity());
-                overTotalPrice = overTotalPrice + oneTypeProductPrice;
+        query.addSnapshotListener((queryDocumentSnapshots, e) -> {
+            FirestoreRecyclerOptions<Cart> options = new FirestoreRecyclerOptions.Builder<Cart>()
+                    .setQuery(query, Cart.class)
+                    .build();
 
-                holder.itemView.setOnClickListener(v -> {
-                    CharSequence[] options1 = new CharSequence[]
-                            {
-//                                        "Edit",
-                                    "Remove"
-                            };
-                    AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
-                    builder.setTitle("Cart Options");
-
-                    builder.setItems(options1, new DialogInterface.OnClickListener() {
+            FirestoreRecyclerAdapter<Cart, CartAdapter> adapter =
+                    new FirestoreRecyclerAdapter<Cart, CartAdapter>(options) {
+                        @SuppressLint("SetTextI18n")
                         @Override
-                        public void onClick(DialogInterface dialog, int i) {
-                            //Jika indeks == 0 atau edit maka kita lempar ke Product detail activity dengan pid tertentu
-//                                if(i == 0){
-//                                    Intent intent =new Intent(CartActivity.this, ProductDetailActivity.class);
-//                                    intent.putExtra("pid", model.getProductID());
-//                                    startActivity(intent);
-//                                }
-                            // Jika indeks == 1 atau Remove maka hapus dengan pid tertentu
-                            if (i == 0) {
-                                cartListRef.child("User View")
-                                        .child(Prevalent.CurrentOnlineUser.getPhone())
-                                        .child("Products")
-                                        .child(model.getProductID())
-                                        .removeValue()
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-                                                    Toast.makeText(CartActivity.this, "Item removed successfully", Toast.LENGTH_SHORT).show();
-                                                    Intent intent = new Intent(CartActivity.this, SelectMenuActivity.class);
-                                                    startActivity(intent);
-                                                }
-                                            }
+                        protected void onBindViewHolder(@NonNull CartAdapter holder, int position, @NonNull Cart model) {
+
+                            DocumentReference documentReference = cartListRef.collection("cart").document(model.getProductID());
+
+                            holder.txtProductName.setText(model.getProductName());
+                            holder.txtProductName.setText(model.getProductName());
+                            holder.txtProductQuantity.setText(" quantity = " + model.getQuantity());
+                            holder.txtProductPrice.setText("price " + model.getPrice());
+
+                            int oneTypeProductPrice = Integer.valueOf(model.getPrice()) * Integer.valueOf(model.getQuantity());
+                            overTotalPrice = overTotalPrice + oneTypeProductPrice;
+
+                            holder.itemView.setOnClickListener(view -> {
+                                CharSequence[] options = new CharSequence[]{
+//                                        "Edit",
+                                        "Remove"
+                                };
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
+                                builder.setTitle("Cart Options");
+
+                                builder.setItems(options, (dialog, i) -> {
+//                                    if (i == 0) {
+//                                        Intent intent = new Intent(CartActivity.this, DetailActivity.class);
+//                                        intent.putExtra("pid", model.getProductID());
+//                                        startActivity(intent);
+//                                        finish();
+//                                    }
+                                    if (i == 0) {
+                                        documentReference.delete().addOnCompleteListener(task -> {
+                                            Toast.makeText(CartActivity.this, "Item removed successfully", Toast.LENGTH_SHORT).show();
                                         });
-                            }
+
+                                    }
+
+                                });
+                                builder.show();
+                            });
+
 
                         }
-                    });
-                    builder.show();
-                });
-            }
 
-            @NonNull
-            @Override
-            public CartAdapter onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cart_layout, parent, false);
-                return new CartAdapter(view);
-            }
-        };
-        recyclerView.setAdapter(adapter);
-        adapter.startListening();
+                        @NonNull
+                        @Override
+                        public CartAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                            View view1 = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cart_layout, parent, false);
+                            return new CartAdapter(view1);
+                        }
+                    };
+
+            recyclerView.setAdapter(adapter);
+            adapter.startListening();
+        });
     }
 
+
+
     private void checkOrderState() {
+
         DatabaseReference ordersRef;
         ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders").child(Prevalent.CurrentOnlineUser.getPhone());
         ordersRef.addValueEventListener(new ValueEventListener() {

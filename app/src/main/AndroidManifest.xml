@@ -11,8 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".HasilActivity"></activity>
+        <activity android:name=".HasilActivity"/>
         <activity android:name=".ScanActivity" />
+<!--        <activity-->
+<!--            android:name=".user.UserActivity"-->
+<!--            android:label="@string/title_activity_user"/>-->
+        <activity android:name=".user.orderlocation.IndirectOrderActivity"/>
+        <activity android:name=".user.orderlocation.DirectOrderActivity" />
         <activity
             android:name=".user.UserActivity"
             android:label="@string/title_activity_user"

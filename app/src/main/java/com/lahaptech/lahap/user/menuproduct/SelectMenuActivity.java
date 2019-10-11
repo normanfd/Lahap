@@ -30,6 +30,8 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
     TabLayout tabLayout;
     @BindView(R.id.view_page_fav)
     ViewPager viewPager;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+        fab.setOnClickListener(this);
     }
 
 
@@ -61,6 +64,7 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
         if (item.getItemId() == R.id.setting) {
             Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
             startActivity(intent);
+            finish();
         }else {
             Paper.book().destroy();
             Intent intent = new Intent(SelectMenuActivity.this, MainActivity.class);
