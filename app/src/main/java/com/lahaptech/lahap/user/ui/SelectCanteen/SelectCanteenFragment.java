@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
+import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
 
 
 public class SelectCanteenFragment extends Fragment {
@@ -70,11 +72,11 @@ public class SelectCanteenFragment extends Fragment {
                         @Override
                         protected void onBindViewHolder(@NonNull CanteenViewHolder holder, int position, @NonNull Canteen model) {
                             holder.item_canteen.setText(model.getCanteenName());
-                            Log.i("kantin", model.getCanteenID());
                             holder.itemView.setOnClickListener(view -> {
                                 Intent intent = new Intent(getActivity(), SelectMenuActivity.class);
-
                                 intent.putExtra(CANTEEN_ID, model.getCanteenID());
+                                intent.putExtra(CANTEEN_QR_CODE, model.getCanteenCode());
+                                Toast.makeText(getContext(), model.getCanteenCode(), Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                             });
                         }

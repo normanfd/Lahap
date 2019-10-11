@@ -45,18 +45,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Paper.init(this);
 
         loadingBar = new ProgressDialog(this);
-
-
+        
         btn_join.setOnClickListener(this);
         btn_login.setOnClickListener(this);
         btn_login_seller.setOnClickListener(this);
 
-
         String UserName = Paper.book().read(Prevalent.UserName);
         String UserPasswordKey = Paper.book().read(Prevalent.UserPasswordKey);
 
-        if(!TextUtils.isEmpty(UserName) && !TextUtils.isEmpty(UserPasswordKey)){
-            AllowAccess(UserName,UserPasswordKey);
+        if (!TextUtils.isEmpty(UserName) && !TextUtils.isEmpty(UserPasswordKey)) {
+            AllowAccess(UserName, UserPasswordKey);
             loadingBar.setTitle("Already Logged in");
             loadingBar.setMessage("please wait...");
             loadingBar.setCanceledOnTouchOutside(false);
@@ -70,12 +68,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view.getId() == R.id.main_login_btn) {
             Intent intent = new Intent(MainActivity.this, LoginUserActivity.class);
             startActivity(intent);
-        }
-        else if(view.getId() == R.id.main_join_now_btn) {
+        } else if (view.getId() == R.id.main_join_now_btn) {
             Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
             startActivity(intent);
-        }
-        else  {
+        } else {
             Intent intent = new Intent(MainActivity.this, LoginSellerActivity.class);
             startActivity(intent);
         }
@@ -87,27 +83,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("User").child(username).exists())
-                {
+                if (dataSnapshot.child("User").child(username).exists()) {
                     // akses model class User
                     User UserData = dataSnapshot.child("User").child(username).getValue(User.class);
                     assert UserData != null;
-                    if(UserData.getUsername().equals(username)){
-                        if(UserData.getPassword().equals(password)){
+                    if (UserData.getUsername().equals(username)) {
+                        if (UserData.getPassword().equals(password)) {
                             Toast.makeText(MainActivity.this, "Please wait, you are already logged in..", Toast.LENGTH_SHORT).show();
                             loadingBar.dismiss();
                             Intent intent = new Intent(MainActivity.this, UserActivity.class);
                             Prevalent.CurrentOnlineUser = UserData;
                             startActivity(intent);
-                        }
-                        else {
+                        } else {
                             loadingBar.dismiss();
                             Toast.makeText(MainActivity.this, "Password is  incorrect", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }
-                else
-                {
+                } else {
                     Toast.makeText(MainActivity.this, "Account with this " + username + " number do not exist", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }

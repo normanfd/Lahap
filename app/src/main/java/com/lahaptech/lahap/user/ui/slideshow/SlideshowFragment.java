@@ -1,38 +1,35 @@
 package com.lahaptech.lahap.user.ui.slideshow;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.viewpager.widget.ViewPager;
-
-import com.google.android.material.tabs.TabLayout;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.user.menuproduct.DrinkFragment;
-import com.lahaptech.lahap.user.menuproduct.FoodFragment;
-import com.lahaptech.lahap.user.menuproduct.SelectMenuViewPager;
-import com.lahaptech.lahap.user.menuproduct.SnackFragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class SlideshowFragment extends Fragment {
+public class SlideshowFragment extends Fragment{
+    @BindView(R.id.hasilscan)
+    TextView hasil;
+    @BindView(R.id.scan_QR)
+    Button btn;
 
-    @BindView(R.id.tab_layout_test)
-    TabLayout tabLayout;
-    @BindView(R.id.view_page_test)
-    ViewPager viewPager;
-    @BindView(R.id.buttonku)
-    Button vu;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,18 +41,11 @@ public class SlideshowFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        vu.setOnClickListener(view1 -> setFragment());
 
     }
 
-    private void setFragment() {
-        SelectMenuViewPager adapter = new SelectMenuViewPager(getChildFragmentManager());
-        adapter.addFragment(new FoodFragment(), getResources().getString(R.string.food));
-        adapter.addFragment(new DrinkFragment(), getResources().getString(R.string.drink));
-        adapter.addFragment(new SnackFragment(), getResources().getString(R.string.snack));
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
-
-
 }

@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lahaptech.lahap">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,16 +11,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".user.orderlocation.IndirectOrderActivity"></activity>
+        <activity android:name=".HasilActivity"/>
+        <activity android:name=".ScanActivity" />
+<!--        <activity-->
+<!--            android:name=".user.UserActivity"-->
+<!--            android:label="@string/title_activity_user"/>-->
+        <activity android:name=".user.orderlocation.IndirectOrderActivity"/>
         <activity android:name=".user.orderlocation.DirectOrderActivity" />
         <activity
             android:name=".user.UserActivity"
             android:label="@string/title_activity_user"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".auth.LoginSellerActivity" />
-        <activity
-            android:name=".user.home.HomeUserNavActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".user.orderlocation.OrderLocationActivity" />
         <activity android:name=".user.cart.CartActivity" />
         <activity android:name=".owner.update.UpdateProductDetailActivity" />
@@ -45,5 +42,15 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>

@@ -11,6 +11,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,9 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
+import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
+
 public class CartActivity extends AppCompatActivity {
     private int overTotalPrice = 0;
 
@@ -63,12 +67,16 @@ public class CartActivity extends AppCompatActivity {
 //    TextView txtTotalAmount;
     @BindView(R.id.rv_cart)
     RecyclerView recyclerView;
+    String canteenCode = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         ButterKnife.bind(this);
+
+        String canteenID = getIntent().getStringExtra(CANTEEN_ID);
+        canteenCode = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_QR_CODE));
 
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -78,6 +86,8 @@ public class CartActivity extends AppCompatActivity {
 //            txtTotalAmount.setText("Total Price = " + String.valueOf(overTotalPrice));
             Intent intent = new Intent(CartActivity.this, OrderLocationActivity.class);
             intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+            intent.putExtra(CANTEEN_ID, canteenID);
+            intent.putExtra(CANTEEN_QR_CODE, canteenCode);
             startActivity(intent);
             finish();
         });
