@@ -56,6 +56,7 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
         else {
             Toast.makeText(this, "Indirect Order", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(OrderLocationActivity.this,IndirectOrderActivity.class);
+            intent.putExtra("TotalPrice", totalPrice);
             startActivity(intent);
             finish();
         }

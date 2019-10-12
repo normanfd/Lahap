@@ -26,6 +26,12 @@ public class IndirectFormActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_indirect_form);
         ButterKnife.bind(this);
 
+        time_pick = getIntent().getStringExtra("timeOrder");
+        total_amount = getIntent().getStringExtra("totalAmount");
+
+        tv_time_pick.setText(time_pick);
+        tv_total_amount.setText(total_amount);
+
     }
 
     @Override
