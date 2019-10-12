@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
@@ -17,9 +15,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse;
 import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
-import com.lahaptech.lahap.HasilActivity;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.ScanActivity;
 import com.lahaptech.lahap.user.menuproduct.SelectMenuActivity;
 
 import java.util.Objects;

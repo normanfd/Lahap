@@ -20,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.lahaptech.lahap.Prevalent;
+import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.R;
 
 import java.text.SimpleDateFormat;

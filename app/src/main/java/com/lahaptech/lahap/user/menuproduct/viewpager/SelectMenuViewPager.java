@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.menuproduct;
+package com.lahaptech.lahap.user.menuproduct.viewpager;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;

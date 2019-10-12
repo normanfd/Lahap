@@ -1,4 +1,4 @@
-package com.lahaptech.lahap;
+package com.lahaptech.lahap.model;
 
 import com.lahaptech.lahap.model.Seller;
 import com.lahaptech.lahap.model.User;

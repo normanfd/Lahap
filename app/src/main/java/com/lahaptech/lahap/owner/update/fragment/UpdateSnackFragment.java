@@ -13,21 +13,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.lahaptech.lahap.Prevalent;
+import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
-import com.lahaptech.lahap.owner.update.adapter.MenuAdapter;
 import com.lahaptech.lahap.owner.update.UpdateProductDetailActivity;
 import com.squareup.picasso.Picasso;
 

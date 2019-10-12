@@ -3,41 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_select_canteen">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.lahaptech.lahap.user.ui.SelectCanteen.SelectCanteenFragment"
-        android:label="@string/menu_home"
+        android:id="@+id/nav_select_canteen"
+        android:name="com.lahaptech.lahap.user.home.SelectCanteen.SelectCanteenFragment"
+        android:label="@string/select_canteen"
         tools:layout="@layout/fragment_selectcanteen" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.lahaptech.lahap.user.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:id="@+id/nav_order_status"
+        android:name="com.lahaptech.lahap.user.home.orderstatus.GalleryFragment"
+        android:label="@string/order_status"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.lahaptech.lahap.user.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:id="@+id/nav_order_history"
+        android:name="com.lahaptech.lahap.user.home.orderhistory.SlideshowFragment"
+        android:label="@string/order_history"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.lahaptech.lahap.user.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
+        android:id="@+id/nav_cart"
+        android:name="com.lahaptech.lahap.user.home.cart.ToolsFragment"
+        android:label="@string/cart"
         tools:layout="@layout/fragment_tools" />
 
     <fragment
-        android:id="@+id/nav_share"
-        android:name="com.lahaptech.lahap.user.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
-
-    <fragment
-        android:id="@+id/nav_send"
-        android:name="com.lahaptech.lahap.user.ui.send.SendFragment"
-        android:label="@string/menu_send"
+        android:id="@+id/nav_logout"
+        android:name="com.lahaptech.lahap.user.home.send.SendFragment"
+        android:label="@string/logout"
         tools:layout="@layout/fragment_send" />
 </navigation>

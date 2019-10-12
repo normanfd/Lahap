@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.menuproduct;
+package com.lahaptech.lahap.user.menuproduct.fragment;
 
 import android.view.View;
 import android.widget.ImageView;

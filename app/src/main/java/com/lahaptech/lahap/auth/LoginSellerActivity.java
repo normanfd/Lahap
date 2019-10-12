@@ -14,11 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.lahaptech.lahap.Prevalent;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Seller;
 import com.lahaptech.lahap.owner.HomeOwnerActivity;
-import com.rey.material.widget.CheckBox;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

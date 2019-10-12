@@ -1,6 +1,5 @@
 package com.lahaptech.lahap.auth;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -11,22 +10,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.owner.HomeOwnerActivity;
-import com.lahaptech.lahap.user.UserActivity;
-import com.lahaptech.lahap.Prevalent;
-import com.rey.material.widget.CheckBox;
+import com.lahaptech.lahap.user.home.UserActivity;
+import com.lahaptech.lahap.model.Prevalent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.ui.SelectCanteen;
+package com.lahaptech.lahap.user.home.SelectCanteen;
 
 import android.view.View;
 import android.widget.TextView;
@@ -6,11 +6,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lahaptech.lahap.BuildConfig;
 import com.lahaptech.lahap.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 class CanteenViewHolder extends RecyclerView.ViewHolder {
 

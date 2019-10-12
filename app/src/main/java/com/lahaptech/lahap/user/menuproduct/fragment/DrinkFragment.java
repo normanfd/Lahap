@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.menuproduct;
+package com.lahaptech.lahap.user.menuproduct.fragment;
 
 
 import android.annotation.SuppressLint;
@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
-import com.lahaptech.lahap.owner.update.UpdateProductDetailActivity;
 import com.lahaptech.lahap.user.detailproduct.DetailActivity;
 import com.squareup.picasso.Picasso;
 
@@ -33,20 +31,23 @@ import butterknife.ButterKnife;
 
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
 
-public class FoodFragment extends Fragment {
-
-    @BindView(R.id.rv_food)
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class DrinkFragment extends Fragment {
+    @BindView(R.id.rv_drink)
     RecyclerView recyclerView;
 
-    public FoodFragment() {
+    public DrinkFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_food, container, false);
+        View view =  inflater.inflate(R.layout.fragment_drink, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -63,7 +64,7 @@ public class FoodFragment extends Fragment {
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         final Query query = rootRef.collection("product")
                 .whereEqualTo("locationID", canteenID)
-                .whereEqualTo("category", "food");
+                .whereEqualTo("category", "drink");
 
         query.addSnapshotListener((queryDocumentSnapshots, e) -> {
             FirestoreRecyclerOptions<Product> options = new FirestoreRecyclerOptions.Builder<Product>()
@@ -86,11 +87,10 @@ public class FoodFragment extends Fragment {
                             holder.itemView.setOnClickListener(v -> {
                                 Intent intent = new Intent(getActivity(), DetailActivity.class);
                                 intent.putExtra("pid", model.getProductID());
-                                intent.putExtra("category", "food");
+                                intent.putExtra("category", "drink");
                                 intent.putExtra("sellerID", model.getSellerID());
                                 intent.putExtra("locationID", model.getLocationID());
                                 startActivity(intent);
-
                             });
 
                         }
