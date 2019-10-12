@@ -4,12 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.user.orderlocation.directorder.DirectOrderActivity;
 
 import java.util.Objects;
 
@@ -44,7 +44,7 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
         if (view.getId() == R.id.btn_direct_order){
             Toast.makeText(this, "Direct Order", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(OrderLocationActivity.this,DirectOrderActivity.class);
+            Intent intent = new Intent(OrderLocationActivity.this, DirectOrderActivity.class);
             intent.putExtra(CANTEEN_ID, canteenID);
             intent.putExtra(CANTEEN_QR_CODE, canteenCode);
             startActivity(intent);

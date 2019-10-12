@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.orderlocation;
+package com.lahaptech.lahap.user.orderlocation.directorder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
@@ -79,16 +80,27 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
     @Override
     public void handleResult(Result rawResult) {
         String hasil = rawResult.getText();
-        Toast.makeText(this, hasil, Toast.LENGTH_SHORT).show();
-        if (hasil.equals(canteenCode)){
+        String[] arrOfStr = hasil.split(",", 2);
+//        Toast.makeText(this, hasil, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, arrOfStr[0] + " no meja : " + arrOfStr[1], Toast.LENGTH_SHORT).show();
+        String[] dataPutExtra = canteenCode.split(",", 2);
+//        final Handler handler = new Handler();
+//        handler.postDelayed(this::beginQRCode, 3000);
+
+        if (arrOfStr[0].equals(dataPutExtra[0])){
             Toast.makeText(this, "Pesanan selesai, lanjutkan pembayaran", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(DirectOrderActivity.this, SelectMenuActivity.class);
-            intent.putExtra("qrcode", hasil);
+            Intent intent = new Intent(DirectOrderActivity.this, DirectOrderFormActivity.class);
+            intent.putExtra("qrcode", arrOfStr[0]);
+            intent.putExtra("noMeja", arrOfStr[1]);
             startActivity(intent);
+//            final Handler handler = new Handler();
+//            handler.postDelayed(this::beginQRCode, 3000);
         }
         else {
             Toast.makeText(this, "Anda tidak berada di kantin yang bersangkutan", Toast.LENGTH_SHORT).show();
-            beginQRCode();
+            final Handler handler = new Handler();
+            handler.postDelayed(this::beginQRCode, 3000);
+
         }
     }
 }

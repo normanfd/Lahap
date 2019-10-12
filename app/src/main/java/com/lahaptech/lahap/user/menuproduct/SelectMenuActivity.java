@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.lahaptech.lahap.MainActivity;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.user.cart.CartActivity;
 import com.lahaptech.lahap.user.menuproduct.fragment.DrinkFragment;
 import com.lahaptech.lahap.user.menuproduct.fragment.FoodFragment;
@@ -55,6 +57,7 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
         adapter.addFragment(new DrinkFragment(), getResources().getString(R.string.drink));
         adapter.addFragment(new SnackFragment(), getResources().getString(R.string.snack));
 
+//        Log.d("current Online User", Prevalent.CurrentOnlineUser.getUsername());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         fab.setOnClickListener(this);

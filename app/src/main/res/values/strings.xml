@@ -79,5 +79,8 @@
     <string name="hint_phone">08xxx</string>
     <string name="secret">******</string>
     <string name="sign_up">Sign Up</string>
+    <string name="direct_order_form">Direct Order Form</string>
+    <string name="table_no">Table no : </string>
+    <string name="payment_method">Payment Method</string>
 
 </resources>
