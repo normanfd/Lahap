@@ -80,5 +80,9 @@
     <string name="secret">******</string>
     <string name="sign_up">Sign Up</string>
     <string name="hint_login_seller">Login Seller</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="time_pick">Time Pick</string>
+    <string name="next_to_online_payment">Next to Online Payment</string>
+    <string name="order_detail">Order Detail</string>
 
 </resources>
