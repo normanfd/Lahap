@@ -4,20 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 
 public class DirectOrderFormActivity extends AppCompatActivity {
 
-    TextView noMeja, username;
-    RadioButton transfer, cash;
+    TextView orderTableNo, username, tPrice;
     RadioGroup rdo_payment;
     Button btn;
 
@@ -25,19 +21,31 @@ public class DirectOrderFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_direct_order_form);
-        String noMejaAcc = getIntent().getStringExtra("noMeja");
+        String orderTable = getIntent().getStringExtra("orderTableNo");
+        String locationID = getIntent().getStringExtra("qrcode");
+        String total = getIntent().getStringExtra("TotalPrice");
 
+        tPrice = findViewById(R.id.order_total_price);
         rdo_payment = findViewById(R.id.order_radio_payment);
-        noMeja = findViewById(R.id.order_table_number);
+        orderTableNo = findViewById(R.id.order_table_number);
         username = findViewById(R.id.order_username);
-        btn = findViewById(R.id.btnnn);
-        noMeja.setText(noMejaAcc);
-        username.setText(Prevalent.CurrentOnlineUser.getUsername());
+        btn = findViewById(R.id.order_next_btn);
 
+        orderTableNo.setText(orderTable);
+        username.setText(Prevalent.CurrentOnlineUser.getUsername());
+        tPrice.setText(total);
 
         btn.setOnClickListener(view -> {
-            int selectedId = rdo_payment.getCheckedRadioButtonId();
-            Log.d("radio checked", "selected " + selectedId);
+            String usernameIPB = Prevalent.CurrentOnlineUser.getUsername();
+            String orderType = "direct";
+            String orderStatus = "0";
+            int payMethod = rdo_payment.getCheckedRadioButtonId();
+//            savetofirebase(usernameIPB, locationID, orderTable, orderType, orderStatus, payMethod, totalAmount);
+            Log.d("radio checked", "selected " + payMethod);
         });
+    }
+
+    private void savetofirebase(String usernameIPB, String locationID, String orderTable) {
+
     }
 }

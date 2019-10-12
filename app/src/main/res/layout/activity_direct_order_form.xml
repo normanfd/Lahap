@@ -94,6 +94,21 @@
                 android:layout_marginTop="5dp"
                 android:text="@string/payment_method" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/total_price" />
+
+            <TextView
+                android:id="@+id/order_total_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="20dp"
+                android:hint="@string/total_price" />
+
+
+
             <RadioGroup
                 android:id="@+id/order_radio_payment"
                 android:layout_width="match_parent"
@@ -112,59 +127,10 @@
             </RadioGroup>
 
             <Button
-                android:id="@+id/btnnn"
+                android:id="@+id/order_next_btn"
+                android:text="Next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-
-            <!--            <EditText-->
-            <!--                android:id="@+id/register_email_input"-->
-            <!--                android:drawablePadding="20dp"-->
-            <!--                android:drawableEnd="@drawable/ic_person"-->
-            <!--                android:hint="@string/email_ex"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:inputType="textEmailAddress"-->
-            <!--                android:importantForAutofill="no" />-->
-
-            <!--            <TextView-->
-            <!--                android:layout_marginTop="5dp"-->
-            <!--                android:text="@string/phone_number"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content" />-->
-            <!--            <EditText-->
-            <!--                android:id="@+id/register_phone_number_input"-->
-            <!--                android:drawablePadding="20dp"-->
-            <!--                android:drawableEnd="@drawable/ic_person"-->
-            <!--                android:hint="@string/hint_phone"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:inputType="phone"-->
-            <!--                android:importantForAutofill="no" />-->
-
-            <!--            <TextView-->
-            <!--                android:layout_marginTop="5dp"-->
-            <!--                android:text="@string/password"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content" />-->
-            <!--            <EditText-->
-            <!--                android:id="@+id/register_password_input"-->
-            <!--                android:drawablePadding="20dp"-->
-            <!--                android:drawableEnd="@drawable/ic_person"-->
-            <!--                android:hint="@string/secret"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:inputType="textPassword"-->
-            <!--                android:importantForAutofill="no" />-->
-            <!--            <Button-->
-            <!--                android:id="@+id/register_btn"-->
-            <!--                android:textColor="#FFF"-->
-            <!--                android:background="@drawable/rec_gradient"-->
-            <!--                android:layout_marginTop="20dp"-->
-            <!--                android:textAllCaps="false"-->
-            <!--                android:text="@string/create_account"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content" />-->
-
         </LinearLayout>
     </ScrollView>
 

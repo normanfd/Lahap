@@ -71,7 +71,7 @@ public class CartActivity extends AppCompatActivity {
         nextProcessBtn.setOnClickListener(v -> {
 //            txtTotalAmount.setText("Total Price = " + String.valueOf(overTotalPrice));
             Intent intent = new Intent(CartActivity.this, OrderLocationActivity.class);
-            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+            intent.putExtra("TotalPrice", String.valueOf(overTotalPrice));
             intent.putExtra(CANTEEN_ID, canteenID);
             intent.putExtra(CANTEEN_QR_CODE, canteenCode);
             startActivity(intent);

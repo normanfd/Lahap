@@ -26,6 +26,7 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
     Button btn_indirect_order;
     String canteenID="";
     String canteenCode = "";
+    String totalPrice = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_order_location);
         ButterKnife.bind(this);
 
+        totalPrice = getIntent().getStringExtra("TotalPrice");
         canteenID = getIntent().getStringExtra(CANTEEN_ID);
         canteenCode = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_QR_CODE));
 
@@ -47,6 +49,7 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
             Intent intent = new Intent(OrderLocationActivity.this, DirectOrderActivity.class);
             intent.putExtra(CANTEEN_ID, canteenID);
             intent.putExtra(CANTEEN_QR_CODE, canteenCode);
+            intent.putExtra("TotalPrice", totalPrice);
             startActivity(intent);
             finish();
         }

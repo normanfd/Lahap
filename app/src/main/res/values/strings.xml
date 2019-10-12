@@ -83,5 +83,6 @@
     <string name="table_no">Table no : </string>
     <string name="payment_method">Payment Method</string>
     <string name="hint_login_seller">Login Seller</string>
+    <string name="total_price">Total Price</string>
 
 </resources>

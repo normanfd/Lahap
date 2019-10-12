@@ -2,14 +2,10 @@ package com.lahaptech.lahap.model;
 
 public class Order {
 
-    private String usernameIPB, locationID, orderTime, orderTable, orderType, orderStatus, payMethod, transferProof;
+    private String usernameIPB, locationID, orderTime, orderTable,
+            orderType, orderStatus, payMethod, transferProof, totalAmount;
 
-    public Order() {
-    }
-
-    public Order(String usernameIPB, String locationID, String orderTime,
-                 String orderTable, String orderType, String orderStatus,
-                 String payMethod, String transferProof) {
+    public Order(String usernameIPB, String locationID, String orderTime, String orderTable, String orderType, String orderStatus, String payMethod, String transferProof, String totalAmount) {
         this.usernameIPB = usernameIPB;
         this.locationID = locationID;
         this.orderTime = orderTime;
@@ -18,6 +14,7 @@ public class Order {
         this.orderStatus = orderStatus;
         this.payMethod = payMethod;
         this.transferProof = transferProof;
+        this.totalAmount = totalAmount;
     }
 
     public String getUsernameIPB() {
@@ -82,5 +79,13 @@ public class Order {
 
     public void setTransferProof(String transferProof) {
         this.transferProof = transferProof;
+    }
+
+    public String getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(String totalAmount) {
+        this.totalAmount = totalAmount;
     }
 }

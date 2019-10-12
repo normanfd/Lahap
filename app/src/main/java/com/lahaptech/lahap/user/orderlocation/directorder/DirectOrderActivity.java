@@ -34,12 +34,14 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
     ZXingScannerView scannerView;
     String canteenID="";
     String canteenCode = "";
+    String totalPrice = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_direct_order);
 
+        totalPrice = getIntent().getStringExtra("TotalPrice");
         canteenID = getIntent().getStringExtra(CANTEEN_ID);
         canteenCode = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_QR_CODE));
 
@@ -81,20 +83,15 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
     public void handleResult(Result rawResult) {
         String hasil = rawResult.getText();
         String[] arrOfStr = hasil.split(",", 2);
-//        Toast.makeText(this, hasil, Toast.LENGTH_SHORT).show();
-//        Toast.makeText(this, arrOfStr[0] + " no meja : " + arrOfStr[1], Toast.LENGTH_SHORT).show();
         String[] dataPutExtra = canteenCode.split(",", 2);
-//        final Handler handler = new Handler();
-//        handler.postDelayed(this::beginQRCode, 3000);
 
         if (arrOfStr[0].equals(dataPutExtra[0])){
             Toast.makeText(this, "Pesanan selesai, lanjutkan pembayaran", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(DirectOrderActivity.this, DirectOrderFormActivity.class);
-            intent.putExtra("qrcode", arrOfStr[0]);
-            intent.putExtra("noMeja", arrOfStr[1]);
+            intent.putExtra("qrcode", hasil);
+            intent.putExtra("orderTableNo", arrOfStr[1]);
+            intent.putExtra("TotalPrice", totalPrice);
             startActivity(intent);
-//            final Handler handler = new Handler();
-//            handler.postDelayed(this::beginQRCode, 3000);
         }
         else {
             Toast.makeText(this, "Anda tidak berada di kantin yang bersangkutan", Toast.LENGTH_SHORT).show();
