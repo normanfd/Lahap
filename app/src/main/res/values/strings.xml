@@ -84,5 +84,7 @@
     <string name="payment_method">Payment Method</string>
     <string name="hint_login_seller">Login Seller</string>
     <string name="total_price">Total Price</string>
+    <string name="transfer">Transfer</string>
+    <string name="cash">Cash</string>
 
 </resources>

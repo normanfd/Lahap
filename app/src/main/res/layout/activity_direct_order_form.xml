@@ -118,12 +118,12 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Transfer" />
+                    android:text="@string/transfer" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cash" />
+                    android:text="@string/cash" />
             </RadioGroup>
 
             <Button
