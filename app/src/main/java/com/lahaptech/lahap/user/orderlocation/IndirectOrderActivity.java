@@ -1,58 +1,47 @@
 package com.lahaptech.lahap.user.orderlocation;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.text.format.DateFormat;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.lahaptech.lahap.R;
 
-import java.util.Calendar;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-public class IndirectOrderActivity extends AppCompatActivity implements View.OnClickListener {
+public class IndirectOrderActivity extends AppCompatActivity{
 
 
-    @BindView(R.id.bt_showtimepicker)
-    Button btTimePicker;
-    @BindView(R.id.tv_timeresult)
-    TextView tvTimeResult;
-
+    TimePicker picker;
+    Button btnGet;
+    TextView tvw;
+    @SuppressLint({"ShowToast", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_indirect_order);
+        tvw= findViewById(R.id.textView1);
+        picker= findViewById(R.id.timePicker1);
+        picker.setIs24HourView(true);
+        btnGet= findViewById(R.id.button1);
+        btnGet.setOnClickListener(v -> {
+            int hour, minute;
+            if (Build.VERSION.SDK_INT >= 23 ){
+                hour = picker.getHour();
+                minute = picker.getMinute();
+            }
+            else{
+                hour = picker.getCurrentHour();
+                minute = picker.getCurrentMinute();
+            }
 
-        ButterKnife.bind(this);
-
-        btTimePicker.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.bt_showtimepicker){
-            showTimeDialog();
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private void showTimeDialog() {
-        Calendar calendar = Calendar.getInstance();
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                (view, hourOfDay, minute) ->
-                        tvTimeResult.setText("Waktu dipilih = " + hourOfDay + ":" + minute),
-                calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
-                DateFormat.is24HourFormat(this));
-
-
-        timePickerDialog.show();
+            Intent intent = new Intent(IndirectOrderActivity.this, IndirectFormActivity.class);
+            intent.putExtra("timeOrder", hour + ":" + minute);
+            startActivity(intent);
+        });
     }
 }
