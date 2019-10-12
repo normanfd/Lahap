@@ -18,18 +18,17 @@ import butterknife.ButterKnife;
 public class CartAdapter extends RecyclerView.ViewHolder implements View.OnClickListener {
     private ItemClickListener itemClickListener;
 
-    @BindView(R.id.cart_food_image)
-    ImageView imageView;
-    @BindView(R.id.cart_product_name)
     TextView txtProductName;
-    @BindView(R.id.cart_product_price)
     TextView txtProductPrice;
-    @BindView(R.id.cart_product_quantity)
     TextView txtProductQuantity;
 
     CartAdapter(@NonNull View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+        ImageView imageView = itemView.findViewById(R.id.cart_food_image);
+        txtProductName = itemView.findViewById(R.id.cart_product_name);
+        txtProductPrice = itemView.findViewById(R.id.cart_product_price);
+        txtProductQuantity = itemView.findViewById(R.id.cart_product_quantity);
+
     }
 
     @Override

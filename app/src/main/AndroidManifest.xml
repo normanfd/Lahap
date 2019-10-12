@@ -20,12 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".user.orderlocation.IndirectFormActivity"></activity>
+
+        <activity android:name=".user.orderlocation.directorder.DirectOrderFormActivity" />
         <activity android:name=".HasilActivity" /> <!-- <activity -->
         <!-- android:name=".user.UserActivity" -->
         <!-- android:label="@string/title_activity_user"/> -->
         <activity android:name=".user.orderlocation.IndirectOrderActivity" />
-        <activity android:name=".user.orderlocation.DirectOrderActivity" />
+        <activity android:name=".user.orderlocation.directorder.DirectOrderActivity" />
         <activity
             android:name=".user.home.UserActivity"
             android:label="@string/title_activity_user"
@@ -55,5 +56,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
