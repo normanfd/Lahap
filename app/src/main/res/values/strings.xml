@@ -82,5 +82,6 @@
     <string name="direct_order_form">Direct Order Form</string>
     <string name="table_no">Table no : </string>
     <string name="payment_method">Payment Method</string>
+    <string name="hint_login_seller">Login Seller</string>
 
 </resources>

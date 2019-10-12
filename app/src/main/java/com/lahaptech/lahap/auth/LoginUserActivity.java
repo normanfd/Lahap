@@ -49,7 +49,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void loginUser() {
-        String username = inpt_username.getText().toString();
+        String username = inpt_username.getText().toString().trim();
         String password = inpt_password.getText().toString();
 
         if (TextUtils.isEmpty(username)) {

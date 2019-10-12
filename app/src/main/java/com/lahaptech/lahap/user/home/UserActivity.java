@@ -2,31 +2,30 @@ package com.lahaptech.lahap.user.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-
-import com.google.android.material.navigation.NavigationView;
-import com.lahaptech.lahap.MainActivity;
-import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.user.menuproduct.SelectMenuActivity;
+import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.view.Menu;
-import android.view.MenuItem;
+import com.google.android.material.navigation.NavigationView;
+import com.lahaptech.lahap.MainActivity;
+import com.lahaptech.lahap.R;
 
 import io.paperdb.Paper;
 
 public class UserActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,5 +73,19 @@ public class UserActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            finishAffinity();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(() -> doubleBackToExitPressedOnce=false, 2000);
     }
 }
