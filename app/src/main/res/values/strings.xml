@@ -88,5 +88,7 @@
     <string name="next_to_online_payment">Next to Online Payment</string>
     <string name="order_detail">Order Detail</string>
     <string name="total_price">Total Price</string>
+    <string name="transfer">Transfer</string>
+    <string name="cash">Cash</string>
 
 </resources>

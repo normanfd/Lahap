@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
 
@@ -108,12 +109,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         db.collection("user").document(username)
                 .set(user)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(RegisterActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
-                    loadingBar.dismiss();
-                    Log.d("Cek", "DocumentSnapshot added with ID: " + username);
-                    Intent intent = new Intent(RegisterActivity.this, LoginUserActivity.class);
-                    startActivity(intent);
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(RegisterActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
+                        loadingBar.dismiss();
+                        Log.d("Cek", "DocumentSnapshot added with ID: " + username);
+                        Intent intent = new Intent(RegisterActivity.this, LoginUserActivity.class);
+                        RegisterActivity.this.startActivity(intent);
+                    }
                 })
                 .addOnFailureListener(e -> {
                     loadingBar.dismiss();
