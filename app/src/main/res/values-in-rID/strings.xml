@@ -82,6 +82,7 @@
     <string name="hint_phone">08xxx</string>
     <string name="secret">******</string>
     <string name="sign_up">Sign Up</string>
+    <string name="hint_login_seller">Login Seller</string>
 
 
 </resources>

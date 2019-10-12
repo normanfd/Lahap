@@ -42,7 +42,8 @@ public class LoginSellerActivity extends AppCompatActivity implements View.OnCli
 
         Paper.init(this);
         ButterKnife.bind(this);
-
+        inpt_username.setHint(R.string.hint_login_seller);
+        
         loadingBar = new ProgressDialog(this);
         btn_login.setOnClickListener(this);
 
