@@ -83,9 +83,10 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
     public void handleResult(Result rawResult) {
         String hasil = rawResult.getText();
         String[] arrOfStr = hasil.split(",", 2);
-        String[] dataPutExtra = canteenCode.split(",", 2);
+//        String[] dataPutExtra = canteenCode.split(",", 2);
 
-        if (arrOfStr[0].equals(dataPutExtra[0])){
+        if (arrOfStr[0].equals(canteenCode)){
+//            if (arrOfStr[0].equals(dataPutExtra[0])){
             Toast.makeText(this, "Pesanan selesai, lanjutkan pembayaran", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(DirectOrderActivity.this, DirectOrderFormActivity.class);
             intent.putExtra("qrcode", hasil);
