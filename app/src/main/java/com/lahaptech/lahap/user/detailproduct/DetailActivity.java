@@ -1,7 +1,5 @@
 package com.lahaptech.lahap.user.detailproduct;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,11 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Product;
 import com.squareup.picasso.Picasso;
 

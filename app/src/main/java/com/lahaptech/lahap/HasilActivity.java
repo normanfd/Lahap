@@ -1,9 +1,9 @@
 package com.lahaptech.lahap;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class HasilActivity extends AppCompatActivity {
 

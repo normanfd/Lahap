@@ -3,8 +3,10 @@ package com.lahaptech.lahap.user.menuproduct.fragment;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.lahaptech.lahap.R;
 
 class MenuViewHolder extends RecyclerView.ViewHolder {

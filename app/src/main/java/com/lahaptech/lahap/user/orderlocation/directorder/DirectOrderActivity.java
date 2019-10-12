@@ -1,13 +1,12 @@
 package com.lahaptech.lahap.user.orderlocation.directorder;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.zxing.Result;
 import com.karumi.dexter.Dexter;
@@ -17,7 +16,6 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.user.menuproduct.SelectMenuActivity;
 
 import java.util.Objects;
 

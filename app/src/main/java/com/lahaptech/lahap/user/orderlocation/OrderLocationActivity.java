@@ -1,15 +1,16 @@
 package com.lahaptech.lahap.user.orderlocation;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.user.orderlocation.directorder.DirectOrderActivity;
+import com.lahaptech.lahap.user.orderlocation.indirectorder.IndirectOrderActivity;
 
 import java.util.Objects;
 
@@ -55,7 +56,9 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
         }
         else {
             Toast.makeText(this, "Indirect Order", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(OrderLocationActivity.this,IndirectOrderActivity.class);
+            Intent intent = new Intent(OrderLocationActivity.this, IndirectOrderActivity.class);
+            intent.putExtra(CANTEEN_ID, canteenID);
+            intent.putExtra(CANTEEN_QR_CODE, canteenCode);
             intent.putExtra("TotalPrice", totalPrice);
             startActivity(intent);
             finish();

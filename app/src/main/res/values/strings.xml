@@ -90,5 +90,8 @@
     <string name="total_price">Total Price</string>
     <string name="transfer">Transfer</string>
     <string name="cash">Cash</string>
+    <string name="empty_textview">Empty TextView</string>
+    <string name="reviews">Reviews</string>
+    <string name="details">Details</string>
 
 </resources>

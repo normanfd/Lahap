@@ -1,7 +1,5 @@
 package com.lahaptech.lahap.auth;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.owner.HomeOwnerActivity;
 import com.lahaptech.lahap.user.home.UserActivity;
-import com.lahaptech.lahap.model.Prevalent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

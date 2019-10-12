@@ -89,5 +89,8 @@
     <string name="time_pick">Time Pick</string>
     <string name="next_to_online_payment">Next to Online Payment</string>
     <string name="order_detail">Order Detail</string>
+    <string name="empty_textview">Empty TextView</string>
+    <string name="reviews">Reviews</string>
+    <string name="details">Details</string>
 
 </resources>
