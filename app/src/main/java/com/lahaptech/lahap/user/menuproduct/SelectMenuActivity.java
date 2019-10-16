@@ -2,20 +2,13 @@ package com.lahaptech.lahap.user.menuproduct;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-import com.lahaptech.lahap.MainActivity;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.cart.CartActivity;
@@ -51,7 +44,7 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_user);
+        setContentView(R.layout.activity_select_menu);
         ButterKnife.bind(this);
         Paper.init(this);
 
