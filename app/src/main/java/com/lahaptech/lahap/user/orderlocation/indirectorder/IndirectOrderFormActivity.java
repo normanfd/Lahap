@@ -83,8 +83,7 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(IndirectOrderFormActivity.this, "Success Added", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(IndirectOrderFormActivity.this, UserActivity.class);
-                        startActivity(intent);
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

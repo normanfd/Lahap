@@ -51,9 +51,8 @@ public class IndirectOrderActivity extends AppCompatActivity{
             intent.putExtra("timeOrder", hour + ":" + minute);
             intent.putExtra("totalAmount", totalAmount);
             intent.putExtra("qrcode", locationID);
-
-
             startActivity(intent);
+            finish();
         });
     }
 }

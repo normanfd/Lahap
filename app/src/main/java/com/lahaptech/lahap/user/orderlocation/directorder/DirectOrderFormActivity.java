@@ -87,6 +87,7 @@ public class DirectOrderFormActivity extends AppCompatActivity {
                         Toast.makeText(DirectOrderFormActivity.this, "Success Added", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(DirectOrderFormActivity.this, UserActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

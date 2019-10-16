@@ -97,6 +97,7 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
                 intent.putExtra("TotalPrice", totalPrice);
                 intent.putExtra(EXTRA_USER, currentOnlineUser);
                 startActivity(intent);
+                finish();
             }
         }
 
