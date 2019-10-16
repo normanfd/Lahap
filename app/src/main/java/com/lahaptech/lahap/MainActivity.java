@@ -22,6 +22,8 @@ import com.lahaptech.lahap.user.home.UserActivity;
 
 import io.paperdb.Paper;
 
+import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button btn_join;
     Button btn_login;
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(MainActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                         loadingBar.dismiss();
                         Intent intent = new Intent(MainActivity.this, UserActivity.class);
+                        intent.putExtra(EXTRA_USER, userData);
                         Prevalent.CurrentOnlineUser = userData;
                         startActivity(intent);
                     } else {

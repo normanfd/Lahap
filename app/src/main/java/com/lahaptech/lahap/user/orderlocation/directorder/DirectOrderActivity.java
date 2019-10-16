@@ -16,13 +16,17 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.model.User;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
+import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
 
@@ -30,9 +34,10 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
 
     @BindView(R.id.scan_qr_code)
     ZXingScannerView scannerView;
-    String canteenID="";
+    String canteenID = "";
     String canteenCode = "";
     String totalPrice = "";
+    User currentOnlineUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,8 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
 
         totalPrice = getIntent().getStringExtra("TotalPrice");
         canteenID = getIntent().getStringExtra(CANTEEN_ID);
-        canteenCode = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_QR_CODE));
+        canteenCode = getIntent().getStringExtra(CANTEEN_QR_CODE);
+        currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
 
         ButterKnife.bind(this);
 
@@ -80,23 +86,24 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
     @Override
     public void handleResult(Result rawResult) {
         String hasil = rawResult.getText();
-        String[] arrOfStr = hasil.split(",", 2);
-//        String[] dataPutExtra = canteenCode.split(",", 2);
 
-        if (arrOfStr[0].equals(canteenCode)){
-//            if (arrOfStr[0].equals(dataPutExtra[0])){
-            Toast.makeText(this, "Pesanan selesai, lanjutkan pembayaran", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(DirectOrderActivity.this, DirectOrderFormActivity.class);
-            intent.putExtra("qrcode", hasil);
-            intent.putExtra("orderTableNo", arrOfStr[1]);
-            intent.putExtra("TotalPrice", totalPrice);
-            startActivity(intent);
+        if (hasil.contains(",")){
+            String[] arrOfStr = hasil.split(",", 2);
+            if (arrOfStr[0].equals(canteenCode)) {
+                Toast.makeText(this, "Pesanan selesai, lanjutkan pembayaran", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(DirectOrderActivity.this, DirectOrderFormActivity.class);
+                intent.putExtra("qrcode", hasil);
+                intent.putExtra("orderTableNo", arrOfStr[1]);
+                intent.putExtra("TotalPrice", totalPrice);
+                intent.putExtra(EXTRA_USER, currentOnlineUser);
+                startActivity(intent);
+            }
         }
+
         else {
             Toast.makeText(this, "Anda tidak berada di kantin yang bersangkutan", Toast.LENGTH_SHORT).show();
             final Handler handler = new Handler();
             handler.postDelayed(this::beginQRCode, 3000);
-
         }
     }
 }

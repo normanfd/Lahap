@@ -1,5 +1,6 @@
 package com.lahaptech.lahap.auth;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +24,10 @@ import com.lahaptech.lahap.user.home.UserActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
+
+import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
+
+//import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
 
 public class LoginUserActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.login_username)
@@ -91,6 +96,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
                             Toast.makeText(LoginUserActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                             loadingBar.dismiss();
                             Intent intent = new Intent(LoginUserActivity.this, UserActivity.class);
+                            intent.putExtra(EXTRA_USER, userData);
                             Prevalent.CurrentOnlineUser = userData;
                             startActivity(intent);
                         }

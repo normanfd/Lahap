@@ -3,7 +3,6 @@
     <string name="app_name">Kantin Lahap</string>
     <string name="account_created">Akun berhasil dibuat</string>
     <string name="add_product">Tambahkan Produk</string>
-    <string name="already_have_account_login">Masuk</string>
     <string name="app_motto">#MakanDenganLahap</string>
     <string name="applogo">logo Aplikasi</string>
     <string name="checking_credentials">Harap tunggu sementara kami memeriksa kredensial Anda ..</string>
@@ -13,21 +12,13 @@
     <string name="food">Makanan</string>
     <string name="food_image">gambar_makanan</string>
     <string name="forget_password">Lupa Password</string>
-    <string name="hello_blank_fragment">Hallo fragment kosong</string>
-    <string name="i_m_an_admin">saya pemilik</string>
-    <string name="i_m_not_an_admin">saya pengguna</string>
     <string name="join_now">Belum Punya Akun? Daftar Disini</string>
     <string name="login">Masuk</string>
-    <string name="name">Nama</string>
     <string name="password">kata sandi</string>
     <string name="phone_number">nomor telepon</string>
     <string name="product_description">Deskripsi Produk</string>
     <string name="product_name">Nama Produk</string>
     <string name="product_price">Harga Produk</string>
-    <string name="tab_text_1">Tab1</string>
-    <string name="tab_text_2">Tab2</string>
-    <string name="template_price">Harga : Rp.</string>
-    <string name="title_activity_home_user">Home</string>
     <string name="try_again_later">Jaringan error, coba dalam beberapa saat lagi</string>
     <string name="username_ipb">Username IPB</string>
     <string name="valid_email_address">Tuliskan email yang benar</string>
@@ -36,7 +27,6 @@
     <string name="write_valid_phone_number">Tuliskan no Telepon yang benar</string>
     <string name="write_your_name">Tuliskan username Anda</string>
     <string name="write_your_password">Tuliskan password Anda</string>
-    <string name="login_resto_owner">Login Resto Owner</string>
     <string name="snack">Camilan</string>
     <string name="apply_changes">Apply Changes</string>
     <string name="add_new_product">Tambah Produk Baru</string>
@@ -45,24 +35,16 @@
     <string name="update_product">Update Produk</string>
     <string name="user_logout">Keluar</string>
     <string name="setting">Pengaturan</string>
-    <string name="history">Riwayat</string>
-    <string name="lbl_quantity">Jumlah</string>
-    <string name="options">Pilihan</string>
-    <string name="profile">Profil</string>
     <string name="todo">TODO</string>
     <string name="select_canteen">Pilih kantin</string>
     <string name="cart">Cart</string>
-    <string name="Note">Catatan</string>
     <string name="account">Akun</string>
-    <string name="action_settings">Pengaturan</string>
     <string name="delete_this_product">Hapus produk ini</string>
     <string name="desc">Deskripsi</string>
     <string name="order_status">Status Pesanan</string>
     <string name="price">Harga :</string>
     <string name="seller">"Penjual : "</string>
     <string name="order_history">Riwayat Pesanan</string>
-    <string name="navigation_drawer_open">navigation_drawer_open</string>
-    <string name="navigation_drawer_close">navigation_drawer_close</string>
 
     <string name="login_seller">Seller</string>
     <string name="login_user">Mahasiswa IPB</string>
@@ -71,12 +53,6 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
     <string name="full_name">Full name</string>
     <string name="your_name">Your Name</string>
     <string name="user_name">user_name</string>
@@ -89,9 +65,6 @@
     <string name="time_pick">Time Pick</string>
     <string name="next_to_online_payment">Next to Online Payment</string>
     <string name="order_detail">Order Detail</string>
-    <string name="empty_textview">Empty TextView</string>
-    <string name="reviews">Reviews</string>
-    <string name="details">Details</string>
     <string name="add_to_cart">Add To Cart</string>
     <string name="order_type">Order Type</string>
 

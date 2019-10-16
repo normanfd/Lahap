@@ -15,24 +15,31 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
+import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.home.UserActivity;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
 
 public class DirectOrderFormActivity extends AppCompatActivity {
 
     TextView orderTableNo, username, tPrice, radiobtn;
     RadioGroup rdo_payment;
     Button btn;
+    User currentOnlineUser;
+    String total="", locationID ="", orderTable = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_direct_order_form);
-        String orderTable = getIntent().getStringExtra("orderTableNo");
-        String locationID = getIntent().getStringExtra("qrcode");
-        String total = getIntent().getStringExtra("TotalPrice");
+
+        orderTable = getIntent().getStringExtra("orderTableNo");
+        locationID = getIntent().getStringExtra("qrcode");
+        total = getIntent().getStringExtra("TotalPrice");
+        currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
 
         tPrice = findViewById(R.id.order_total_price);
         rdo_payment = findViewById(R.id.order_radio_payment);
@@ -41,11 +48,11 @@ public class DirectOrderFormActivity extends AppCompatActivity {
         btn = findViewById(R.id.order_next_btn);
 
         orderTableNo.setText(orderTable);
-        username.setText(Prevalent.CurrentOnlineUser.getUsername());
+        username.setText(currentOnlineUser.getUsername());
         tPrice.setText(total);
 
         btn.setOnClickListener(view -> {
-            String usernameIPB = Prevalent.CurrentOnlineUser.getUsername();
+            String usernameIPB = currentOnlineUser.getUsername();
             String orderType = "direct";
             int radioID = rdo_payment.getCheckedRadioButtonId();
             radiobtn = findViewById(radioID);

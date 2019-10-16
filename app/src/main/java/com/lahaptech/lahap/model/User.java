@@ -1,6 +1,9 @@
 package com.lahaptech.lahap.model;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class User implements Parcelable {
     private String name, username, phone, email, password, image, address;
 
     public User() {
@@ -15,6 +18,28 @@ public class User {
         this.image = image;
         this.address = address;
     }
+
+    protected User(Parcel in) {
+        name = in.readString();
+        username = in.readString();
+        phone = in.readString();
+        email = in.readString();
+        password = in.readString();
+        image = in.readString();
+        address = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -73,4 +98,19 @@ public class User {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(name);
+        parcel.writeString(username);
+        parcel.writeString(phone);
+        parcel.writeString(email);
+        parcel.writeString(password);
+        parcel.writeString(image);
+        parcel.writeString(address);
+    }
 }
