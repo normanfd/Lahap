@@ -3,6 +3,7 @@ package com.lahaptech.lahap.user.orderlocation.directorder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ public class DirectOrderFormActivity extends AppCompatActivity {
 
     TextView orderTableNo, username, tPrice, radiobtn;
     RadioGroup rdo_payment;
+    RadioButton rdo_btnCash;
     Button btn;
     User currentOnlineUser;
     String total="", locationID ="", orderTable = "";
@@ -46,6 +48,8 @@ public class DirectOrderFormActivity extends AppCompatActivity {
         orderTableNo = findViewById(R.id.order_table_number);
         username = findViewById(R.id.order_username);
         btn = findViewById(R.id.order_next_btn);
+        rdo_btnCash = findViewById(R.id.rdo_btn_cash);
+        rdo_btnCash.setChecked(true);
 
         orderTableNo.setText(orderTable);
         username.setText(currentOnlineUser.getUsername());
