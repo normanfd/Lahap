@@ -89,7 +89,7 @@ public class SelectCanteenFragment extends Fragment {
                         }
                     };
 
-            rv_canteen.setLayoutManager(new LinearLayoutManager(getContext()));
+            rv_canteen.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
             rv_canteen.setHasFixedSize(true);
             rv_canteen.setAdapter(adapter);
             adapter.startListening();
