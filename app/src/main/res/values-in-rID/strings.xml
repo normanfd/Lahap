@@ -66,5 +66,6 @@
     <string name="next_to_online_payment">Next to Online Payment</string>
     <string name="order_detail">Order Detail</string>
     <string name="add_to_cart">Add To Cart</string>
+    <string name="order_type">Order Type</string>
 
 </resources>

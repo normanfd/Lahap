@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/nav_select_canteen"
-        android:name="com.lahaptech.lahap.user.home.SelectCanteen.SelectCanteenFragment"
+        android:name="com.lahaptech.lahap.user.home.selectcanteen.SelectCanteenFragment"
         android:label="@string/select_canteen"
         tools:layout="@layout/fragment_selectcanteen" />
 
     <fragment
         android:id="@+id/nav_order_status"
-        android:name="com.lahaptech.lahap.user.home.orderstatus.GalleryFragment"
+        android:name="com.lahaptech.lahap.user.home.orderstatus.OrderStatusFragment"
         android:label="@string/order_status"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_order_status" />
 
     <fragment
         android:id="@+id/nav_order_history"

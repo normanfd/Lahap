@@ -77,12 +77,15 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
         order.put("transferProof", null);
         order.put("totalAmount", total);
 
-        db.collection("order").document(usernameIPB)
+        db.collection("order").document()
                 .set(order)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(IndirectOrderFormActivity.this, "Success Added", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(IndirectOrderFormActivity.this, UserActivity.class);
-                    startActivity(intent);
+
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(IndirectOrderFormActivity.this, "Success Added", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                 })
                 .addOnFailureListener(e -> {
 

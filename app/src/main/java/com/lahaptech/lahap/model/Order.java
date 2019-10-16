@@ -2,8 +2,19 @@ package com.lahaptech.lahap.model;
 
 public class Order {
 
-    private String usernameIPB, locationID, orderTime, orderTable,
-            orderType, orderStatus, payMethod, transferProof, totalAmount;
+    private String usernameIPB;
+    private String locationID;
+    private String orderTime;
+    private String orderTable;
+    private String orderType;
+    private String orderStatus;
+    private String payMethod;
+    private String transferProof;
+    private String totalAmount;
+
+    public Order() {
+    }
+
 
     public Order(String usernameIPB, String locationID, String orderTime, String orderTable, String orderType, String orderStatus, String payMethod, String transferProof, String totalAmount) {
         this.usernameIPB = usernameIPB;

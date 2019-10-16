@@ -73,5 +73,6 @@
     <string name="transfer">Transfer</string>
     <string name="cash">Cash</string>
     <string name="add_to_cart">Add To Cart</string>
+    <string name="order_type">Order Type</string>
 
 </resources>

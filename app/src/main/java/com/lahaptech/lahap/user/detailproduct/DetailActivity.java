@@ -40,9 +40,9 @@ public class DetailActivity extends AppCompatActivity {
     ElegantNumberButton numberButton;
     @BindView(R.id.pd_add_to_cart_btn)
     Button btn_add_cart;
+
     String foodID, category, sellerID, locationID;
     String state="normal";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
