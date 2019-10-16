@@ -1,8 +1,8 @@
 package com.lahaptech.lahap.user.home.orderstatus;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.lahaptech.lahap.R;
 

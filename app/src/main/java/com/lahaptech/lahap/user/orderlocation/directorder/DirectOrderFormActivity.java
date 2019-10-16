@@ -8,14 +8,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.home.UserActivity;
 

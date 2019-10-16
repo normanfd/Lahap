@@ -14,8 +14,6 @@ import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 
 import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
-
-import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
 
 public class IndirectOrderActivity extends AppCompatActivity{

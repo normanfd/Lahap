@@ -13,8 +13,6 @@ import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.orderlocation.directorder.DirectOrderActivity;
 import com.lahaptech.lahap.user.orderlocation.indirectorder.IndirectOrderActivity;
 
-import java.util.Objects;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
