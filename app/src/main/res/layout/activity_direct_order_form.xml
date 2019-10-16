@@ -116,11 +116,13 @@
                 android:orientation="horizontal">
 
                 <RadioButton
+                    android:id="@+id/rdo_btn_tf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/transfer" />
 
                 <RadioButton
+                    android:id="@+id/rdo_btn_cash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cash" />

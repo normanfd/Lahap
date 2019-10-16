@@ -35,14 +35,14 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
 
     public static final String CANTEEN_ID = "canteen id";
     public static final String CANTEEN_QR_CODE = "canteen code";
+    public static final String CANTEEN_NAME = "canteen name";
     @BindView(R.id.tab_layout_homeuser)
     TabLayout tabLayout;
     @BindView(R.id.view_page_fav)
     ViewPager viewPager;
     @BindView(R.id.fab)
     FloatingActionButton fab;
-    String canteenID = "";
-    String canteenCode = "";
+    String canteenID = "", canteenCode = "", canteenName="";
     User currentOnlineUser;
 
     @Override
@@ -55,8 +55,13 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
         currentOnlineUser = Objects.requireNonNull(getIntent().getParcelableExtra(EXTRA_USER));
 
         SelectMenuViewPager adapter = new SelectMenuViewPager(getSupportFragmentManager());
-        canteenID = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_ID));
-        canteenCode = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_QR_CODE));
+
+        canteenID = getIntent().getStringExtra(CANTEEN_ID);
+        canteenCode = getIntent().getStringExtra(CANTEEN_QR_CODE);
+        canteenName = getIntent().getStringExtra(CANTEEN_NAME);
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle(canteenName);
+
         adapter.addFragment(new FoodFragment(), getResources().getString(R.string.food));
         adapter.addFragment(new DrinkFragment(), getResources().getString(R.string.drink));
         adapter.addFragment(new SnackFragment(), getResources().getString(R.string.snack));
@@ -64,26 +69,6 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         fab.setOnClickListener(this);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_profile, menu);
-        menu.getItem(0).setIcon(ContextCompat.getDrawable(this, R.drawable.ic_account_circle_black_24dp));
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.user_logout) {
-            Paper.book().destroy();
-            Intent intent = new Intent(SelectMenuActivity.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

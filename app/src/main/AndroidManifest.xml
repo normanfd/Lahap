@@ -20,9 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".user.payment.OnlinePaymentActivity"></activity>
+        <activity android:name=".user.payment.OnlinePaymentActivity" />
         <activity android:name=".user.home.orderstatus.OrderDetailActivity" />
-        <activity android:name=".user.orderlocation.directorder.DirectOrderFormActivity" />
+
+        <activity android:name=".user.orderlocation.directorder.DirectOrderFormActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity android:name=".HasilActivity" /> <!-- <activity -->
         <!-- android:name=".user.UserActivity" -->
         <!-- android:label="@string/title_activity_user"/> -->
@@ -38,7 +41,8 @@
             android:label="@string/title_activity_user"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".auth.LoginSellerActivity" />
-        <activity android:name=".user.orderlocation.OrderLocationActivity" />
+        <activity android:name=".user.orderlocation.OrderLocationActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".user.cart.CartActivity" />
         <activity android:name=".owner.update.UpdateProductDetailActivity" />
         <activity android:name=".owner.update.UpdateProductActivity" />

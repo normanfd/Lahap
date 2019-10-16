@@ -23,7 +23,6 @@ class CartAdapter extends RecyclerView.ViewHolder implements View.OnClickListene
         txtProductName = itemView.findViewById(R.id.cart_product_name);
         txtProductPrice = itemView.findViewById(R.id.cart_product_price);
         txtProductQuantity = itemView.findViewById(R.id.cart_product_quantity);
-
     }
 
     @Override
