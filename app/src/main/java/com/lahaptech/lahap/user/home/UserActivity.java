@@ -26,7 +26,7 @@ import io.paperdb.Paper;
 
 public class UserActivity extends AppCompatActivity {
 
-//    public static final String EXTRA_USER = "extra_person";
+    public static final String EXTRA_USER = "extra_person";
     private AppBarConfiguration mAppBarConfiguration;
     boolean doubleBackToExitPressedOnce = false;
 
@@ -50,11 +50,8 @@ public class UserActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //parcelable User
+        //parcelable modek User
 //        User user = getIntent().getParcelableExtra(EXTRA_USER);
-//        assert user != null;
-//        Log.d("username : ", user.getUsername());
-
     }
 
     @Override

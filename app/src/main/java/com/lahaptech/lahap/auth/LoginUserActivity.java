@@ -25,6 +25,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
+import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
+
 //import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
 
 public class LoginUserActivity extends AppCompatActivity implements View.OnClickListener {
@@ -94,11 +96,8 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
                             Toast.makeText(LoginUserActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                             loadingBar.dismiss();
                             Intent intent = new Intent(LoginUserActivity.this, UserActivity.class);
+                            intent.putExtra(EXTRA_USER, userData);
                             Prevalent.CurrentOnlineUser = userData;
-//                            Log.d("username",userData.getUsername());
-//                            User user = new User();
-//                            user.setUsername(userData.getUsername());
-//                            intent.putExtra(EXTRA_USER, user);
                             startActivity(intent);
                         }
                     }

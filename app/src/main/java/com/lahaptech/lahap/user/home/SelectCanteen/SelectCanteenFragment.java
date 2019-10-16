@@ -2,6 +2,7 @@ package com.lahaptech.lahap.user.home.SelectCanteen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Canteen;
+import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.menuproduct.SelectMenuActivity;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
 
@@ -43,11 +48,17 @@ public class SelectCanteenFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setupRecyclerView();
+        //get user with parcelable
+        User user = Objects.requireNonNull(getActivity()).getIntent().getParcelableExtra(EXTRA_USER);
+        assert user != null;
 
+        setupRecyclerView(user);
+
+
+//        Log.d("username", user.getUsername());
     }
 
-    private void setupRecyclerView() {
+    private void setupRecyclerView(User user) {
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         final Query query = rootRef.collection("canteen")
                 .orderBy("canteenID", Query.Direction.ASCENDING);
@@ -67,6 +78,7 @@ public class SelectCanteenFragment extends Fragment {
                                 Intent intent = new Intent(getActivity(), SelectMenuActivity.class);
                                 intent.putExtra(CANTEEN_ID, model.getCanteenID());
                                 intent.putExtra(CANTEEN_QR_CODE, model.getCanteenCode());
+                                intent.putExtra(EXTRA_USER, user);
                                 Toast.makeText(getContext(), model.getCanteenCode(), Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                             });
