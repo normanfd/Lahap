@@ -1,100 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_width="match_parent"
     tools:context=".user.detailproduct.DetailActivity">
-    <RelativeLayout
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/product_image_detail"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:scaleType="centerCrop"
+                android:layout_margin="15dp"
+                android:contentDescription="@string/todo" />
+
+            <TextView
+                android:id="@+id/product_name_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/product_image_detail"
+                android:layout_marginStart="15dp"
+                android:text="@string/product_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/product_description_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/product_name_detail"
+                android:text="@string/product_description"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/product_price_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/product_description_detail"
+                android:text="Product price"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="10dp"/>
+
+
+<!--            <TextView-->
+
+<!--                android:id="@+id/overview"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/number_btn"-->
+<!--                android:layout_marginLeft="50dp"-->
+<!--                android:layout_marginRight="50dp"-->
+<!--                android:text="Tambahkan overview jumlah ukuran masing2 produk misalnya XL = 20 dan M =30"-->
+<!--                android:visibility="invisible"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:gravity="center"-->
+<!--                android:layout_marginTop="20dp"/>-->
+<!--            <EditText-->
+<!--                android:id="@+id/keterangan_value"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/overview"-->
+<!--                android:inputType="text"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:padding="20dp"-->
+<!--                android:layout_marginLeft="45dp"-->
+<!--                android:layout_marginRight="45dp"-->
+<!--                android:background="@drawable/input_design"-->
+<!--                android:visibility="invisible"-->
+<!--                />-->
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+        android:id="@+id/number_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/pd_add_to_cart_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:scrollbarStyle="insideOverlay"
+        app:initialNumber="1"
+        app:textSize="10sp" />
+
+    <Button
+        android:id="@+id/pd_add_to_cart_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ImageView
-            android:id="@+id/product_image_detail"
-            android:layout_width="match_parent"
-            android:layout_height="260dp"
-            android:scaleType="centerCrop"
-            android:layout_margin="15dp"
-            />
-        <TextView
-            android:id="@+id/product_name_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/product_image_detail"
-            android:text="Product name"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="10dp"        />
-        <TextView
-            android:id="@+id/product_description_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/product_name_detail"
-            android:text="Product description"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="10dp"/>
-        <TextView
-            android:id="@+id/product_price_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/product_description_detail"
-            android:text="Product price"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="10dp"/>
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        android:text="@string/add_to_cart"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:layout_margin="10dp" />
 
-        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-            android:id="@+id/number_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/product_price_detail"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:elevation="6dp"
-            app:initialNumber="1"
-            app:textSize="16sp" />
-        <Button
-            android:id="@+id/pd_add_to_cart_btn"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:background="@color/colorPrimaryDark"
-            android:layout_margin="15dp"
-            android:layout_below="@id/keterangan_value"
-            android:text="Add to Cart"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            />
-        <TextView
-
-            android:id="@+id/overview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/number_btn"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:text="Tambahkan overview jumlah ukuran masing2 produk misalnya XL = 20 dan M =30"
-            android:visibility="invisible"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginTop="20dp"/>
-        <EditText
-            android:id="@+id/keterangan_value"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/overview"
-            android:inputType="text"
-            android:layout_marginTop="20dp"
-            android:padding="20dp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginRight="45dp"
-            android:background="@drawable/input_design"
-            android:visibility="invisible"
-            />
-    </RelativeLayout>
-</ScrollView>
+</RelativeLayout>

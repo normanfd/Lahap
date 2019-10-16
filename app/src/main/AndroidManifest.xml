@@ -25,7 +25,11 @@
         <activity android:name=".HasilActivity" /> <!-- <activity -->
         <!-- android:name=".user.UserActivity" -->
         <!-- android:label="@string/title_activity_user"/> -->
-        <activity android:name=".user.orderlocation.IndirectOrderActivity" />
+        <activity android:name=".user.orderlocation.indirectorder.IndirectOrderActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".user.orderlocation.indirectorder.IndirectOrderFormActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity android:name=".user.orderlocation.directorder.DirectOrderActivity" />
         <activity
             android:name=".user.home.UserActivity"

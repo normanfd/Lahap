@@ -1,8 +1,5 @@
 package com.lahaptech.lahap.model;
 
-import com.lahaptech.lahap.model.Seller;
-import com.lahaptech.lahap.model.User;
-
 public class Prevalent {
     public static User CurrentOnlineUser;
     public static Seller CurrentOnlineSeller;

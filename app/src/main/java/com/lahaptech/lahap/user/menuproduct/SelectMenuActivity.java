@@ -1,23 +1,20 @@
 package com.lahaptech.lahap.user.menuproduct;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.lahaptech.lahap.MainActivity;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.user.cart.CartActivity;
 import com.lahaptech.lahap.user.menuproduct.fragment.DrinkFragment;
 import com.lahaptech.lahap.user.menuproduct.fragment.FoodFragment;

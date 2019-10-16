@@ -10,11 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lahaptech.lahap.ItemClickListener;
 import com.lahaptech.lahap.R;
 
-import org.w3c.dom.Text;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class CartAdapter extends RecyclerView.ViewHolder implements View.OnClickListener {
     private ItemClickListener itemClickListener;
 
