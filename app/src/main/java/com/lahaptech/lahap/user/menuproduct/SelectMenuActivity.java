@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,7 +42,9 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
     @BindView(R.id.view_page_fav)
     ViewPager viewPager;
     @BindView(R.id.fab)
-    FloatingActionButton fab;
+    Button fab;
+//    @BindView(R.id.fab)
+//    FloatingActionButton fab;
     String canteenID = "", canteenCode = "", canteenName="";
     User currentOnlineUser;
 
