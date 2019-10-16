@@ -66,6 +66,7 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         ButterKnife.bind(this);
 
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Cart");
         canteenID = getIntent().getStringExtra(CANTEEN_ID);
         canteenCode = getIntent().getStringExtra(CANTEEN_QR_CODE);
         currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
