@@ -53,9 +53,6 @@ public class SelectCanteenFragment extends Fragment {
         assert user != null;
 
         setupRecyclerView(user);
-
-
-//        Log.d("username", user.getUsername());
     }
 
     private void setupRecyclerView(User user) {

@@ -2,6 +2,7 @@ package com.lahaptech.lahap.user.menuproduct;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.lahaptech.lahap.MainActivity;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.cart.CartActivity;
 import com.lahaptech.lahap.user.menuproduct.fragment.DrinkFragment;
 import com.lahaptech.lahap.user.menuproduct.fragment.FoodFragment;
@@ -26,6 +28,8 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
+
+import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
 
 public class SelectMenuActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -39,6 +43,7 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
     FloatingActionButton fab;
     String canteenID = "";
     String canteenCode = "";
+    User currentOnlineUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,8 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
         ButterKnife.bind(this);
         Paper.init(this);
 
+        currentOnlineUser = Objects.requireNonNull(getIntent().getParcelableExtra(EXTRA_USER));
+
         SelectMenuViewPager adapter = new SelectMenuViewPager(getSupportFragmentManager());
         canteenID = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_ID));
         canteenCode = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_QR_CODE));
@@ -54,7 +61,6 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
         adapter.addFragment(new DrinkFragment(), getResources().getString(R.string.drink));
         adapter.addFragment(new SnackFragment(), getResources().getString(R.string.snack));
 
-//        Log.d("current Online User", Prevalent.CurrentOnlineUser.getUsername());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         fab.setOnClickListener(this);
@@ -86,6 +92,7 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
             Intent intent = new Intent(SelectMenuActivity.this, CartActivity.class);
             intent.putExtra(CANTEEN_ID, canteenID);
             intent.putExtra(CANTEEN_QR_CODE, canteenCode);
+            intent.putExtra(EXTRA_USER, currentOnlineUser);
             startActivity(intent);
         }
     }

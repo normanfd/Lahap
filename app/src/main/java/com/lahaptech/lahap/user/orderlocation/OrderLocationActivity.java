@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.orderlocation.directorder.DirectOrderActivity;
 import com.lahaptech.lahap.user.orderlocation.indirectorder.IndirectOrderActivity;
 
@@ -17,6 +18,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
 
@@ -28,6 +30,7 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
     String canteenID="";
     String canteenCode = "";
     String totalPrice = "";
+    User currentOnlineUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,8 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
 
         totalPrice = getIntent().getStringExtra("TotalPrice");
         canteenID = getIntent().getStringExtra(CANTEEN_ID);
-        canteenCode = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_QR_CODE));
+        canteenCode = getIntent().getStringExtra(CANTEEN_QR_CODE);
+        currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
 
         btn_direct.setOnClickListener(this);
         btn_indirect_order.setOnClickListener(this);
@@ -50,6 +54,7 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
             Intent intent = new Intent(OrderLocationActivity.this, DirectOrderActivity.class);
             intent.putExtra(CANTEEN_ID, canteenID);
             intent.putExtra(CANTEEN_QR_CODE, canteenCode);
+            intent.putExtra(EXTRA_USER, currentOnlineUser);
             intent.putExtra("TotalPrice", totalPrice);
             startActivity(intent);
             finish();
@@ -60,6 +65,7 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
             intent.putExtra(CANTEEN_ID, canteenID);
             intent.putExtra(CANTEEN_QR_CODE, canteenCode);
             intent.putExtra("TotalPrice", totalPrice);
+            intent.putExtra(EXTRA_USER, currentOnlineUser);
             startActivity(intent);
             finish();
         }

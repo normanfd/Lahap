@@ -3,6 +3,7 @@ package com.lahaptech.lahap.user.cart;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ import com.google.firebase.firestore.Query;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Cart;
 import com.lahaptech.lahap.model.Prevalent;
+import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.orderlocation.OrderLocationActivity;
 
 import java.util.Objects;
@@ -36,6 +38,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
 
@@ -48,12 +51,14 @@ public class CartActivity extends AppCompatActivity {
     @BindView(R.id.message1)
     public
     TextView txtmessage1;
-//    @BindView(R.id.total_price)
+    //    @BindView(R.id.total_price)
 //    public
 //    TextView txtTotalAmount;
     @BindView(R.id.rv_cart)
     RecyclerView recyclerView;
     String canteenCode = "";
+    String canteenID = "";
+    User currentOnlineUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +66,9 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         ButterKnife.bind(this);
 
-        String canteenID = getIntent().getStringExtra(CANTEEN_ID);
-        canteenCode = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_QR_CODE));
+        canteenID = getIntent().getStringExtra(CANTEEN_ID);
+        canteenCode = getIntent().getStringExtra(CANTEEN_QR_CODE);
+        currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
 
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -74,20 +80,18 @@ public class CartActivity extends AppCompatActivity {
             intent.putExtra("TotalPrice", String.valueOf(overTotalPrice));
             intent.putExtra(CANTEEN_ID, canteenID);
             intent.putExtra(CANTEEN_QR_CODE, canteenCode);
+            intent.putExtra(EXTRA_USER, currentOnlineUser);
             startActivity(intent);
             finish();
         });
+
+        listcart();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-//        checkOrderState();
-
+    private void listcart() {
         FirebaseFirestore cartListRef = FirebaseFirestore.getInstance();
         final Query query = cartListRef.collection("cart")
-                .whereEqualTo("username", Prevalent.CurrentOnlineUser.getUsername());
-
+                .whereEqualTo("username", currentOnlineUser.getUsername());
 
         query.addSnapshotListener((queryDocumentSnapshots, e) -> {
             FirestoreRecyclerOptions<Cart> options = new FirestoreRecyclerOptions.Builder<Cart>()
@@ -153,6 +157,11 @@ public class CartActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+//        checkOrderState();
+    }
 
 
     private void checkOrderState() {

@@ -16,6 +16,7 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.model.User;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -25,6 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
+import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
 
@@ -35,6 +37,7 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
     String canteenID = "";
     String canteenCode = "";
     String totalPrice = "";
+    User currentOnlineUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,8 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
 
         totalPrice = getIntent().getStringExtra("TotalPrice");
         canteenID = getIntent().getStringExtra(CANTEEN_ID);
-        canteenCode = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_QR_CODE));
+        canteenCode = getIntent().getStringExtra(CANTEEN_QR_CODE);
+        currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
 
         ButterKnife.bind(this);
 
@@ -91,6 +95,7 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
                 intent.putExtra("qrcode", hasil);
                 intent.putExtra("orderTableNo", arrOfStr[1]);
                 intent.putExtra("TotalPrice", totalPrice);
+                intent.putExtra(EXTRA_USER, currentOnlineUser);
                 startActivity(intent);
             }
         }
@@ -99,7 +104,6 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
             Toast.makeText(this, "Anda tidak berada di kantin yang bersangkutan", Toast.LENGTH_SHORT).show();
             final Handler handler = new Handler();
             handler.postDelayed(this::beginQRCode, 3000);
-
         }
     }
 }
