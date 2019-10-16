@@ -1,5 +1,6 @@
 package com.lahaptech.lahap.user.orderlocation.indirectorder;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +18,10 @@ import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.home.UserActivity;
+import com.lahaptech.lahap.user.payment.OnlinePaymentActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,7 +38,7 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
     TextView tv_time_pick;
     @BindView(R.id.next_btn)
     Button nextButton;
-    String total_amount = "" , time_pick= "", locationID ="";
+    String total_amount = "" , time_pick= "", locationID ="", saveCurrentDate, saveCurrentTime, orderID;
     User currentOnlineUser;
 
     @Override
@@ -50,6 +54,16 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
 
         tv_time_pick.setText(time_pick);
         tv_total_amount.setText(total_amount);
+
+        Calendar calendar = Calendar.getInstance();
+
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+        saveCurrentDate = currentDate.format(calendar.getTime());
+
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+        saveCurrentTime = currentTime.format(calendar.getTime());
+
+        orderID = saveCurrentDate + saveCurrentTime;
 
         nextButton.setOnClickListener(this);
     }
@@ -67,23 +81,28 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         Map<String, Object> order = new HashMap<>();
+        order.put("orderID", orderID);
         order.put("usernameIPB", usernameIPB);
         order.put("locationID", locationID);
         order.put("orderTime", time_pick);
         order.put("orderTable", null);
         order.put("orderType", orderType);
         order.put("orderStatus", "0");
-        order.put("payMethod", "Transfer");
+        order.put("payMethod", "transfer");
         order.put("transferProof", null);
         order.put("totalAmount", total);
 
-        db.collection("order").document()
+        db.collection("order").document(orderID)
                 .set(order)
 
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(IndirectOrderFormActivity.this, "Success Added", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(IndirectOrderFormActivity.this, OnlinePaymentActivity.class);
+                        intent.putExtra("total_amount", total);
+                        intent.putExtra("orderID", orderID);
+                        startActivity(intent);
                         finish();
                     }
                 })

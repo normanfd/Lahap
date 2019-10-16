@@ -2,6 +2,7 @@ package com.lahaptech.lahap.model;
 
 public class Order {
 
+    private String orderID;
     private String usernameIPB;
     private String locationID;
     private String orderTime;
@@ -16,7 +17,8 @@ public class Order {
     }
 
 
-    public Order(String usernameIPB, String locationID, String orderTime, String orderTable, String orderType, String orderStatus, String payMethod, String transferProof, String totalAmount) {
+    public Order(String orderID, String usernameIPB, String locationID, String orderTime, String orderTable, String orderType, String orderStatus, String payMethod, String transferProof, String totalAmount) {
+        this.orderID = orderID;
         this.usernameIPB = usernameIPB;
         this.locationID = locationID;
         this.orderTime = orderTime;
@@ -98,5 +100,13 @@ public class Order {
 
     public void setTotalAmount(String totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public String getOrderID() {
+        return orderID;
+    }
+
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
     }
 }

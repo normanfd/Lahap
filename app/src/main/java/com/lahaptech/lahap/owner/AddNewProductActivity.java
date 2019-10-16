@@ -3,8 +3,10 @@ package com.lahaptech.lahap.owner;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +25,8 @@ import com.google.firebase.storage.UploadTask;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -52,6 +56,7 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
     private Uri ImageUri;
     private StorageReference ProductImageRef;
     private ProgressDialog loadingBar;
+    Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +115,12 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
         LocationID = Prevalent.CurrentOnlineSeller.getLocationID();
 
         final StorageReference filePath = ProductImageRef.child(ImageUri.getLastPathSegment() + ProductRandomKey + ".jpg");
-        final UploadTask UploadTask = filePath.putFile(ImageUri);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+        byte[] img = baos.toByteArray();
+
+        final UploadTask UploadTask = filePath.putBytes(img);
         UploadTask.addOnFailureListener(e -> {
             String message = e.toString();
             Toast.makeText(AddNewProductActivity.this, "Error" + message, Toast.LENGTH_SHORT).show();
@@ -172,12 +182,18 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
         GalleryIntent.setType("image/*");
         startActivityForResult(GalleryIntent, GalleryPick);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == GalleryPick && resultCode == RESULT_OK && data!= null){
             ImageUri = data.getData();
             inputProductImage.setImageURI(ImageUri);
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), ImageUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

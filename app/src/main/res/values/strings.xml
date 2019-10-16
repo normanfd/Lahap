@@ -75,5 +75,6 @@
     <string name="add_to_cart">Add To Cart</string>
     <string name="order_type">Order Type</string>
     <string name="product_id">product_id</string>
+    <string name="online_payment">Online Payment</string>
 
 </resources>
