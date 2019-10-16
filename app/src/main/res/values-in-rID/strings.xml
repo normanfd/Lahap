@@ -34,13 +34,11 @@
     <string name="check_new_orders">Cek Orderan Baru</string>
     <string name="update_product">Update Produk</string>
     <string name="user_logout">Keluar</string>
-    <string name="setting">Pengaturan</string>
     <string name="todo">TODO</string>
     <string name="select_canteen">Pilih kantin</string>
     <string name="cart">Cart</string>
     <string name="account">Akun</string>
     <string name="delete_this_product">Hapus produk ini</string>
-    <string name="desc">Deskripsi</string>
     <string name="order_status">Status Pesanan</string>
     <string name="price">Harga : Rp</string>
     <string name="seller">"Penjual : "</string>

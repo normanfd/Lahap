@@ -28,7 +28,6 @@
     <string name="product_description">Product Description</string>
     <string name="food_image">food_image</string>
     <string name="add_product">Add Product</string>
-    <string name="desc">Description</string>
     <string name="todo">TODO</string>
     <string name="snack">Snack</string>
     <string name="apply_changes">Apply Changes</string>
@@ -38,7 +37,6 @@
     <string name="check_new_orders">Check new Orders</string>
     <string name="update_product">Update Product</string>
     <string name="user_logout">Logout</string>
-    <string name="setting">Setting</string>
 
     <string name="cart">Cart</string>
     <string name="login_seller">Login Seller</string>
