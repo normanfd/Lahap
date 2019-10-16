@@ -86,7 +86,7 @@ public class CartActivity extends AppCompatActivity {
 
         FirebaseFirestore cartListRef = FirebaseFirestore.getInstance();
         final Query query = cartListRef.collection("cart")
-                .whereEqualTo("username", Prevalent.UserName);
+                .whereEqualTo("username", Prevalent.CurrentOnlineUser.getUsername());
 
 
         query.addSnapshotListener((queryDocumentSnapshots, e) -> {

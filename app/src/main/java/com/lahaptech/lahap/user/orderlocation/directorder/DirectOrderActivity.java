@@ -20,6 +20,8 @@ import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.user.menuproduct.SelectMenuActivity;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +34,7 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
 
     @BindView(R.id.scan_qr_code)
     ZXingScannerView scannerView;
-    String canteenID="";
+    String canteenID = "";
     String canteenCode = "";
     String totalPrice = "";
 
@@ -82,18 +84,19 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
     @Override
     public void handleResult(Result rawResult) {
         String hasil = rawResult.getText();
-        String[] arrOfStr = hasil.split(",", 2);
-//        String[] dataPutExtra = canteenCode.split(",", 2);
 
-        if (arrOfStr[0].equals(canteenCode)){
-//            if (arrOfStr[0].equals(dataPutExtra[0])){
-            Toast.makeText(this, "Pesanan selesai, lanjutkan pembayaran", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(DirectOrderActivity.this, DirectOrderFormActivity.class);
-            intent.putExtra("qrcode", hasil);
-            intent.putExtra("orderTableNo", arrOfStr[1]);
-            intent.putExtra("TotalPrice", totalPrice);
-            startActivity(intent);
+        if (hasil.contains(",")){
+            String[] arrOfStr = hasil.split(",", 2);
+            if (arrOfStr[0].equals(canteenCode)) {
+                Toast.makeText(this, "Pesanan selesai, lanjutkan pembayaran", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(DirectOrderActivity.this, DirectOrderFormActivity.class);
+                intent.putExtra("qrcode", hasil);
+                intent.putExtra("orderTableNo", arrOfStr[1]);
+                intent.putExtra("TotalPrice", totalPrice);
+                startActivity(intent);
+            }
         }
+
         else {
             Toast.makeText(this, "Anda tidak berada di kantin yang bersangkutan", Toast.LENGTH_SHORT).show();
             final Handler handler = new Handler();

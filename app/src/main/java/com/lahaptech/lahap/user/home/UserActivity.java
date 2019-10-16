@@ -3,6 +3,7 @@ package com.lahaptech.lahap.user.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -19,11 +20,13 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.lahaptech.lahap.MainActivity;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.model.User;
 
 import io.paperdb.Paper;
 
 public class UserActivity extends AppCompatActivity {
 
+//    public static final String EXTRA_USER = "extra_person";
     private AppBarConfiguration mAppBarConfiguration;
     boolean doubleBackToExitPressedOnce = false;
 
@@ -46,6 +49,11 @@ public class UserActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        //parcelable User
+//        User user = getIntent().getParcelableExtra(EXTRA_USER);
+//        assert user != null;
+//        Log.d("username : ", user.getUsername());
 
     }
 
