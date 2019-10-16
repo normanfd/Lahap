@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.home.SelectCanteen;
+package com.lahaptech.lahap.user.home.selectcanteen;
 
 import android.view.View;
 import android.widget.TextView;

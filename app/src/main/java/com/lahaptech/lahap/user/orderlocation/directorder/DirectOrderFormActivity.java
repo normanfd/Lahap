@@ -72,7 +72,7 @@ public class DirectOrderFormActivity extends AppCompatActivity {
         order.put("transferProof", null);
         order.put("totalAmount", totalAmount);
 
-        db.collection("order").document(usernameIPB)
+        db.collection("order").document()
                 .set(order)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

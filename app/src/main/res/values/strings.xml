@@ -94,5 +94,6 @@
     <string name="reviews">Reviews</string>
     <string name="details">Details</string>
     <string name="add_to_cart">Add To Cart</string>
+    <string name="order_type">Order Type</string>
 
 </resources>

@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Seller;
 import com.lahaptech.lahap.owner.HomeOwnerActivity;
 
@@ -79,12 +80,12 @@ public class LoginSellerActivity extends AppCompatActivity implements View.OnCli
                 assert sellerData != null;
                 if (sellerData.getSellerID().equals(username)) {
                     if (sellerData.getPassword().equals(password)) {
-//                        Paper.book().write(Prevalent.UserName,username);
-//                        Paper.book().write(Prevalent.UserPasswordKey,password);
+                        Paper.book().write(Prevalent.UserName,username);
+                        Paper.book().write(Prevalent.UserPasswordKey,password);
                         Toast.makeText(LoginSellerActivity.this, "Welcome Owner, you are logged in successfully", Toast.LENGTH_SHORT).show();
                         loadingBar.dismiss();
                         Intent intent = new Intent(LoginSellerActivity.this, HomeOwnerActivity.class);
-//                        Prevalent.CurrentOnlineSeller = sellerData;
+                        Prevalent.CurrentOnlineSeller = sellerData;
                         startActivity(intent);
                     }
                     else {

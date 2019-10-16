@@ -77,7 +77,7 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
         order.put("transferProof", null);
         order.put("totalAmount", total);
 
-        db.collection("order").document(usernameIPB)
+        db.collection("order").document()
                 .set(order)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

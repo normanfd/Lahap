@@ -41,17 +41,23 @@
                 android:text="@string/product_description"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_marginTop="10dp"/>
+                android:layout_margin="15dp"/>
+
+
             <TextView
                 android:id="@+id/product_price_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/product_description_detail"
-                android:text="Product price"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/product_price"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
 
 <!--            <TextView-->
@@ -95,7 +101,7 @@
         android:layout_marginTop="10dp"
         android:scrollbarStyle="insideOverlay"
         app:initialNumber="1"
-        app:textSize="10sp" />
+        app:textSize="12sp" />
 
     <Button
         android:id="@+id/pd_add_to_cart_btn"

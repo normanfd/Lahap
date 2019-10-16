@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.lahaptech.lahap.R;
 
+import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
+import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
+
 public class IndirectOrderActivity extends AppCompatActivity{
 
 
@@ -27,7 +30,7 @@ public class IndirectOrderActivity extends AppCompatActivity{
 
         setContentView(R.layout.activity_indirect_order);
 
-        String locationID = getIntent().getStringExtra("qrcode");
+        String locationID = getIntent().getStringExtra(CANTEEN_QR_CODE);
         tvw= findViewById(R.id.textView1);
         picker= findViewById(R.id.timePicker1);
         picker.setIs24HourView(true);
