@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".user.home.orderstatus.OrderDetailActivity"></activity>
+        <activity android:name=".user.payment.OnlinePaymentActivity"></activity>
+        <activity android:name=".user.home.orderstatus.OrderDetailActivity" />
         <activity android:name=".user.orderlocation.directorder.DirectOrderFormActivity" />
         <activity android:name=".HasilActivity" /> <!-- <activity -->
         <!-- android:name=".user.UserActivity" -->
