@@ -35,14 +35,14 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
 
     public static final String CANTEEN_ID = "canteen id";
     public static final String CANTEEN_QR_CODE = "canteen code";
+    public static final String CANTEEN_NAME = "canteen name";
     @BindView(R.id.tab_layout_homeuser)
     TabLayout tabLayout;
     @BindView(R.id.view_page_fav)
     ViewPager viewPager;
     @BindView(R.id.fab)
     FloatingActionButton fab;
-    String canteenID = "";
-    String canteenCode = "";
+    String canteenID = "", canteenCode = "", canteenName="";
     User currentOnlineUser;
 
     @Override
@@ -55,8 +55,13 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
         currentOnlineUser = Objects.requireNonNull(getIntent().getParcelableExtra(EXTRA_USER));
 
         SelectMenuViewPager adapter = new SelectMenuViewPager(getSupportFragmentManager());
-        canteenID = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_ID));
-        canteenCode = Objects.requireNonNull(getIntent().getStringExtra(CANTEEN_QR_CODE));
+
+        canteenID = getIntent().getStringExtra(CANTEEN_ID);
+        canteenCode = getIntent().getStringExtra(CANTEEN_QR_CODE);
+        canteenName = getIntent().getStringExtra(CANTEEN_NAME);
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle(canteenName);
+
         adapter.addFragment(new FoodFragment(), getResources().getString(R.string.food));
         adapter.addFragment(new DrinkFragment(), getResources().getString(R.string.drink));
         adapter.addFragment(new SnackFragment(), getResources().getString(R.string.snack));
