@@ -32,7 +32,7 @@ import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID
 
 public class FoodFragment extends Fragment {
 
-    @BindView(R.id.rv_food)
+    @BindView(R.id.rv_product)
     RecyclerView recyclerView;
 
     public FoodFragment() {
@@ -43,7 +43,7 @@ public class FoodFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_food, container, false);
+        View view = inflater.inflate(R.layout.fragment_product, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -77,7 +77,7 @@ public class FoodFragment extends Fragment {
                             holder.price.setText(getResources().getString(R.string.price) + model.getPrice());
                             Picasso.get()
                                     .load(model.getImage())
-                                    .resize(100,100)
+                                    .resize(100,80)
                                     .into(holder.photo);
 
                             holder.itemView.setOnClickListener(v -> {

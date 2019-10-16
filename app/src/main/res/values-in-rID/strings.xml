@@ -42,7 +42,7 @@
     <string name="delete_this_product">Hapus produk ini</string>
     <string name="desc">Deskripsi</string>
     <string name="order_status">Status Pesanan</string>
-    <string name="price">Harga :</string>
+    <string name="price">Harga : Rp</string>
     <string name="seller">"Penjual : "</string>
     <string name="order_history">Riwayat Pesanan</string>
 
@@ -67,5 +67,6 @@
     <string name="order_detail">Order Detail</string>
     <string name="add_to_cart">Add To Cart</string>
     <string name="order_type">Order Type</string>
+    <string name="already_pay">Already Pay This One</string>
 
 </resources>

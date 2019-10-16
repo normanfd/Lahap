@@ -34,7 +34,7 @@ import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID
  * A simple {@link Fragment} subclass.
  */
 public class SnackFragment extends Fragment {
-    @BindView(R.id.rv_snack)
+    @BindView(R.id.rv_product)
     RecyclerView recyclerView;
 
     public SnackFragment() {
@@ -45,7 +45,7 @@ public class SnackFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_snack, container, false);
+        View view = inflater.inflate(R.layout.fragment_product, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -77,8 +77,10 @@ public class SnackFragment extends Fragment {
                             holder.name.setText(model.getProductName());
                             holder.seller.setText(getResources().getString(R.string.seller) + model.getSellerID());
                             holder.price.setText(getResources().getString(R.string.price) + model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.photo);
-
+                            Picasso.get()
+                                    .load(model.getImage())
+                                    .resize(100,80)
+                                    .into(holder.photo);
                             holder.itemView.setOnClickListener(v -> {
                                 Intent intent = new Intent(getActivity(), DetailActivity.class);
                                 intent.putExtra("pid", model.getProductID());
