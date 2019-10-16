@@ -33,12 +33,16 @@
             app:layout_constraintTop_toBottomOf="@+id/tab_layout_homeuser"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/buttons"
+        android:text="@string/cart"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_shopping_cart_black_24dp" />
+        android:layout_margin="10dp"
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
