@@ -58,7 +58,6 @@ public class DirectOrderFormActivity extends AppCompatActivity {
             radiobtn = findViewById(radioID);
             String payMethod = radiobtn.getText().toString();
             savetofirebase(usernameIPB, locationID, orderTable, orderType, payMethod, total);
-//            Log.d("radio checked", payMethod);
         });
     }
 
@@ -81,19 +80,13 @@ public class DirectOrderFormActivity extends AppCompatActivity {
 
         db.collection("order").document(usernameIPB)
                 .set(order)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(DirectOrderFormActivity.this, "Success Added", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(DirectOrderFormActivity.this, UserActivity.class);
-                        startActivity(intent);
-                    }
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(DirectOrderFormActivity.this, "Success Added", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(DirectOrderFormActivity.this, UserActivity.class);
+                    startActivity(intent);
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
+                .addOnFailureListener(e -> {
 
-                    }
                 });
     }
 }

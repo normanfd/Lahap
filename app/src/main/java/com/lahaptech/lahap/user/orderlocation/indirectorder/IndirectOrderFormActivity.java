@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
+import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.home.UserActivity;
 
 import java.util.HashMap;
@@ -22,6 +23,8 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
 
 public class IndirectOrderFormActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,8 +34,8 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
     TextView tv_time_pick;
     @BindView(R.id.next_btn)
     Button nextButton;
-
     String total_amount = "" , time_pick= "", locationID ="";
+    User currentOnlineUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,25 +44,22 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
         ButterKnife.bind(this);
 
         locationID = getIntent().getStringExtra("qrcode");
-
-
         time_pick = getIntent().getStringExtra("timeOrder");
         total_amount = getIntent().getStringExtra("totalAmount");
+        currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
 
         tv_time_pick.setText(time_pick);
         tv_total_amount.setText(total_amount);
 
         nextButton.setOnClickListener(this);
-
     }
 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.next_btn){
-            String usernameIPB = Prevalent.CurrentOnlineUser.getUsername();
+            String usernameIPB = currentOnlineUser.getUsername();
             String orderType = "indirect";
             saveToFirebase(usernameIPB, locationID, orderType, total_amount);
-
         }
     }
 
@@ -79,19 +79,13 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
 
         db.collection("order").document(usernameIPB)
                 .set(order)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(IndirectOrderFormActivity.this, "Success Added", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(IndirectOrderFormActivity.this, UserActivity.class);
-                        startActivity(intent);
-                    }
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(IndirectOrderFormActivity.this, "Success Added", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(IndirectOrderFormActivity.this, UserActivity.class);
+                    startActivity(intent);
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
+                .addOnFailureListener(e -> {
 
-                    }
                 });
 
     }
