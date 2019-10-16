@@ -22,7 +22,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@android:color/darker_gray"
+            android:background="#E0E2E0"
             android:contentDescription="@string/todo" />
     </LinearLayout>
     <ScrollView
