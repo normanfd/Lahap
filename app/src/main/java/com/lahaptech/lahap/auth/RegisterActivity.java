@@ -48,8 +48,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         ButterKnife.bind(this);
         loadingBar = new ProgressDialog(this);
         btn_register.setOnClickListener(this);
-
-
     }
 
     @Override
@@ -83,6 +81,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
         else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(RegisterActivity.this, R.string.valid_email_address, Toast.LENGTH_SHORT).show();
+        }
+        else if (!email.contains("@apps.ipb.ac.id")){
+            Toast.makeText(RegisterActivity.this, R.string.valid_email_ipb_address, Toast.LENGTH_SHORT).show();
         }
         else if(TextUtils.isEmpty(name)){
             Toast.makeText(RegisterActivity.this, "Please write your name", Toast.LENGTH_SHORT).show();
