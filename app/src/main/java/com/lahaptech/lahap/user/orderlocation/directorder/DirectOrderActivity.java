@@ -18,10 +18,6 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;

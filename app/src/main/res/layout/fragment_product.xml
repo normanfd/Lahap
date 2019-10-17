@@ -8,7 +8,8 @@
         android:id="@+id/rv_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_row_food"
-        />
+
+        android:layout_marginBottom="50dp"
+        tools:listitem="@layout/item_row_food" />
 
 </FrameLayout>

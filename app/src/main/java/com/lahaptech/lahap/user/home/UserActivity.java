@@ -3,7 +3,6 @@ package com.lahaptech.lahap.user.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -20,7 +19,6 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.lahaptech.lahap.MainActivity;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.model.User;
 
 import io.paperdb.Paper;
 
