@@ -3,6 +3,7 @@ package com.lahaptech.lahap.user.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -19,6 +20,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.lahaptech.lahap.MainActivity;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.model.Prevalent;
+import com.lahaptech.lahap.owner.HomeOwnerActivity;
 
 import io.paperdb.Paper;
 
@@ -90,5 +93,29 @@ public class UserActivity extends AppCompatActivity {
         Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(() -> doubleBackToExitPressedOnce=false, 2000);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Paper.init(this);
+        String UserName = Paper.book().read(Prevalent.UserName);
+        String UserPasswordKey = Paper.book().read(Prevalent.UserPasswordKey);
+        String SellerID = Paper.book().read(Prevalent.SellerID);
+        String SellerPassword = Paper.book().read(Prevalent.SellerPassword);
+
+        if (TextUtils.isEmpty(UserName) && TextUtils.isEmpty(UserPasswordKey)) {
+            if (!TextUtils.isEmpty(SellerID) && !TextUtils.isEmpty(SellerPassword)){
+                Intent intent = new Intent(UserActivity.this, HomeOwnerActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            else {
+                Intent intent = new Intent(UserActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }
+
     }
 }

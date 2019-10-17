@@ -20,13 +20,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".user.payment.OnlinePaymentActivity" />
         <activity android:name=".user.home.orderstatus.OrderDetailActivity" />
-
-        <activity android:name=".user.orderlocation.directorder.DirectOrderFormActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
-        <activity android:name=".HasilActivity" /> <!-- <activity -->
+        <activity
+            android:name=".user.orderlocation.directorder.DirectOrderFormActivity"
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- <activity -->
         <!-- android:name=".user.UserActivity" -->
         <!-- android:label="@string/title_activity_user"/> -->
         <activity
@@ -41,8 +47,9 @@
             android:label="@string/title_activity_user"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".auth.LoginSellerActivity" />
-        <activity android:name=".user.orderlocation.OrderLocationActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".user.orderlocation.OrderLocationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".user.cart.CartActivity" />
         <activity android:name=".owner.update.UpdateProductDetailActivity" />
         <activity android:name=".owner.update.UpdateProductActivity" />
@@ -59,11 +66,7 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
