@@ -1,6 +1,7 @@
 package com.lahaptech.lahap.user.orderlocation.indirectorder;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -36,12 +37,15 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
     Button nextButton;
     String total_amount = "" , time_pick= "", locationID ="", saveCurrentDate, saveCurrentTime, orderID;
     User currentOnlineUser;
+    ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_indirect_form);
         ButterKnife.bind(this);
+
+        loadingBar = new ProgressDialog(this);
 
         locationID = getIntent().getStringExtra("qrcode");
         time_pick = getIntent().getStringExtra("timeOrder");
@@ -69,6 +73,10 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
         if (view.getId() == R.id.next_btn){
             String usernameIPB = currentOnlineUser.getUsername();
             String orderType = "indirect";
+            loadingBar.setTitle("Indirect Order");
+            loadingBar.setMessage("Please wait while we are saving your order..");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
             saveToFirebase(usernameIPB, locationID, orderType, total_amount);
         }
     }
@@ -91,16 +99,14 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
         db.collection("order").document(orderID)
                 .set(order)
 
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(IndirectOrderFormActivity.this, "Success Added", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(IndirectOrderFormActivity.this, OnlinePaymentActivity.class);
-                        intent.putExtra("total_amount", total);
-                        intent.putExtra("orderID", orderID);
-                        startActivity(intent);
-                        finish();
-                    }
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(IndirectOrderFormActivity.this, "Success Added", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
+                    Intent intent = new Intent(IndirectOrderFormActivity.this, OnlinePaymentActivity.class);
+                    intent.putExtra("total_amount", total);
+                    intent.putExtra("orderID", orderID);
+                    startActivity(intent);
+                    finish();
                 })
                 .addOnFailureListener(e -> {
 
