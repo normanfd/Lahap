@@ -75,5 +75,6 @@
     <string name="product_id">product_id</string>
     <string name="online_payment">Online Payment</string>
     <string name="already_pay">Already Pay This One</string>
+    <string name="valid_email_ipb_address">Please Write valid email IPB adrress</string>
 
 </resources>

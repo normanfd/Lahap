@@ -1,5 +1,6 @@
 package com.lahaptech.lahap.user.orderlocation.directorder;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -28,11 +29,14 @@ public class DirectOrderFormActivity extends AppCompatActivity {
     Button btn;
     User currentOnlineUser;
     String total="", locationID ="", orderTable = "";
+    ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_direct_order_form);
+
+        loadingBar = new ProgressDialog(this);
 
         orderTable = getIntent().getStringExtra("orderTableNo");
         locationID = getIntent().getStringExtra("qrcode");
@@ -57,6 +61,10 @@ public class DirectOrderFormActivity extends AppCompatActivity {
             int radioID = rdo_payment.getCheckedRadioButtonId();
             radiobtn = findViewById(radioID);
             String payMethod = radiobtn.getText().toString();
+            loadingBar.setTitle("Direct Order");
+            loadingBar.setMessage("Please wait while we are saving your order..");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
             savetofirebase(usernameIPB, locationID, orderTable, orderType, payMethod, total);
         });
     }
@@ -83,6 +91,7 @@ public class DirectOrderFormActivity extends AppCompatActivity {
 
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(DirectOrderFormActivity.this, "Success Added", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
                     Intent intent = new Intent(DirectOrderFormActivity.this, UserActivity.class);
                     startActivity(intent);
                     finish();
