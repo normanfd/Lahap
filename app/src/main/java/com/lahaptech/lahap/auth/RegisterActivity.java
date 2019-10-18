@@ -124,6 +124,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         assert document != null;
                         if (document.exists()){
                             Toast.makeText(RegisterActivity.this, "Username ini telah terdaftar", Toast.LENGTH_SHORT).show();
+                            loadingBar.dismiss();
                         }
                         else {
                             db.collection("user").document(username)
