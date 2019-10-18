@@ -76,5 +76,7 @@
     <string name="online_payment">Online Payment</string>
     <string name="already_pay">Already Pay This One</string>
     <string name="valid_email_ipb_address">Please Write valid email IPB adrress</string>
+    <string name="menu_detail">Menu Detail</string>
+    <string name="nutrition_detail">Nutrition Detail</string>
 
 </resources>

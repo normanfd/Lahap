@@ -91,12 +91,17 @@ public class LoginSellerActivity extends AppCompatActivity implements View.OnCli
                         Paper.book().write(Prevalent.SellerPassword,hash);
                         Toast.makeText(LoginSellerActivity.this, "Welcome Owner, you are logged in successfully", Toast.LENGTH_SHORT).show();
                         loadingBar.dismiss();
+
                         Seller seller = new Seller();
                         seller.setSellerID(sellerID);
+
                         Intent intent = new Intent(LoginSellerActivity.this, HomeOwnerActivity.class);
                         intent.putExtra(EXTRA_SELLER, seller);
+
                         Prevalent.CurrentOnlineSeller = sellerData;
+
                         startActivity(intent);
+                        finish();
                     }
                     else {
                         loadingBar.dismiss();

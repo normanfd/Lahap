@@ -24,6 +24,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
+import com.lahaptech.lahap.model.Seller;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -35,6 +36,8 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.lahaptech.lahap.seller.HomeOwnerActivity.EXTRA_SELLER;
 
 public class AddNewProductActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -48,10 +51,24 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
     EditText inputProductDescription;
     @BindView(R.id.product_price)
     EditText inputProductPrice;
+    @BindView(R.id.product_menu_detail)
+    EditText inputMenuDetail;
+    @BindView(R.id.product_nutrition_detail)
+    EditText inputNutririon;
 
 
-    private String ProductRandomKey, SellerID, ProductName, CategoryName,  ProductDescription, ProductPrice,
-             DownloadImageUrl, saveCurrentDate, saveCurrentTime, IsAvailable, LocationID;
+    private String ProductRandomKey;
+    private String SellerID;
+    private String ProductName;
+    private String CategoryName;
+    private String ProductDescription;
+    private String ProductPrice;
+    private String DownloadImageUrl;
+    private String saveCurrentDate;
+    private String saveCurrentTime;
+    private String LocationID;
+    private String MenuDetail;
+    private String NutritionDetail;
     private static final int GalleryPick = 1;
     private Uri ImageUri;
     private StorageReference ProductImageRef;
@@ -77,9 +94,11 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
         ProductName = inputProductName.getText().toString();
         ProductDescription = inputProductDescription.getText().toString();
         ProductPrice = inputProductPrice.getText().toString();
+        MenuDetail = inputMenuDetail.getText().toString();
+        NutritionDetail = inputNutririon.getText().toString();
 
         if(ImageUri == null){
-            Toast.makeText(this, "Product Image is mandatory...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please Upload Product Image", Toast.LENGTH_SHORT).show();
         }
         else if(TextUtils.isEmpty(ProductName)){
             Toast.makeText(this, "Please write product name", Toast.LENGTH_SHORT).show();
@@ -89,6 +108,9 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
         }
         else if(TextUtils.isEmpty(ProductPrice)){
             Toast.makeText(this, "Please write product price", Toast.LENGTH_SHORT).show();
+        }
+        else if(TextUtils.isEmpty(MenuDetail)){
+            Toast.makeText(this, "Please write Menu Detail", Toast.LENGTH_SHORT).show();
         }
         else{
             StoreProductInformation();
@@ -110,9 +132,15 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentTime.format(calendar.getTime());
 
-        ProductRandomKey = saveCurrentDate + saveCurrentTime;
-        SellerID = Prevalent.CurrentOnlineSeller.getSellerID();
-        LocationID = Prevalent.CurrentOnlineSeller.getLocationID();
+        ProductRandomKey = saveCurrentDate + saveCurrentTime + ProductName;
+        ProductRandomKey = ProductRandomKey.replaceAll("\\s+", "");
+
+        Seller seller = getIntent().getParcelableExtra(EXTRA_SELLER);
+        assert seller != null;
+        SellerID = seller.getSellerID();
+        LocationID = seller.getLocationID();
+//        SellerID = Prevalent.CurrentOnlineSeller.getSellerID();
+//        LocationID = Prevalent.CurrentOnlineSeller.getLocationID();
 
         final StorageReference filePath = ProductImageRef.child(ImageUri.getLastPathSegment() + ProductRandomKey + ".jpg");
 
@@ -146,6 +174,8 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
     }
 
     private void SaveProductToFirestore(){
+        String isAvailable = "1";
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> product = new HashMap<>();
 
@@ -158,15 +188,15 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
         product.put("image", DownloadImageUrl);
         product.put("price", ProductPrice);
         product.put("time", saveCurrentTime);
-        product.put("isAvailable", "1");
+        product.put("isAvailable", isAvailable);
         product.put("locationID", LocationID);
-        Log.d("cekdulu", ProductRandomKey);
+        product.put("menuDetail", MenuDetail);
+        product.put("nutritionDetail", NutritionDetail);
 
         db.collection("product").document(ProductRandomKey).set(product).addOnSuccessListener(aVoid -> {
             loadingBar.dismiss();
             Toast.makeText(AddNewProductActivity.this, "Product is added successfully", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(AddNewProductActivity.this,HomeOwnerActivity.class);
-            startActivity(intent);
+            finish();
         }).addOnFailureListener(e -> {
             loadingBar.dismiss();
             String message = e.toString();

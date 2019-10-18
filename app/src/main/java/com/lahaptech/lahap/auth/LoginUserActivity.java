@@ -17,7 +17,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.User;
-import com.lahaptech.lahap.seller.HomeOwnerActivity;
 import com.lahaptech.lahap.user.index.UserActivity;
 
 import java.math.BigInteger;
@@ -30,7 +29,6 @@ import io.paperdb.Paper;
 
 import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
-//import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
 
 public class LoginUserActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.login_username)
@@ -90,21 +88,19 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
                 assert userData != null;
                 if (userData.getUsername().equals(username)) {
                     if (userData.getPassword().equals(hash)) {
-                        if (ParentDbName.equals("seller")) {
-                            Toast.makeText(LoginUserActivity.this, "Welcome Owner, you are logged in succesfully", Toast.LENGTH_SHORT).show();
-                            loadingBar.dismiss();
-                            Intent intent = new Intent(LoginUserActivity.this, HomeOwnerActivity.class);
-                            startActivity(intent);
-                        } else {
-                            Paper.book().write(Prevalent.UserName,username);
-                            Paper.book().write(Prevalent.UserPasswordKey,hash);
-                            Toast.makeText(LoginUserActivity.this, "Login success", Toast.LENGTH_SHORT).show();
-                            loadingBar.dismiss();
-                            Intent intent = new Intent(LoginUserActivity.this, UserActivity.class);
-                            intent.putExtra(EXTRA_USER, userData);
-                            Prevalent.CurrentOnlineUser = userData;
-                            startActivity(intent);
-                        }
+
+                        Paper.book().write(Prevalent.UserName,username);
+                        Paper.book().write(Prevalent.UserPasswordKey,hash);
+
+                        Toast.makeText(LoginUserActivity.this, "Login success", Toast.LENGTH_SHORT).show();
+                        loadingBar.dismiss();
+
+                        Intent intent = new Intent(LoginUserActivity.this, UserActivity.class);
+                        intent.putExtra(EXTRA_USER, userData);
+                        Prevalent.CurrentOnlineUser = userData;
+
+                        startActivity(intent);
+                        finish();
                     }
                     else {
                         loadingBar.dismiss();
@@ -117,8 +113,6 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
                 loadingBar.dismiss();
             }
         });
-
-
     }
 
     public static String MD5_Hash(String s) {
