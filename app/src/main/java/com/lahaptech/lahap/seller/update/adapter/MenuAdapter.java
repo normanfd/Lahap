@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.owner.update.adapter;
+package com.lahaptech.lahap.seller.update.adapter;
 
 import android.view.View;
 import android.widget.ImageView;

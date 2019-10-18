@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.owner.update.fragment;
+package com.lahaptech.lahap.seller.update.fragment;
 
 import android.view.View;
 import android.widget.ImageView;

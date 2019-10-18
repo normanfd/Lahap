@@ -21,15 +21,19 @@ import com.google.android.material.navigation.NavigationView;
 import com.lahaptech.lahap.MainActivity;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
-import com.lahaptech.lahap.owner.HomeOwnerActivity;
+import com.lahaptech.lahap.model.Seller;
+import com.lahaptech.lahap.seller.HomeOwnerActivity;
 
 import io.paperdb.Paper;
+
+import static com.lahaptech.lahap.seller.HomeOwnerActivity.EXTRA_SELLER;
 
 public class UserActivity extends AppCompatActivity {
 
     public static final String EXTRA_USER = "extra_person";
     private AppBarConfiguration mAppBarConfiguration;
     boolean doubleBackToExitPressedOnce = false;
+    Seller sellerData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +111,8 @@ public class UserActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(UserName) && TextUtils.isEmpty(UserPasswordKey)) {
             if (!TextUtils.isEmpty(SellerID) && !TextUtils.isEmpty(SellerPassword)){
                 Intent intent = new Intent(UserActivity.this, HomeOwnerActivity.class);
+                sellerData.setSellerID(SellerID);
+                intent.putExtra(EXTRA_SELLER, sellerData);
                 startActivity(intent);
                 finish();
             }

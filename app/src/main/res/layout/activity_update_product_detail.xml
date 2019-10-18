@@ -10,7 +10,7 @@
     android:layout_marginEnd="15dp"
     android:layout_marginBottom="15dp"
     app:cardElevation="15dp"
-    tools:context=".owner.update.UpdateProductDetailActivity">
+    tools:context=".seller.update.UpdateProductDetailActivity">
 
 
     <RelativeLayout

@@ -1,6 +1,9 @@
 package com.lahaptech.lahap.model;
 
-public class Seller {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Seller implements Parcelable {
     private String email, isActive, locationID, noTelp, password, sellerID, storeAddress, storeImage, storeName;
 
     public Seller() {
@@ -17,6 +20,30 @@ public class Seller {
         this.storeImage = storeImage;
         this.storeName = storeName;
     }
+
+    protected Seller(Parcel in) {
+        email = in.readString();
+        isActive = in.readString();
+        locationID = in.readString();
+        noTelp = in.readString();
+        password = in.readString();
+        sellerID = in.readString();
+        storeAddress = in.readString();
+        storeImage = in.readString();
+        storeName = in.readString();
+    }
+
+    public static final Creator<Seller> CREATOR = new Creator<Seller>() {
+        @Override
+        public Seller createFromParcel(Parcel in) {
+            return new Seller(in);
+        }
+
+        @Override
+        public Seller[] newArray(int size) {
+            return new Seller[size];
+        }
+    };
 
     public String getEmail() {
         return email;
@@ -88,5 +115,23 @@ public class Seller {
 
     public void setStoreName(String storeName) {
         this.storeName = storeName;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(email);
+        parcel.writeString(isActive);
+        parcel.writeString(locationID);
+        parcel.writeString(noTelp);
+        parcel.writeString(password);
+        parcel.writeString(sellerID);
+        parcel.writeString(storeAddress);
+        parcel.writeString(storeImage);
+        parcel.writeString(storeName);
     }
 }

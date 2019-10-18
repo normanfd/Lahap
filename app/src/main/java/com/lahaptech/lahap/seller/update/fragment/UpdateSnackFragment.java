@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.owner.update.fragment;
+package com.lahaptech.lahap.seller.update.fragment;
 
 
 import android.content.Intent;
@@ -23,7 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Product;
-import com.lahaptech.lahap.owner.update.UpdateProductDetailActivity;
+import com.lahaptech.lahap.seller.update.UpdateProductDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;

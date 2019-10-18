@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.owner.update;
+package com.lahaptech.lahap.seller.update;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
