@@ -116,11 +116,11 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-            else {
-                Intent intent = new Intent(UserActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
+//            else {
+//                Intent intent = new Intent(UserActivity.this, MainActivity.class);
+//                startActivity(intent);
+//                finish();
+//            }
         }
 
     }
