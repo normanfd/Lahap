@@ -83,7 +83,7 @@ public class DrinkFragment extends Fragment {
                         @Override
                         protected void onBindViewHolder(@NonNull MenuViewHolder holder, int position, @NonNull Product model) {
                             holder.name.setText(model.getProductName());
-                            holder.seller.setText(getResources().getString(R.string.seller) + model.getSellerID());
+                            holder.desc.setText(model.getDescription());
                             holder.price.setText(getResources().getString(R.string.price) + model.getPrice());
                             Picasso.get()
                                     .load(model.getImage())

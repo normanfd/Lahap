@@ -13,13 +13,13 @@ class MenuViewHolder extends RecyclerView.ViewHolder {
     TextView name;
     ImageView photo;
     TextView price;
-    TextView seller;
+    TextView desc;
 
     MenuViewHolder(@NonNull View itemView) {
         super(itemView);
         name = itemView.findViewById(R.id.frag_food_name);
         photo = itemView.findViewById(R.id.frag_food_image);
         price = itemView.findViewById(R.id.frag_food_price);
-        seller = itemView.findViewById(R.id.frag_food_seller);
+        desc = itemView.findViewById(R.id.frag_food_desc);
     }
 }

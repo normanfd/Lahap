@@ -20,9 +20,11 @@ import com.lahaptech.lahap.model.Product;
 import com.lahaptech.lahap.model.User;
 import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -40,13 +42,17 @@ public class DetailActivity extends AppCompatActivity {
     TextView desc;
     @BindView(R.id.product_price_detail)
     TextView price;
+    @BindView(R.id.menu_detail)
+    TextView menu;
+    @BindView(R.id.nutrition_detail)
+    TextView nutrition;
     @BindView(R.id.number_btn)
     ElegantNumberButton numberButton;
     @BindView(R.id.pd_add_to_cart_btn)
     Button btn_add_cart;
     ProgressDialog loadingBar;
 
-    String foodID, category, sellerID, locationID;
+    String foodID, category, sellerID, locationID, productPrice="";
     String state="normal";
     User currentOnlineUser;
 
@@ -98,7 +104,7 @@ public class DetailActivity extends AppCompatActivity {
         Map<String, Object> cart = new HashMap<>();
         cart.put("productName", name.getText().toString());
         cart.put("productID", foodID);
-        cart.put("price", price.getText().toString());
+        cart.put("price", productPrice);
         cart.put("quantity", numberButton.getNumber());
         cart.put("date",saveCurrentDate);
         cart.put("time",saveCurrentTime);
@@ -113,10 +119,9 @@ public class DetailActivity extends AppCompatActivity {
                     loadingBar.dismiss();
                     Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
                     finish();
-                }).addOnFailureListener(e -> {
-
-                });
+                }).addOnFailureListener(e -> { });
     }
+    @SuppressLint("SetTextI18n")
     private void getProductDetail(String foodID) {
         FirebaseFirestore productRef = FirebaseFirestore.getInstance();
         DocumentReference docRef = productRef.collection("product").document(foodID);
@@ -125,8 +130,12 @@ public class DetailActivity extends AppCompatActivity {
                 Product productData = documentSnapshot.toObject(Product.class);
                 assert productData != null;
                 name.setText(productData.getProductName());
-                price.setText(productData.getPrice());
+                productPrice = productData.getPrice();
+                String str = NumberFormat.getNumberInstance(Locale.US).format(Integer.valueOf(productPrice));
+                price.setText("Rp" + str + ".00");
                 desc.setText(productData.getDescription());
+                menu.setText(productData.getMenuDetail());
+                nutrition.setText(productData.getNutritionDetail());
                 Picasso.get().load(productData.getImage()).resize(200,160).into(photo);
             }
         });

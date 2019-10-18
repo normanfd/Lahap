@@ -73,7 +73,7 @@
             tools:text="1500 USD" />
 
         <TextView
-            android:id="@+id/frag_food_seller"
+            android:id="@+id/frag_food_desc"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

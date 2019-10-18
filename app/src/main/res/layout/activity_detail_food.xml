@@ -6,21 +6,23 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     tools:context=".user.detailproduct.DetailActivity">
+
     <ScrollView
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        >
+        android:layout_height="616dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/product_image_detail"
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
-                android:scaleType="centerCrop"
                 android:layout_margin="15dp"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:id="@+id/product_name_detail"
@@ -38,10 +40,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/product_name_detail"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/product_description"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_margin="15dp"/>
+                android:textStyle="bold" />
 
 
             <TextView
@@ -50,58 +53,99 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/product_description_detail"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/product_price"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_menu_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/product_price_detail"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
-                android:layout_marginBottom="15dp"
-                android:text="@string/product_price"
+                android:text="@string/menu_detail"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/menu_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_menu_detail"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/product_description"
+                android:textSize="16sp" />
 
-<!--            <TextView-->
+            <TextView
+                android:id="@+id/tv_nutrition_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/menu_detail"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:text="@string/nutrition_detail"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-<!--                android:id="@+id/overview"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/number_btn"-->
-<!--                android:layout_marginLeft="50dp"-->
-<!--                android:layout_marginRight="50dp"-->
-<!--                android:text="Tambahkan overview jumlah ukuran masing2 produk misalnya XL = 20 dan M =30"-->
-<!--                android:visibility="invisible"-->
-<!--                android:textSize="16sp"-->
-<!--                android:textStyle="bold"-->
-<!--                android:gravity="center"-->
-<!--                android:layout_marginTop="20dp"/>-->
-<!--            <EditText-->
-<!--                android:id="@+id/keterangan_value"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@+id/overview"-->
-<!--                android:inputType="text"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:padding="20dp"-->
-<!--                android:layout_marginLeft="45dp"-->
-<!--                android:layout_marginRight="45dp"-->
-<!--                android:background="@drawable/input_design"-->
-<!--                android:visibility="invisible"-->
-<!--                />-->
+            <TextView
+                android:id="@+id/nutrition_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_nutrition_detail"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/nutrition_detail"
+                android:textSize="16sp" />
+
 
         </RelativeLayout>
 
     </ScrollView>
 
-    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-        android:id="@+id/number_btn"
-        android:layout_width="wrap_content"
+    <GridLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/pd_add_to_cart_btn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:scrollbarStyle="insideOverlay"
-        app:initialNumber="1"
-        app:textSize="12sp" />
+        android:layout_above="@id/pd_add_to_cart_btn">
+
+        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+            android:id="@+id/number_btn"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:scrollbarStyle="insideOverlay"
+            app:initialNumber="1"
+            app:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:text="Mau Pesan Berapa?"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+    </GridLayout>
+
 
     <Button
         android:id="@+id/pd_add_to_cart_btn"
@@ -112,6 +156,6 @@
         android:text="@string/add_to_cart"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:layout_margin="10dp" />
+        android:layout_margin="5dp" />
 
 </RelativeLayout>
