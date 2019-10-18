@@ -45,33 +45,22 @@ public class UpdateProductDetailActivity extends AppCompatActivity implements Vi
     EditText menu;
 
 
-    private String productID = "";
     DocumentReference docRef;
     String pName, pPrice, pDesc, pImage, pMenu, pNutrition;
+    String productID="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_product_detail);
 
-        Calendar calendar = Calendar.getInstance();
-
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
-        String saveCurrentDate = currentDate.format(calendar.getTime());
-
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-        String saveCurrentTime = currentTime.format(calendar.getTime());
-
-        String ProductRandomKey = saveCurrentDate + saveCurrentTime;
-        productID = ProductRandomKey.replaceAll("\\s+", "");
-
-        String pid  = getIntent().getStringExtra("pid");
+        productID  = getIntent().getStringExtra("pid");
         String category = getIntent().getStringExtra("category");
 
         assert category != null;
         FirebaseFirestore productRef = FirebaseFirestore.getInstance();
-        assert pid != null;
-        docRef = productRef.collection("product").document(pid);
+        assert productID != null;
+        docRef = productRef.collection("product").document(productID);
 
 
         ButterKnife.bind(this);
@@ -154,7 +143,7 @@ public class UpdateProductDetailActivity extends AppCompatActivity implements Vi
                 desc.setText(pDesc);
                 nutrition.setText(pNutrition);
                 menu.setText(pMenu);
-                Picasso.get().load(pImage).into(imageView);
+                Picasso.get().load(pImage).resize(200,160).into(imageView);
             }
         });
 

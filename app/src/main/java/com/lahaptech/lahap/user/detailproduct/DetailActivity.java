@@ -127,7 +127,7 @@ public class DetailActivity extends AppCompatActivity {
                 name.setText(productData.getProductName());
                 price.setText(productData.getPrice());
                 desc.setText(productData.getDescription());
-                Picasso.get().load(productData.getImage()).into(photo);
+                Picasso.get().load(productData.getImage()).resize(200,160).into(photo);
             }
         });
 
