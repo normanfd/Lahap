@@ -1,6 +1,7 @@
 package com.lahaptech.lahap.user.cart;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -58,12 +59,14 @@ public class CartActivity extends AppCompatActivity {
     String canteenCode = "";
     String canteenID = "";
     User currentOnlineUser;
+    ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         ButterKnife.bind(this);
+        loadingBar = new ProgressDialog(this);
 
         Objects.requireNonNull(getSupportActionBar()).setTitle("Cart");
         canteenID = getIntent().getStringExtra(CANTEEN_ID);
@@ -136,10 +139,10 @@ public class CartActivity extends AppCompatActivity {
 //                                        finish();
 //                                    }
                                     if (i == 0) {
+                                        recreate();
                                         documentReference.delete().addOnCompleteListener(task -> {
                                             Toast.makeText(CartActivity.this, "Item removed successfully", Toast.LENGTH_SHORT).show();
                                         });
-
                                     }
 
                                 });
