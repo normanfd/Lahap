@@ -24,10 +24,10 @@
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
-        android:id="@+id/nav_cart"
-        android:name="com.lahaptech.lahap.user.index.cart.ToolsFragment"
+        android:id="@+id/nav_help"
+        android:name="com.lahaptech.lahap.user.index.help.HelpFragment"
         android:label="@string/cart"
-        tools:layout="@layout/fragment_tools" />
+        tools:layout="@layout/fragment_help" />
 
     <fragment
         android:id="@+id/nav_logout"

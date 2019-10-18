@@ -75,14 +75,19 @@ public class CartActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         nextProcessBtn.setOnClickListener(v -> {
+            if (overTotalPrice == 0){
+                Toast.makeText(this, "Your cart is Empty", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Intent intent = new Intent(CartActivity.this, OrderLocationActivity.class);
+                intent.putExtra("TotalPrice", String.valueOf(overTotalPrice));
+                intent.putExtra(CANTEEN_ID, canteenID);
+                intent.putExtra(CANTEEN_QR_CODE, canteenCode);
+                intent.putExtra(EXTRA_USER, currentOnlineUser);
+                startActivity(intent);
+                finish();
+            }
 //            txtTotalAmount.setText("Total Price = " + String.valueOf(overTotalPrice));
-            Intent intent = new Intent(CartActivity.this, OrderLocationActivity.class);
-            intent.putExtra("TotalPrice", String.valueOf(overTotalPrice));
-            intent.putExtra(CANTEEN_ID, canteenID);
-            intent.putExtra(CANTEEN_QR_CODE, canteenCode);
-            intent.putExtra(EXTRA_USER, currentOnlineUser);
-            startActivity(intent);
-            finish();
         });
 
         listcart();
@@ -140,8 +145,6 @@ public class CartActivity extends AppCompatActivity {
                                 });
                                 builder.show();
                             });
-
-
                         }
 
                         @NonNull

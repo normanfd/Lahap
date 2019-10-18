@@ -1,6 +1,7 @@
 package com.lahaptech.lahap.user.detailproduct;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Product;
+import com.lahaptech.lahap.model.User;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -25,6 +27,8 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -40,9 +44,11 @@ public class DetailActivity extends AppCompatActivity {
     ElegantNumberButton numberButton;
     @BindView(R.id.pd_add_to_cart_btn)
     Button btn_add_cart;
+    ProgressDialog loadingBar;
 
     String foodID, category, sellerID, locationID;
     String state="normal";
+    User currentOnlineUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +56,12 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_food);
 
         ButterKnife.bind(this);
+        loadingBar = new ProgressDialog(this);
+
+        currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
+        assert currentOnlineUser != null;
+        Log.d("Coba kita lihat siapa", currentOnlineUser.getUsername());
         foodID = getIntent().getStringExtra("pid");
-        assert foodID != null;
-        Log.i("PID", foodID);
         category = getIntent().getStringExtra("category");
         sellerID = getIntent().getStringExtra("sellerID");
         locationID = getIntent().getStringExtra("locationID");
@@ -67,6 +76,10 @@ public class DetailActivity extends AppCompatActivity {
                 Toast.makeText(DetailActivity.this, "you can add purchase products, once your order is shipped or confirmed", Toast.LENGTH_LONG ).show();
             }
             else {
+                loadingBar.setTitle("Adding to cart");
+                loadingBar.setMessage(getResources().getString(R.string.checking_credentials));
+                loadingBar.setCanceledOnTouchOutside(false);
+                loadingBar.show();
                 addingToCartList();
             }
         });
@@ -91,12 +104,13 @@ public class DetailActivity extends AppCompatActivity {
         cart.put("time",saveCurrentTime);
         cart.put("category", category);
         cart.put("overview",null);
-        cart.put("username", Prevalent.CurrentOnlineUser.getUsername());
+        cart.put("username", currentOnlineUser.getUsername());
         cart.put("sellerID", sellerID);
         cart.put("locationID", locationID);
 
         db.collection("cart").document(foodID)
                 .set(cart).addOnCompleteListener(task -> {
+                    loadingBar.dismiss();
                     Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
                     finish();
                 }).addOnFailureListener(e -> {

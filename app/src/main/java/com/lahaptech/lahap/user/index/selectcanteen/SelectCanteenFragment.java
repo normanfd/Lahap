@@ -1,6 +1,7 @@
 package com.lahaptech.lahap.user.index.selectcanteen;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,7 +55,12 @@ public class SelectCanteenFragment extends Fragment {
         assert user != null;
         Log.d("LOG USERNAME", user.getUsername());
 
+        checkinternetconnection();
         setupRecyclerView(user);
+    }
+
+    private void checkinternetconnection() {
+        //disini perlu cek koneksi internet
     }
 
     private void setupRecyclerView(User user) {

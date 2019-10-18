@@ -12,9 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
 
@@ -103,33 +107,49 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void registerToFirestore(String name, String username, String email, String phone, String password) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String, Object> user = new HashMap<>();
-
         String hash = MD5_Hash(password);
 
+        Map<String, Object> user = new HashMap<>();
         user.put("name", name);
         user.put("username", username);
         user.put("email", email);
         user.put("phone", phone);
         user.put("password",hash);
 
-        db.collection("user").document(username)
-                .set(user)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(RegisterActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
-                        loadingBar.dismiss();
-                        Log.d("Cek", "DocumentSnapshot added with ID: " + username);
-                        Intent intent = new Intent(RegisterActivity.this, LoginUserActivity.class);
-                        RegisterActivity.this.startActivity(intent);
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    loadingBar.dismiss();
-                    Toast.makeText(RegisterActivity.this, R.string.try_again_later, Toast.LENGTH_SHORT).show();
-                });
 
+        db.collection("user").document(username)
+                .get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()){
+                        DocumentSnapshot document = task.getResult();
+                        assert document != null;
+                        if (document.exists()){
+                            Toast.makeText(RegisterActivity.this, "Username ini telah terdaftar", Toast.LENGTH_SHORT).show();
+                            loadingBar.dismiss();
+                        }
+                        else {
+                            db.collection("user").document(username)
+                                    .set(user)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Toast.makeText(RegisterActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
+                                            loadingBar.dismiss();
+                                            Log.d("Cek", "DocumentSnapshot added with ID: " + username);
+                                            Intent intent = new Intent(RegisterActivity.this, LoginUserActivity.class);
+                                            RegisterActivity.this.startActivity(intent);
+                                        }
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        loadingBar.dismiss();
+                                        Toast.makeText(RegisterActivity.this, R.string.try_again_later, Toast.LENGTH_SHORT).show();
+                                    });
+                        }
+                    }
+                    else {
+                        Log.d("Failed snapshot Data", "get failed with ", task.getException());
+                    }
+
+                });
     }
 
 

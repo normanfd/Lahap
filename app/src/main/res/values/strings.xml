@@ -78,5 +78,6 @@
     <string name="valid_email_ipb_address">Please Write valid email IPB adrress</string>
     <string name="menu_detail">Menu Detail</string>
     <string name="nutrition_detail">Nutrition Detail</string>
+    <string name="help">help</string>
 
 </resources>
