@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.home.orderstatus;
+package com.lahaptech.lahap.user.index.orderstatus;
 
 
 import android.os.Bundle;
@@ -18,7 +18,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Order;
-import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.User;
 
 import java.util.Objects;
@@ -26,7 +25,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
+import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 /**
  * A simple {@link Fragment} subclass.

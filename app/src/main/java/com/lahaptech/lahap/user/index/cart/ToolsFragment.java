@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.home.cart;
+package com.lahaptech.lahap.user.index.cart;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

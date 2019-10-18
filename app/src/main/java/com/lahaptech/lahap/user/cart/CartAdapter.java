@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lahaptech.lahap.ItemClickListener;
+import com.lahaptech.lahap.main_activity.ItemClickListener;
 import com.lahaptech.lahap.R;
 
 class CartAdapter extends RecyclerView.ViewHolder implements View.OnClickListener {

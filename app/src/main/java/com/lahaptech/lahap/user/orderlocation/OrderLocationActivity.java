@@ -16,7 +16,7 @@ import com.lahaptech.lahap.user.orderlocation.indirectorder.IndirectOrderActivit
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
+import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
 

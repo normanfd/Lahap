@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.lahaptech.lahap.MainActivity;
+import com.lahaptech.lahap.main_activity.MainActivity;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Seller;
 import com.lahaptech.lahap.seller.order.CheckOrderActivity;

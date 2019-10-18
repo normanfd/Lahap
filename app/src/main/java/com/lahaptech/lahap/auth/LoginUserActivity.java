@@ -18,7 +18,7 @@ import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.seller.HomeOwnerActivity;
-import com.lahaptech.lahap.user.home.UserActivity;
+import com.lahaptech.lahap.user.index.UserActivity;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -28,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
-import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
+import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 //import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
 

@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.home;
+package com.lahaptech.lahap.user.index;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +18,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
-import com.lahaptech.lahap.MainActivity;
+import com.lahaptech.lahap.main_activity.MainActivity;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Seller;

@@ -1,4 +1,4 @@
-package com.lahaptech.lahap;
+package com.lahaptech.lahap.main_activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,13 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.User;
-import com.lahaptech.lahap.user.home.UserActivity;
+import com.lahaptech.lahap.user.index.UserActivity;
 
 import io.paperdb.Paper;
 
-import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
+import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 public class SplashActivity extends AppCompatActivity {
 
