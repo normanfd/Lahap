@@ -18,6 +18,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -102,11 +105,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> user = new HashMap<>();
 
+        String hash = MD5_Hash(password);
+
         user.put("name", name);
         user.put("username", username);
         user.put("email", email);
         user.put("phone", phone);
-        user.put("password",password);
+        user.put("password",hash);
 
         db.collection("user").document(username)
                 .set(user)
@@ -126,6 +131,23 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 });
 
     }
+
+
+    public static String MD5_Hash(String s) {
+        MessageDigest m = null;
+
+        try {
+            m = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        assert m != null;
+        m.update(s.getBytes(),0,s.length());
+        return new BigInteger(1, m.digest()).toString(16);
+    }
+
+
 
 
 }

@@ -19,6 +19,10 @@ import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Seller;
 import com.lahaptech.lahap.owner.HomeOwnerActivity;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
@@ -73,15 +77,16 @@ public class LoginSellerActivity extends AppCompatActivity implements View.OnCli
                 Log.w("fail", "Listen failed.", e);
                 return;
             }
+            String hash = MD5_Hash(password);
 
             if (documentSnapshot != null && documentSnapshot.exists()) {
                 Log.d("get", "Current data: " + documentSnapshot.getData());
                 Seller sellerData = documentSnapshot.toObject(Seller.class);
                 assert sellerData != null;
                 if (sellerData.getSellerID().equals(username)) {
-                    if (sellerData.getPassword().equals(password)) {
+                    if (sellerData.getPassword().equals(hash)) {
                         Paper.book().write(Prevalent.SellerID,username);
-                        Paper.book().write(Prevalent.SellerPassword,password);
+                        Paper.book().write(Prevalent.SellerPassword,hash);
                         Toast.makeText(LoginSellerActivity.this, "Welcome Owner, you are logged in successfully", Toast.LENGTH_SHORT).show();
                         loadingBar.dismiss();
                         Intent intent = new Intent(LoginSellerActivity.this, HomeOwnerActivity.class);
@@ -107,5 +112,19 @@ public class LoginSellerActivity extends AppCompatActivity implements View.OnCli
         if (view.getId() == R.id.login_btn) {
             loginUser();
         }
+    }
+
+    public static String MD5_Hash(String s) {
+        MessageDigest m = null;
+
+        try {
+            m = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        assert m != null;
+        m.update(s.getBytes(),0,s.length());
+        return new BigInteger(1, m.digest()).toString(16);
     }
 }

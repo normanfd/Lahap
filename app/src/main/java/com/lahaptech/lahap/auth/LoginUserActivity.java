@@ -20,6 +20,10 @@ import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.owner.HomeOwnerActivity;
 import com.lahaptech.lahap.user.home.UserActivity;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
@@ -78,12 +82,14 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
                 return;
             }
 
+            String hash = MD5_Hash(password);
+
             if (documentSnapshot != null && documentSnapshot.exists()) {
                 Log.d("get", "Current data: " + documentSnapshot.getData());
                 User userData = documentSnapshot.toObject(User.class);
                 assert userData != null;
                 if (userData.getUsername().equals(username)) {
-                    if (userData.getPassword().equals(password)) {
+                    if (userData.getPassword().equals(hash)) {
                         if (ParentDbName.equals("seller")) {
                             Toast.makeText(LoginUserActivity.this, "Welcome Owner, you are logged in succesfully", Toast.LENGTH_SHORT).show();
                             loadingBar.dismiss();
@@ -91,7 +97,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
                             startActivity(intent);
                         } else {
                             Paper.book().write(Prevalent.UserName,username);
-                            Paper.book().write(Prevalent.UserPasswordKey,password);
+                            Paper.book().write(Prevalent.UserPasswordKey,hash);
                             Toast.makeText(LoginUserActivity.this, "Login success", Toast.LENGTH_SHORT).show();
                             loadingBar.dismiss();
                             Intent intent = new Intent(LoginUserActivity.this, UserActivity.class);
@@ -113,6 +119,20 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
         });
 
 
+    }
+
+    public static String MD5_Hash(String s) {
+        MessageDigest m = null;
+
+        try {
+            m = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        assert m != null;
+        m.update(s.getBytes(),0,s.length());
+        return new BigInteger(1, m.digest()).toString(16);
     }
 
 
