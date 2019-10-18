@@ -9,21 +9,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lahaptech.lahap.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 class ProductViewHolder extends RecyclerView.ViewHolder {
-    @BindView(R.id.frag_food_name)
     TextView productName;
-    @BindView(R.id.frag_food_price)
     TextView productPrice;
-    @BindView(R.id.frag_food_seller)
     TextView productDesc;
-    @BindView(R.id.frag_food_image)
     ImageView productImage;
 
     ProductViewHolder(@NonNull View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+        productName = itemView.findViewById(R.id.frag_food_name);
+        productPrice = itemView.findViewById(R.id.frag_food_price);
+        productDesc = itemView.findViewById(R.id.frag_food_seller);
+        productImage = itemView.findViewById(R.id.frag_food_image);
     }
 }

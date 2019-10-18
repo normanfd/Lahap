@@ -1,12 +1,16 @@
 package com.lahaptech.lahap.model;
 
 public class Product {
-    private String productID, sellerID, productName, category, date, description, image, price, time, isAvailable, locationID ;
+    private String productID, sellerID, productName, category, date, description, image, price, time, isAvailable, locationID, menuDetail, nutritionDetail ;
 
     public Product() {
     }
 
-    public Product(String productID, String sellerID, String category, String productName, String date, String description, String image, String price, String time, String isAvailable, String locationID) {
+    public Product(String productID, String sellerID, String category,
+                   String productName, String date, String description,
+                   String image, String price, String time, String isAvailable,
+                   String locationID, String menuDetail, String nutritionDetail) {
+
         this.productID = productID;
         this.sellerID = sellerID;
         this.productName = productName;
@@ -18,6 +22,8 @@ public class Product {
         this.time = time;
         this.isAvailable = isAvailable;
         this.locationID = locationID;
+        this.menuDetail = menuDetail;
+        this.nutritionDetail = nutritionDetail;
     }
 
     public String getProductID() {
@@ -106,5 +112,21 @@ public class Product {
 
     public void setLocationID(String locationID) {
         this.locationID = locationID;
+    }
+
+    public String getMenuDetail() {
+        return menuDetail;
+    }
+
+    public void setMenuDetail(String menuDetail) {
+        this.menuDetail = menuDetail;
+    }
+
+    public String getNutritionDetail() {
+        return nutritionDetail;
+    }
+
+    public void setNutritionDetail(String nutritionDetail) {
+        this.nutritionDetail = nutritionDetail;
     }
 }

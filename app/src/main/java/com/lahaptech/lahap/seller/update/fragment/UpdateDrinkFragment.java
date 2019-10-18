@@ -23,11 +23,16 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Product;
+import com.lahaptech.lahap.model.Seller;
 import com.lahaptech.lahap.seller.update.UpdateProductDetailActivity;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.lahaptech.lahap.seller.HomeOwnerActivity.EXTRA_SELLER;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,80 +61,49 @@ public class UpdateDrinkFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
+        Seller seller = Objects.requireNonNull(getActivity()).getIntent().getParcelableExtra(EXTRA_SELLER);
+        assert seller != null;
+        String SellerID = seller.getSellerID();
+
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         final Query query = rootRef.collection("product")
-                .whereEqualTo("category", "drink").whereEqualTo("sellerID", Prevalent.CurrentOnlineSeller.getSellerID())
+                .whereEqualTo("category", "drink").whereEqualTo("sellerID", SellerID)
                 .orderBy("productName", Query.Direction.ASCENDING);
 
-        query.addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                FirestoreRecyclerOptions<Product> options = new FirestoreRecyclerOptions.Builder<Product>()
-                        .setQuery(query, Product.class)
-                        .build();
+        query.addSnapshotListener((queryDocumentSnapshots, e) -> {
+            FirestoreRecyclerOptions<Product> options = new FirestoreRecyclerOptions.Builder<Product>()
+                    .setQuery(query, Product.class)
+                    .build();
 
-                FirestoreRecyclerAdapter<Product, ProductViewHolder> adapter =
-                        new FirestoreRecyclerAdapter<Product, ProductViewHolder>(options) {
-                            @Override
-                            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Product model) {
-                                holder.productName.setText(model.getProductName());
-                                holder.productDesc.setText(model.getDescription());
-                                holder.productPrice.setText(model.getPrice());
-                                Picasso.get().load(model.getImage()).into(holder.productImage);
+            FirestoreRecyclerAdapter<Product, ProductViewHolder> adapter =
+                    new FirestoreRecyclerAdapter<Product, ProductViewHolder>(options) {
+                        @Override
+                        protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Product model) {
+                            holder.productName.setText(model.getProductName());
+                            holder.productDesc.setText(model.getDescription());
+                            holder.productPrice.setText(model.getPrice());
+                            Picasso.get().load(model.getImage()).into(holder.productImage);
 
-                                holder.itemView.setOnClickListener(v -> {
-                                    Intent intent = new Intent(getActivity(), UpdateProductDetailActivity.class);
-                                    intent.putExtra("pid", model.getProductID());
-                                    intent.putExtra("category", "drink");
-                                    startActivity(intent);
-                                });
+                            holder.itemView.setOnClickListener(v -> {
+                                Intent intent = new Intent(getActivity(), UpdateProductDetailActivity.class);
+                                intent.putExtra("pid", model.getProductID());
+                                intent.putExtra("category", "drink");
+                                startActivity(intent);
+                            });
 
-                            }
+                        }
 
-                            @NonNull
-                            @Override
-                            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_food, parent, false);
-                                return new ProductViewHolder(view);
-                            }
-                        };
+                        @NonNull
+                        @Override
+                        public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                            View view1 = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_food, parent, false);
+                            return new ProductViewHolder(view1);
+                        }
+                    };
 
-                recyclerView.setAdapter(adapter);
-                adapter.startListening();
-            }
+            recyclerView.setAdapter(adapter);
+            adapter.startListening();
         });
 
-
-//        DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Products").child(category);
-//        FirebaseRecyclerOptions<Product> options =
-//                new FirebaseRecyclerOptions.Builder<Product>()
-//                        .setQuery(productRef, Product.class)
-//                        .build();
-//        FirebaseRecyclerAdapter<Product, MenuAdapter> adapter =
-//                new FirebaseRecyclerAdapter<Product, MenuAdapter>(options) {
-//                    @Override
-//                    protected void onBindViewHolder(@NonNull MenuAdapter holder, int position, @NonNull final Product model) {
-//                        holder.name.setText(model.getProductName());
-//                        holder.desc.setText(model.getDescription());
-//                        holder.price.setText(model.getPrice());
-//                        Picasso.get().load(model.getImage()).into(holder.photo);
-//
-//                        holder.itemView.setOnClickListener(v -> {
-//                            Intent intent = new Intent(getActivity(), UpdateProductDetailActivity.class);
-//                            intent.putExtra("pid", model.getProductID());
-//                            intent.putExtra("category", "drink");
-//                            startActivity(intent);
-//                        });
-//                    }
-//
-//                    @NonNull
-//                    @Override
-//                    public MenuAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewtype) {
-//                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_food, parent, false);
-//                        return new MenuAdapter(view);
-//                    }
-//                };
-//        recyclerView.setAdapter(adapter);
-//        adapter.startListening();
     }
 }
