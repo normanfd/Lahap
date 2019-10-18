@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.home.orderstatus;
+package com.lahaptech.lahap.user.index.orderstatus;
 
 import android.os.Bundle;
 

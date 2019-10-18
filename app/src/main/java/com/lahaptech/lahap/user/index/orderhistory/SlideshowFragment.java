@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.user.home.orderhistory;
+package com.lahaptech.lahap.user.index.orderhistory;
 
 import android.content.Intent;
 import android.os.Bundle;

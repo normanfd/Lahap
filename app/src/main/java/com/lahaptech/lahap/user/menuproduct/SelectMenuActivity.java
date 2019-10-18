@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
-import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
+import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 public class SelectMenuActivity extends AppCompatActivity implements View.OnClickListener{
 

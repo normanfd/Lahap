@@ -14,12 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
-import com.lahaptech.lahap.user.home.UserActivity;
+import com.lahaptech.lahap.user.index.UserActivity;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
+import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 public class DirectOrderFormActivity extends AppCompatActivity {
 

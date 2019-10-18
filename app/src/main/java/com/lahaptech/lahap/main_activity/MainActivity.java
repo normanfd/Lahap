@@ -1,4 +1,4 @@
-package com.lahaptech.lahap;
+package com.lahaptech.lahap.main_activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -13,16 +13,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.auth.LoginSellerActivity;
 import com.lahaptech.lahap.auth.LoginUserActivity;
 import com.lahaptech.lahap.auth.RegisterActivity;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.User;
-import com.lahaptech.lahap.user.home.UserActivity;
+import com.lahaptech.lahap.user.index.UserActivity;
 
 import io.paperdb.Paper;
 
-import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
+import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button btn_join;

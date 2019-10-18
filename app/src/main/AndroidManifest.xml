@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".SplashActivity"
+        <activity android:name=".main_activity.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".user.payment.OnlinePaymentActivity" />
-        <activity android:name=".user.home.orderstatus.OrderDetailActivity" />
+        <activity android:name=".user.index.orderstatus.OrderDetailActivity" />
         <activity
             android:name=".user.orderlocation.directorder.DirectOrderFormActivity"
             android:theme="@style/AppTheme.NoActionBar" /> <!-- <activity -->
@@ -43,7 +43,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".user.orderlocation.directorder.DirectOrderActivity" />
         <activity
-            android:name=".user.home.UserActivity"
+            android:name=".user.index.UserActivity"
             android:label="@string/title_activity_user"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".auth.LoginSellerActivity" />
@@ -64,7 +64,7 @@
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".auth.LoginUserActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".main_activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
