@@ -94,6 +94,7 @@ public class LoginSellerActivity extends AppCompatActivity implements View.OnCli
 
                         Seller seller = new Seller();
                         seller.setSellerID(sellerID);
+                        seller.setLocationID(sellerData.getLocationID());
 
                         Intent intent = new Intent(LoginSellerActivity.this, HomeOwnerActivity.class);
                         intent.putExtra(EXTRA_SELLER, seller);

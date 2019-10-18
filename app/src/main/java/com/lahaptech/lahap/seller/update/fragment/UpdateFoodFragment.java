@@ -82,7 +82,7 @@ public class UpdateFoodFragment extends Fragment {
                             holder.productName.setText(model.getProductName());
                             holder.productDesc.setText(model.getDescription());
                             holder.productPrice.setText(model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.productImage);
+                            Picasso.get().load(model.getImage()).resize(100,80).into(holder.productImage);
 
                             holder.itemView.setOnClickListener(v -> {
                                 Intent intent = new Intent(getActivity(), UpdateProductDetailActivity.class);

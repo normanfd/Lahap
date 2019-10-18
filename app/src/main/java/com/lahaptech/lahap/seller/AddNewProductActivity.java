@@ -54,7 +54,7 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
     @BindView(R.id.product_menu_detail)
     EditText inputMenuDetail;
     @BindView(R.id.product_nutrition_detail)
-    EditText inputNutririon;
+    EditText inputNutrition;
 
 
     private String ProductRandomKey;
@@ -95,7 +95,7 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
         ProductDescription = inputProductDescription.getText().toString();
         ProductPrice = inputProductPrice.getText().toString();
         MenuDetail = inputMenuDetail.getText().toString();
-        NutritionDetail = inputNutririon.getText().toString();
+        NutritionDetail = inputNutrition.getText().toString();
 
         if(ImageUri == null){
             Toast.makeText(this, "Please Upload Product Image", Toast.LENGTH_SHORT).show();
@@ -139,14 +139,13 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
         assert seller != null;
         SellerID = seller.getSellerID();
         LocationID = seller.getLocationID();
-//        SellerID = Prevalent.CurrentOnlineSeller.getSellerID();
-//        LocationID = Prevalent.CurrentOnlineSeller.getLocationID();
 
-        final StorageReference filePath = ProductImageRef.child(ImageUri.getLastPathSegment() + ProductRandomKey + ".jpg");
+        final StorageReference filePath = ProductImageRef.child(ProductRandomKey + ".jpg");
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
-        byte[] img = baos.toByteArray();
+        // Compress Image
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 10, byteArrayOutputStream);
+        byte[] img = byteArrayOutputStream.toByteArray();
 
         final UploadTask UploadTask = filePath.putBytes(img);
         UploadTask.addOnFailureListener(e -> {

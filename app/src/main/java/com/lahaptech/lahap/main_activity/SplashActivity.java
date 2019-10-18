@@ -33,43 +33,38 @@ public class SplashActivity extends AppCompatActivity {
         SellerID = Paper.book().read(Prevalent.SellerID);
         int SPLASH_TIME_OUT = 1000;
 
-        new Handler().postDelayed(new Runnable() {
+        /*
+         * Showing splash screen with a timer. This will be useful when you
+         * want to show case your app logo / company
+         */
+        new Handler().postDelayed(() -> {
+            // This method will be executed once the timer is over
+            // Start your app main activity
 
-            /*
-             * Showing splash screen with a timer. This will be useful when you
-             * want to show case your app logo / company
-             */
-
-            @Override
-            public void run() {
-                // This method will be executed once the timer is over
-                // Start your app main activity
-
-                // Belum Login
-                if(TextUtils.isEmpty(UserName) && TextUtils.isEmpty(SellerID)){
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
-                // Sudah login user
-                else if (!TextUtils.isEmpty(UserName) && TextUtils.isEmpty(SellerID)){
-                    Intent intent = new Intent(SplashActivity.this, UserActivity.class);
-                    User user = new User();
-                    user.setUsername(UserName);
-                    intent.putExtra(EXTRA_USER, user);
-                    startActivity(intent);
-                }
-                // Sudah login seller
-                else {
-                    Intent intent = new Intent(SplashActivity.this, HomeOwnerActivity.class);
-                    Seller seller = new Seller();
-                    seller.setSellerID(SellerID);
-                    intent.putExtra(EXTRA_SELLER, seller);
-                    startActivity(intent);
-                }
-
-                // close this activity
-                finish();
+            // Belum Login
+            if(TextUtils.isEmpty(UserName) && TextUtils.isEmpty(SellerID)){
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
             }
+            // Sudah login user
+            else if (!TextUtils.isEmpty(UserName) && TextUtils.isEmpty(SellerID)){
+                Intent intent = new Intent(SplashActivity.this, UserActivity.class);
+                User user = new User();
+                user.setUsername(UserName);
+                intent.putExtra(EXTRA_USER, user);
+                startActivity(intent);
+            }
+            // Sudah login seller
+            else {
+                Intent intent = new Intent(SplashActivity.this, HomeOwnerActivity.class);
+                Seller seller = new Seller();
+                seller.setSellerID(SellerID);
+                intent.putExtra(EXTRA_SELLER, seller);
+                startActivity(intent);
+            }
+
+            // close this activity
+            finish();
         }, SPLASH_TIME_OUT);
 
     }

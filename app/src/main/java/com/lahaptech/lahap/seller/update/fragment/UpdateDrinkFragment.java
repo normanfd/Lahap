@@ -67,8 +67,8 @@ public class UpdateDrinkFragment extends Fragment {
 
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         final Query query = rootRef.collection("product")
-                .whereEqualTo("category", "drink").whereEqualTo("sellerID", SellerID)
-                .orderBy("productName", Query.Direction.ASCENDING);
+                .whereEqualTo("category", "drink")
+                .whereEqualTo("sellerID", SellerID);
 
         query.addSnapshotListener((queryDocumentSnapshots, e) -> {
             FirestoreRecyclerOptions<Product> options = new FirestoreRecyclerOptions.Builder<Product>()
@@ -82,7 +82,7 @@ public class UpdateDrinkFragment extends Fragment {
                             holder.productName.setText(model.getProductName());
                             holder.productDesc.setText(model.getDescription());
                             holder.productPrice.setText(model.getPrice());
-                            Picasso.get().load(model.getImage()).into(holder.productImage);
+                            Picasso.get().load(model.getImage()).resize(100,80).into(holder.productImage);
 
                             holder.itemView.setOnClickListener(v -> {
                                 Intent intent = new Intent(getActivity(), UpdateProductDetailActivity.class);
