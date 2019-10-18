@@ -27,6 +27,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
+import static com.lahaptech.lahap.seller.HomeOwnerActivity.EXTRA_SELLER;
+
 public class LoginSellerActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.login_username)
     EditText inpt_username;
@@ -53,10 +55,10 @@ public class LoginSellerActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void loginUser() {
-        String username = inpt_username.getText().toString();
+        String sellerID = inpt_username.getText().toString();
         String password = inpt_password.getText().toString();
 
-        if (TextUtils.isEmpty(username)) {
+        if (TextUtils.isEmpty(sellerID)) {
             Toast.makeText(LoginSellerActivity.this, R.string.write_your_name, Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(LoginSellerActivity.this, R.string.write_your_password, Toast.LENGTH_SHORT).show();
@@ -65,13 +67,13 @@ public class LoginSellerActivity extends AppCompatActivity implements View.OnCli
             loadingBar.setMessage("Please wait while we are checking your credentials..");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
-            LoginToFirestore(username, password);
+            LoginToFirestore(sellerID, password);
         }
     }
 
-    private void LoginToFirestore(String username, String password) {
+    private void LoginToFirestore(String sellerID, String password) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final DocumentReference docRef = db.collection(ParentDbName).document(username);
+        final DocumentReference docRef = db.collection(ParentDbName).document(sellerID);
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             if (e != null) {
                 Log.w("fail", "Listen failed.", e);
@@ -83,13 +85,16 @@ public class LoginSellerActivity extends AppCompatActivity implements View.OnCli
                 Log.d("get", "Current data: " + documentSnapshot.getData());
                 Seller sellerData = documentSnapshot.toObject(Seller.class);
                 assert sellerData != null;
-                if (sellerData.getSellerID().equals(username)) {
+                if (sellerData.getSellerID().equals(sellerID)) {
                     if (sellerData.getPassword().equals(hash)) {
-                        Paper.book().write(Prevalent.SellerID,username);
+                        Paper.book().write(Prevalent.SellerID,sellerID);
                         Paper.book().write(Prevalent.SellerPassword,hash);
                         Toast.makeText(LoginSellerActivity.this, "Welcome Owner, you are logged in successfully", Toast.LENGTH_SHORT).show();
                         loadingBar.dismiss();
+                        Seller seller = new Seller();
+                        seller.setSellerID(sellerID);
                         Intent intent = new Intent(LoginSellerActivity.this, HomeOwnerActivity.class);
+                        intent.putExtra(EXTRA_SELLER, seller);
                         Prevalent.CurrentOnlineSeller = sellerData;
                         startActivity(intent);
                     }
@@ -100,7 +105,7 @@ public class LoginSellerActivity extends AppCompatActivity implements View.OnCli
                 }
 
             } else {
-                Toast.makeText(LoginSellerActivity.this, "Account with username " + username + " does not exist", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginSellerActivity.this, "Account with sellerID " + sellerID + " does not exist", Toast.LENGTH_SHORT).show();
                 loadingBar.dismiss();
             }
         });
