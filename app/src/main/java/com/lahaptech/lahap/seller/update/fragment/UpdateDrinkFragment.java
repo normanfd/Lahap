@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.owner.update.fragment;
+package com.lahaptech.lahap.seller.update.fragment;
 
 
 import android.content.Intent;
@@ -23,7 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Product;
-import com.lahaptech.lahap.owner.update.UpdateProductDetailActivity;
+import com.lahaptech.lahap.seller.update.UpdateProductDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
@@ -32,12 +32,12 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UpdateFoodFragment extends Fragment {
+public class UpdateDrinkFragment extends Fragment {
 
     @BindView(R.id.rv_update_product)
     RecyclerView recyclerView;
 
-    public UpdateFoodFragment() {
+    public UpdateDrinkFragment() {
         // Required empty public constructor
     }
 
@@ -58,7 +58,7 @@ public class UpdateFoodFragment extends Fragment {
 
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         final Query query = rootRef.collection("product")
-                .whereEqualTo("category", "food").whereEqualTo("sellerID", Prevalent.CurrentOnlineSeller.getSellerID())
+                .whereEqualTo("category", "drink").whereEqualTo("sellerID", Prevalent.CurrentOnlineSeller.getSellerID())
                 .orderBy("productName", Query.Direction.ASCENDING);
 
         query.addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -80,7 +80,7 @@ public class UpdateFoodFragment extends Fragment {
                                 holder.itemView.setOnClickListener(v -> {
                                     Intent intent = new Intent(getActivity(), UpdateProductDetailActivity.class);
                                     intent.putExtra("pid", model.getProductID());
-                                    intent.putExtra("category", "food");
+                                    intent.putExtra("category", "drink");
                                     startActivity(intent);
                                 });
 
@@ -98,5 +98,38 @@ public class UpdateFoodFragment extends Fragment {
                 adapter.startListening();
             }
         });
+
+
+//        DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Products").child(category);
+//        FirebaseRecyclerOptions<Product> options =
+//                new FirebaseRecyclerOptions.Builder<Product>()
+//                        .setQuery(productRef, Product.class)
+//                        .build();
+//        FirebaseRecyclerAdapter<Product, MenuAdapter> adapter =
+//                new FirebaseRecyclerAdapter<Product, MenuAdapter>(options) {
+//                    @Override
+//                    protected void onBindViewHolder(@NonNull MenuAdapter holder, int position, @NonNull final Product model) {
+//                        holder.name.setText(model.getProductName());
+//                        holder.desc.setText(model.getDescription());
+//                        holder.price.setText(model.getPrice());
+//                        Picasso.get().load(model.getImage()).into(holder.photo);
+//
+//                        holder.itemView.setOnClickListener(v -> {
+//                            Intent intent = new Intent(getActivity(), UpdateProductDetailActivity.class);
+//                            intent.putExtra("pid", model.getProductID());
+//                            intent.putExtra("category", "drink");
+//                            startActivity(intent);
+//                        });
+//                    }
+//
+//                    @NonNull
+//                    @Override
+//                    public MenuAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewtype) {
+//                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_food, parent, false);
+//                        return new MenuAdapter(view);
+//                    }
+//                };
+//        recyclerView.setAdapter(adapter);
+//        adapter.startListening();
     }
 }

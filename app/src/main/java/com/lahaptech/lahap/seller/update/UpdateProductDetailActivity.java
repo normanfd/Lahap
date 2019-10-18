@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.owner.update;
+package com.lahaptech.lahap.seller.update;
 
 import android.content.Intent;
 import android.os.Bundle;

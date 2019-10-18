@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.owner.update;
+package com.lahaptech.lahap.seller.update;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,9 +8,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.owner.update.fragment.UpdateDrinkFragment;
-import com.lahaptech.lahap.owner.update.fragment.UpdateFoodFragment;
-import com.lahaptech.lahap.owner.update.fragment.UpdateSnackFragment;
+import com.lahaptech.lahap.seller.update.fragment.UpdateDrinkFragment;
+import com.lahaptech.lahap.seller.update.fragment.UpdateFoodFragment;
+import com.lahaptech.lahap.seller.update.fragment.UpdateSnackFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -17,7 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.User;
-import com.lahaptech.lahap.owner.HomeOwnerActivity;
+import com.lahaptech.lahap.seller.HomeOwnerActivity;
 import com.lahaptech.lahap.user.home.UserActivity;
 
 import java.math.BigInteger;

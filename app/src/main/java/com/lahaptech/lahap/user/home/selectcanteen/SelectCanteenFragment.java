@@ -2,6 +2,7 @@ package com.lahaptech.lahap.user.home.selectcanteen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class SelectCanteenFragment extends Fragment {
         //get user with parcelable
         User user = Objects.requireNonNull(getActivity()).getIntent().getParcelableExtra(EXTRA_USER);
         assert user != null;
+        Log.d("LOG USERNAME", user.getUsername());
 
         setupRecyclerView(user);
     }

@@ -19,9 +19,14 @@ import com.google.firebase.firestore.Query;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Order;
 import com.lahaptech.lahap.model.Prevalent;
+import com.lahaptech.lahap.model.User;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.lahaptech.lahap.user.home.UserActivity.EXTRA_USER;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +36,7 @@ public class OrderStatusFragment extends Fragment {
 
     @BindView(R.id.rv_order)
     RecyclerView rv_order;
+    private User user;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,6 +48,7 @@ public class OrderStatusFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        user = Objects.requireNonNull(getActivity()).getIntent().getParcelableExtra(EXTRA_USER);
         setupRecyclerView();
 
     }
@@ -49,7 +56,7 @@ public class OrderStatusFragment extends Fragment {
     private void setupRecyclerView() {
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         final Query query = rootRef.collection("order")
-                .whereEqualTo("usernameIPB", Prevalent.CurrentOnlineUser.getUsername() );
+                .whereEqualTo("usernameIPB", user.getUsername() );
 
         query.addSnapshotListener((snapshots, e) -> {
 

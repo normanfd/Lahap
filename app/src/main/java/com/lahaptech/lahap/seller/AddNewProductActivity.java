@@ -1,4 +1,4 @@
-package com.lahaptech.lahap.owner;
+package com.lahaptech.lahap.seller;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
