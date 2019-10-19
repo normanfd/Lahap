@@ -2,10 +2,12 @@ package com.lahaptech.lahap.user.index.orderstatus;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,6 +25,7 @@ import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Order;
 import com.lahaptech.lahap.model.Product;
 import com.lahaptech.lahap.model.User;
+import com.lahaptech.lahap.user.payment.OnlinePaymentActivity;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
@@ -47,12 +50,17 @@ public class OrderStatusFragment extends Fragment {
     TextView order_list;
     @BindView(R.id.order_total_price)
     TextView order_total_price;
+    @BindView(R.id.buttonPayment)
+    Button payment;
+
+    private String total, orderID, usernameIPB;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_order_status, container, false);
         ButterKnife.bind(this, root);
+
         return root;
     }
 
@@ -61,7 +69,18 @@ public class OrderStatusFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         User user = Objects.requireNonNull(getActivity()).getIntent().getParcelableExtra(EXTRA_USER);
         assert user != null;
-        getOrderDetail(user.getUsername());
+        usernameIPB = user.getUsername();
+        getOrderDetail(usernameIPB);
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), OnlinePaymentActivity.class);
+                intent.putExtra("total_amount", total);
+                intent.putExtra("orderID", orderID);
+                intent.putExtra("userID", usernameIPB);
+                startActivity(intent);
+            }
+        });
 //        setupRecyclerView();
 
     }
@@ -77,6 +96,8 @@ public class OrderStatusFragment extends Fragment {
                 status_order.setText(orderData.getOrderStatus());
                 order_list.setText(orderData.getProductList());
                 order_total_price.setText(orderData.getTotalAmount());
+                total = orderData.getTotalAmount();
+                orderID = orderData.getOrderID();
             }
         });
 

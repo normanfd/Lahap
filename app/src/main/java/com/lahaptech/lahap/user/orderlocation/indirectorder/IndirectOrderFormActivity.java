@@ -39,7 +39,7 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
     TextView tv_time_pick;
     @BindView(R.id.next_btn)
     Button nextButton;
-    String total_amount = "" , time_pick= "", locationID ="", product_list="", saveCurrentDate, saveCurrentTime, orderID;
+    String total_amount = "" , time_pick= "", locationID ="", product_list="", usernameIPB="", saveCurrentDate, saveCurrentTime, orderID;
     User currentOnlineUser;
     ProgressDialog loadingBar;
 
@@ -67,8 +67,9 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
 
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
         saveCurrentTime = currentTime.format(calendar.getTime());
+        usernameIPB = currentOnlineUser.getUsername();
 
-        orderID = saveCurrentDate + " " + saveCurrentTime;
+        orderID = usernameIPB + saveCurrentDate + saveCurrentTime;
 
         nextButton.setOnClickListener(this);
     }
@@ -76,7 +77,6 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.next_btn){
-            String usernameIPB = currentOnlineUser.getUsername();
             String orderType = "indirect";
             loadingBar.setTitle("Indirect Order");
             loadingBar.setMessage("Please wait while we are saving your order..");
@@ -112,6 +112,7 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
                     Intent intent = new Intent(IndirectOrderFormActivity.this, OnlinePaymentActivity.class);
                     intent.putExtra("total_amount", total);
                     intent.putExtra("orderID", orderID);
+                    intent.putExtra("userID", usernameIPB);
                     startActivity(intent);
                     finish();
                 })
