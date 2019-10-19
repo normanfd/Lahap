@@ -102,7 +102,7 @@ public class DirectOrderFormActivity extends AppCompatActivity {
         order.put("productList", productList);
         order.put("orderID", orderID);
 
-        db.collection("order").document(orderID)
+        db.collection("order").document(usernameIPB)
                 .set(order)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(DirectOrderFormActivity.this, "Success Added", Toast.LENGTH_SHORT).show();

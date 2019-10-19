@@ -99,7 +99,7 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
         order.put("totalAmount", total);
         order.put("productList", productList);
 
-        db.collection("order").document(orderID)
+        db.collection("order").document(usernameIPB)
                 .set(order)
 
                 .addOnSuccessListener(aVoid -> {
