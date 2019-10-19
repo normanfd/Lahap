@@ -67,7 +67,8 @@ public class FoodFragment extends Fragment {
         FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
         final Query query = rootRef.collection("product")
                 .whereEqualTo("locationID", canteenID)
-                .whereEqualTo("category", "food");
+                .whereEqualTo("category", "food")
+                .whereEqualTo("isAvailable", "true");
 
         query.addSnapshotListener((queryDocumentSnapshots, e) -> {
             FirestoreRecyclerOptions<Product> options = new FirestoreRecyclerOptions.Builder<Product>()

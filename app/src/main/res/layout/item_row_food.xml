@@ -36,7 +36,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.7"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="4dp"
         android:orientation="vertical">
 
         <TextView
@@ -56,8 +56,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:paddingEnd="@dimen/spacing_m"
-            android:paddingRight="@dimen/spacing_m"
             android:textSize="@dimen/textsize_s"
             android:visibility="gone"
             tools:text="1500 USD" />

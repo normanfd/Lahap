@@ -45,7 +45,7 @@ public class CartActivity extends AppCompatActivity {
     Button nextProcessBtn;
     @BindView(R.id.message1)
     public
-    TextView txtmessage1;
+    TextView txtMessage;
     @BindView(R.id.rv_cart)
     RecyclerView recyclerView;
 
@@ -85,7 +85,6 @@ public class CartActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-//            txtTotalAmount.setText("Total Price = " + String.valueOf(overTotalPrice));
         });
 
         listCart();
@@ -112,8 +111,8 @@ public class CartActivity extends AppCompatActivity {
                             DocumentReference documentReference = cartListRef.collection("cart").document(cartID);
 
                             holder.txtProductName.setText(model.getProductName());
-                            holder.txtProductQuantity.setText(" quantity = " + model.getQuantity());
-                            holder.txtProductPrice.setText("price " + model.getPrice());
+                            holder.txtProductQuantity.setText("Quantity   = " + model.getQuantity() + "item");
+                            holder.txtProductPrice.setText("Price      = Rp" + model.getPrice() + ",00");
 
                             int oneTypeProductPrice = Integer.valueOf(model.getPrice()) * Integer.valueOf(model.getQuantity());
                             overTotalPrice = overTotalPrice + oneTypeProductPrice;

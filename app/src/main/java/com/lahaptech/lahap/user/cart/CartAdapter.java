@@ -19,7 +19,6 @@ class CartAdapter extends RecyclerView.ViewHolder implements View.OnClickListene
 
     CartAdapter(@NonNull View itemView) {
         super(itemView);
-        ImageView imageView = itemView.findViewById(R.id.cart_food_image);
         txtProductName = itemView.findViewById(R.id.cart_product_name);
         txtProductPrice = itemView.findViewById(R.id.cart_product_price);
         txtProductQuantity = itemView.findViewById(R.id.cart_product_quantity);

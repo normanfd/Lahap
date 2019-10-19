@@ -82,5 +82,6 @@
     <string name="order_id">Order ID</string>
     <string name="order_list">Order List</string>
     <string name="email_lahap">help@kantinlahap.com</string>
+    <string name="product_available">Apakah produk masih tersedia?</string>
 
 </resources>

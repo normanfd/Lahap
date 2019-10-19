@@ -173,7 +173,7 @@ public class AddNewProductActivity extends AppCompatActivity implements View.OnC
     }
 
     private void SaveProductToFirestore(){
-        String isAvailable = "1";
+        String isAvailable = "true";
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> product = new HashMap<>();

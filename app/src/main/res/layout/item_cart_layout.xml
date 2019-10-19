@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -8,28 +8,13 @@
     android:orientation="horizontal"
     android:paddingBottom="@dimen/spacing_m"
     android:paddingTop="@dimen/spacing_m"
-    android:weightSum="1">
-
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.3">
-
-        <ImageView
-            android:id="@+id/cart_food_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|bottom"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/product_id"
-            android:src="@drawable/app_logo" />
-    </RelativeLayout>
+    android:weightSum="2">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="328dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.7"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="8dp"
         android:orientation="vertical">
 
         <TextView
@@ -49,8 +34,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:paddingEnd="@dimen/spacing_m"
-            android:paddingRight="@dimen/spacing_m"
             android:textSize="@dimen/textsize_s"
             android:visibility="gone"
             tools:text="1500 USD" />
@@ -70,7 +53,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:fontFamily="sans-serif-light"
             android:maxLines="2"
             android:paddingTop="@dimen/spacing_xs"
             android:textColor="@android:color/darker_gray"
@@ -79,5 +61,15 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_row="0"
+        android:layout_column="3"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_delete_black_24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_gravity="center_vertical"/>
 
-</LinearLayout>
+
+</GridLayout>

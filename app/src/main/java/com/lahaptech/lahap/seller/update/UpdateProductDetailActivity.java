@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,11 +44,14 @@ public class UpdateProductDetailActivity extends AppCompatActivity implements Vi
     EditText nutrition;
     @BindView(R.id.product_menu_detail_maintain)
     EditText menu;
+    @BindView(R.id.switch_available)
+    Switch available;
 
 
     DocumentReference docRef;
     String pName, pPrice, pDesc, pImage, pMenu, pNutrition;
     String productID="";
+    Boolean pAvailable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +95,7 @@ public class UpdateProductDetailActivity extends AppCompatActivity implements Vi
         pDesc = desc.getText().toString();
         pMenu = menu.getText().toString();
         pNutrition = nutrition.getText().toString();
+        pAvailable = available.isChecked();
 
 
         if (pName.equals("")){
@@ -112,6 +117,7 @@ public class UpdateProductDetailActivity extends AppCompatActivity implements Vi
             ProductMap.put("productName", pName);
             ProductMap.put("menuDetail", pMenu);
             ProductMap.put("nutritionDetail",pNutrition);
+            ProductMap.put("isAvailable", pAvailable.toString());
 
             docRef.update(ProductMap).addOnSuccessListener(aVoid -> {
                 Toast.makeText(UpdateProductDetailActivity.this, "Change succesfully", Toast.LENGTH_SHORT).show();
@@ -137,6 +143,9 @@ public class UpdateProductDetailActivity extends AppCompatActivity implements Vi
                 pImage = productData.getImage();
                 pMenu = productData.getMenuDetail();
                 pNutrition = productData.getNutritionDetail();
+                String productAvailable = productData.getIsAvailable();
+
+                if (productAvailable.equals("false")) available.setChecked(false);
 
                 name.setText(pName);
                 price.setText(pPrice);
