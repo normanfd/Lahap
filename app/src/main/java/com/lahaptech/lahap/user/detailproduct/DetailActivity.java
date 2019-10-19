@@ -108,7 +108,6 @@ public class DetailActivity extends AppCompatActivity {
             }
             else state = "next";
         });
-
     }
 
     private void addingToCartList() {
@@ -119,6 +118,8 @@ public class DetailActivity extends AppCompatActivity {
         saveCurrentDate = currentDate.format(calForDate.getTime());
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentTime.format(calForDate.getTime());
+
+        String cartID = currentOnlineUser.getUsername() + foodID;
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> cart = new HashMap<>();
@@ -133,8 +134,9 @@ public class DetailActivity extends AppCompatActivity {
         cart.put("username", currentOnlineUser.getUsername());
         cart.put("sellerID", sellerID);
         cart.put("locationID", locationID);
+        cart.put("cartID", cartID);
 
-        db.collection("cart").document(foodID)
+        db.collection("cart").document(cartID)
                 .set(cart).addOnCompleteListener(task -> {
                     loadingBar.dismiss();
                     Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();

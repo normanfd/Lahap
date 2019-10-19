@@ -1,14 +1,15 @@
 package com.lahaptech.lahap.model;
 
 public class Cart {
-    private String productID, username, sellerID, locationID, productName, price, quantity, date, time, category, overview;
+    private String cartID, productID, username, sellerID, locationID, productName, price, quantity, date, time, category, overview;
 
     public Cart() {
     }
 
-    public Cart(String productID, String productName, String price,
+    public Cart(String cartID, String productID, String productName, String price,
                 String quantity, String date, String time, String category,
                 String overview, String username, String sellerID, String locationID) {
+        this.cartID = cartID;
         this.productID = productID;
         this.productName = productName;
         this.price = price;
@@ -108,5 +109,13 @@ public class Cart {
 
     public void setLocationID(String locationID) {
         this.locationID = locationID;
+    }
+
+    public String getCartID() {
+        return cartID;
+    }
+
+    public void setCartID(String cartID) {
+        this.cartID = cartID;
     }
 }
