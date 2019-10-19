@@ -3,15 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lahaptech.lahap">
 
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature android:name="android.hardware.camera" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".main_activity.SplashActivity"
+        <activity
+            android:name=".main_activity.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,16 +20,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".user.payment.OnlinePaymentActivity" />
         <activity android:name=".user.index.orderstatus.OrderDetailActivity" />
         <activity
             android:name=".user.orderlocation.directorder.DirectOrderFormActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".user.orderlocation.indirectorder.IndirectOrderActivity"
             android:theme="@style/AppTheme.NoActionBar" /> <!-- <activity -->
         <!-- android:name=".user.UserActivity" -->
         <!-- android:label="@string/title_activity_user"/> -->
-        <activity
-            android:name=".user.orderlocation.indirectorder.IndirectOrderActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".user.orderlocation.indirectorder.IndirectOrderFormActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -65,9 +58,20 @@
         <activity android:name=".auth.LoginUserActivity" />
         <activity
             android:name=".main_activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <receiver
+            android:name=".DailyReminderReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
     </application>
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

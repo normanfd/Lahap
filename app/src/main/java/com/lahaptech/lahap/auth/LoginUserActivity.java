@@ -2,6 +2,7 @@ package com.lahaptech.lahap.auth;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.lahaptech.lahap.DailyReminderReceiver;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.User;
@@ -31,6 +33,7 @@ import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 
 public class LoginUserActivity extends AppCompatActivity implements View.OnClickListener {
+//    public static final String SHARED_PREFERENCES = "shared";
     @BindView(R.id.login_username)
     EditText inpt_username;
     @BindView(R.id.login_password_input)
@@ -40,6 +43,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
 
     ProgressDialog loadingBar;
     String ParentDbName = "user";
+    DailyReminderReceiver dailyReminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,9 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
 
         Paper.init(this);
         ButterKnife.bind(this);
+
+        dailyReminder = new DailyReminderReceiver();
+        dailyReminder.setRepeatingAlarm(this);
 
         loadingBar = new ProgressDialog(this);
         btn_login.setOnClickListener(this);
