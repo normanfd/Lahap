@@ -9,11 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Product;
@@ -74,11 +78,14 @@ public class DetailActivity extends AppCompatActivity {
 
         assert category != null;
         Log.i("CATEGORY", category);
+        Log.d("user", currentOnlineUser.getUsername());
 
+        checkUserOrder(currentOnlineUser.getUsername());
         getProductDetail(foodID);
 
         btn_add_cart.setOnClickListener(v -> {
-            if(state.equals("Order placed") || state.equals("Order shipped")){
+            Log.d("state",state);
+            if(state.equals("Order Unfinished")){
                 Toast.makeText(DetailActivity.this, "you can add purchase products, once your order is shipped or confirmed", Toast.LENGTH_LONG ).show();
             }
             else {
@@ -89,6 +96,19 @@ public class DetailActivity extends AppCompatActivity {
                 addingToCartList();
             }
         });
+    }
+
+    private void checkUserOrder(String currentOnlineUser) {
+        FirebaseFirestore orderRef = FirebaseFirestore.getInstance();
+        DocumentReference docRef = orderRef.collection("order").document(currentOnlineUser);
+
+        docRef.addSnapshotListener((documentSnapshot, e) -> {
+            if (documentSnapshot != null && documentSnapshot.exists()){
+                state = "Order Unfinished";
+            }
+            else state = "next";
+        });
+
     }
 
     private void addingToCartList() {
@@ -121,6 +141,7 @@ public class DetailActivity extends AppCompatActivity {
                     finish();
                 }).addOnFailureListener(e -> { });
     }
+
     @SuppressLint("SetTextI18n")
     private void getProductDetail(String foodID) {
         FirebaseFirestore productRef = FirebaseFirestore.getInstance();

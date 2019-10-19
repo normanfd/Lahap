@@ -68,5 +68,8 @@
     <string name="already_pay">Already Pay This One</string>
     <string name="menu_detail">Menu Detail</string>
     <string name="nutrition_detail">Nutrition Detail</string>
+    <string name="order_id">Order ID</string>
+    <string name="order_list">Order List</string>
+    <string name="email_lahap">help@kantinlahap.com</string>
 
 </resources>
