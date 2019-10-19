@@ -30,8 +30,8 @@ public class HomeOwnerActivity extends AppCompatActivity implements View.OnClick
     LinearLayout snack;
     @BindView(R.id.admin_logout_btn)
     Button adminLogoutBtn;
-    @BindView(R.id.admin_check_order_btn)
-    Button checkOrderBtn;
+//    @BindView(R.id.admin_check_order_btn)
+//    Button checkOrderBtn;
     @BindView(R.id.maintain_btn)
     Button maintainProductBtn;
 
@@ -48,7 +48,7 @@ public class HomeOwnerActivity extends AppCompatActivity implements View.OnClick
         Log.d("SELLER NAME", seller.getSellerID());
         adminLogoutBtn.setOnClickListener(this);
 
-        checkOrderBtn.setOnClickListener(this);
+//        checkOrderBtn.setOnClickListener(this);
         food.setOnClickListener(this);
         drink.setOnClickListener(this);
         snack.setOnClickListener(this);
@@ -75,11 +75,11 @@ public class HomeOwnerActivity extends AppCompatActivity implements View.OnClick
                 finish();
                 break;
 
-            case R.id.admin_check_order_btn:
-                intent = new Intent(HomeOwnerActivity.this, CheckOrderActivity.class);
-                intent.putExtra(EXTRA_SELLER, seller);
-                startActivity(intent);
-                break;
+//            case R.id.admin_check_order_btn:
+//                intent = new Intent(HomeOwnerActivity.this, CheckOrderActivity.class);
+//                intent.putExtra(EXTRA_SELLER, seller);
+//                startActivity(intent);
+//                break;
 
             case R.id.ll_food:
                 intent = new Intent(HomeOwnerActivity.this, AddNewProductActivity.class);
