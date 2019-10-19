@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,7 @@ public class CartActivity extends AppCompatActivity {
     String canteenID = "";
     User currentOnlineUser;
     ProgressDialog loadingBar;
+    StringBuilder productList = new StringBuilder(100);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,7 @@ public class CartActivity extends AppCompatActivity {
             else {
                 Intent intent = new Intent(CartActivity.this, OrderLocationActivity.class);
                 intent.putExtra("TotalPrice", String.valueOf(overTotalPrice));
+                intent.putExtra("productList", productList.toString());
                 intent.putExtra(CANTEEN_ID, canteenID);
                 intent.putExtra(CANTEEN_QR_CODE, canteenCode);
                 intent.putExtra(EXTRA_USER, currentOnlineUser);
@@ -121,7 +124,9 @@ public class CartActivity extends AppCompatActivity {
 
                             int oneTypeProductPrice = Integer.valueOf(model.getPrice()) * Integer.valueOf(model.getQuantity());
                             overTotalPrice = overTotalPrice + oneTypeProductPrice;
+                            productList = productList.append(model.getProductName()).append(" - ").append(model.getQuantity()).append(" item").append(System.getProperty("line.separator"));
 
+                            Log.d("Product list", productList.toString());
                             holder.itemView.setOnClickListener(view -> {
                                 CharSequence[] options = new CharSequence[]{
 //                                        "Edit",

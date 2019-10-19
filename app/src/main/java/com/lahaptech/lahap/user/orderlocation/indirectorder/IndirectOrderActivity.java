@@ -22,7 +22,7 @@ public class IndirectOrderActivity extends AppCompatActivity{
     TimePicker picker;
     Button btnGet;
     TextView tvw;
-    String totalAmount="", locationID="";
+    String totalAmount="", locationID="", productList="";
     User currentOnlineUser;
 
     @SuppressLint({"ShowToast", "SetTextI18n"})
@@ -33,6 +33,8 @@ public class IndirectOrderActivity extends AppCompatActivity{
 
         locationID = getIntent().getStringExtra(CANTEEN_QR_CODE);
         totalAmount = getIntent().getStringExtra("TotalPrice");
+        productList = getIntent().getStringExtra("productList");
+
         currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
 
         tvw= findViewById(R.id.textView1);
@@ -55,6 +57,7 @@ public class IndirectOrderActivity extends AppCompatActivity{
             intent.putExtra("timeOrder", hour + ":" + minute);
             intent.putExtra("totalAmount", totalAmount);
             intent.putExtra("qrcode", locationID);
+            intent.putExtra("productList", productList);
             intent.putExtra(EXTRA_USER, currentOnlineUser);
 
             startActivity(intent);

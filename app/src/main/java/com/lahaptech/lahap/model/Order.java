@@ -6,28 +6,32 @@ public class Order {
     private String usernameIPB;
     private String locationID;
     private String orderTime;
+    private String orderDate;
     private String orderTable;
     private String orderType;
     private String orderStatus;
     private String payMethod;
     private String transferProof;
     private String totalAmount;
+    private String productList;
 
     public Order() {
     }
 
 
-    public Order(String orderID, String usernameIPB, String locationID, String orderTime, String orderTable, String orderType, String orderStatus, String payMethod, String transferProof, String totalAmount) {
+    public Order(String orderID, String usernameIPB, String locationID, String orderTime, String orderDate, String orderTable, String orderType, String orderStatus, String payMethod, String transferProof, String totalAmount, String productList) {
         this.orderID = orderID;
         this.usernameIPB = usernameIPB;
         this.locationID = locationID;
         this.orderTime = orderTime;
+        this.orderDate = orderDate;
         this.orderTable = orderTable;
         this.orderType = orderType;
         this.orderStatus = orderStatus;
         this.payMethod = payMethod;
         this.transferProof = transferProof;
         this.totalAmount = totalAmount;
+        this.productList = productList;
     }
 
     public String getUsernameIPB() {
@@ -108,5 +112,21 @@ public class Order {
 
     public void setOrderID(String orderID) {
         this.orderID = orderID;
+    }
+
+    public String getProductList() {
+        return productList;
+    }
+
+    public void setProductList(String productList) {
+        this.productList = productList;
+    }
+
+    public String getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
     }
 }

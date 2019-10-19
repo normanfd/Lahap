@@ -28,6 +28,7 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
     String canteenID="";
     String canteenCode = "";
     String totalPrice = "";
+    String productList="";
     User currentOnlineUser;
 
     @Override
@@ -37,6 +38,8 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
         ButterKnife.bind(this);
 
         totalPrice = getIntent().getStringExtra("TotalPrice");
+        productList = getIntent().getStringExtra("productList");
+
         canteenID = getIntent().getStringExtra(CANTEEN_ID);
         canteenCode = getIntent().getStringExtra(CANTEEN_QR_CODE);
         currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
@@ -54,6 +57,7 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
             intent.putExtra(CANTEEN_QR_CODE, canteenCode);
             intent.putExtra(EXTRA_USER, currentOnlineUser);
             intent.putExtra("TotalPrice", totalPrice);
+            intent.putExtra("productList", productList);
             startActivity(intent);
             finish();
         }
@@ -63,6 +67,7 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
             intent.putExtra(CANTEEN_ID, canteenID);
             intent.putExtra(CANTEEN_QR_CODE, canteenCode);
             intent.putExtra("TotalPrice", totalPrice);
+            intent.putExtra("productList", productList);
             intent.putExtra(EXTRA_USER, currentOnlineUser);
             startActivity(intent);
             finish();

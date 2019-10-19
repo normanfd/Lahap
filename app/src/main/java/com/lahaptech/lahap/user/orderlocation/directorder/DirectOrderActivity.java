@@ -33,6 +33,7 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
     String canteenID = "";
     String canteenCode = "";
     String totalPrice = "";
+    String productList="";
     User currentOnlineUser;
 
     @Override
@@ -41,6 +42,7 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
         setContentView(R.layout.activity_direct_order);
 
         totalPrice = getIntent().getStringExtra("TotalPrice");
+        productList = getIntent().getStringExtra("productList");
         canteenID = getIntent().getStringExtra(CANTEEN_ID);
         canteenCode = getIntent().getStringExtra(CANTEEN_QR_CODE);
         currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
@@ -91,6 +93,7 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
                 intent.putExtra("qrcode", hasil);
                 intent.putExtra("orderTableNo", arrOfStr[1]);
                 intent.putExtra("TotalPrice", totalPrice);
+                intent.putExtra("productList", productList);
                 intent.putExtra(EXTRA_USER, currentOnlineUser);
                 startActivity(intent);
                 finish();

@@ -18,6 +18,7 @@ import com.lahaptech.lahap.user.payment.OnlinePaymentActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,7 +35,7 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
     TextView tv_time_pick;
     @BindView(R.id.next_btn)
     Button nextButton;
-    String total_amount = "" , time_pick= "", locationID ="", saveCurrentDate, saveCurrentTime, orderID;
+    String total_amount = "" , time_pick= "", locationID ="", product_list="", saveCurrentDate, saveCurrentTime, orderID;
     User currentOnlineUser;
     ProgressDialog loadingBar;
 
@@ -49,6 +50,7 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
         locationID = getIntent().getStringExtra("qrcode");
         time_pick = getIntent().getStringExtra("timeOrder");
         total_amount = getIntent().getStringExtra("totalAmount");
+        product_list = getIntent().getStringExtra("productList");
         currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
 
         tv_time_pick.setText(time_pick);
@@ -62,7 +64,7 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentTime.format(calendar.getTime());
 
-        orderID = saveCurrentDate + saveCurrentTime;
+        orderID = saveCurrentDate + " " + saveCurrentTime;
 
         nextButton.setOnClickListener(this);
     }
@@ -76,11 +78,11 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
             loadingBar.setMessage("Please wait while we are saving your order..");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
-            saveToFirebase(usernameIPB, locationID, orderType, total_amount);
+            saveToFirestore(usernameIPB, locationID, orderType, total_amount, product_list, saveCurrentDate);
         }
     }
 
-    private void saveToFirebase(String usernameIPB, String locationID, String orderType, String total) {
+    private void saveToFirestore(String usernameIPB, String locationID, String orderType, String total, String productList, String saveCurrentDate) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         Map<String, Object> order = new HashMap<>();
@@ -88,12 +90,14 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
         order.put("usernameIPB", usernameIPB);
         order.put("locationID", locationID);
         order.put("orderTime", time_pick);
+        order.put("orderDate", saveCurrentDate);
         order.put("orderTable", null);
         order.put("orderType", orderType);
         order.put("orderStatus", "0");
         order.put("payMethod", "transfer");
         order.put("transferProof", null);
         order.put("totalAmount", total);
+        order.put("productList", productList);
 
         db.collection("order").document(orderID)
                 .set(order)
