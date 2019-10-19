@@ -73,5 +73,6 @@
     <string name="email_lahap">help@kantinlahap.com</string>
     <string name="product_available">Apakah produk masih tersedia?</string>
     <string name="rekening_nama">Tuliskan Nama yang ada di Rekening Anda</string>
+    <string name="msg_daily">Udah makan belum nih? yuk pesen dulu di kantin favorit kita</string>
 
 </resources>
