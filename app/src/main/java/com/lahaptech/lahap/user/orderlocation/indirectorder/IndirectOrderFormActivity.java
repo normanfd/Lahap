@@ -101,8 +101,8 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
 
         db.collection("order").document(usernameIPB)
                 .set(order)
-
                 .addOnSuccessListener(aVoid -> {
+                    deleteCart(usernameIPB);
                     Toast.makeText(IndirectOrderFormActivity.this, "Success Added", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                     Intent intent = new Intent(IndirectOrderFormActivity.this, OnlinePaymentActivity.class);
@@ -115,5 +115,9 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
 
                 });
 
+    }
+
+    private void deleteCart(String usernameIPB) {
+        
     }
 }
