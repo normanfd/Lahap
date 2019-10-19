@@ -97,6 +97,10 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
                 intent.putExtra(EXTRA_USER, currentOnlineUser);
                 startActivity(intent);
                 finish();
+            }else {
+                Toast.makeText(this, "Anda tidak berada di kantin yang bersangkutan", Toast.LENGTH_SHORT).show();
+                final Handler handler = new Handler();
+                handler.postDelayed(this::beginQRCode, 3000);
             }
         }
 
