@@ -68,6 +68,14 @@ public class DirectOrderFormActivity extends AppCompatActivity {
         tPrice.setText(total);
         usernameIPB = currentOnlineUser.getUsername();
 
+//        rdo_payment = findViewById(R.id.order_radio_payment);
+//        orderTableNo = findViewById(R.id.order_table_number);
+//        username = findViewById(R.id.order_username);
+//        rdo_btnCash = findViewById(R.id.rdo_btn_cash);
+//        rdo_btnCash.setChecked(true);
+//        username.setText(currentOnlineUser.getUsername());
+
+
         Calendar calendar = Calendar.getInstance();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
         saveCurrentDate = currentDate.format(calendar.getTime());
