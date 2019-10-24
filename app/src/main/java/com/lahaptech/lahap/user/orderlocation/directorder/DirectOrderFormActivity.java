@@ -33,9 +33,8 @@ import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 public class DirectOrderFormActivity extends AppCompatActivity {
 
-    TextView orderTableNo, username, tPrice, radiobtn;
-    RadioGroup rdo_payment;
-    RadioButton rdo_btnCash;
+    TextView tv_table_no, radiobtn, tv_total_amount, tv_product_list;
+//    RadioGroup rdo_payment, rdo_btnCash;
     Button btn;
     User currentOnlineUser;
     String total="", locationID ="", orderTable = "", productList="", saveCurrentDate, saveCurrentTime, orderID;
@@ -54,17 +53,21 @@ public class DirectOrderFormActivity extends AppCompatActivity {
         total = getIntent().getStringExtra("TotalPrice");
         currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
 
-        tPrice = findViewById(R.id.order_total_price);
-        rdo_payment = findViewById(R.id.order_radio_payment);
-        orderTableNo = findViewById(R.id.order_table_number);
-        username = findViewById(R.id.order_username);
-        btn = findViewById(R.id.order_next_btn);
-        rdo_btnCash = findViewById(R.id.rdo_btn_cash);
-        rdo_btnCash.setChecked(true);
+        tv_total_amount = findViewById(R.id.tv_total_amount);
+        tv_table_no = findViewById(R.id.tv_table_no);
+        tv_product_list = findViewById(R.id.tv_productlist);
 
-        orderTableNo.setText(orderTable);
-        username.setText(currentOnlineUser.getUsername());
-        tPrice.setText(total);
+        btn = findViewById(R.id.order_next_btn);
+        tv_table_no.setText(orderTable);
+        tv_total_amount.setText(total);
+        tv_product_list.setText(productList);
+
+//        rdo_payment = findViewById(R.id.order_radio_payment);
+//        orderTableNo = findViewById(R.id.order_table_number);
+//        username = findViewById(R.id.order_username);
+//        rdo_btnCash = findViewById(R.id.rdo_btn_cash);
+//        rdo_btnCash.setChecked(true);
+//        username.setText(currentOnlineUser.getUsername());
 
         Calendar calendar = Calendar.getInstance();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
@@ -76,9 +79,9 @@ public class DirectOrderFormActivity extends AppCompatActivity {
         btn.setOnClickListener(view -> {
             String usernameIPB = currentOnlineUser.getUsername();
             String orderType = "direct";
-            int radioID = rdo_payment.getCheckedRadioButtonId();
-            radiobtn = findViewById(radioID);
-            String payMethod = radiobtn.getText().toString();
+//            int radioID = rdo_payment.getCheckedRadioButtonId();
+//            radiobtn = findViewById(radioID);
+            String payMethod = "Cash";
             loadingBar.setTitle("Direct Order");
             loadingBar.setMessage("Please wait while we are saving your order..");
             loadingBar.setCanceledOnTouchOutside(false);

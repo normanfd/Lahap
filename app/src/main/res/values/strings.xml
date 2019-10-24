@@ -97,5 +97,6 @@
     <string name="indirect_text">Please specify the time to take food</string>
     <string name="confirm_your_detail_order">Please confirm your detail order</string>
     <string name="product_list">Order list</string>
+    <string name="confirm_order">Confirm Order</string>
 
 </resources>
