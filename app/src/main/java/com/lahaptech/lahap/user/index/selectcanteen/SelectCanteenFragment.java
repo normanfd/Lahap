@@ -1,6 +1,8 @@
 package com.lahaptech.lahap.user.index.selectcanteen;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +26,9 @@ import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Canteen;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.menuproduct.SelectMenuActivity;
+import com.smarteist.autoimageslider.IndicatorAnimations;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.util.Objects;
 
@@ -40,10 +46,57 @@ public class SelectCanteenFragment extends Fragment {
     @BindView(R.id.rv_canteen)
     RecyclerView rv_canteen;
 
+    private CardView konten1, konten2, konten3;
+
+    Context context;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_selectcanteen, container, false);
         ButterKnife.bind(this, root);
+
+        konten1 = root.findViewById(R.id.data_konten1);
+        konten2 = root.findViewById(R.id.data_konten2);
+        konten3 = root.findViewById(R.id.data_konten3);
+
+        konten1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DetailKontenActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        konten2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DetailKontenActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        konten3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DetailKontenActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        SliderView sliderView = root.findViewById(R.id.imageSlider);
+
+        BannerAdapter adapter = new BannerAdapter(context);
+
+        sliderView.setSliderAdapter(adapter);
+
+        sliderView.setIndicatorAnimation(IndicatorAnimations.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+        sliderView.setIndicatorSelectedColor(Color.WHITE);
+        sliderView.setIndicatorUnselectedColor(Color.GRAY);
+        sliderView.setScrollTimeInSec(4); //set scroll delay in seconds :
+        sliderView.startAutoCycle();
+
         return root;
     }
 

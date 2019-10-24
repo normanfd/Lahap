@@ -3,6 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.lahaptech.lahap">
 
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".user.index.selectcanteen.DetailKontenActivity"></activity>
         <activity
             android:name=".main_activity.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -20,7 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".user.payment.OnlinePaymentActivity" />
         <activity android:name=".user.index.orderstatus.OrderDetailActivity" />
         <activity
@@ -58,20 +67,12 @@
         <activity android:name=".auth.LoginUserActivity" />
         <activity
             android:name=".main_activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <receiver
             android:name=".DailyReminderReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
     </application>
-    <uses-feature android:name="android.hardware.camera" />
-
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
