@@ -93,5 +93,7 @@
     <string name="indirect_order">pesan diluar</string>
     <string name="scan_qr_code">Scan QR Code</string>
     <string name="qr_code_on_table">Scan the QR code which located on the table</string>
+    <string name="set_time">Set Time</string>
+    <string name="indirect_text">Please specify the time to take food</string>
 
 </resources>

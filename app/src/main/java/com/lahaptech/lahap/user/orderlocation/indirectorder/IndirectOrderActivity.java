@@ -37,7 +37,6 @@ public class IndirectOrderActivity extends AppCompatActivity{
 
         currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
 
-        tvw= findViewById(R.id.textView1);
         picker= findViewById(R.id.timePicker1);
         picker.setIs24HourView(true);
         btnGet= findViewById(R.id.button1);

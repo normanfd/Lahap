@@ -42,7 +42,7 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_direct_order);
-        
+
         Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.scan_qr_code);
         getSupportActionBar().setSubtitle(R.string.qr_code_on_table);
 
