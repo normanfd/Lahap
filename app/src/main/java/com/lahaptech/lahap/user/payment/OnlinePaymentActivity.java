@@ -1,6 +1,7 @@
 package com.lahaptech.lahap.user.payment;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,7 +29,7 @@ public class OnlinePaymentActivity extends AppCompatActivity {
     View dialogView;
     EditText txt_nama;
     String namaRekening;
-
+    ProgressDialog loadingBar;
 
     @SuppressLint({"SetTextI18n", "ShowToast"})
     @Override
@@ -43,8 +44,6 @@ public class OnlinePaymentActivity extends AppCompatActivity {
         Button button = findViewById(R.id.btn_payment);
         button.setOnClickListener(view -> {
             DialogForm(orderID, userID);
-
-
         });
     }
 
@@ -68,8 +67,11 @@ public class OnlinePaymentActivity extends AppCompatActivity {
             transfer.put("namaRekening", namaRekening);
             transfer.put("userID", userID);
             db.collection("transfer").document(orderID).set(transfer);
+
             updateStatusOrder(userID);
+
             dialog.dismiss();
+            finish();
         });
 
         dialog.setNegativeButton("CANCEL", (dialog, which) -> dialog.dismiss());
@@ -78,14 +80,10 @@ public class OnlinePaymentActivity extends AppCompatActivity {
     }
 
     private void updateStatusOrder(String userID){
-        dialog.show();
+
         FirebaseFirestore productRef = FirebaseFirestore.getInstance();
         assert userID != null;
         DocumentReference docRef = productRef.collection("order").document(userID);
-        docRef.update("orderStatus", "1").addOnCompleteListener(task -> {
-            Intent intent = new Intent(OnlinePaymentActivity.this, UserActivity.class);
-            startActivity(intent);
-            finish();
-        });
+        docRef.update("orderStatus", "1");
     }
 }

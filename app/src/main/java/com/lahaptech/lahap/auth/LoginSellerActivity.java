@@ -17,7 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Seller;
-import com.lahaptech.lahap.seller.HomeOwnerActivity;
+import com.lahaptech.lahap.seller.HomeSellerActivity;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
-import static com.lahaptech.lahap.seller.HomeOwnerActivity.EXTRA_SELLER;
+import static com.lahaptech.lahap.seller.HomeSellerActivity.EXTRA_SELLER;
 
 public class LoginSellerActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.login_username)
@@ -96,7 +96,7 @@ public class LoginSellerActivity extends AppCompatActivity implements View.OnCli
                         seller.setSellerID(sellerID);
                         seller.setLocationID(sellerData.getLocationID());
 
-                        Intent intent = new Intent(LoginSellerActivity.this, HomeOwnerActivity.class);
+                        Intent intent = new Intent(LoginSellerActivity.this, HomeSellerActivity.class);
                         intent.putExtra(EXTRA_SELLER, seller);
 
                         Prevalent.CurrentOnlineSeller = sellerData;

@@ -23,7 +23,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Seller;
 
 import java.io.ByteArrayOutputStream;
@@ -37,7 +36,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.lahaptech.lahap.seller.HomeOwnerActivity.EXTRA_SELLER;
+import static com.lahaptech.lahap.seller.HomeSellerActivity.EXTRA_SELLER;
 
 public class AddNewProductActivity extends AppCompatActivity implements View.OnClickListener {
 

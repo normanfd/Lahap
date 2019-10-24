@@ -15,13 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Product;
 import com.lahaptech.lahap.model.Seller;
 import com.lahaptech.lahap.seller.update.UpdateProductDetailActivity;
@@ -32,7 +28,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.lahaptech.lahap.seller.HomeOwnerActivity.EXTRA_SELLER;
+import static com.lahaptech.lahap.seller.HomeSellerActivity.EXTRA_SELLER;
 
 /**
  * A simple {@link Fragment} subclass.
