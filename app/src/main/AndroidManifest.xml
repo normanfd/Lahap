@@ -58,7 +58,7 @@
         <activity android:name=".user.detailproduct.DetailActivity" />
         <activity android:name=".seller.AddNewProductActivity" />
         <activity android:name=".seller.order.CheckOrderActivity" />
-        <activity android:name=".seller.HomeOwnerActivity" />
+        <activity android:name=".seller.HomeSellerActivity" />
         <activity android:name=".user.menuproduct.SelectMenuActivity" />
         <activity
             android:name=".auth.RegisterActivity"

@@ -11,12 +11,12 @@ import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Seller;
 import com.lahaptech.lahap.model.User;
-import com.lahaptech.lahap.seller.HomeOwnerActivity;
+import com.lahaptech.lahap.seller.HomeSellerActivity;
 import com.lahaptech.lahap.user.index.UserActivity;
 
 import io.paperdb.Paper;
 
-import static com.lahaptech.lahap.seller.HomeOwnerActivity.EXTRA_SELLER;
+import static com.lahaptech.lahap.seller.HomeSellerActivity.EXTRA_SELLER;
 import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 public class SplashActivity extends AppCompatActivity {
@@ -56,7 +56,7 @@ public class SplashActivity extends AppCompatActivity {
             }
             // Sudah login seller
             else {
-                Intent intent = new Intent(SplashActivity.this, HomeOwnerActivity.class);
+                Intent intent = new Intent(SplashActivity.this, HomeSellerActivity.class);
                 Seller seller = new Seller();
                 seller.setSellerID(SellerID);
                 intent.putExtra(EXTRA_SELLER, seller);

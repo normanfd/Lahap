@@ -7,7 +7,8 @@
         android:id="@+id/nama_rekening"
         android:hint="@string/rekening_nama"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
+        android:layout_margin="20dp"
         android:background="@android:drawable/editbox_background_normal"
         android:importantForAutofill="no"
         android:inputType="textPersonName" />

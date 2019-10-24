@@ -22,11 +22,11 @@ import com.lahaptech.lahap.main_activity.MainActivity;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Seller;
-import com.lahaptech.lahap.seller.HomeOwnerActivity;
+import com.lahaptech.lahap.seller.HomeSellerActivity;
 
 import io.paperdb.Paper;
 
-import static com.lahaptech.lahap.seller.HomeOwnerActivity.EXTRA_SELLER;
+import static com.lahaptech.lahap.seller.HomeSellerActivity.EXTRA_SELLER;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -110,7 +110,7 @@ public class UserActivity extends AppCompatActivity {
 
         if (TextUtils.isEmpty(UserName) && TextUtils.isEmpty(UserPasswordKey)) {
             if (!TextUtils.isEmpty(SellerID) && !TextUtils.isEmpty(SellerPassword)){
-                Intent intent = new Intent(UserActivity.this, HomeOwnerActivity.class);
+                Intent intent = new Intent(UserActivity.this, HomeSellerActivity.class);
                 sellerData.setSellerID(SellerID);
                 intent.putExtra(EXTRA_SELLER, sellerData);
                 startActivity(intent);

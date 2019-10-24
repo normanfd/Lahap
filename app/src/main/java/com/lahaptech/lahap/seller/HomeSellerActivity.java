@@ -12,14 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.lahaptech.lahap.main_activity.MainActivity;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Seller;
-import com.lahaptech.lahap.seller.order.CheckOrderActivity;
 import com.lahaptech.lahap.seller.update.UpdateProductActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
-public class HomeOwnerActivity extends AppCompatActivity implements View.OnClickListener {
+public class HomeSellerActivity extends AppCompatActivity implements View.OnClickListener {
     public static String EXTRA_SELLER = "extra seller";
     Seller seller;
     @BindView(R.id.ll_food)
@@ -39,7 +38,7 @@ public class HomeOwnerActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_owner);
+        setContentView(R.layout.activity_home_seller);
         ButterKnife.bind(this);
         Paper.init(this);
 
@@ -68,7 +67,7 @@ public class HomeOwnerActivity extends AppCompatActivity implements View.OnClick
 
         switch (view.getId()){
             case R.id.admin_logout_btn:
-                intent = new Intent(HomeOwnerActivity.this, MainActivity.class);
+                intent = new Intent(HomeSellerActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 Paper.book().destroy();
                 startActivity(intent);
@@ -76,34 +75,34 @@ public class HomeOwnerActivity extends AppCompatActivity implements View.OnClick
                 break;
 
 //            case R.id.admin_check_order_btn:
-//                intent = new Intent(HomeOwnerActivity.this, CheckOrderActivity.class);
+//                intent = new Intent(HomeSellerActivity.this, CheckOrderActivity.class);
 //                intent.putExtra(EXTRA_SELLER, seller);
 //                startActivity(intent);
 //                break;
 
             case R.id.ll_food:
-                intent = new Intent(HomeOwnerActivity.this, AddNewProductActivity.class);
+                intent = new Intent(HomeSellerActivity.this, AddNewProductActivity.class);
                 intent.putExtra(EXTRA_SELLER, seller);
                 intent.putExtra("category", "food");
                 startActivity(intent);
                 break;
 
             case R.id.ll_drink:
-                intent = new Intent(HomeOwnerActivity.this, AddNewProductActivity.class);
+                intent = new Intent(HomeSellerActivity.this, AddNewProductActivity.class);
                 intent.putExtra(EXTRA_SELLER, seller);
                 intent.putExtra("category", "drink");
                 startActivity(intent);
                 break;
 
             case R.id.ll_snack:
-                intent = new Intent(HomeOwnerActivity.this, AddNewProductActivity.class);
+                intent = new Intent(HomeSellerActivity.this, AddNewProductActivity.class);
                 intent.putExtra(EXTRA_SELLER, seller);
                 intent.putExtra("category", "snack");
                 startActivity(intent);
                 break;
 
             case R.id.maintain_btn:
-                intent = new Intent(HomeOwnerActivity.this, UpdateProductActivity.class);
+                intent = new Intent(HomeSellerActivity.this, UpdateProductActivity.class);
                 intent.putExtra(EXTRA_SELLER, seller);
                 startActivity(intent);
                 break;

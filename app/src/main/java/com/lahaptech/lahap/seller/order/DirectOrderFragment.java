@@ -17,7 +17,7 @@ import com.lahaptech.lahap.model.Seller;
 
 import java.util.Objects;
 
-import static com.lahaptech.lahap.seller.HomeOwnerActivity.EXTRA_SELLER;
+import static com.lahaptech.lahap.seller.HomeSellerActivity.EXTRA_SELLER;
 
 public class DirectOrderFragment extends Fragment {
     private Seller seller;

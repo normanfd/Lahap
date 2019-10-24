@@ -48,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView4"
         android:layout_centerHorizontal="true"
+        android:textIsSelectable="true"
         android:text="1234 5678 9012 3456"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"

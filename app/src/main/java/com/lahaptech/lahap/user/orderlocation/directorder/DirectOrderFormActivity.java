@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -12,7 +13,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.index.UserActivity;
@@ -23,6 +27,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
@@ -78,7 +83,9 @@ public class DirectOrderFormActivity extends AppCompatActivity {
             loadingBar.setMessage("Please wait while we are saving your order..");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
+            deleteCart(usernameIPB);
             saveToFirebase(usernameIPB, locationID, orderTable, saveCurrentTime, saveCurrentDate, orderType, payMethod, total, productList, orderID);
+
         });
     }
 
@@ -114,6 +121,22 @@ public class DirectOrderFormActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
 
                 });
+    }
+
+    private void deleteCart(String usernameIPB) {
+        FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+        CollectionReference itemsRef = rootRef.collection("cart");
+        Query query = itemsRef.whereEqualTo("username", usernameIPB);
+        query.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (DocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                    itemsRef.document(document.getId()).delete();
+                }
+            } else {
+                Log.d("ERROR", "Error getting documents: ", task.getException());
+            }
+        });
+
     }
 
 }
