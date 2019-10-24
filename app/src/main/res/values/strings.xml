@@ -90,5 +90,8 @@
     <string name="rekening_nama">Tuliskan Nama yang ada di Rekening Anda</string>
     <string name="order_type_dir_in">Jika anda berada di kantin, maka pilih pesan ditempat, untuk selain itu pesan diluar</string>
     <string name="direct_order">Pesan Ditempat</string>
+    <string name="indirect_order">pesan diluar</string>
+    <string name="scan_qr_code">Scan QR Code</string>
+    <string name="qr_code_on_table">Scan the QR code which located on the table</string>
 
 </resources>

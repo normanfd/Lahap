@@ -44,7 +44,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/direct_order"
+        android:text="@string/indirect_order"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@+id/btn_direct_order"/>
 
