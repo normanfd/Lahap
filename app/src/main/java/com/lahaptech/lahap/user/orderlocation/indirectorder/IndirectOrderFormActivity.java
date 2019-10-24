@@ -39,7 +39,9 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
     TextView tv_time_pick;
     @BindView(R.id.next_btn)
     Button nextButton;
-    String total_amount = "" , time_pick= "", locationID ="", product_list="", usernameIPB="", saveCurrentDate, saveCurrentTime, orderID;
+    @BindView(R.id.tv_productlist)
+    TextView prodlist;
+    String total_amount = "", time_pick = "", locationID = "", product_list = "", usernameIPB = "", saveCurrentDate, saveCurrentTime, orderID;
     User currentOnlineUser;
     ProgressDialog loadingBar;
 
@@ -59,6 +61,7 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
 
         tv_time_pick.setText(time_pick);
         tv_total_amount.setText(total_amount);
+        prodlist.setText(product_list);
 
         Calendar calendar = Calendar.getInstance();
 
@@ -76,7 +79,7 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.next_btn){
+        if (view.getId() == R.id.next_btn) {
             String orderType = "indirect";
             loadingBar.setTitle("Indirect Order");
             loadingBar.setMessage("Please wait while we are saving your order..");
