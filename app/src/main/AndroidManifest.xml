@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".user.index.selectcanteen.DetailKontenActivity"></activity>
+        <activity android:name=".user.index.selectcanteen.DetailKontenActivity" />
         <activity
             android:name=".main_activity.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">

@@ -38,7 +38,7 @@ public class DirectOrderFormActivity extends AppCompatActivity {
     RadioButton rdo_btnCash;
     Button btn;
     User currentOnlineUser;
-    String total="", locationID ="", orderTable = "", productList="", saveCurrentDate, saveCurrentTime, orderID;
+    String total="", locationID ="", orderTable = "", productList="", saveCurrentDate, saveCurrentTime, orderID, usernameIPB;
     ProgressDialog loadingBar;
 
     @Override
@@ -65,16 +65,16 @@ public class DirectOrderFormActivity extends AppCompatActivity {
         orderTableNo.setText(orderTable);
         username.setText(currentOnlineUser.getUsername());
         tPrice.setText(total);
+        usernameIPB = currentOnlineUser.getUsername();
 
         Calendar calendar = Calendar.getInstance();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
         saveCurrentDate = currentDate.format(calendar.getTime());
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss");
         saveCurrentTime = currentTime.format(calendar.getTime());
-        orderID = saveCurrentDate + " " + saveCurrentTime;
+        orderID = usernameIPB + saveCurrentDate + saveCurrentTime;
 
         btn.setOnClickListener(view -> {
-            String usernameIPB = currentOnlineUser.getUsername();
             String orderType = "direct";
             int radioID = rdo_payment.getCheckedRadioButtonId();
             radiobtn = findViewById(radioID);
@@ -102,7 +102,7 @@ public class DirectOrderFormActivity extends AppCompatActivity {
         order.put("orderDate", saveCurrentDate);
         order.put("orderTable", orderTable);
         order.put("orderType", orderType);
-        order.put("orderStatus", "0");
+        order.put("orderStatus", "1");
         order.put("payMethod", payMethod);
         order.put("transferProof", null);
         order.put("totalAmount", totalAmount);
