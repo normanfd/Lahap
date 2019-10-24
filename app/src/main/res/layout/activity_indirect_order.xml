@@ -1,29 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-    <TimePicker
-        android:id="@+id/timePicker1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:timePickerMode="spinner"/>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/timePicker1"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="160dp"
-        android:text="Get Date" />
+        android:layout_marginEnd="100dp"
+        android:background="@drawable/buttons"
+        android:text="@string/set_time"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@+id/timePicker1" />
+
+    <ImageView
+        android:id="@+id/indirect_applogo"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/applogo"
+        android:src="@drawable/app_logo"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        android:id="@+id/indirect_text"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
-        android:layout_marginStart="120dp"
         android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        android:textSize="18sp"/>
-</RelativeLayout>
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:text="@string/indirect_text"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/indirect_applogo" />
+
+    <TimePicker
+        android:id="@+id/timePicker1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:timePickerMode="spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/indirect_text" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,54 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".user.orderlocation.OrderLocationActivity">
 
+    <ImageView
+        android:id="@+id/order_applogo"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/applogo"
+        android:src="@drawable/app_logo"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textorder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/order_type_dir_in"
+        app:layout_constraintTop_toBottomOf="@+id/order_applogo"/>
     <Button
         android:id="@+id/btn_direct_order"
-        android:layout_width="290dp"
-        android:layout_height="84dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:background="@drawable/buttons"
-        android:text="Pesan Ditempat"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/direct_order"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.936" />
+        app:layout_constraintTop_toBottomOf="@+id/textorder"/>
 
     <Button
         android:id="@+id/btn_not_direct_order"
-        android:layout_width="290dp"
-        android:layout_height="84dp"
-        android:background="@drawable/buttons"
-        android:text="Pesan Diluar"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
-
-    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/background_gradient"
-            android:contentDescription="@string/todo" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="#E0E2E0"
-            android:contentDescription="@string/todo" />
-
-
-    </LinearLayout>
+        android:layout_height="60dp"
+        android:background="@drawable/buttons"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/indirect_order"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@+id/btn_direct_order"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

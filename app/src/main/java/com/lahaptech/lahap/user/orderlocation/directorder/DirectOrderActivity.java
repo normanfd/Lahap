@@ -18,6 +18,8 @@ import com.karumi.dexter.listener.single.PermissionListener;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -40,6 +42,9 @@ public class DirectOrderActivity extends AppCompatActivity implements ZXingScann
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_direct_order);
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.scan_qr_code);
+        getSupportActionBar().setSubtitle(R.string.qr_code_on_table);
 
         totalPrice = getIntent().getStringExtra("TotalPrice");
         productList = getIntent().getStringExtra("productList");

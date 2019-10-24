@@ -88,5 +88,15 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="rekening_nama">Tuliskan Nama yang ada di Rekening Anda</string>
+    <string name="order_type_dir_in">Jika anda berada di kantin, maka pilih pesan ditempat, untuk selain itu pesan diluar</string>
+    <string name="direct_order">Pesan Ditempat</string>
+    <string name="indirect_order">pesan diluar</string>
+    <string name="scan_qr_code">Scan QR Code</string>
+    <string name="qr_code_on_table">Scan the QR code which located on the table</string>
+    <string name="set_time">Set Time</string>
+    <string name="indirect_text">Please specify the time to take food</string>
+    <string name="confirm_your_detail_order">Please confirm your detail order</string>
+    <string name="product_list">Order list</string>
+    <string name="confirm_order">Confirm Order</string>
 
 </resources>

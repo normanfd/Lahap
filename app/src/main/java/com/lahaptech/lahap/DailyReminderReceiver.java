@@ -76,7 +76,7 @@ public class DailyReminderReceiver extends BroadcastReceiver {
         Intent intent = new Intent(context, DailyReminderReceiver.class);
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 21);
+        calendar.set(Calendar.HOUR_OF_DAY, 10);
         calendar.set(Calendar.MINUTE, 29);
         calendar.set(Calendar.SECOND, 0);
 
