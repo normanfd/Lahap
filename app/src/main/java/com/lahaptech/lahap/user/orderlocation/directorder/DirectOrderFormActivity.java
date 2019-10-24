@@ -37,7 +37,7 @@ public class DirectOrderFormActivity extends AppCompatActivity {
 //    RadioGroup rdo_payment, rdo_btnCash;
     Button btn;
     User currentOnlineUser;
-    String total="", locationID ="", orderTable = "", productList="", saveCurrentDate, saveCurrentTime, orderID, usernameIPB;
+    String total="", locationIDWithNumber ="", orderTable = "", productList="", saveCurrentDate, saveCurrentTime, orderID, usernameIPB="";
     ProgressDialog loadingBar;
 
     @Override
@@ -49,9 +49,11 @@ public class DirectOrderFormActivity extends AppCompatActivity {
 
         orderTable = getIntent().getStringExtra("orderTableNo");
         productList = getIntent().getStringExtra("productList");
-        locationID = getIntent().getStringExtra("qrcode");
+        locationIDWithNumber = getIntent().getStringExtra("qrcode");
         total = getIntent().getStringExtra("TotalPrice");
         currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
+
+        String[] locationID = locationIDWithNumber.split(",", 2);
 
         tv_total_amount = findViewById(R.id.tv_total_amount);
         tv_table_no = findViewById(R.id.tv_table_no);
@@ -61,19 +63,9 @@ public class DirectOrderFormActivity extends AppCompatActivity {
         tv_table_no.setText(orderTable);
         tv_total_amount.setText(total);
         tv_product_list.setText(productList);
-
-
-        orderTableNo.setText(orderTable);
-        username.setText(currentOnlineUser.getUsername());
-        tPrice.setText(total);
+        
         usernameIPB = currentOnlineUser.getUsername();
 
-//        rdo_payment = findViewById(R.id.order_radio_payment);
-//        orderTableNo = findViewById(R.id.order_table_number);
-//        username = findViewById(R.id.order_username);
-//        rdo_btnCash = findViewById(R.id.rdo_btn_cash);
-//        rdo_btnCash.setChecked(true);
-//        username.setText(currentOnlineUser.getUsername());
 
 
         Calendar calendar = Calendar.getInstance();
@@ -93,7 +85,7 @@ public class DirectOrderFormActivity extends AppCompatActivity {
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
             deleteCart(usernameIPB);
-            saveToFirebase(usernameIPB, locationID, orderTable, saveCurrentTime, saveCurrentDate, orderType, payMethod, total, productList, orderID);
+            saveToFirebase(usernameIPB, locationID[0], orderTable, saveCurrentTime, saveCurrentDate, orderType, payMethod, total, productList, orderID);
 
         });
     }
