@@ -2,6 +2,7 @@ package com.lahaptech.lahap.user.orderlocation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -38,6 +39,8 @@ public class OrderLocationActivity extends AppCompatActivity implements View.OnC
         ButterKnife.bind(this);
 
         totalPrice = getIntent().getStringExtra("TotalPrice");
+        assert totalPrice != null;
+        Log.d("hoho",totalPrice);
         productList = getIntent().getStringExtra("productList");
 
         canteenID = getIntent().getStringExtra(CANTEEN_ID);

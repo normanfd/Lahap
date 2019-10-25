@@ -8,14 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.esotericsoftware.kryo.serializers.FieldSerializer;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentReference;
@@ -52,7 +55,12 @@ public class OrderStatusFragment extends Fragment {
     TextView order_total_price;
     @BindView(R.id.buttonPayment)
     Button payment;
-
+    @BindView(R.id.textnoorder)
+    TextView no_order;
+    @BindView(R.id.const_empty_order)
+    ConstraintLayout const_empty;
+    @BindView(R.id.const_exist_order)
+    ConstraintLayout const_exist;
     private String total, orderID, usernameIPB;
 
 
@@ -85,6 +93,7 @@ public class OrderStatusFragment extends Fragment {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void getOrderDetail(String usernameIPB) {
         FirebaseFirestore productRef = FirebaseFirestore.getInstance();
         DocumentReference docRef = productRef.collection("order").document(usernameIPB);
@@ -98,6 +107,10 @@ public class OrderStatusFragment extends Fragment {
                 order_total_price.setText(orderData.getTotalAmount());
                 total = orderData.getTotalAmount();
                 orderID = orderData.getOrderID();
+            }
+            else {
+                const_empty.setVisibility(View.VISIBLE);
+                const_exist.setVisibility(View.INVISIBLE);
             }
         });
 

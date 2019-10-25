@@ -96,5 +96,6 @@
     <string name="register">Register</string>
     <string name="username_has_already_registered">This username has already been registered</string>
     <string name="order_amount">Order amount</string>
+    <string name="no_order_yet">no order yet</string>
 
 </resources>
