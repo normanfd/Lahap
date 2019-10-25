@@ -3,32 +3,16 @@ package com.lahaptech.lahap.main_activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.auth.LoginSellerActivity;
 import com.lahaptech.lahap.auth.LoginUserActivity;
 import com.lahaptech.lahap.auth.RegisterActivity;
-import com.lahaptech.lahap.model.Prevalent;
-import com.lahaptech.lahap.model.User;
-import com.lahaptech.lahap.user.index.UserActivity;
-
-import io.paperdb.Paper;
-
-import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button btn_join;
     Button btn_login;
-    Button btn_login_seller;
     ProgressDialog loadingBar;
 
     @Override
@@ -38,26 +22,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btn_join = findViewById(R.id.main_join_now_btn);
         btn_login = findViewById(R.id.main_login_btn);
-        btn_login_seller = findViewById(R.id.main_login_btn_seller);
 
         loadingBar = new ProgressDialog(this);
 
         btn_join.setOnClickListener(this);
         btn_login.setOnClickListener(this);
-        btn_login_seller.setOnClickListener(this);
-
-        Paper.init(this);
-        String UserName = Paper.book().read(Prevalent.UserName);
-        String UserPasswordKey = Paper.book().read(Prevalent.UserPasswordKey);
-
-        if (!TextUtils.isEmpty(UserName) && !TextUtils.isEmpty(UserPasswordKey)) {
-            loadingBar.setTitle("Already Logged in");
-            loadingBar.setMessage("please wait...");
-            loadingBar.setCanceledOnTouchOutside(false);
-            loadingBar.show();
-            LoginToFirestore(UserName, UserPasswordKey);
-        }
-
     }
 
     @Override
@@ -65,47 +34,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view.getId() == R.id.main_login_btn) {
             Intent intent = new Intent(MainActivity.this, LoginUserActivity.class);
             startActivity(intent);
-        } else if (view.getId() == R.id.main_join_now_btn) {
+        } else {
             Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
             startActivity(intent);
-        } else {
-            Intent intent = new Intent(MainActivity.this, LoginSellerActivity.class);
-            startActivity(intent);
         }
-    }
-
-    private void LoginToFirestore(String username, String password) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final DocumentReference docRef = db.collection("user").document(username);
-        docRef.addSnapshotListener((documentSnapshot, e) -> {
-            if (e != null) {
-                Log.w("fail", "Listen failed.", e);
-                return;
-            }
-
-            if (documentSnapshot != null && documentSnapshot.exists()) {
-                Log.d("get", "Current data: " + documentSnapshot.getData());
-                User userData = documentSnapshot.toObject(User.class);
-                assert userData != null;
-                if (userData.getUsername().equals(username)) {
-                    if (userData.getPassword().equals(password)) {
-                        Toast.makeText(MainActivity.this, "Login success", Toast.LENGTH_SHORT).show();
-                        loadingBar.dismiss();
-                        Intent intent = new Intent(MainActivity.this, UserActivity.class);
-                        intent.putExtra(EXTRA_USER, userData);
-                        Prevalent.CurrentOnlineUser = userData;
-                        startActivity(intent);
-                    } else {
-                        loadingBar.dismiss();
-                        Toast.makeText(MainActivity.this, "Password is incorrect", Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-            } else {
-                Toast.makeText(MainActivity.this, "Account with username " + username + " does not exist", Toast.LENGTH_SHORT).show();
-                loadingBar.dismiss();
-            }
-        });
     }
 
     @Override
