@@ -95,5 +95,6 @@
     <string name="does_not_exist">does not exist</string>
     <string name="register">Register</string>
     <string name="username_has_already_registered">This username has already been registered</string>
+    <string name="order_amount">Order amount</string>
 
 </resources>

@@ -9,6 +9,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
+        android:layout_above="@+id/grid1"
         android:layout_height="616dp">
 
         <RelativeLayout
@@ -30,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/product_image_detail"
                 android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:text="@string/product_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="30sp"
@@ -41,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/product_name_detail"
                 android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginTop="5dp"
                 android:text="@string/product_description"
                 android:textSize="16sp"
@@ -82,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_menu_detail"
                 android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginTop="5dp"
                 android:text="@string/product_description"
                 android:textSize="16sp" />
@@ -106,6 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_nutrition_detail"
                 android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginTop="5dp"
                 android:text="@string/nutrition_detail"
                 android:textSize="16sp" />
@@ -116,6 +121,7 @@
     </ScrollView>
 
     <GridLayout
+        android:id="@+id/grid1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/pd_add_to_cart_btn">
@@ -142,7 +148,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
-            android:text="Mau Pesan Berapa?"
+            android:text="@string/order_amount"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
     </GridLayout>
 

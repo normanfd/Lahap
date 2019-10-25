@@ -8,18 +8,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Product;
 import com.lahaptech.lahap.model.User;
 import com.squareup.picasso.Picasso;
@@ -30,6 +23,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -152,6 +146,7 @@ public class DetailActivity extends AppCompatActivity {
             if (documentSnapshot != null && documentSnapshot.exists()){
                 Product productData = documentSnapshot.toObject(Product.class);
                 assert productData != null;
+                Objects.requireNonNull(getSupportActionBar()).setTitle(productData.getProductName());
                 name.setText(productData.getProductName());
                 productPrice = productData.getPrice();
                 String str = NumberFormat.getNumberInstance(Locale.US).format(Integer.valueOf(productPrice));
