@@ -19,9 +19,9 @@
 
     <fragment
         android:id="@+id/nav_order_history"
-        android:name="com.lahaptech.lahap.user.index.orderhistory.SlideshowFragment"
+        android:name="com.lahaptech.lahap.user.index.orderhistory.OrderHistoryFragment"
         android:label="@string/order_history"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_order_history" />
 
     <fragment
         android:id="@+id/nav_help"
