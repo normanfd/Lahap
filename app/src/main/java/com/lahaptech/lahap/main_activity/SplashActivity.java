@@ -21,49 +21,33 @@ import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private String UserName="", SellerID="";
+    private String UserName="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         Paper.init(this);
-
-        UserName = Paper.book().read(Prevalent.UserName);
-        SellerID = Paper.book().read(Prevalent.SellerID);
         int SPLASH_TIME_OUT = 1000;
+        //check storage object data
+        UserName = Paper.book().read(Prevalent.UserName);
+//        SellerID = Paper.book().read(Prevalent.SellerID);
 
-        /*
-         * Showing splash screen with a timer. This will be useful when you
-         * want to show case your app logo / company
-         */
+
         new Handler().postDelayed(() -> {
-            // This method will be executed once the timer is over
-            // Start your app main activity
-
-            // Belum Login
-            if(TextUtils.isEmpty(UserName) && TextUtils.isEmpty(SellerID)){
+            // Kondisi belum login
+            if(TextUtils.isEmpty(UserName)){
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
             }
-            // Sudah login user
-            else if (!TextUtils.isEmpty(UserName) && TextUtils.isEmpty(SellerID)){
+            // Kondisi sudah login (User)
+            else if (!TextUtils.isEmpty(UserName)){
                 Intent intent = new Intent(SplashActivity.this, UserActivity.class);
                 User user = new User();
                 user.setUsername(UserName);
                 intent.putExtra(EXTRA_USER, user);
                 startActivity(intent);
             }
-            // Sudah login seller
-            else {
-                Intent intent = new Intent(SplashActivity.this, HomeSellerActivity.class);
-                Seller seller = new Seller();
-                seller.setSellerID(SellerID);
-                intent.putExtra(EXTRA_SELLER, seller);
-                startActivity(intent);
-            }
-
-            // close this activity
             finish();
         }, SPLASH_TIME_OUT);
 
