@@ -36,8 +36,7 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
     ViewPager viewPager;
     @BindView(R.id.fab)
     Button fab;
-//    @BindView(R.id.fab)
-//    FloatingActionButton fab;
+
     String canteenID = "", canteenCode = "", canteenName="";
     User currentOnlineUser;
 

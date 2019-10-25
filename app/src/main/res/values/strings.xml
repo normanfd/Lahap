@@ -93,5 +93,7 @@
     <string name="incorrect_username">username is incorrect</string>
     <string name="account_with_username">Account with username</string>
     <string name="does_not_exist">does not exist</string>
+    <string name="register">Register</string>
+    <string name="username_has_already_registered">This username has already been registered</string>
 
 </resources>

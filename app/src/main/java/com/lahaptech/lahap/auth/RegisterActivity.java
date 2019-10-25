@@ -21,6 +21,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.model.Prevalent;
+import com.lahaptech.lahap.model.User;
+import com.lahaptech.lahap.user.index.UserActivity;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -30,6 +33,9 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.paperdb.Paper;
+
+import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -53,13 +59,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
+        Paper.init(this);
         loadingBar = new ProgressDialog(this);
         btn_register.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.register_btn){
+        if (view.getId() == R.id.register_btn) {
             CreateAccount();
         }
     }
@@ -71,31 +78,23 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String password = inpt_password.getText().toString();
         String email = inpt_email.getText().toString();
 
-        if(TextUtils.isEmpty(username)){
+        if (TextUtils.isEmpty(username)) {
             Toast.makeText(RegisterActivity.this, R.string.write_your_name, Toast.LENGTH_SHORT).show();
-        }
-        else if (TextUtils.isEmpty(email)){
+        } else if (TextUtils.isEmpty(email)) {
             Toast.makeText(RegisterActivity.this, R.string.write_email_address, Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(phone)){
+        } else if (TextUtils.isEmpty(phone)) {
             Toast.makeText(RegisterActivity.this, R.string.write_phone_number, Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(password)){
+        } else if (TextUtils.isEmpty(password)) {
             Toast.makeText(RegisterActivity.this, R.string.write_your_password, Toast.LENGTH_SHORT).show();
-        }
-        else if(!PhoneNumberUtils.isGlobalPhoneNumber(phone)) {
+        } else if (!PhoneNumberUtils.isGlobalPhoneNumber(phone)) {
             Toast.makeText(RegisterActivity.this, R.string.write_valid_phone_number, Toast.LENGTH_SHORT).show();
-        }
-        else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(RegisterActivity.this, R.string.valid_email_address, Toast.LENGTH_SHORT).show();
-        }
-        else if (!email.contains("@apps.ipb.ac.id")){
+        } else if (!email.contains("@apps.ipb.ac.id")) {
             Toast.makeText(RegisterActivity.this, R.string.valid_email_ipb_address, Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(name)){
+        } else if (TextUtils.isEmpty(name)) {
             Toast.makeText(RegisterActivity.this, "Please write your name", Toast.LENGTH_SHORT).show();
-        }
-        else{
+        } else {
             loadingBar.setTitle(getResources().getString(R.string.create_account));
             loadingBar.setMessage(getResources().getString(R.string.checking_credentials));
             loadingBar.setCanceledOnTouchOutside(false);
@@ -114,42 +113,50 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         user.put("username", username);
         user.put("email", email);
         user.put("phone", phone);
-        user.put("password",hash);
-
+        user.put("password", hash);
 
         db.collection("user").document(username)
                 .get().addOnCompleteListener(task -> {
-                    if (task.isSuccessful()){
-                        DocumentSnapshot document = task.getResult();
-                        assert document != null;
-                        if (document.exists()){
-                            Toast.makeText(RegisterActivity.this, "Username ini telah terdaftar", Toast.LENGTH_SHORT).show();
-                            loadingBar.dismiss();
-                        }
-                        else {
-                            db.collection("user").document(username)
-                                    .set(user)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            Toast.makeText(RegisterActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
-                                            loadingBar.dismiss();
-                                            Log.d("Cek", "DocumentSnapshot added with ID: " + username);
-                                            Intent intent = new Intent(RegisterActivity.this, LoginUserActivity.class);
-                                            RegisterActivity.this.startActivity(intent);
-                                        }
-                                    })
-                                    .addOnFailureListener(e -> {
-                                        loadingBar.dismiss();
-                                        Toast.makeText(RegisterActivity.this, R.string.try_again_later, Toast.LENGTH_SHORT).show();
-                                    });
-                        }
-                    }
-                    else {
-                        Log.d("Failed snapshot Data", "get failed with ", task.getException());
-                    }
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                assert document != null;
+                if (document.exists()) {
+                    Toast.makeText(RegisterActivity.this, getString(R.string.username_has_already_registered), Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
+                } else {
+                    db.collection("user").document(username)
+                            .set(user)
+                            .addOnSuccessListener(aVoid -> {
 
-                });
+                                Paper.book().write(Prevalent.UserName, username);
+                                Paper.book().write(Prevalent.UserPasswordKey, hash);
+
+                                User userData = new User();
+                                userData.setName(name);
+                                userData.setUsername(username);
+                                userData.setEmail(email);
+                                userData.setPhone(phone);
+                                userData.setPassword(password);
+
+                                Toast.makeText(RegisterActivity.this, R.string.account_created, Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
+//                                    Log.d("Cek", "DocumentSnapshot added with ID: " + username);
+                                Intent intent = new Intent(RegisterActivity.this, UserActivity.class);
+                                intent.putExtra(EXTRA_USER, userData);
+                                Prevalent.CurrentOnlineUser = userData;
+
+                                RegisterActivity.this.startActivity(intent);
+                            })
+                            .addOnFailureListener(e -> {
+                                loadingBar.dismiss();
+                                Toast.makeText(RegisterActivity.this, R.string.try_again_later, Toast.LENGTH_SHORT).show();
+                            });
+                }
+            } else {
+                Log.d("Failed snapshot Data", "get failed with ", task.getException());
+            }
+
+        });
     }
 
 
@@ -163,11 +170,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
 
         assert m != null;
-        m.update(s.getBytes(),0,s.length());
+        m.update(s.getBytes(), 0, s.length());
         return new BigInteger(1, m.digest()).toString(16);
     }
-
-
-
-
 }

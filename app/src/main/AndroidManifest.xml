@@ -38,8 +38,6 @@
         <activity
             android:name=".user.orderlocation.indirectorder.IndirectOrderActivity"
             android:theme="@style/AppTheme.NoActionBar" /> <!-- <activity -->
-        <!-- android:name=".user.UserActivity" -->
-        <!-- android:label="@string/title_activity_user"/> -->
         <activity
             android:name=".user.orderlocation.indirectorder.IndirectOrderFormActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -52,18 +50,12 @@
             android:name=".user.orderlocation.OrderLocationActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".user.cart.CartActivity" />
-        <activity android:name=".seller.update.UpdateProductDetailActivity" />
-        <activity android:name=".seller.update.UpdateProductActivity" />
         <activity android:name=".user.detailproduct.DetailActivity" />
-        <activity android:name=".seller.AddNewProductActivity" />
-        <activity android:name=".seller.order.CheckOrderActivity" />
-        <activity android:name=".seller.HomeSellerActivity" />
         <activity android:name=".user.menuproduct.SelectMenuActivity" />
         <activity
             android:name=".auth.RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateVisible|adjustResize" />
-        <activity android:name=".auth.LoginUserActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".auth.LoginUserActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".main_activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />

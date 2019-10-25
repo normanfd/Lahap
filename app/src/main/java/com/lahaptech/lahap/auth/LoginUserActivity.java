@@ -110,7 +110,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
                 }
                 else Toast.makeText(LoginUserActivity.this, getString(R.string.incorrect_username), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(LoginUserActivity.this, getResources().getString(R.string.account_with_username) + username
+                Toast.makeText(LoginUserActivity.this, getResources().getString(R.string.account_with_username) + " " + username + " "
                         + getResources().getString(R.string.does_not_exist), Toast.LENGTH_SHORT).show();
                 loadingBar.dismiss();
             }

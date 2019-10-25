@@ -46,8 +46,6 @@ public class SelectCanteenFragment extends Fragment {
     @BindView(R.id.rv_canteen)
     RecyclerView rv_canteen;
 
-    private CardView konten1, konten2, konten3;
-
     Context context;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -55,32 +53,23 @@ public class SelectCanteenFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_selectcanteen, container, false);
         ButterKnife.bind(this, root);
 
-        konten1 = root.findViewById(R.id.data_konten1);
-        konten2 = root.findViewById(R.id.data_konten2);
-        konten3 = root.findViewById(R.id.data_konten3);
+        CardView konten1 = root.findViewById(R.id.data_konten1);
+        CardView konten2 = root.findViewById(R.id.data_konten2);
+        CardView konten3 = root.findViewById(R.id.data_konten3);
 
-        konten1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), DetailKontenActivity.class);
-                startActivity(intent);
-            }
+        konten1.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), DetailKontenActivity.class);
+            startActivity(intent);
         });
 
-        konten2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), DetailKontenActivity.class);
-                startActivity(intent);
-            }
+        konten2.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), DetailKontenActivity.class);
+            startActivity(intent);
         });
 
-        konten3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), DetailKontenActivity.class);
-                startActivity(intent);
-            }
+        konten3.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), DetailKontenActivity.class);
+            startActivity(intent);
         });
 
         SliderView sliderView = root.findViewById(R.id.imageSlider);
@@ -106,7 +95,7 @@ public class SelectCanteenFragment extends Fragment {
         //get user with parcelable
         User user = Objects.requireNonNull(getActivity()).getIntent().getParcelableExtra(EXTRA_USER);
         assert user != null;
-        Log.d("LOG USERNAME", user.getUsername());
+        Log.d("Data", user.getUsername());
 
         checkinternetconnection();
         setupRecyclerView(user);
@@ -138,7 +127,6 @@ public class SelectCanteenFragment extends Fragment {
                                 intent.putExtra(CANTEEN_QR_CODE, model.getCanteenCode());
                                 intent.putExtra(CANTEEN_NAME, model.getCanteenName());
                                 intent.putExtra(EXTRA_USER, user);
-                                Toast.makeText(getContext(), model.getCanteenCode(), Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                             });
                         }
