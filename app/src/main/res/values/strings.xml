@@ -3,7 +3,7 @@
     <string name="msg_daily">Have you eaten yet? let\'s order first in our favorite canteen</string>
     <string name="phone_number">phone number</string>
     <string name="password">Password</string>
-    <string name="forget_password">Forget Password?</string>
+    <string name="forget_password">Forgot Password?</string>
     <string name="login">Login</string>
     <string name="join_now">Don\'t Have an account? Register Here</string>
 
@@ -35,19 +35,14 @@
     <string name="delete_this_product">Delete this Product</string>
     <string name="add_new_product">Add New Product</string>
     <string name="logout">Logout</string>
-    <string name="check_new_orders">Check new Orders</string>
     <string name="update_product">Update Product</string>
     <string name="user_logout">Logout</string>
 
     <string name="cart">Cart</string>
-    <string name="login_seller">Login Seller</string>
     <string name="login_user">Login Student</string>
     <string name="title_activity_user">UserActivity</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="seller">Seller : </string>
     <string name="price">Price : Rp </string>
     <string name="select_canteen">Select Canteen</string>
     <string name="order_status">Order Status</string>
@@ -60,19 +55,13 @@
     <string name="hint_phone">08xxx</string>
     <string name="secret">******</string>
     <string name="sign_up">Sign Up</string>
-    <string name="direct_order_form">Direct Order Form</string>
     <string name="table_no">Table no : </string>
-    <string name="payment_method">Payment Method</string>
     <string name="hint_login_seller">Login Seller</string>
     <string name="total_amount">Total Amount</string>
     <string name="time_pick">Time Pick</string>
     <string name="next_to_online_payment">Next to Online Payment</string>
-    <string name="order_detail">Order Detail</string>
     <string name="total_price">Total Price</string>
-    <string name="transfer">Transfer</string>
-    <string name="cash">Cash</string>
     <string name="add_to_cart">Add To Cart</string>
-    <string name="order_type">Order Type</string>
     <string name="product_id">product_id</string>
     <string name="online_payment">Online Payment</string>
     <string name="already_pay">Already Pay This One</string>
@@ -98,5 +87,11 @@
     <string name="confirm_your_detail_order">Please confirm your detail order</string>
     <string name="product_list">Order list</string>
     <string name="confirm_order">Confirm Order</string>
+    <string name="login_account">Login account</string>
+    <string name="check_credential">Please wait while we are checking your credentials..</string>
+    <string name="incorrect_password">Password is incorrect</string>
+    <string name="incorrect_username">username is incorrect</string>
+    <string name="account_with_username">Account with username</string>
+    <string name="does_not_exist">does not exist</string>
 
 </resources>

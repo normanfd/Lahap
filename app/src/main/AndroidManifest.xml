@@ -48,7 +48,6 @@
             android:name=".user.index.UserActivity"
             android:label="@string/title_activity_user"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".auth.LoginSellerActivity" />
         <activity
             android:name=".user.orderlocation.OrderLocationActivity"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -31,7 +31,6 @@
     <string name="apply_changes">Apply Changes</string>
     <string name="add_new_product">Tambah Produk Baru</string>
     <string name="logout">Logout</string>
-    <string name="check_new_orders">Cek Orderan Baru</string>
     <string name="update_product">Update Produk</string>
     <string name="user_logout">Keluar</string>
     <string name="todo">TODO</string>
@@ -41,14 +40,10 @@
     <string name="delete_this_product">Hapus produk ini</string>
     <string name="order_status">Status Pesanan</string>
     <string name="price">Harga : Rp</string>
-    <string name="seller">"Penjual : "</string>
     <string name="order_history">Riwayat Pesanan</string>
 
-    <string name="login_seller">Seller</string>
     <string name="login_user">Mahasiswa IPB</string>
     <string name="title_activity_user">UserActivity</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="full_name">Full name</string>
@@ -62,9 +57,7 @@
     <string name="total_amount">Total Amount</string>
     <string name="time_pick">Time Pick</string>
     <string name="next_to_online_payment">Next to Online Payment</string>
-    <string name="order_detail">Order Detail</string>
     <string name="add_to_cart">Add To Cart</string>
-    <string name="order_type">Order Type</string>
     <string name="already_pay">Already Pay This One</string>
     <string name="menu_detail">Menu Detail</string>
     <string name="nutrition_detail">Nutrition Detail</string>

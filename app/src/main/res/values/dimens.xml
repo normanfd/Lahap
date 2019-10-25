@@ -9,4 +9,5 @@
     <dimen name="textsize_m">16sp</dimen>
     <dimen name="textsize_s">14sp</dimen>
     <dimen name="spacing_xl">16dp</dimen>
+    <dimen name="input_form_width">380dp</dimen>
 </resources>
