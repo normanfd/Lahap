@@ -8,10 +8,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Product;
 import com.lahaptech.lahap.model.User;
@@ -53,6 +59,8 @@ public class DetailActivity extends AppCompatActivity {
     String foodID, category, sellerID, locationID, productPrice="";
     String state="normal";
     User currentOnlineUser;
+    FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +83,7 @@ public class DetailActivity extends AppCompatActivity {
         Log.d("user", currentOnlineUser.getUsername());
 
         checkUserOrder(currentOnlineUser.getUsername());
+
         getProductDetail(foodID);
 
         btn_add_cart.setOnClickListener(v -> {
@@ -93,8 +102,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void checkUserOrder(String currentOnlineUser) {
-        FirebaseFirestore orderRef = FirebaseFirestore.getInstance();
-        DocumentReference docRef = orderRef.collection("order").document(currentOnlineUser);
+        DocumentReference docRef = rootRef.collection("order").document(currentOnlineUser);
 
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             if (documentSnapshot != null && documentSnapshot.exists()){
