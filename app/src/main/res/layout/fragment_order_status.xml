@@ -9,7 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/const_empty_order"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/emptyy_order"
@@ -39,98 +40,115 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/const_exist_order"
         android:layout_width="match_parent"
-        android:visibility="invisible"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="invisible">
 
-        <Button
-            android:id="@+id/buttonPayment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bayar"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="@dimen/horizontal_dimen"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/order_total_price" />
-
-        <TextView
-            android:id="@+id/tv_status_order"
+        <LinearLayout
+            android:id="@+id/linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/order_id"
-            android:layout_marginStart="@dimen/horizontal_dimen"
-            android:layout_marginTop="8dp"
-            android:text="@string/order_status"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/order_id" />
-
-        <TextView
-            android:id="@+id/status_order"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_status_order"
-            android:layout_marginStart="@dimen/horizontal_dimen"
-            android:layout_marginEnd="@dimen/horizontal_dimen"
-            android:text="@string/order_status"
-            android:textColor="@color/colorAccent"
-            android:textSize="24sp"
-            app:layout_constraintTop_toBottomOf="@+id/tv_status_order" />
-
-        <TextView
-            android:id="@+id/tv_order_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/status_order"
-            android:layout_marginStart="@dimen/horizontal_dimen"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="@dimen/horizontal_dimen"
-            android:text="@string/order_list"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/status_order" />
-
-        <TextView
-            android:id="@+id/order_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_order_detail"
-            android:layout_marginStart="@dimen/horizontal_dimen"
-            android:layout_marginEnd="@dimen/horizontal_dimen"
-            android:text="@string/order_list"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            app:layout_constraintTop_toBottomOf="@id/tv_order_detail" />
-
-
-        <TextView
-            android:id="@+id/tv_order_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/order_list"
-            android:layout_marginStart="@dimen/horizontal_dimen"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="@dimen/horizontal_dimen"
-            android:text="@string/total_price"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/order_list" />
-
-        <TextView
-            android:id="@+id/order_total_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_order_price"
-            android:layout_marginStart="@dimen/horizontal_dimen"
-            android:text="@string/total_price"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            app:layout_constraintTop_toBottomOf="@+id/tv_order_price" />
-
-        <TextView
-            android:id="@+id/order_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/order_id"
-            android:textColor="@android:color/black"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/order_applogo"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/applogo"
+                android:src="@drawable/app_logo"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/text_order_status" />
+
+            <TextView
+                android:id="@+id/status_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/order_status"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/order_list" />
+
+            <TextView
+                android:id="@+id/order_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/order_list"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/total_price" />
+
+            <TextView
+                android:id="@+id/order_total_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/product_list"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/buttonPayment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/horizontal_dimen"
+                    android:text="Bayar"
+                    tools:ignore="ButtonStyle" />
+
+                <Button
+                    android:visibility="invisible"
+                    android:id="@+id/buttonCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/horizontal_dimen"
+                    android:text="Cancel Order"
+                    app:layout_constraintStart_toEndOf="@+id/buttonPayment"
+                    app:layout_constraintTop_toBottomOf="@+id/order_total_price"
+                    tools:ignore="ButtonStyle" />
+
+            </LinearLayout>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

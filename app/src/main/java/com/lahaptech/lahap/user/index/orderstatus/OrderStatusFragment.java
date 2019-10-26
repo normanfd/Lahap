@@ -4,6 +4,7 @@ package com.lahaptech.lahap.user.index.orderstatus;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,9 +43,8 @@ import butterknife.ButterKnife;
 import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 public class OrderStatusFragment extends Fragment {
-
-    @BindView(R.id.order_id)
-    TextView order_id;
+    @BindView(R.id.buttonCancel)
+    Button btn_cancel;
     @BindView(R.id.status_order)
     TextView status_order;
     @BindView(R.id.order_list)
@@ -112,8 +112,26 @@ public class OrderStatusFragment extends Fragment {
             if (documentSnapshot != null && documentSnapshot.exists()){
                 Order orderData = documentSnapshot.toObject(Order.class);
                 assert orderData!= null;
-                order_id.setText(orderData.getOrderID());
-                status_order.setText(orderData.getOrderStatus());
+                switch (orderData.getOrderStatus()) {
+                    case "0":
+                        status_order.setText(" belum dibayar");
+                        status_order.setTextColor(Color.RED);
+                        payment.setVisibility(View.VISIBLE);
+                        payment.setVisibility(View.VISIBLE);
+                        break;
+                    case "1":
+                        status_order.setText(" Menunggu Antrian");
+                        status_order.setTextColor(Color.MAGENTA);
+                        break;
+                    case "2":
+                        status_order.setText(" pesanan sedang dibuat");
+                        status_order.setTextColor(Color.BLUE);
+                        break;
+                    default:
+                        status_order.setText(" SELESAI");
+                        status_order.setTextColor(Color.GREEN);
+                        break;
+                }
                 order_list.setText(orderData.getProductList());
                 order_total_price.setText(orderData.getTotalAmount());
                 total = orderData.getTotalAmount();
