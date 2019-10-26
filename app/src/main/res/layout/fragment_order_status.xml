@@ -9,8 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/const_empty_order"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/emptyy_order"
@@ -40,6 +39,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/const_exist_order"
         android:layout_width="match_parent"
+        android:visibility="invisible"
         android:layout_height="match_parent">
 
         <Button

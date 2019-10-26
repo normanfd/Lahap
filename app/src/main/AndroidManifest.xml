@@ -31,7 +31,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".user.payment.OnlinePaymentActivity" />
-        <activity android:name=".user.index.orderstatus.OrderDetailActivity" />
         <activity
             android:name=".user.orderlocation.directorder.DirectOrderFormActivity"
             android:theme="@style/AppTheme.NoActionBar" />
