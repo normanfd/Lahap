@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/nav_logout"
-        android:name="com.lahaptech.lahap.user.index.send.SendFragment"
-        android:label="@string/logout"
-        tools:layout="@layout/fragment_send" />
+        android:name="com.lahaptech.lahap.user.index.logout.LogoutFragment"
+        android:label="@string/logout" />
+
 </navigation>
