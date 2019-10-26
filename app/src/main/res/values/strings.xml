@@ -99,5 +99,9 @@
     <string name="no_order_yet">no order yet</string>
     <string name="text_order_id">Order ID :</string>
     <string name="text_order_status">Order status :</string>
+    <string name="no_history_yet">no history yet</string>
+    <string name="how_to_order">How to order</string>
+    <string name="frequently_ask_question_faq">Frequently Ask Question (FAQ)</string>
+    <string name="about_me">About me</string>
 
 </resources>
