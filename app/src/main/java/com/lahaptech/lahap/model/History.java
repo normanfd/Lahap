@@ -1,18 +1,19 @@
 package com.lahaptech.lahap.model;
 
 public class History {
-    private String dateOrder, orderID, productList, totalAmount, usernameIPB, locationID;
+    private String dateOrder, orderID, productList, totalAmount, usernameIPB, locationID, status;
 
     public History() {
     }
 
-    public History(String dateOrder, String orderID, String productList, String totalAmount, String usernameIPB, String locationID) {
+    public History(String dateOrder, String orderID, String productList, String totalAmount, String usernameIPB, String locationID, String status) {
         this.dateOrder = dateOrder;
         this.orderID = orderID;
         this.productList = productList;
         this.totalAmount = totalAmount;
         this.usernameIPB = usernameIPB;
         this.locationID = locationID;
+        this.status = status;
     }
 
     public String getDateOrder() {
@@ -61,5 +62,13 @@ public class History {
 
     public void setLocationID(String locationID) {
         this.locationID = locationID;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
