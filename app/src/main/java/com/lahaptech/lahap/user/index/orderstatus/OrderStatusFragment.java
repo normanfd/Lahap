@@ -2,7 +2,9 @@ package com.lahaptech.lahap.user.index.orderstatus;
 
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,13 +42,9 @@ import butterknife.ButterKnife;
 
 import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class OrderStatusFragment extends Fragment {
-
-    @BindView(R.id.order_id)
-    TextView order_id;
+    @BindView(R.id.buttonCancel)
+    Button btn_cancel;
     @BindView(R.id.status_order)
     TextView status_order;
     @BindView(R.id.order_list)
@@ -62,6 +60,7 @@ public class OrderStatusFragment extends Fragment {
     @BindView(R.id.const_exist_order)
     ConstraintLayout const_exist;
     private String total, orderID, usernameIPB;
+    private ProgressDialog loadingBar;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -75,22 +74,34 @@ public class OrderStatusFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        loadingBar = new ProgressDialog(getActivity());
+
         User user = Objects.requireNonNull(getActivity()).getIntent().getParcelableExtra(EXTRA_USER);
         assert user != null;
         usernameIPB = user.getUsername();
+        showLoading(true);
         getOrderDetail(usernameIPB);
-        payment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), OnlinePaymentActivity.class);
-                intent.putExtra("total_amount", total);
-                intent.putExtra("orderID", orderID);
-                intent.putExtra("userID", usernameIPB);
-                startActivity(intent);
-            }
+
+        payment.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getActivity(), OnlinePaymentActivity.class);
+            intent.putExtra("total_amount", total);
+            intent.putExtra("orderID", orderID);
+            intent.putExtra("userID", usernameIPB);
+            startActivity(intent);
         });
 //        setupRecyclerView();
 
+    }
+
+    private void showLoading(Boolean state) {
+        if (state){
+            loadingBar.setTitle("Loading..");
+            loadingBar.setMessage(getResources().getString(R.string.checking_credentials));
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
+        }
+        else
+            loadingBar.dismiss();
     }
 
     @SuppressLint("SetTextI18n")
@@ -101,17 +112,39 @@ public class OrderStatusFragment extends Fragment {
             if (documentSnapshot != null && documentSnapshot.exists()){
                 Order orderData = documentSnapshot.toObject(Order.class);
                 assert orderData!= null;
-                order_id.setText(orderData.getOrderID());
-                status_order.setText(orderData.getOrderStatus());
+                switch (orderData.getOrderStatus()) {
+                    case "0":
+                        status_order.setText(" belum dibayar");
+                        status_order.setTextColor(Color.RED);
+                        payment.setVisibility(View.VISIBLE);
+                        payment.setVisibility(View.VISIBLE);
+                        break;
+                    case "1":
+                        status_order.setText(" Menunggu Antrian");
+                        status_order.setTextColor(Color.MAGENTA);
+                        break;
+                    case "2":
+                        status_order.setText(" pesanan sedang dibuat");
+                        status_order.setTextColor(Color.BLUE);
+                        break;
+                    default:
+                        status_order.setText(" SELESAI");
+                        status_order.setTextColor(Color.GREEN);
+                        break;
+                }
                 order_list.setText(orderData.getProductList());
                 order_total_price.setText(orderData.getTotalAmount());
                 total = orderData.getTotalAmount();
                 orderID = orderData.getOrderID();
+
+                const_exist.setVisibility(View.VISIBLE);
+                const_empty.setVisibility(View.INVISIBLE);
             }
             else {
-                const_empty.setVisibility(View.VISIBLE);
                 const_exist.setVisibility(View.INVISIBLE);
+                const_empty.setVisibility(View.VISIBLE);
             }
+            showLoading(false);
         });
 
     }
