@@ -3,6 +3,7 @@ package com.lahaptech.lahap.user.detailproduct;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Product;
 import com.lahaptech.lahap.model.User;
 import com.squareup.picasso.Picasso;
@@ -33,7 +35,9 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.paperdb.Paper;
 
+import static com.lahaptech.lahap.user.cart.CartActivity.locationNow;
 import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 public class DetailActivity extends AppCompatActivity {
@@ -59,6 +63,7 @@ public class DetailActivity extends AppCompatActivity {
     String foodID, category, sellerID, locationID, productPrice="";
     String state="normal";
     User currentOnlineUser;
+    String saveLocation="";
     FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
 
 
@@ -66,6 +71,14 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_food);
+        Paper.init(this);
+
+        saveLocation = Paper.book().read(Prevalent.SaveLocation);
+
+        if (!TextUtils.isEmpty(saveLocation)){
+            Log.d("location", saveLocation);
+        }
+        else Log.d("location", "cek");
 
         ButterKnife.bind(this);
         loadingBar = new ProgressDialog(this);

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,6 +49,10 @@ public class OrderHistoryFragment extends Fragment {
 
     @BindView(R.id.rv_history)
     RecyclerView rv_history;
+    @BindView(R.id.const_empty_order)
+    ConstraintLayout emptyHistory;
+
+    private Integer rvCount = 0;
 
     public OrderHistoryFragment() {
         // Required empty public constructor
@@ -61,6 +66,7 @@ public class OrderHistoryFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_order_history, container, false);
         ButterKnife.bind(this, root);
 
+
         return root;
     }
 
@@ -71,8 +77,9 @@ public class OrderHistoryFragment extends Fragment {
         User user = Objects.requireNonNull(getActivity()).getIntent().getParcelableExtra(EXTRA_USER);
         assert user != null;
         Log.d("LOG USERNAME", user.getUsername());
-
         setupRecyclerView(user);
+        Log.d("rvcount", rvCount.toString());
+
     }
 
     private void setupRecyclerView(User user) {
@@ -91,6 +98,8 @@ public class OrderHistoryFragment extends Fragment {
                             holder.order_date.setText(model.getDateOrder());
                             holder.order_price.setText(model.getTotalAmount());
                             holder.order_product_list.setText(model.getProductList());
+
+
 //                            holder.itemView.setOnClickListener(view -> {
 //                                Intent intent = new Intent(getActivity(), SelectMenuActivity.class);
 //                                intent.putExtra(CANTEEN_ID, model.getCanteenID());
@@ -114,7 +123,19 @@ public class OrderHistoryFragment extends Fragment {
             rv_history.setHasFixedSize(true);
             rv_history.setAdapter(adapter);
             adapter.startListening();
+
+            assert snapshots != null;
+            Log.d("cekdata", String.valueOf(snapshots.size()));
+            if (snapshots.size() > 0){
+                emptyHistory.setVisibility(View.INVISIBLE);
+            }
+            else {
+                emptyHistory.setVisibility(View.VISIBLE);
+            }
+
         });
+
+
     }
 
 }
