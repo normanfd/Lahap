@@ -11,4 +11,6 @@
     <dimen name="spacing_xl">16dp</dimen>
     <dimen name="input_form_width">380dp</dimen>
     <dimen name="horizontal_dimen">16dp</dimen>
+    <dimen name="spacing_s">6dp</dimen>
+    <dimen name="textsize_xs">12sp</dimen>
 </resources>
