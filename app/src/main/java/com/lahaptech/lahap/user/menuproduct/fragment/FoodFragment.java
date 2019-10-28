@@ -25,6 +25,8 @@ import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.detailproduct.DetailActivity;
 import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -82,7 +84,9 @@ public class FoodFragment extends Fragment {
                         protected void onBindViewHolder(@NonNull MenuViewHolder holder, int position, @NonNull Product model) {
                             holder.name.setText(model.getProductName());
                             holder.desc.setText(model.getDescription());
-                            holder.price.setText(getResources().getString(R.string.price) + model.getPrice());
+//                            holder.price.setText(getResources().getString(R.string.price) + model.getPrice());
+                            String str = NumberFormat.getNumberInstance(Locale.US).format(Integer.valueOf(model.getPrice()));
+                            holder.price.setText("Rp" + str);
                             Picasso.get()
                                     .load(model.getImage())
                                     .resize(100,80)
