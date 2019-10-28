@@ -26,7 +26,7 @@
     <fragment
         android:id="@+id/nav_help"
         android:name="com.lahaptech.lahap.user.index.help.HelpFragment"
-        android:label="@string/cart"
+        android:label="@string/help"
         tools:layout="@layout/fragment_help" />
 
     <fragment
