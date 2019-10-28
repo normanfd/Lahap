@@ -17,8 +17,7 @@ public class Walkthrough3 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_yellow_3,container,false);
-        return v;
+        return inflater.inflate(R.layout.fragment_yellow_3,container,false);
 
     }
 
