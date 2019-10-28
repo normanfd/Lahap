@@ -119,5 +119,6 @@
     <string name="tittle_konten_3">5 Makanan Sehat yang Dianjurkan untuk Mengobati Tulang Keropos</string>
     <string name="pilih_kantin">Pilih Kantin</string>
     <string name="konten_untuk_kamu">Konten untuk Kamu</string>
+    <string name="empty_textview">empty</string>
 
 </resources>
