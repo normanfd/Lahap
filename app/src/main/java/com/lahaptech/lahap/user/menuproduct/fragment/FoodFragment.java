@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,6 +40,9 @@ public class FoodFragment extends Fragment {
 
     @BindView(R.id.rv_product)
     RecyclerView recyclerView;
+    @BindView(R.id.empty_product)
+    LinearLayout emptyProduct;
+
     private User user;
 
     public FoodFragment() {
@@ -112,6 +116,12 @@ public class FoodFragment extends Fragment {
                             return new MenuViewHolder(view1);
                         }
                     };
+
+            assert queryDocumentSnapshots != null;
+            if (queryDocumentSnapshots.size() == 0){
+                emptyProduct.setVisibility(View.VISIBLE);
+            }
+            else emptyProduct.setVisibility(View.INVISIBLE);
 
             recyclerView.setAdapter(adapter);
             adapter.startListening();
