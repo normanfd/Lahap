@@ -127,6 +127,14 @@
                     android:text="@string/contact_2"/>
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_person_black_24dp"
+                    android:drawablePadding="5dp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="6dp"
+                    android:text="Ilmu Komputer IPB 53"/>
+                <TextView
                     android:id="@+id/tv_telephone_dev"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -148,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:textSize="14sp"
-                    android:text="gilang_gunawan@apps.ipb.ac.id"
+                    android:text="barasystemsolution@gmail.com"
                     android:autoLink="email"
                     android:gravity="center_vertical"
                     android:textColor="@color/textColorSecondaryDark"
