@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment;
 
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.user.index.help.aboutme.AboutActivity;
-import com.lahaptech.lahap.user.index.help.faq.FaqActivity;
 import com.lahaptech.lahap.user.index.help.contact.ContactActivity;
+import com.lahaptech.lahap.user.index.help.faq.FaqActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,14 +1,13 @@
 package com.lahaptech.lahap.user.cart;
 
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.lahaptech.lahap.main_activity.ItemClickListener;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.main_activity.ItemClickListener;
 
 class CartAdapter extends RecyclerView.ViewHolder implements View.OnClickListener {
     private ItemClickListener itemClickListener;

@@ -1,7 +1,6 @@
 package com.lahaptech.lahap.user.index.orderhistory;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,30 +16,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.model.Cart;
 import com.lahaptech.lahap.model.History;
 import com.lahaptech.lahap.model.User;
-import com.lahaptech.lahap.user.cart.CartActivity;
-import com.lahaptech.lahap.user.orderlocation.OrderLocationActivity;
 
-import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
-import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
-import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
 
 /**
  * A simple {@link Fragment} subclass.
