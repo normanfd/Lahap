@@ -1,49 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:padding="10dp"
+    android:background="@color/windowBackground" >
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardview_usage"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="6dp"
-        android:elevation="2dp"
-        app:cardUseCompatPadding="true">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/app_logo"
+            android:contentDescription="@string/applogo" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/textColorSecondaryDark" />
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/how_to_order"/>
-    </androidx.cardview.widget.CardView>
+            android:elevation="1dp"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center_horizontal"
+            android:background="@color/dividerLight" >
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardview_faq"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="6dp"
-        android:elevation="2dp"
-        app:cardUseCompatPadding="true">
+            <TextView
+                android:id="@+id/cardview_about_me"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="@string/about_us"
+                android:textSize="16sp"
+                android:textColor="@color/textColorSecondary"
+                android:clickable="true"
+                android:paddingEnd="5dp"
+                android:paddingStart="10dp"
+                android:gravity="center_vertical"
+                android:background="@android:color/white"
+                android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+                android:focusable="true" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/frequently_ask_question_faq"/>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardview_about_me"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="6dp"
-        android:elevation="2dp"
-        app:cardUseCompatPadding="true">
+            <TextView
+                android:id="@+id/cardview_faq"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="@string/faq"
+                android:textSize="16sp"
+                android:textColor="@color/textColorSecondary"
+                android:clickable="true"
+                android:paddingEnd="5dp"
+                android:paddingStart="10dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center_vertical"
+                android:background="@android:color/white"
+                android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+                android:focusable="true" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_me"/>
-    </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/cardview_contact"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="@string/contact_us"
+                android:textSize="16sp"
+                android:textColor="@color/textColorSecondary"
+                android:clickable="true"
+                android:paddingEnd="5dp"
+                android:paddingStart="10dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center_vertical"
+                android:background="@android:color/white"
+                android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+                android:focusable="true" />
 
-</LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

@@ -67,5 +67,16 @@
     <string name="product_available">Apakah produk masih tersedia?</string>
     <string name="rekening_nama">Tuliskan Nama yang ada di Rekening Anda</string>
     <string name="msg_daily">Udah makan belum nih? yuk pesen dulu di kantin favorit kita</string>
+    <string name="about_us">About Us</string>
+    <string name="faq">Frequently Ask Question</string>
+    <string name="how_to_usage">How to Usage</string>
+    <string name="tv_faq">FAQ</string>
+    <string name="contact_kantin_lahap">Contact Kantin Lahap</string>
+    <string name="developer_contact">Developer Contact</string>
+    <string name="address">Address</string>
+    <string name="hp_ilham">+62 852 9410 6008</string>
+    <string name="contact_1">Ingin bermitra dengan kami atau ada masukan silakan hubungi kami di:</string>
+    <string name="contact_2">Ingin memberi masukan terhadap aplikasi Lahap, silakan hubungi:</string>
+    <string name="contact_us">Contact Us</string>
 
 </resources>

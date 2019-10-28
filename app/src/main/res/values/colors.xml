@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#5a9d5a</color>
     <color name="colorAccent">#ff5c00</color>
     <color name="gray">#11000000</color>
+    <color name="windowBackground">#eeeeee</color>
+
+    <color name="textColorSecondary">#404040</color>
+    <color name="textColorSecondaryDark">#212121</color>
+    <color name="dividerLight">#cccccc</color>
+
 </resources>
