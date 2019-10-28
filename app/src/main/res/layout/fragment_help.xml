@@ -59,7 +59,7 @@
                 android:id="@+id/cardview_faq"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:text="@string/faq"
+                android:text="@string/frequently_ask_question_faq"
                 android:textSize="16sp"
                 android:textColor="@color/textColorSecondary"
                 android:clickable="true"
