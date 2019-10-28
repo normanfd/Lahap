@@ -4,31 +4,22 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.lahaptech.lahap.R;
-import com.lahaptech.lahap.model.Cart;
+import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Product;
 import com.lahaptech.lahap.model.User;
-import com.lahaptech.lahap.user.cart.CartActivity;
-import com.lahaptech.lahap.user.orderlocation.OrderLocationActivity;
 import com.squareup.picasso.Picasso;
 
 import java.text.NumberFormat;
@@ -44,6 +35,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
+import static com.lahaptech.lahap.user.cart.CartActivity.locationNow;
 import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
@@ -72,11 +64,22 @@ public class DetailActivity extends AppCompatActivity {
     String foodID, category, sellerID, locationID, productPrice = "";
     String state = "normal";
     User currentOnlineUser;
+    String saveLocation="";
+    FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_food);
+        Paper.init(this);
+
+        saveLocation = Paper.book().read(Prevalent.SaveLocation);
+
+        if (!TextUtils.isEmpty(saveLocation)){
+            Log.d("location", saveLocation);
+        }
+        else Log.d("location", "cek");
 
         ButterKnife.bind(this);
         loadingBar = new ProgressDialog(this);
@@ -93,6 +96,7 @@ public class DetailActivity extends AppCompatActivity {
         Log.d("user", currentOnlineUser.getUsername());
 
         checkUserOrder(currentOnlineUser.getUsername());
+
         getProductDetail(foodID);
 
         btn_add_cart.setOnClickListener(v -> {
@@ -112,8 +116,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void checkUserOrder(String currentOnlineUser) {
-        FirebaseFirestore orderRef = FirebaseFirestore.getInstance();
-        DocumentReference docRef = orderRef.collection("order").document(currentOnlineUser);
+        DocumentReference docRef = rootRef.collection("order").document(currentOnlineUser);
 
         docRef.addSnapshotListener((documentSnapshot, e) -> {
             if (documentSnapshot != null && documentSnapshot.exists()) {

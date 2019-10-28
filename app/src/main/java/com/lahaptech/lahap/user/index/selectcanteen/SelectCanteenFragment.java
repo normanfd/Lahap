@@ -46,7 +46,7 @@ public class SelectCanteenFragment extends Fragment {
     @BindView(R.id.rv_canteen)
     RecyclerView rv_canteen;
 
-    Context context;
+    private Context context;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

@@ -30,6 +30,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Cart;
+import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.orderlocation.OrderLocationActivity;
 
@@ -38,6 +39,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.paperdb.Paper;
 
 import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
@@ -58,6 +60,8 @@ public class CartActivity extends AppCompatActivity {
     User currentOnlineUser;
     ProgressDialog loadingBar;
     StringBuilder productList = new StringBuilder(100);
+    private String saveLocation="";
+    public static String locationNow="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,7 @@ public class CartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         ButterKnife.bind(this);
         loadingBar = new ProgressDialog(this);
+        Paper.init(this);
 
 //        Objects.requireNonNull(getSupportActionBar()).setTitle("Cart");
         canteenID = getIntent().getStringExtra(CANTEEN_ID);
@@ -137,6 +142,7 @@ public class CartActivity extends AppCompatActivity {
                         protected void onBindViewHolder(@NonNull CartAdapter holder, int position, @NonNull Cart model) {
 
                             String cartID = model.getUsername() + model.getProductID();
+                            saveLocation = model.getLocationID();
 
                             DocumentReference documentReference = cartListRef.collection("cart").document(cartID);
 
@@ -176,6 +182,15 @@ public class CartActivity extends AppCompatActivity {
 
             recyclerView.setAdapter(adapter);
             adapter.startListening();
+
+            assert queryDocumentSnapshots != null;
+            Log.d("snapshot", String.valueOf(queryDocumentSnapshots.size()));
+            if (queryDocumentSnapshots.size()>=1){
+                Paper.book().write(Prevalent.SaveLocation, saveLocation);
+            }
+            else if (queryDocumentSnapshots.size() == 0){
+                Paper.book().delete(Prevalent.SaveLocation);
+            }
         });
     }
 

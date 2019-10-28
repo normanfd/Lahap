@@ -30,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             // Kondisi belum login
             if(TextUtils.isEmpty(UserName)){
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent = new Intent(SplashActivity.this, SlideActivity.class);
                 startActivity(intent);
             }
             // Kondisi sudah login (User)

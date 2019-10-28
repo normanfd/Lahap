@@ -74,6 +74,7 @@ public class SelectMenuActivity extends AppCompatActivity implements View.OnClic
             intent.putExtra(CANTEEN_QR_CODE, canteenCode);
             intent.putExtra(EXTRA_USER, currentOnlineUser);
             startActivity(intent);
+            finish();
         }
     }
 }
