@@ -180,7 +180,7 @@ public class DetailActivity extends AppCompatActivity {
                 name.setText(productData.getProductName());
                 productPrice = productData.getPrice();
                 String str = NumberFormat.getNumberInstance(Locale.US).format(Integer.valueOf(productPrice));
-                price.setText("Rp" + str + ".00");
+                price.setText("Rp" + str);
                 desc.setText(productData.getDescription());
                 menu.setText(productData.getMenuDetail());
                 nutrition.setText(productData.getNutritionDetail());
