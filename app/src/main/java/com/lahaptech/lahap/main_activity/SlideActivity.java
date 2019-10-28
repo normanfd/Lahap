@@ -51,8 +51,9 @@ public class SlideActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         next.setOnClickListener(view -> {
-            if (viewPager.getCurrentItem() + 1 < 3) {
+            if (viewPager.getCurrentItem() + 1 < 4) {
                 viewPager.setCurrentItem(nextitem(), true); //getItem(-1) for previous
             }
             else {
@@ -94,12 +95,12 @@ public class SlideActivity extends AppCompatActivity {
             switch (i){
                 case 0:
                     return new Walkthrough1();
-
                 case 1:
                     return new Walkthrough2();
-
                 case 2:
                     return new Walkthrough3();
+                case 3:
+                    return new Walkthrough4();
             }
 
             return null;
@@ -107,7 +108,7 @@ public class SlideActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
     }
 

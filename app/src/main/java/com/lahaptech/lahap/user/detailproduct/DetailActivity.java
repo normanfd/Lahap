@@ -2,23 +2,20 @@ package com.lahaptech.lahap.user.detailproduct;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.Product;
@@ -29,6 +26,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
@@ -39,6 +37,8 @@ import io.paperdb.Paper;
 
 import static com.lahaptech.lahap.user.cart.CartActivity.locationNow;
 import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
+import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
+import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -59,9 +59,10 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.pd_add_to_cart_btn)
     Button btn_add_cart;
     ProgressDialog loadingBar;
+    String locationatCart = "";
 
-    String foodID, category, sellerID, locationID, productPrice="";
-    String state="normal";
+    String foodID, category, sellerID, locationID, productPrice = "";
+    String state = "normal";
     User currentOnlineUser;
     String saveLocation="";
     FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
@@ -90,7 +91,6 @@ public class DetailActivity extends AppCompatActivity {
         category = getIntent().getStringExtra("category");
         sellerID = getIntent().getStringExtra("sellerID");
         locationID = getIntent().getStringExtra("locationID");
-
         assert category != null;
         Log.i("CATEGORY", category);
         Log.d("user", currentOnlineUser.getUsername());
@@ -100,15 +100,16 @@ public class DetailActivity extends AppCompatActivity {
         getProductDetail(foodID);
 
         btn_add_cart.setOnClickListener(v -> {
-            Log.d("state",state);
-            if(state.equals("Order Unfinished")){
-                Toast.makeText(DetailActivity.this, "you can add purchase products, once your order is shipped or confirmed", Toast.LENGTH_LONG ).show();
-            }
-            else {
+            Log.d("state", state);
+            if (state.equals("Order Unfinished")) {
+                Toast.makeText(DetailActivity.this, "you can add purchase products, once your order is shipped or confirmed", Toast.LENGTH_LONG).show();
+            } else {
                 loadingBar.setTitle("Adding to cart");
                 loadingBar.setMessage(getResources().getString(R.string.checking_credentials));
                 loadingBar.setCanceledOnTouchOutside(false);
                 loadingBar.show();
+
+
                 addingToCartList();
             }
         });
@@ -118,10 +119,9 @@ public class DetailActivity extends AppCompatActivity {
         DocumentReference docRef = rootRef.collection("order").document(currentOnlineUser);
 
         docRef.addSnapshotListener((documentSnapshot, e) -> {
-            if (documentSnapshot != null && documentSnapshot.exists()){
+            if (documentSnapshot != null && documentSnapshot.exists()) {
                 state = "Order Unfinished";
-            }
-            else state = "next";
+            } else state = "next";
         });
     }
 
@@ -142,10 +142,10 @@ public class DetailActivity extends AppCompatActivity {
         cart.put("productID", foodID);
         cart.put("price", productPrice);
         cart.put("quantity", numberButton.getNumber());
-        cart.put("date",saveCurrentDate);
-        cart.put("time",saveCurrentTime);
+        cart.put("date", saveCurrentDate);
+        cart.put("time", saveCurrentTime);
         cart.put("category", category);
-        cart.put("overview",null);
+        cart.put("overview", null);
         cart.put("username", currentOnlineUser.getUsername());
         cart.put("sellerID", sellerID);
         cart.put("locationID", locationID);
@@ -153,10 +153,11 @@ public class DetailActivity extends AppCompatActivity {
 
         db.collection("cart").document(cartID)
                 .set(cart).addOnCompleteListener(task -> {
-                    loadingBar.dismiss();
-                    Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
-                    finish();
-                }).addOnFailureListener(e -> { });
+            loadingBar.dismiss();
+            Toast.makeText(DetailActivity.this, "Added to cart list", Toast.LENGTH_SHORT).show();
+            finish();
+        }).addOnFailureListener(e -> {
+        });
     }
 
     @SuppressLint("SetTextI18n")
@@ -164,7 +165,7 @@ public class DetailActivity extends AppCompatActivity {
         FirebaseFirestore productRef = FirebaseFirestore.getInstance();
         DocumentReference docRef = productRef.collection("product").document(foodID);
         docRef.addSnapshotListener((documentSnapshot, e) -> {
-            if (documentSnapshot != null && documentSnapshot.exists()){
+            if (documentSnapshot != null && documentSnapshot.exists()) {
                 Product productData = documentSnapshot.toObject(Product.class);
                 assert productData != null;
                 Objects.requireNonNull(getSupportActionBar()).setTitle(productData.getProductName());
@@ -175,7 +176,7 @@ public class DetailActivity extends AppCompatActivity {
                 desc.setText(productData.getDescription());
                 menu.setText(productData.getMenuDetail());
                 nutrition.setText(productData.getNutritionDetail());
-                Picasso.get().load(productData.getImage()).resize(200,160).into(photo);
+                Picasso.get().load(productData.getImage()).resize(200, 160).into(photo);
             }
         });
 
