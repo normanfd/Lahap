@@ -13,7 +13,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/banner"
             app:cardCornerRadius="6dp"
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -88,13 +88,16 @@
                 android:contentDescription="@string/todo"/>
 
             <TextView
+                android:id="@+id/title_1"
+                style="@style/listTitleStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
                 android:layout_margin="4dp"
+                android:layout_gravity="bottom"
+                android:color="@android:color/darker_gray"
+                android:fontFamily="sans-serif-medium"
                 android:text="@string/title_konten_1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp" />
+                android:textSize="@dimen/textsize_m" />
 
         </androidx.cardview.widget.CardView>
 
@@ -115,13 +118,16 @@
                 android:contentDescription="@string/todo"/>
 
             <TextView
+                android:id="@+id/title_2"
+                style="@style/listTitleStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
                 android:layout_margin="4dp"
-                android:text="@string/title_kontent_2"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp" />
+                android:layout_gravity="bottom"
+                android:color="@android:color/darker_gray"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/title_konten_2"
+                android:textSize="@dimen/textsize_m" />
 
         </androidx.cardview.widget.CardView>
 
@@ -142,13 +148,16 @@
                 android:contentDescription="@string/todo"/>
 
             <TextView
+                android:id="@+id/title_3"
+                style="@style/listTitleStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
                 android:layout_margin="4dp"
-                android:text="@string/tittle_konten_3"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp" />
+                android:layout_gravity="bottom"
+                android:color="@android:color/darker_gray"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/title_konten_3"
+                android:textSize="@dimen/textsize_m" />
 
         </androidx.cardview.widget.CardView>
 

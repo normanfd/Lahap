@@ -16,10 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.index.UserActivity;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 
 public class OnlinePaymentActivity extends AppCompatActivity {
 
@@ -30,6 +33,7 @@ public class OnlinePaymentActivity extends AppCompatActivity {
     EditText txt_nama;
     String namaRekening;
     ProgressDialog loadingBar;
+    User currentOnlineUser;
 
     @SuppressLint({"SetTextI18n", "ShowToast"})
     @Override
@@ -39,6 +43,8 @@ public class OnlinePaymentActivity extends AppCompatActivity {
         String total_amount = getIntent().getStringExtra("total_amount");
         String orderID = getIntent().getStringExtra("orderID");
         String userID = getIntent().getStringExtra("userID");
+        currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
+
         TextView totalAmount = findViewById(R.id.tv_total_amount);
         totalAmount.setText("Rp" + total_amount + ",00");
         Button button = findViewById(R.id.btn_payment);
@@ -72,6 +78,7 @@ public class OnlinePaymentActivity extends AppCompatActivity {
 
             dialog.dismiss();
             Intent intent = new Intent(OnlinePaymentActivity.this, UserActivity.class);
+            intent.putExtra(EXTRA_USER, currentOnlineUser);
             startActivity(intent);
             finish();
         });

@@ -87,6 +87,22 @@
                 android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
                 android:focusable="true" />
 
+            <TextView
+                android:id="@+id/privacy_policy"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="@string/privacy_policy"
+                android:textSize="16sp"
+                android:textColor="@color/textColorSecondary"
+                android:clickable="true"
+                android:paddingEnd="5dp"
+                android:paddingStart="10dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center_vertical"
+                android:background="@android:color/white"
+                android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+                android:focusable="true" />
+
         </LinearLayout>
 
     </LinearLayout>

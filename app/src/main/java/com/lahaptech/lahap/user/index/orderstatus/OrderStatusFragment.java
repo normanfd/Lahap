@@ -94,6 +94,7 @@ public class OrderStatusFragment extends Fragment {
             intent.putExtra("total_amount", total);
             intent.putExtra("orderID", orderID);
             intent.putExtra("userID", usernameIPB);
+            intent.putExtra(EXTRA_USER, user);
             startActivity(intent);
         });
 

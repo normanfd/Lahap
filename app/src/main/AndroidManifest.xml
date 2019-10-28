@@ -20,13 +20,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".main_activity.SlideActivity"
+        <activity android:name=".user.index.help.HelpDetailActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".main_activity.SlideActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".user.index.help.faq.FaqActivity" />
         <activity android:name=".user.index.help.aboutme.AboutActivity" />
         <activity android:name=".user.index.help.contact.ContactActivity" />
-        <activity android:name=".user.index.selectcanteen.DetailKontenActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".user.index.selectcanteen.DetailKontenActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".main_activity.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">

@@ -28,6 +28,8 @@ public class HelpFragment extends Fragment implements View.OnClickListener{
     TextView cardview_faq;
     @BindView(R.id.cardview_about_me)
     TextView cardview_about_me;
+    @BindView(R.id.privacy_policy)
+    TextView privacy_policy;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class HelpFragment extends Fragment implements View.OnClickListener{
         cardview_usage.setOnClickListener(this);
         cardview_faq.setOnClickListener(this);
         cardview_about_me.setOnClickListener(this);
+        privacy_policy.setOnClickListener(this);
     }
 
     @Override
@@ -52,6 +55,11 @@ public class HelpFragment extends Fragment implements View.OnClickListener{
         }
         else if(view.getId() == R.id.cardview_faq){
             Intent intent = new Intent(getActivity(), FaqActivity.class);
+            startActivity(intent);
+        }
+        else if (view.getId() == R.id.privacy_policy){
+            Intent intent = new Intent(getActivity(), HelpDetailActivity.class);
+            intent.putExtra("helpUrl", "https://www.kantinlahap.com/kebijakan-privasi/");
             startActivity(intent);
         }
         else {
