@@ -59,16 +59,19 @@ public class SelectCanteenFragment extends Fragment {
 
         konten1.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), DetailKontenActivity.class);
+            intent.putExtra("blog", "https://hellosehat.com/hidup-sehat/tips-sehat/tips-pola-hidup-sehat/");
             startActivity(intent);
         });
 
         konten2.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), DetailKontenActivity.class);
+            intent.putExtra("blog", "https://www.alodokter.com/ini-makanan-sehat-yang-perlu-dikonsumsi-setiap-hari");
             startActivity(intent);
         });
 
         konten3.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), DetailKontenActivity.class);
+            intent.putExtra("blog", "https://hellosehat.com/pusat-kesehatan/osteoporosis/makanan-untuk-mengobati-tulang-keropos/");
             startActivity(intent);
         });
 

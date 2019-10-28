@@ -71,6 +71,8 @@ public class OnlinePaymentActivity extends AppCompatActivity {
             updateStatusOrder(userID);
 
             dialog.dismiss();
+            Intent intent = new Intent(OnlinePaymentActivity.this, UserActivity.class);
+            startActivity(intent);
             finish();
         });
 
