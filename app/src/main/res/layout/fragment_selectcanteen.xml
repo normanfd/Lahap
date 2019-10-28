@@ -83,7 +83,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                android:src="@drawable/app_logo"
+                android:src="@drawable/banner1"
                 android:scaleType="centerCrop">
 
             </ImageView>
@@ -103,7 +103,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                android:src="@drawable/app_logo"
+                android:src="@drawable/banner2"
                 android:scaleType="centerCrop">
 
             </ImageView>
@@ -123,7 +123,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                android:src="@drawable/app_logo"
+                android:src="@drawable/banner3"
                 android:scaleType="centerCrop">
 
             </ImageView>
