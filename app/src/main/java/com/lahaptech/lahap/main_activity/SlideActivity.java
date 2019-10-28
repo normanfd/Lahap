@@ -27,11 +27,6 @@ public class SlideActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View decorView = getWindow().getDecorView();
-        // Hide the status bar.
-
-//        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-//        decorView.setSystemUiVisibility(uiOptions);
 
         // Remember that you should never show the action bar if the
         // status bar is hidden, so hide that too if necessary.
@@ -40,8 +35,11 @@ public class SlideActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         next = findViewById(R.id.next);
         back = findViewById(R.id.back);
+
+        back.setVisibility(View.INVISIBLE);
+
         WormDotsIndicator indicators = findViewById(R.id.indicator);
-        FadeOut transformation =new FadeOut();
+        FadeOut transformation = new FadeOut();
         WalkThroughAdapter viewPagerAdapter = new WalkThroughAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);
         indicators.setViewPager(viewPager);
