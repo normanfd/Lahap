@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/windowBackground" >
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:behavior_overlapTop="60dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/app_logo"
+                android:contentDescription="@string/applogo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/contact_kantin_lahap"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/textColorSecondaryDark" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@android:color/white" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact_1"/>
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:textSize="14sp"
+                    android:text="@string/address"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColorSecondaryDark"
+                    android:drawableStart="@drawable/ic_my_location_black_24dp"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@color/colorPrimary"
+                    android:autoLink="map"
+                    android:layout_marginTop="5dp"
+                    tools:targetApi="m" />
+
+                <TextView
+                    android:id="@+id/tv_telephone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    android:text="@string/hp_ilham"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColorSecondaryDark"
+                    android:drawableStart="@drawable/ic_call_black_24dp"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@color/colorPrimary"
+                    android:autoLink="phone"
+                    android:layout_marginTop="6dp"
+                    tools:targetApi="m" />
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    android:text="cs@kantinlahap.com"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColorSecondaryDark"
+                    android:drawableStart="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@color/colorPrimary"
+                    android:autoLink="email"
+                    android:layout_marginTop="6dp"
+                    tools:targetApi="m" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/developer_contact"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/textColorSecondaryDark" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@android:color/white" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact_2"/>
+
+                <TextView
+                    android:id="@+id/tv_telephone_dev"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    android:text="+62 823 3505 6500"
+                    android:autoLink="phone"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColorSecondaryDark"
+                    android:drawableStart="@drawable/ic_call_black_24dp"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@color/colorPrimary"
+                    android:layout_marginTop="6dp"
+                    tools:targetApi="m" />
+
+                <TextView
+                    android:id="@+id/tv_email_dev"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    android:text="gilang_gunawan@apps.ipb.ac.id"
+                    android:autoLink="email"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textColorSecondaryDark"
+                    android:drawableStart="@drawable/ic_email_black_24dp"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@color/colorPrimary"
+                    android:layout_marginTop="6dp"
+                    tools:targetApi="m" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

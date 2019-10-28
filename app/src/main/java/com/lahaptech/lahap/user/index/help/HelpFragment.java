@@ -5,16 +5,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.esotericsoftware.kryo.serializers.FieldSerializer;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.user.index.help.aboutme.AboutActivity;
 import com.lahaptech.lahap.user.index.help.faq.FaqActivity;
-import com.lahaptech.lahap.user.index.help.usage.HowtoUseActivity;
+import com.lahaptech.lahap.user.index.help.contact.ContactActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,12 +22,12 @@ import butterknife.ButterKnife;
 
 public class HelpFragment extends Fragment implements View.OnClickListener{
 
-    @BindView(R.id.cardview_usage)
-    CardView cardview_usage;
+    @BindView(R.id.cardview_contact)
+    TextView cardview_usage;
     @BindView(R.id.cardview_faq)
-    CardView cardview_faq;
+    TextView cardview_faq;
     @BindView(R.id.cardview_about_me)
-    CardView cardview_about_me;
+    TextView cardview_about_me;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,13 +46,15 @@ public class HelpFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.cardview_usage){
-            Intent intent = new Intent(getActivity(), HowtoUseActivity.class);
+        if (view.getId() == R.id.cardview_contact){
+            Intent intent = new Intent(getActivity(), ContactActivity.class);
             startActivity(intent);
-        }else if(view.getId() == R.id.cardview_faq){
+        }
+        else if(view.getId() == R.id.cardview_faq){
             Intent intent = new Intent(getActivity(), FaqActivity.class);
             startActivity(intent);
-        }else {
+        }
+        else {
             Intent intent = new Intent(getActivity(), AboutActivity.class);
             startActivity(intent);
         }

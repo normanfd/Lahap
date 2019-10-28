@@ -24,7 +24,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".user.index.help.faq.FaqActivity" />
         <activity android:name=".user.index.help.aboutme.AboutActivity" />
-        <activity android:name=".user.index.help.usage.HowtoUseActivity" />
+        <activity android:name=".user.index.help.contact.ContactActivity" />
         <activity android:name=".user.index.selectcanteen.DetailKontenActivity" />
         <activity
             android:name=".main_activity.SplashActivity"
