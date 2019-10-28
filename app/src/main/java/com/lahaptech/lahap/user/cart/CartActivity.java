@@ -185,10 +185,8 @@ public class CartActivity extends AppCompatActivity {
 
             assert queryDocumentSnapshots != null;
             Log.d("snapshot", String.valueOf(queryDocumentSnapshots.size()));
-            if (queryDocumentSnapshots.size()>=1){
-                Paper.book().write(Prevalent.SaveLocation, saveLocation);
-            }
-            else if (queryDocumentSnapshots.size() == 0){
+
+            if (queryDocumentSnapshots.size() == 0){
                 Paper.book().delete(Prevalent.SaveLocation);
             }
         });

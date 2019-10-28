@@ -2,15 +2,14 @@ package com.lahaptech.lahap.user.detailproduct;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
@@ -26,7 +25,6 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
@@ -35,10 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.paperdb.Paper;
 
-import static com.lahaptech.lahap.user.cart.CartActivity.locationNow;
 import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
-import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_ID;
-import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -59,10 +54,9 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.pd_add_to_cart_btn)
     Button btn_add_cart;
     ProgressDialog loadingBar;
-    String locationatCart = "";
 
     String foodID, category, sellerID, locationID, productPrice = "";
-    String state = "normal";
+    String state = "normal", addToCart="yes";
     User currentOnlineUser;
     String saveLocation="";
     FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
@@ -76,10 +70,7 @@ public class DetailActivity extends AppCompatActivity {
 
         saveLocation = Paper.book().read(Prevalent.SaveLocation);
 
-        if (!TextUtils.isEmpty(saveLocation)){
-            Log.d("location", saveLocation);
-        }
-        else Log.d("location", "cek");
+
 
         ButterKnife.bind(this);
         loadingBar = new ProgressDialog(this);
@@ -91,6 +82,18 @@ public class DetailActivity extends AppCompatActivity {
         category = getIntent().getStringExtra("category");
         sellerID = getIntent().getStringExtra("sellerID");
         locationID = getIntent().getStringExtra("locationID");
+
+        if (!TextUtils.isEmpty(saveLocation)){
+            Log.d("location", saveLocation);
+        }
+
+        if(!TextUtils.isEmpty(saveLocation) && !saveLocation.equals(locationID)){
+            addToCart = "no";
+        }
+        else addToCart = "yes";
+
+        Log.d("addToCart", addToCart);
+
         assert category != null;
         Log.i("CATEGORY", category);
         Log.d("user", currentOnlineUser.getUsername());
@@ -103,12 +106,17 @@ public class DetailActivity extends AppCompatActivity {
             Log.d("state", state);
             if (state.equals("Order Unfinished")) {
                 Toast.makeText(DetailActivity.this, "you can add purchase products, once your order is shipped or confirmed", Toast.LENGTH_LONG).show();
-            } else {
+            }
+            else if (addToCart.equals("no")){
+                Toast.makeText(DetailActivity.this, "Maaf anda bisa menambahkan karena masih ada cart di kantin lain, harap hapus product itu di cart", Toast.LENGTH_LONG).show();
+            }
+            else {
                 loadingBar.setTitle("Adding to cart");
                 loadingBar.setMessage(getResources().getString(R.string.checking_credentials));
                 loadingBar.setCanceledOnTouchOutside(false);
                 loadingBar.show();
 
+                Paper.book().write(Prevalent.SaveLocation, locationID);
 
                 addingToCartList();
             }
