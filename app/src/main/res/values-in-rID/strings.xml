@@ -105,5 +105,14 @@
     <string name="no_order_yet">Tidak ada order</string>
     <string name="indirect_text">Silakan tentukan waktu untuk mengambil makanan</string>
     <string name="next">Lanjutkan</string>
+    <string name="default_notification_channel_id">default_notification_channel_id</string>
+    <string name="fcm_message">fcm_message</string>
+    <string name="selengkapnya">Selengkapnya</string>
+    <string name="coming_soon">Coming Soon ^_^</string>
+    <string name="privacy_policy">Kebijakan Privasi</string>
+    <string name="ex_price">Rp100,000.00</string>
+    <string name="rek_bni_ilham">Ke Rekening BNI a.n <b>ILHAM MAULIDIN</b> dibawah ini:</string>
+    <string name="norek_bni_ilham">0327671638</string>
+    <string name="transfer_uang">Terima Kasih telah Order di Kantin Lahap, Silakan Transfer Uang Anda Sejumlah:</string>
 
 </resources>

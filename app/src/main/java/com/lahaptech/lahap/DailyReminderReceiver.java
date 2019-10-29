@@ -28,7 +28,7 @@ public class DailyReminderReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String CHANNEL_ID = "First Reminder";
-        String CHANNEL_NAME = "Daily Reminder Norman";
+        String CHANNEL_NAME = "Daily Reminder Lahap";
 
         intent = new Intent(context, SplashActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
@@ -37,12 +37,11 @@ public class DailyReminderReceiver extends BroadcastReceiver {
 
         mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         mBuilder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.app_logo_white)
+                .setSmallIcon(R.drawable.ic_stat_name)
                 .setContentTitle(context.getString(R.string.app_name))
                 .setContentText(context.getString(R.string.msg_daily))
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true)
                 .setColor(ContextCompat.getColor(context, android.R.color.transparent))
                 .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
                 .setSound(alarmSound);
@@ -61,6 +60,7 @@ public class DailyReminderReceiver extends BroadcastReceiver {
         assert mNotificationManager != null;
         mNotificationManager.notify(DailyReminderReceiver.NOTIFICATION_ID, notification);
     }
+
     public void cancelAlarm(Context context) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, DailyReminderReceiver.class);

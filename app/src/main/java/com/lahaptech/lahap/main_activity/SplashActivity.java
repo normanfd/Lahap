@@ -27,10 +27,10 @@ public class SplashActivity extends AppCompatActivity {
         Paper.init(this);
         int SPLASH_TIME_OUT = 1000;
 
-        //check storage object data
-        UserName = Paper.book().read(Prevalent.UserName);
-
         new Handler().postDelayed(() -> {
+            //check storage object data
+            UserName = Paper.book().read(Prevalent.UserName);
+
             // Kondisi belum login
             if(TextUtils.isEmpty(UserName)){
                 Intent intent = new Intent(SplashActivity.this, SlideActivity.class);

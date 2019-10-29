@@ -19,7 +19,9 @@ import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.index.UserActivity;
 
+import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
@@ -41,16 +43,17 @@ public class OnlinePaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_payment);
         String total_amount = getIntent().getStringExtra("total_amount");
+        assert total_amount != null;
+        String total_price = NumberFormat.getNumberInstance(Locale.US).format(Integer.valueOf(total_amount));
+
         String orderID = getIntent().getStringExtra("orderID");
         String userID = getIntent().getStringExtra("userID");
         currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
 
         TextView totalAmount = findViewById(R.id.tv_total_amount);
-        totalAmount.setText("Rp" + total_amount + ",00");
+        totalAmount.setText("Rp" + total_price + ",00");
         Button button = findViewById(R.id.btn_payment);
-        button.setOnClickListener(view -> {
-            DialogForm(orderID, userID);
-        });
+        button.setOnClickListener(view -> DialogForm(orderID, userID));
     }
 
     @SuppressLint("InflateParams")

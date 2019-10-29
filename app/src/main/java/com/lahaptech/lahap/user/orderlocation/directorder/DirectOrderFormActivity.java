@@ -19,9 +19,11 @@ import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.index.UserActivity;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -36,6 +38,7 @@ public class DirectOrderFormActivity extends AppCompatActivity {
     String total="", locationIDWithNumber ="", orderTable = "", productList="", saveCurrentDate, saveCurrentTime, orderID, usernameIPB="";
     ProgressDialog loadingBar;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,8 @@ public class DirectOrderFormActivity extends AppCompatActivity {
         productList = getIntent().getStringExtra("productList");
         locationIDWithNumber = getIntent().getStringExtra("qrcode");
         total = getIntent().getStringExtra("TotalPrice");
+        String total_price = NumberFormat.getNumberInstance(Locale.US).format(Integer.valueOf(total));
+
         currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
 
         String[] locationID = locationIDWithNumber.split(",", 2);
@@ -57,7 +62,7 @@ public class DirectOrderFormActivity extends AppCompatActivity {
 
         btn = findViewById(R.id.order_next_btn);
         tv_table_no.setText(orderTable);
-        tv_total_amount.setText(total);
+        tv_total_amount.setText("Rp" + total_price +".-");
         tv_product_list.setText(productList);
         
         usernameIPB = currentOnlineUser.getUsername();

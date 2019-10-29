@@ -142,8 +142,8 @@ public class CartActivity extends AppCompatActivity {
                             DocumentReference documentReference = cartListRef.collection("cart").document(cartID);
 
                             holder.txtProductName.setText(model.getProductName());
-                            holder.txtProductQuantity.setText("Quantity   = " + model.getQuantity() + "item");
-                            holder.txtProductPrice.setText("Price      = Rp" + model.getPrice() + ",00");
+                            holder.txtProductQuantity.setText(  "Quantity       = " + model.getQuantity() + " item");
+                            holder.txtProductPrice.setText(     "Price          = Rp" + model.getPrice() + ",00");
                             productList = productList.append(model.getProductName()).append(" - ").append(model.getSellerID()).append(" - ").append(model.getQuantity()).append(" item").append(System.getProperty("line.separator"));
 
                             Log.d("Product list", productList.toString());

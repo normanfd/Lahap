@@ -1,12 +1,15 @@
 package com.lahaptech.lahap.user.index.help.faq;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.lahaptech.lahap.R;
+import com.lahaptech.lahap.user.index.help.HelpDetailActivity;
 
 public class FaqActivity extends AppCompatActivity {
 
@@ -18,6 +21,7 @@ public class FaqActivity extends AppCompatActivity {
 
         TextView tv_title = findViewById(R.id.tv_faq_title);
         TextView tv_desc = findViewById(R.id.tv_faq_desc);
+        Button full = findViewById(R.id.full);
 
         tv_title.setText("Dimana saya bisa menemukan Kantin Lahap ?");
         tv_desc.setText("Lokasi perusahaan Kantin Lahap terletak di Jalan Alternatif Babakan Tengah " +
@@ -28,6 +32,12 @@ public class FaqActivity extends AppCompatActivity {
                 "akan  melakukan ekspansi  bisnis  di  beberapa  spot  lokasi  sekolah-sekolah  dan  " +
                 "universitas  di  Kabupaten  Bogor. Sedangkan pada rentang waktu 5-10 tahun mendatang " +
                 "adalah ekspansi bisnis ke sekolah-sekolah dan universitas beberapa titik potensial Provinsi Jawa Barat");
+
+        full.setOnClickListener(view -> {
+            Intent intent = new Intent(FaqActivity.this, HelpDetailActivity.class);
+            intent.putExtra("helpUrl", "https://www.kantinlahap.com/frequently-asked-question-faq/");
+            startActivity(intent);
+        });
 
     }
 }

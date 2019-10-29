@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".user.payment.OnlinePaymentActivity">
 
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -22,7 +21,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
-        android:text="Silakan Transfer Uang Sejumlah:"
+        android:text="@string/transfer_uang"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -32,13 +34,14 @@
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/spacing_m"
-        android:text="Rp100.000,00"
+        android:text="@string/ex_price"
+        android:textIsSelectable="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ke Rekening BRI"
+        android:text="@string/rek_bni_ilham"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tv_total_amount"
         />
@@ -49,7 +52,8 @@
         android:layout_below="@+id/textView4"
         android:layout_centerHorizontal="true"
         android:textIsSelectable="true"
-        android:text="1234 5678 9012 3456"
+        android:text="@string/norek_bni_ilham"
+
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
          />

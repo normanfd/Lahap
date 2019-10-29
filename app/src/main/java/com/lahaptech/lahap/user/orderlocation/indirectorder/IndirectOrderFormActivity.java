@@ -20,9 +20,11 @@ import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
 import com.lahaptech.lahap.user.payment.OnlinePaymentActivity;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -45,6 +47,7 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
     User currentOnlineUser;
     ProgressDialog loadingBar;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,11 +59,13 @@ public class IndirectOrderFormActivity extends AppCompatActivity implements View
         locationID = getIntent().getStringExtra("qrcode");
         time_pick = getIntent().getStringExtra("timeOrder");
         total_amount = getIntent().getStringExtra("totalAmount");
+        String total_price = NumberFormat.getNumberInstance(Locale.US).format(Integer.valueOf(total_amount));
+
         product_list = getIntent().getStringExtra("productList");
         currentOnlineUser = getIntent().getParcelableExtra(EXTRA_USER);
 
         tv_time_pick.setText(time_pick);
-        tv_total_amount.setText(total_amount);
+        tv_total_amount.setText("Rp" + total_price + ".-");
         prodlist.setText(product_list);
 
         Calendar calendar = Calendar.getInstance();

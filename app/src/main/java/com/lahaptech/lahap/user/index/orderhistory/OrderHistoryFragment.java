@@ -39,8 +39,6 @@ public class OrderHistoryFragment extends Fragment {
     @BindView(R.id.const_empty_order)
     ConstraintLayout emptyHistory;
 
-    private Integer rvCount = 0;
-
     public OrderHistoryFragment() {
         // Required empty public constructor
     }
@@ -65,7 +63,8 @@ public class OrderHistoryFragment extends Fragment {
         assert user != null;
         Log.d("LOG USERNAME", user.getUsername());
         setupRecyclerView(user);
-        Log.d("rvcount", rvCount.toString());
+        int rvCount = 0;
+        Log.d("rvcount", Integer.toString(rvCount));
 
     }
 
@@ -85,17 +84,10 @@ public class OrderHistoryFragment extends Fragment {
                             holder.order_date.setText(model.getDateOrder());
                             holder.order_price.setText(model.getTotalAmount());
                             holder.order_product_list.setText(model.getProductList());
-
-
-//                            holder.itemView.setOnClickListener(view -> {
-//                                Intent intent = new Intent(getActivity(), SelectMenuActivity.class);
-//                                intent.putExtra(CANTEEN_ID, model.getCanteenID());
-//                                intent.putExtra(CANTEEN_QR_CODE, model.getCanteenCode());
-//                                intent.putExtra(CANTEEN_NAME, model.getCanteenName());
-//                                intent.putExtra(EXTRA_USER, user);
-//                                Toast.makeText(getContext(), model.getCanteenCode(), Toast.LENGTH_SHORT).show();
-//                                startActivity(intent);
-//                            });
+                            if (model.getStatus().equals("cancelled")){
+                                holder.order_logo.setImageDrawable(getResources().getDrawable(R.drawable.ic_clear_red_24dp));
+                            }
+                            else holder.order_logo.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_black_24dp));
                         }
 
                         @NonNull

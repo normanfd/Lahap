@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.lahaptech.lahap.DailyReminderReceiver;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.Prevalent;
 import com.lahaptech.lahap.model.User;
@@ -40,7 +39,6 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
 
     ProgressDialog loadingBar;
     String ParentDbName = "user";
-    DailyReminderReceiver dailyReminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +47,6 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
 
         Paper.init(this);
         ButterKnife.bind(this);
-
-        dailyReminder = new DailyReminderReceiver();
-        dailyReminder.setRepeatingAlarm(this);
 
         loadingBar = new ProgressDialog(this);
         btn_login.setOnClickListener(this);

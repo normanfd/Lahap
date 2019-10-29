@@ -86,12 +86,7 @@ public class OrderStatusFragment extends Fragment {
             startActivity(intent);
         });
 
-        btn_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialog();
-            }
-        });
+        btn_cancel.setOnClickListener(view12 -> showDialog());
 
     }
 
@@ -107,13 +102,7 @@ public class OrderStatusFragment extends Fragment {
                 .setIcon(R.mipmap.ic_launcher)
                 .setCancelable(false)
                 .setPositiveButton("Ya", (dialog, id) -> {
-                    docRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            saveHistoryOrder(usernameIPB, orderID, dateOrder, timeOrder, productList, total, locationID);
-                        }
-                    });
-
+                    docRef.delete().addOnSuccessListener(aVoid -> saveHistoryOrder(usernameIPB, orderID, dateOrder, timeOrder, productList, total, locationID));
 
                 })
                 .setNegativeButton("Tidak", (dialog, id) -> {
@@ -151,7 +140,7 @@ public class OrderStatusFragment extends Fragment {
                         btn_cancel.setVisibility(View.VISIBLE);
                         break;
                     case "1":
-                        status_order.setText(" Menunggu Antrian");
+                        status_order.setText("Menunggu Antrian");
                         status_order.setTextColor(Color.MAGENTA);
                         break;
                     case "2":

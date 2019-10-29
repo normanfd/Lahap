@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.lahaptech.lahap.DailyReminderReceiver;
 import com.lahaptech.lahap.R;
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator;
 
@@ -20,7 +21,7 @@ public class SlideActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private Button next;
     private Button back;
-
+    DailyReminderReceiver dailyReminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,8 @@ public class SlideActivity extends AppCompatActivity {
         // status bar is hidden, so hide that too if necessary.
 
         setContentView(R.layout.activity_slide);
+        dailyReminder = new DailyReminderReceiver();
+        dailyReminder.setRepeatingAlarm(this);
         viewPager = findViewById(R.id.viewPager);
         next = findViewById(R.id.next);
         back = findViewById(R.id.back);
