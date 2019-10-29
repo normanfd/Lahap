@@ -41,7 +41,7 @@ public class DailyReminderReceiver extends BroadcastReceiver {
                 .setContentTitle(context.getString(R.string.app_name))
                 .setContentText(context.getString(R.string.msg_daily))
                 .setContentIntent(pendingIntent)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setColor(ContextCompat.getColor(context, android.R.color.transparent))
                 .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
                 .setSound(alarmSound);
@@ -75,7 +75,7 @@ public class DailyReminderReceiver extends BroadcastReceiver {
         Intent intent = new Intent(context, DailyReminderReceiver.class);
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 10);
+        calendar.set(Calendar.HOUR_OF_DAY, 11);
         calendar.set(Calendar.MINUTE, 29);
         calendar.set(Calendar.SECOND, 0);
 
