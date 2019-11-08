@@ -8,7 +8,7 @@
     <string name="checking_credentials">Harap tunggu sementara kami memeriksa kredensial Anda ..</string>
     <string name="create_account">Buat akun</string>
     <string name="drink">Minuman</string>
-    <string name="email">Surel</string>
+    <string name="email">Email IPB</string>
     <string name="food">Makanan</string>
     <string name="food_image">gambar_makanan</string>
     <string name="forget_password">Lupa Password</string>
@@ -46,7 +46,7 @@
     <string name="title_activity_user">UserActivity</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="full_name">Full name</string>
+    <string name="full_name">Nama Lengkap</string>
     <string name="your_name">Your Name</string>
     <string name="user_name">user_name</string>
     <string name="email_ex">user_name@apps.ipb.ac.id</string>
@@ -63,7 +63,7 @@
     <string name="nutrition_detail">Nutrition Detail</string>
     <string name="order_id">Order ID</string>
     <string name="order_list">Order List</string>
-    <string name="email_lahap">help@kantinlahap.com</string>
+    <string name="email_lahap">cs@kantinlahap.com</string>
     <string name="product_available">Apakah produk masih tersedia?</string>
     <string name="rekening_nama">Tuliskan Nama yang ada di Rekening Anda</string>
     <string name="msg_daily">Udah makan belum nih? yuk pesen dulu di kantin favorit kita</string>
@@ -114,5 +114,8 @@
     <string name="rek_bni_ilham">Ke Rekening BNI a.n <b>ILHAM MAULIDIN</b> dibawah ini:</string>
     <string name="norek_bni_ilham">0327671638</string>
     <string name="transfer_uang">Terima Kasih telah Order di Kantin Lahap, Silakan Transfer Uang Anda Sejumlah:</string>
+    <string name="ilmu_komputer_ipb_53">Ilmu Komputer IPB 53</string>
+    <string name="no_telp_gilang">+62 823 3505 6500</string>
+    <string name="email_bara_system">barasystemsolution@gmail.com</string>
 
 </resources>

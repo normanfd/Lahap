@@ -16,7 +16,7 @@
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
-            android:id="@+id/emptyy_order"
+            android:id="@+id/empty_order"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:contentDescription="@string/applogo"
@@ -36,7 +36,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="visible"
-            app:layout_constraintTop_toBottomOf="@id/emptyy_order" />
+            app:layout_constraintTop_toBottomOf="@id/empty_order" />
 
     </LinearLayout>
 

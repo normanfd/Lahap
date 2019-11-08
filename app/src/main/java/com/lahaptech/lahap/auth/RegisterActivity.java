@@ -69,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void CreateAccount() {
         String name = inpt_name.getText().toString();
-        String username = inpt_username.getText().toString().trim();
+        String username = inpt_username.getText().toString().trim().toLowerCase();
         String phone = inpt_phone_number.getText().toString();
         String password = inpt_password.getText().toString();
         String email = inpt_email.getText().toString();

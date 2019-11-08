@@ -9,7 +9,7 @@
 
     <string name="app_motto">#MakanDenganLahap</string>
     <string name="applogo">appLogo</string>
-    <string name="email">Email</string>
+    <string name="email">Email IPB</string>
     <string name="create_account">Create Account</string>
     <string name="write_your_name">Please write your username</string>
     <string name="write_email_address">Please write your email address</string>
@@ -71,7 +71,7 @@
     <string name="help">About Us</string>
     <string name="order_id">Order ID</string>
     <string name="order_list">Order List</string>
-    <string name="email_lahap">help@kantinlahap.com</string>
+    <string name="email_lahap">cs@kantinlahap.com</string>
     <string name="product_available">Apakah produk masih tersedia?</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -90,13 +90,13 @@
     <string name="login_account" translatable="false">Login account</string>
     <string name="check_credential">Please wait while we are checking your credentials..</string>
     <string name="incorrect_password">Password is incorrect</string>
-    <string name="incorrect_username">username is incorrect</string>
+    <string name="incorrect_username">Username is incorrect</string>
     <string name="account_with_username">Account with username</string>
     <string name="does_not_exist">does not exist</string>
     <string name="register">Register</string>
     <string name="username_has_already_registered">This username has already been registered</string>
     <string name="order_amount" translatable="false">Order amount</string>
-    <string name="no_order_yet">No order yet</string>
+    <string name="no_order_yet">No Order Yet or Your Order Already Finished</string>
     <string name="text_order_id">Order ID :</string>
     <string name="text_order_status">Order status :</string>
     <string name="no_history_yet">No history yet</string>
@@ -130,5 +130,8 @@
     <string name="rek_bni_ilham">Ke Rekening BNI a.n <b>ILHAM MAULIDIN</b> dibawah ini:</string>
     <string name="norek_bni_ilham">0327671638</string>
     <string name="transfer_uang">Terima Kasih telah Order di Kantin Lahap, Silakan Transfer Uang Anda Sejumlah:</string>
+    <string name="ilmu_komputer_ipb_53">Ilmu Komputer IPB 53</string>
+    <string name="no_telp_gilang">+62 823 3505 6500</string>
+    <string name="email_bara_system">barasystemsolution@gmail.com</string>
 
 </resources>

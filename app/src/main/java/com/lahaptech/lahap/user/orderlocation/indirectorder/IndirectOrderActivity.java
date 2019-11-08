@@ -4,14 +4,19 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.protobuf.StringValue;
 import com.lahaptech.lahap.R;
 import com.lahaptech.lahap.model.User;
+
+import java.util.Calendar;
 
 import static com.lahaptech.lahap.user.index.UserActivity.EXTRA_USER;
 import static com.lahaptech.lahap.user.menuproduct.SelectMenuActivity.CANTEEN_QR_CODE;
@@ -24,6 +29,7 @@ public class IndirectOrderActivity extends AppCompatActivity{
     TextView tvw;
     String totalAmount="", locationID="", productList="";
     User currentOnlineUser;
+    Calendar calendar = Calendar.getInstance();
 
     @SuppressLint({"ShowToast", "SetTextI18n"})
     @Override
@@ -51,6 +57,17 @@ public class IndirectOrderActivity extends AppCompatActivity{
                 hour = picker.getCurrentHour();
                 minute = picker.getCurrentMinute();
             }
+
+            // Validasi tanggal
+
+//            Log.d("JAM", String.valueOf(hour));
+//            Log.d("MINUTE", String.valueOf(minute));
+//            Log.d("JAM", String.valueOf(calendar.get(Calendar.HOUR_OF_DAY)));
+//            Log.d("MINUTE", String.valueOf(calendar.get(Calendar.MINUTE)));
+//
+//            if (hour <= calendar.get(Calendar.HOUR_OF_DAY) && minute <= (calendar.get(Calendar.MINUTE))){
+//                Log.d("JAM", "nice");
+//            }
 
             Intent intent = new Intent(IndirectOrderActivity.this, IndirectOrderFormActivity.class);
             intent.putExtra("timeOrder", hour + ":" + minute);

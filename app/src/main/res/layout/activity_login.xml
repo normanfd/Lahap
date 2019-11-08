@@ -9,7 +9,7 @@
 
     <Button
         android:id="@+id/login_btn"
-        android:layout_width="@dimen/input_form_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
@@ -27,10 +27,12 @@
 
     <EditText
         android:id="@+id/login_username"
-        android:layout_width="@dimen/input_form_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_applogo"
         android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/input_design"
         android:hint="@string/username_ipb"
         android:importantForAutofill="no"
@@ -45,9 +47,11 @@
 
     <EditText
         android:id="@+id/login_password_input"
-        android:layout_width="@dimen/input_form_width"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/input_design"
         android:hint="@string/password"
         android:importantForAutofill="no"
@@ -72,6 +76,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:visibility="invisible"
         android:id="@+id/forget_password_link"
         android:layout_width="@dimen/input_form_width"
         android:layout_height="wrap_content"

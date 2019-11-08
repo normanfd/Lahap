@@ -55,7 +55,7 @@ public class LoginUserActivity extends AppCompatActivity implements View.OnClick
 
     //    check if input blank
     private void loginUser() {
-        String username = inpt_username.getText().toString().trim();
+        String username = inpt_username.getText().toString().trim().toLowerCase();
         String password = inpt_password.getText().toString();
 
         if (TextUtils.isEmpty(username)) {

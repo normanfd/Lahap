@@ -26,7 +26,8 @@
                 android:background="@android:color/holo_green_light"
                 android:layout_height="100dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/app_logo" />
+                android:src="@drawable/app_logo"
+                android:contentDescription="@string/todo" />
 
             <View
                 android:layout_width="match_parent"

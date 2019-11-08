@@ -13,15 +13,17 @@
         android:visibility="visible">
 
         <ImageView
-            android:id="@+id/emptyy_order"
+            android:id="@+id/empty_order"
             android:layout_width="@dimen/input_form_width"
             android:layout_height="200dp"
             android:contentDescription="@string/applogo"
-            android:src="@drawable/ic_shopping_cart_green_24dp"
+            android:src="@drawable/ic_remove_shopping_cart_black_24dp"
+            android:tint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <TextView
             android:id="@+id/textnoorder"
@@ -33,7 +35,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="visible"
-            app:layout_constraintTop_toBottomOf="@id/emptyy_order" />
+            app:layout_constraintTop_toBottomOf="@id/empty_order" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

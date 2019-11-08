@@ -55,8 +55,6 @@ public class CartActivity extends AppCompatActivity {
     User currentOnlineUser;
     ProgressDialog loadingBar;
     StringBuilder productList = new StringBuilder(100);
-    private String saveLocation="";
-    public static String locationNow="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +135,6 @@ public class CartActivity extends AppCompatActivity {
                         protected void onBindViewHolder(@NonNull CartAdapter holder, int position, @NonNull Cart model) {
 
                             String cartID = model.getUsername() + model.getProductID();
-                            saveLocation = model.getLocationID();
 
                             DocumentReference documentReference = cartListRef.collection("cart").document(cartID);
 

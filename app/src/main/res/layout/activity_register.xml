@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/login_applogo"
@@ -25,7 +25,7 @@
 
         <Button
             android:id="@+id/register_btn"
-            android:layout_width="@dimen/input_form_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="5dp"
@@ -43,8 +43,10 @@
 
         <EditText
             android:id="@+id/register_password_input"
-            android:layout_width="@dimen/input_form_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/input_design"
             android:hint="@string/password"
@@ -60,8 +62,10 @@
 
         <EditText
             android:id="@+id/register_phone_number_input"
-            android:layout_width="@dimen/input_form_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/input_design"
             android:hint="@string/phone_number"
@@ -77,8 +81,10 @@
 
         <EditText
             android:id="@+id/register_email_input"
-            android:layout_width="@dimen/input_form_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/input_design"
             android:hint="@string/email"
@@ -94,8 +100,10 @@
 
         <EditText
             android:id="@+id/register_username_input"
-            android:layout_width="@dimen/input_form_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/input_design"
             android:hint="@string/username_ipb"
@@ -111,8 +119,10 @@
 
         <EditText
             android:id="@+id/register_name_input"
-            android:layout_width="@dimen/input_form_width"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/input_design"
             android:hint="@string/full_name"
