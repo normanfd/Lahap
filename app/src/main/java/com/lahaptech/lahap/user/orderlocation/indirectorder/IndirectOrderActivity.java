@@ -47,6 +47,10 @@ public class IndirectOrderActivity extends AppCompatActivity{
         picker.setIs24HourView(true);
         btnGet= findViewById(R.id.button1);
 
+        Calendar calendar = Calendar.getInstance();
+        int hourNow = calendar.get(Calendar.HOUR_OF_DAY);
+        int minuteNow = calendar.get(Calendar.MINUTE);
+
         btnGet.setOnClickListener(v -> {
             int hour, minute;
             if (Build.VERSION.SDK_INT >= 23 ){
@@ -57,6 +61,22 @@ public class IndirectOrderActivity extends AppCompatActivity{
                 hour = picker.getCurrentHour();
                 minute = picker.getCurrentMinute();
             }
+
+            if (hour <= hourNow && minute <= minuteNow){
+                Toast.makeText(this, "Maaf, silakan pilih waktu yang valid", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Intent intent = new Intent(IndirectOrderActivity.this, IndirectOrderFormActivity.class);
+                intent.putExtra("timeOrder", hour + ":" + minute);
+                intent.putExtra("totalAmount", totalAmount);
+                intent.putExtra("qrcode", locationID);
+                intent.putExtra("productList", productList);
+                intent.putExtra(EXTRA_USER, currentOnlineUser);
+
+                startActivity(intent);
+                finish();
+            }
+
 
             // Validasi tanggal
 
@@ -69,15 +89,7 @@ public class IndirectOrderActivity extends AppCompatActivity{
 //                Log.d("JAM", "nice");
 //            }
 
-            Intent intent = new Intent(IndirectOrderActivity.this, IndirectOrderFormActivity.class);
-            intent.putExtra("timeOrder", hour + ":" + minute);
-            intent.putExtra("totalAmount", totalAmount);
-            intent.putExtra("qrcode", locationID);
-            intent.putExtra("productList", productList);
-            intent.putExtra(EXTRA_USER, currentOnlineUser);
 
-            startActivity(intent);
-            finish();
         });
     }
 }
